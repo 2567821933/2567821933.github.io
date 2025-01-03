@@ -122,13 +122,13 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">11</span>
+          <span class="site-state-item-count">12</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-count">5</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
@@ -158,6 +158,117 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2025/01/03/%E7%BC%96%E5%86%99%E4%B8%80%E4%B8%AAjava%E6%B3%A8%E8%A7%A3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/111.png">
+      <meta itemprop="name" content="ZhangYuHao">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Zhang'Blog">
+      <meta itemprop="description" content="一个小人物的个人博客">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Zhang'Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2025/01/03/%E7%BC%96%E5%86%99%E4%B8%80%E4%B8%AAjava%E6%B3%A8%E8%A7%A3/" class="post-title-link" itemprop="url">编写一个java注解</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2025-01-03 22:07:43 / 修改时间：23:25:38" itemprop="dateCreated datePublished" datetime="2025-01-03T22:07:43+08:00">2025-01-03</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">技术</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="编写一个java注解"><a href="#编写一个java注解" class="headerlink" title="编写一个java注解"></a>编写一个java注解</h1><blockquote>
+<p><strong>在Java中，注解（Annotation）是一种元数据（metadata）的形式，它用于为Java代码（类、方法、变量、参数和包等）提供信息。这些注解可以在编译时被处理，也可以在运行时被反射机制读取。</strong></p>
+</blockquote>
+<blockquote>
+<p>要编写一个<a target="_blank" rel="noopener" href="https://so.csdn.net/so/search?q=Java%E6%B3%A8%E8%A7%A3&spm=1001.2101.3001.7020">Java注解</a>，你需要使用@interface关键字，而不是通常的interface关键字。以下是一个简单的Java注解定义的例子：</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.lang.annotation.ElementType;</span><br><span class="line"><span class="keyword">import</span> java.lang.annotation.Retention;</span><br><span class="line"><span class="keyword">import</span> java.lang.annotation.RetentionPolicy;</span><br><span class="line"><span class="keyword">import</span> java.lang.annotation.Target;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 定义注解</span></span><br><span class="line"><span class="meta">@Retention(RetentionPolicy.RUNTIME)</span> <span class="comment">// 注解保留到运行时，以便通过反射读取</span></span><br><span class="line"><span class="meta">@Target(&#123;ElementType.METHOD, ElementType.TYPE&#125;)</span> <span class="comment">// 注解可以应用于方法和类</span></span><br><span class="line"><span class="keyword">public</span> <span class="meta">@interface</span> MyAnnotation &#123;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 定义一个名为value的元素，类型为String，默认值为&quot;&quot;</span></span><br><span class="line">    String <span class="title function_">value</span><span class="params">()</span> <span class="keyword">default</span> <span class="string">&quot;&quot;</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 还可以定义其他元素，例如</span></span><br><span class="line">    <span class="type">int</span> <span class="title function_">number</span><span class="params">()</span> <span class="keyword">default</span> <span class="number">0</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 也可以定义枚举类型的元素</span></span><br><span class="line">    MyEnum <span class="title function_">type</span><span class="params">()</span> <span class="keyword">default</span> MyEnum.DEFAULT;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 枚举类型的定义</span></span><br><span class="line">    <span class="keyword">enum</span> <span class="title class_">MyEnum</span> &#123;</span><br><span class="line">        DEFAULT,</span><br><span class="line">        TYPE_A,</span><br><span class="line">        TYPE_B</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="常用元数据"><a href="#常用元数据" class="headerlink" title="常用元数据"></a>常用元数据</h2><p>在Java中，编写自定义注解时，通常需要使用到几个基本的元注解（Meta-Annotation），这些元注解用于为自定义注解提供额外的信息或指定其行为。以下是这些元注解的详细解释：</p>
+<h3 id="Target"><a href="#Target" class="headerlink" title="@Target"></a>@Target</h3><blockquote>
+<p>说明注解可以被用在哪些元素中，例如类，方法，字段等。</p>
+</blockquote>
+<p>取值</p>
+<p>ElementType.TYPE（类、接口（包括注解类型）或enum声明）、<br>ElementType.FIELD（字段，包括enum实例）、<br>ElementType.METHOD（方法）、<br>ElementType.PARAMETER（参数）、<br>ElementType.CONSTRUCTOR（构造器）、<br>ElementType.LOCAL_VARIABLE（局部变量）、<br>ElementType.ANNOTATION_TYPE（另一个注解）、<br>ElementType.PACKAGE（包）、<br>ElementType.TYPE_PARAMETER（类型参数）、<br>ElementType.TYPE_USE（类型使用声明）</p>
+<h3 id="Retention"><a href="#Retention" class="headerlink" title="@Retention"></a>@Retention</h3><blockquote>
+<p>定义了注解的生命周期，即注解在何时生效。</p>
+<p>取值：</p>
+<p>RetentionPolicy.SOURCE（注解只保留在源码中，在编译时会被丢弃，不包含在编译后的class文件中）</p>
+<p>RetentionPolicy.CLASS（注解被保留在class文件中，但JVM在运行时忽略，这是默认的保留策略）</p>
+<p>RetentionPolicy.RUNTIME（注解被保留在class文件中，并且可以被JVM在运行时读取）</p>
+</blockquote>
+<h3 id="Documented"><a href="#Documented" class="headerlink" title="Documented"></a>Documented</h3><blockquote>
+<p>表示该注解会被javadoc和类似的工具记录，因此可以通过javadoc命令生成API文档时包含此注解。</p>
+</blockquote>
+<h3 id="Inherited"><a href="#Inherited" class="headerlink" title="@Inherited"></a>@Inherited</h3><blockquote>
+<p>表示如果一个注解类型被声明为@Inherited，那么它将被用于类声明时，这个注解类型将被自动地继承到子类中去。</p>
+</blockquote>
+<h3 id="Repeatable（Java-8引入）"><a href="#Repeatable（Java-8引入）" class="headerlink" title="@Repeatable（Java 8引入）"></a>@Repeatable（Java 8引入）</h3><blockquote>
+<ul>
+<li>表示该注解类型可以多次应用于同一个声明类型上。</li>
+<li>需要定义一个容器注解（Containing Annotation）来存放多个相同的注解实例。</li>
+</ul>
+</blockquote>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1514,80 +1625,6 @@
     
     <div class="post-body" itemprop="articleBody">
           <h1 id="这是一篇测试文章"><a href="#这是一篇测试文章" class="headerlink" title="这是一篇测试文章"></a>这是一篇测试文章</h1>
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2024/12/31/%E6%96%87%E7%AB%A0%E6%B5%8B%E8%AF%95/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/111.png">
-      <meta itemprop="name" content="ZhangYuHao">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Zhang'Blog">
-      <meta itemprop="description" content="一个小人物的个人博客">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | Zhang'Blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2024/12/31/%E6%96%87%E7%AB%A0%E6%B5%8B%E8%AF%95/" class="post-title-link" itemprop="url">文章测试</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-      
-
-      <time title="创建时间：2024-12-31 22:04:15 / 修改时间：22:05:03" itemprop="dateCreated datePublished" datetime="2024-12-31T22:04:15+08:00">2024-12-31</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="这是一盘"><a href="#这是一盘" class="headerlink" title="这是一盘"></a>这是一盘</h1><p>aaaa</p>
-<p>ccv</p>
-<p>vzdasd</p>
-<p>dsfasdf</p>
-<p>ss</p>
-
       
     </div>
 
