@@ -122,18 +122,18 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">15</span>
+          <span class="site-state-item-count">16</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-count">6</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-count">8</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -158,6 +158,123 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2025/01/05/%E7%BD%91%E5%85%B3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/111.png">
+      <meta itemprop="name" content="ZhangYuHao">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Zhang'Blog">
+      <meta itemprop="description" content="一个小人物的个人博客">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Zhang'Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2025/01/05/%E7%BD%91%E5%85%B3/" class="post-title-link" itemprop="url">网关</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2025-01-05 15:49:13 / 修改时间：20:07:45" itemprop="dateCreated datePublished" datetime="2025-01-05T15:49:13+08:00">2025-01-05</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%BE%AE%E6%9C%8D%E5%8A%A1/" itemprop="url" rel="index"><span itemprop="name">微服务</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="API网关"><a href="#API网关" class="headerlink" title="API网关"></a>API网关</h1><p><img src="https://pic1.imgdb.cn/item/677a714dd0e0a243d4ef2c43.png"></p>
+<h2 id="什么是网关？"><a href="#什么是网关？" class="headerlink" title="什么是网关？"></a>什么是网关？</h2><p><strong>API网关是一个服务器，是系统的唯一入口。</strong></p>
+<p>API网关封装了系统的内部架构，为每个客户端提供了一个定制的API。</p>
+<p>它的职责：路由，鉴权，跨域，缓存，流量染色，访问控制，统一业务处理，发布控制，脱敏，负载均衡，接口保护（限制请求，信息脱敏，降级熔断，限流，超时时间），统一日志，统一文档。</p>
+<p><strong>API网关方式的核心要点是，所有客户端和消费端都通过统一的网关接入微服务</strong>，在网关层处理所有的非业务功能，通常，网关也提供了REST、HTTP的访问API。</p>
+<h2 id="网关的主要功能"><a href="#网关的主要功能" class="headerlink" title="网关的主要功能"></a>网关的主要功能</h2><p>微服务网关作为微服务后端服务的统一入口，它可以统筹管理后端服务，主要分为数据平面和控制平面：</p>
+<p><strong>1. 数据平面</strong></p>
+<p>数据平面主要功能是接入用户的HTTP请求和微服务被拆分后的聚合。使用微服务网关统一对外暴露后端服务的API和契约，路由和过滤功能正是网关的核心能力模块。另外，微服务网关可以实现拦截机制和专注跨横切面的功能，包括协议转换、安全认证、熔断限流、灰度发布、日志管理、流量监控等</p>
+<p><strong>2. 控制平面</strong></p>
+<p>控制平面主要功能是对后端服务做统一的管控和配置管理。</p>
+<p><strong>3. 整体结构及其功能</strong></p>
+<p><img src="https://pic1.imgdb.cn/item/677a73d5d0e0a243d4ef2caa.png"></p>
+<ul>
+<li><strong>路由功能</strong>：路由是微服务网关的核心能力。通过路由功能微服务网关可以将请求转发到目标微服务。在微服务架构中，网关可以结合注册中心的动态服务发现，实现对后端服务的发现，调用方只需要知道网关对外暴露的服务API就可以透明地访问后端微服务。</li>
+<li><strong>负载均衡</strong>：API网关结合负载均衡技术，利用Eureka或者Consul等服务发现工具，通过轮询、指定权重、IP地址哈希等机制实现下游服务的负载均衡。</li>
+<li><strong>统一鉴权</strong>：一般而言，无论对内网还是外网的接口都需要做用户身份认证，而用户认证在一些规模较大的系统中都会采用统一的单点登录（Single Sign On）系统，如果每个微服务都要对接单点登录系统，那么显然比较浪费资源且开发效率低。API网关是统一管理安全性的绝佳场所，可以将认证的部分抽取到网关层，微服务系统无须关注认证的逻辑，只关注自身业务即可。</li>
+<li><strong>协议转换</strong>：API网关的一大作用在于构建异构系统，API网关作为单一入口，通过协议转换整合后台基于REST、AMQP、Dubbo等不同风格和实现技术的微服务，面向Web Mobile、开放平台等特定客户端提供统一服务。</li>
+<li><strong>指标监控</strong>：网关可以统计后端服务的请求次数，并且可以实时地更新当前的流量健康状态，可以对URL粒度的服务进行延迟统计，也可以使用Hystrix Dashboard查看后端服务的流量状态及是否有熔断发生。</li>
+<li><strong>限流熔断</strong>：在某些场景下需要控制客户端的访问次数和访问频率，一些高并发系统有时还会有限流的需求。在网关上可以配置一个阈值，当请求数超过阈值时就直接返回错误而不继续访问后台服务。当出现流量洪峰或者后端服务出现延迟或故障时，网关能够主动进行熔断，保护后端服务，并保持前端用户体验良好。</li>
+<li><strong>黑白名单</strong>：微服务网关可以使用系统黑名单，过滤HTTP请求特征，拦截异常客户端的请求，例如DDoS攻击等侵蚀带宽或资源迫使服务中断等行为，可以在网关层面进行拦截过滤。比较常见的拦截策略是根据IP地址增加黑名单。在存在鉴权管理的路由服务中可以通过设置白名单跳过鉴权管理而直接访问后端服务资源。</li>
+<li><strong>灰度发布</strong>：微服务网关可以根据HTTP请求中的特殊标记和后端服务列表元数据标识进行流量控制，实现在用户无感知的情况下完成灰度发布。</li>
+<li><strong>流量染色</strong>：和灰度发布的原理相似，网关可以根据HTTP请求的Host、Head、Agent等标识对请求进行染色，有了网关的流量染色功能，我们可以对服务后续的调用链路进行跟踪，对服务延迟及服务运行状况进行进一步的链路分析。</li>
+<li><strong>文档中心</strong>：网关结合Swagger，可以将后端的微服务暴露给网关，网关作为统一的入口给接口的使用方提供查看后端服务的API规范，不需要知道每一个后端微服务的Swagger地址，这样网关起到了对后端API聚合的效果。</li>
+<li><strong>日志审计</strong>：微服务网关可以作为统一的日志记录和收集器，对服务URL粒度的日志请求信息和响应信息进行拦截。</li>
+</ul>
+<h2 id="常用网关"><a href="#常用网关" class="headerlink" title="常用网关"></a>常用网关</h2><h3 id="Nginx"><a href="#Nginx" class="headerlink" title="Nginx"></a>Nginx</h3><p>Nginx是一个高性能的HTTP反向代理服务器，<strong>Nginx一方面可以做反向代理，另外一方面可以做静态资源服务器，接口使用Lua动态语言可以完成灵活的定制功能。</strong></p>
+<h3 id="Zuul"><a href="#Zuul" class="headerlink" title="Zuul"></a>Zuul</h3><p>Zuul 是 Netflix 开源的一个API网关组件，它可以和 Eureka、Ribbon、Hystrix 等组件配合使用。社区活跃，融合于 SpringCloud 完整生态，是构建微服务体系前置网关服务的最佳选型之一。</p>
+<p>Zuul 的核心是一系列的过滤器，这些过滤器可以完成以下功能：</p>
+<ul>
+<li><strong>统一鉴权 + 动态路由 + 负载均衡 + 压力测试</strong></li>
+<li><strong>审查与监控</strong>：与边缘位置追踪有意义的数据和统计结果，从而带来精确的生产视图。</li>
+<li><strong>多区域弹性</strong>：跨越 AWS Region 进行请求路由，旨在实现 ELB（Elastic Load Balancing，弹性负载均衡）使用的多样化，以及让系统的边缘更贴近系统的使用者。</li>
+</ul>
+<h3 id="SpringCloudGetWay"><a href="#SpringCloudGetWay" class="headerlink" title="SpringCloudGetWay"></a>SpringCloudGetWay</h3><p>Spring Cloud Gateway 是Spring Cloud的一个全新的API网关项目，目的是为了替换掉Zuul1，它基于Spring5.0 + SpringBoot2.0 + WebFlux（基于⾼性能的Reactor模式响应式通信框架Netty，异步⾮阻塞模型）等技术开发，性能⾼于Zuul，官⽅测试，<strong>Spring Cloud GateWay是Zuul的1.6倍</strong>，旨在为微服务架构,提供⼀种简单有效的统⼀的API路由管理⽅式。</p>
+<p>Spring Cloud Gateway可以与Spring Cloud Discovery Client（如Eureka）、Ribbon、Hystrix等组件配合使用，<strong>实现路由转发、负载均衡、熔断、鉴权、路径重写、⽇志监控等，并且Gateway还内置了限流过滤器，实现了限流的功能。</strong></p>
+<p>整体结构如下：</p>
+<p><img src="https://pic1.imgdb.cn/item/677a75b0d0e0a243d4ef2d34.png"></p>
+<h3 id="Kong"><a href="#Kong" class="headerlink" title="Kong"></a>Kong</h3><p>Kong是一款基于OpenResty（Nginx + Lua模块）编写的高可用、易扩展的，由Mashape公司开源的API Gateway项目</p>
+<h3 id="Traefik"><a href="#Traefik" class="headerlink" title="Traefik"></a>Traefik</h3><p>Træfɪk 是一个为了让部署微服务更加便捷而诞生的现代HTTP反向代理、负载均衡工具。它支持多种后台 (Docker, Swarm, Kubernetes, Marathon, Mesos, Consul, Etcd, Zookeeper, BoltDB, Rest API, file…) 来自动化、动态的应用它的设置。</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -906,624 +1023,6 @@
 
 <p>通过将数据库、表和列的字符集统一更改为<code>utf8mb4</code>，我们可以确保数据存储具有更高的兼容性和灵活性。特别是对于需要存储多语言内容或特殊字符的应用程序，<code>utf8mb4</code>字符集提供了广泛的支持。</p>
 
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2025/01/01/MySQL%E9%9D%A2%E8%AF%95/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/111.png">
-      <meta itemprop="name" content="ZhangYuHao">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Zhang'Blog">
-      <meta itemprop="description" content="一个小人物的个人博客">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | Zhang'Blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2025/01/01/MySQL%E9%9D%A2%E8%AF%95/" class="post-title-link" itemprop="url">MySQL面试</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2025-01-01 21:48:38" itemprop="dateCreated datePublished" datetime="2025-01-01T21:48:38+08:00">2025-01-01</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2025-01-04 23:10:47" itemprop="dateModified" datetime="2025-01-04T23:10:47+08:00">2025-01-04</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E9%9D%A2%E8%AF%95/" itemprop="url" rel="index"><span itemprop="name">面试</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="MySQL面试"><a href="#MySQL面试" class="headerlink" title="MySQL面试"></a>MySQL面试</h1><h2 id="Day1"><a href="#Day1" class="headerlink" title="Day1"></a>Day1</h2><h3 id="MySQL-InnoDB-引擎中的聚簇索引和非聚簇索引有什么区别？"><a href="#MySQL-InnoDB-引擎中的聚簇索引和非聚簇索引有什么区别？" class="headerlink" title="MySQL InnoDB 引擎中的聚簇索引和非聚簇索引有什么区别？"></a>MySQL InnoDB 引擎中的聚簇索引和非聚簇索引有什么区别？</h3><h4 id="聚簇索引"><a href="#聚簇索引" class="headerlink" title="聚簇索引"></a>聚簇索引</h4><p>是指数据表中的数据存储按照索引的顺序排列，因此索引的叶子结点存储的不仅是索引的值，还存储整行数据。	</p>
-<p>注意： 每张表只能有一个聚簇索引，因为数据物理上只能有一种排序。</p>
-<p><strong>InnoDB中的特点</strong></p>
-<blockquote>
-<ul>
-<li>在InnoDB中，主键索引就是聚簇索引，即InnoDB表会自动将主键列作为聚簇索引。</li>
-<li>若未定义主键，InnoDB会尝试使用一个唯一的非空索引作为聚簇索引；如果表中没有主键或唯一非空索引，innoDB会自动生成一个隐式的row_id作为聚簇索引。</li>
-</ul>
-</blockquote>
-<p><strong>工作原理</strong></p>
-<blockquote>
-<ul>
-<li>聚簇索引的叶子节点存储的不是指向数据的指针，而是整行数据。因此，通过聚簇索引进行查询时，可以直接从索引中找到所需的数据，而不需要额外的查找步骤。</li>
-<li>由于数据和索引一起存储，按主键查询非常高效，因为查询的过程就是遍历聚簇索引找到数据的过程。</li>
-</ul>
-</blockquote>
-<p><strong>优点</strong></p>
-<blockquote>
-<ul>
-<li>查询速度快：由于数据存储在索引的叶子节点中，按主键或按聚簇索引进行查询非常快，特别是范围查询（如 BETWEEN 或 ORDER BY）效率高，因为数据物理上按索引顺序存储。</li>
-<li>索引覆盖****查询：因为聚簇索引中包含了整行数据，某些查询只需使用聚簇索引即可完成，避免了二次查找</li>
-</ul>
-</blockquote>
-<p><strong>缺点</strong></p>
-<blockquote>
-<ul>
-<li>插入和更新代价较高：由于数据按照索引顺序存储，插入新数据时可能需要调整数据存储的位置（维护顺序），因此插入效率比非聚簇索引低。</li>
-<li>表的行存储顺序受限于聚簇索引：如果主键频繁变化，聚簇索引的维护成本较高</li>
-<li>大字段影响性能：如果表中包含大字段（如 BLOB、TEXT），它们也会存储在聚簇索引中，导致索引体积变大、性能下降。InnoDB 可以将这些大字段存储在页外，聚簇索引只存储其指针。</li>
-</ul>
-</blockquote>
-<blockquote>
-<p> 非叶节点都是存储的是节点中最大的那一个，一个关键字对应一个分支。</p>
-</blockquote>
-<h4 id="非聚簇索引"><a href="#非聚簇索引" class="headerlink" title="非聚簇索引"></a>非聚簇索引</h4><p><strong>非聚簇索引</strong> 是指索引和数据是<strong>分开存储的</strong>。非聚簇索引的叶子节点存储的是<strong>索引列的值和指向实际数据的指针（即行号或主键）</strong>。</p>
-<p>注意： 一张表可以有多个非聚簇索引，每个索引都有自己的存储顺序。</p>
-<p><strong>InnoDB中的特点</strong></p>
-<blockquote>
-<ul>
-<li>非主键索引 在 InnoDB 中就是非聚簇索引，这些索引的叶子节点存储的是索引列的值，以及对应行的主键值，而不是直接存储数据。</li>
-<li>因此，通过非聚簇索引查询数据时，数据库首先需要使用非聚簇索引找到主键，然后再通过主键去聚簇索引中找到实际的数据。这种过程被称为<strong>回表（Secondary Lookup）</strong></li>
-</ul>
-</blockquote>
-<p>原理</p>
-<blockquote>
-<ul>
-<li>非聚簇索引的叶子节点存储的是索引列的值和指向数据的指针。在 InnoDB 中，这个指针实际上是该行对应的主键值，因此在使用非聚簇索引时，MySQL 需要先通过非聚簇索引找到主键值，然后通过主键值回到聚簇索引中查找整行数据。</li>
-</ul>
-</blockquote>
-<p><strong>优点</strong></p>
-<blockquote>
-<ul>
-<li>查找速度快（对于特定列的查询）：非聚簇索引可以加速对索引列的查找，尤其是对那些经常作为查询条件的列建立非聚簇索引，可以大大提高查询性能。</li>
-<li>灵活性高：一张表可以有多个非聚簇索引，每个索引可以加速不同类型的查询。</li>
-</ul>
-</blockquote>
-<p><strong>缺点</strong></p>
-<blockquote>
-<ul>
-<li>查询效率较低（需要回表）：非聚簇索引在查询时需要通过索引列找到主键，然后再去聚簇索引查找实际数据。这个过程比直接使用聚簇索引略慢。</li>
-<li>额外存储：非聚簇索引需要额外存储主键信息，并且占用更多的磁盘空间。</li>
-</ul>
-</blockquote>
-<h4 id="对比"><a href="#对比" class="headerlink" title="对比"></a>对比</h4><p><img src="https://pic1.imgdb.cn/item/67755c2dd0e0a243d4ed6f20.png"></p>
-<h4 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h4><p>聚簇：</p>
-<blockquote>
-<ul>
-<li>按主键查询频繁：如果你经常按主键查询数据，例如电商订单系统，按订单号（主键）查询订单信息，使用聚簇索引可以大大提高查询性能。</li>
-<li>范围查询：当你需要在一个范围内查询数据时（例如日期范围查询），聚簇索引可以加速查询，因为数据物理上按顺序存储，范围查询时只需扫描连续的物理页。</li>
-</ul>
-</blockquote>
-<p>非聚簇</p>
-<blockquote>
-<ul>
-<li>按非主键列查询：当你的查询条件经常使用非主键列时（例如按用户邮箱查询用户信息），你可以为这些列创建非聚簇索引。</li>
-<li>多列查询优化：如果你的应用场景中涉及到多个列的查询，可以为这些列创建多个非聚簇索引，来优化查询性能。</li>
-</ul>
-</blockquote>
-<h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><blockquote>
-<ul>
-<li><strong>聚集索引：数据存储按照索引顺序进行存储，每张表只能有一个聚簇索引，适合主键查询和范围查询的场景。</strong></li>
-<li><strong>非聚集索引：索引和数据分开存储，索引指向的是数据的主键，适合对非主键列进行快速查找的场景，表中可以创建多个非聚簇索引。</strong></li>
-</ul>
-</blockquote>
-<h3 id="MySQL的存储引擎有哪些？他们之间有什么区别？"><a href="#MySQL的存储引擎有哪些？他们之间有什么区别？" class="headerlink" title="MySQL的存储引擎有哪些？他们之间有什么区别？"></a>MySQL的存储引擎有哪些？他们之间有什么区别？</h3><h4 id="常见存储引擎"><a href="#常见存储引擎" class="headerlink" title="常见存储引擎"></a>常见存储引擎</h4><p><strong>1. InnoDB</strong></p>
-<p>特点：</p>
-<ul>
-<li>默认存储引擎，支持事务（ACID）</li>
-<li>使用 聚簇索引， 主键数据和索引存储在一起</li>
-<li>支持外键约束</li>
-<li>采用MVCC（多版本并发控制）提高并发性能</li>
-</ul>
-<p>适用场景</p>
-<ul>
-<li>需要事务支持的场景</li>
-<li>大量数据的读写操作</li>
-</ul>
-<p><strong>2. MyISAM</strong></p>
-<p>特点：</p>
-<ul>
-<li>不支持事务和外键</li>
-<li>采用非聚簇索引，数据和索引分开存储</li>
-<li>支持全文索引</li>
-<li>表级锁，写操作会阻塞其他读写操作</li>
-</ul>
-<p>适用场景：</p>
-<ul>
-<li>以读操作为主的场景，如日志分析，数据仓库。</li>
-<li>数据不需要频繁更新</li>
-</ul>
-<p><strong>3. Memory</strong></p>
-<p>特点：</p>
-<ul>
-<li>数据存储在内存中，读写速度快</li>
-<li>数据非持久化，MySQL重启或崩溃后数据丢失</li>
-<li>支持表级锁</li>
-</ul>
-<p>适用场景：</p>
-<ul>
-<li>临时数据存储或需要极高读写速度的场景，如缓存系统</li>
-</ul>
-<p><strong>4. csv</strong><br>特点：</p>
-<ul>
-<li>数据以都好分隔值文件（csv）格式存储。</li>
-<li>不支持索引</li>
-<li>性能低</li>
-</ul>
-<p>适用场景：</p>
-<ul>
-<li>数据导入导出操作</li>
-</ul>
-<p><strong>5. Archive</strong></p>
-<p>特点：</p>
-<ul>
-<li>专门存储归档数据设计，支持高压缩比</li>
-<li>仅支持INSERT 和SELECT 操作，不支持索引和事务。</li>
-</ul>
-<p>适用场景：</p>
-<ul>
-<li>只需存储大量历史归档数据，几乎不需要更新。</li>
-</ul>
-<p><strong>6. Federated</strong></p>
-<p>特点：</p>
-<ul>
-<li>用于访问远程MySQL服务器的数据。</li>
-<li>数据存储在远程服务器上。</li>
-</ul>
-<p>适用场景：</p>
-<ul>
-<li>需要整合多个MySQL数据库的数据。</li>
-</ul>
-<p><strong>7.NDB（Clustered Storage Engine)</strong><br>集群存储引擎</p>
-<p>特点：</p>
-<ul>
-<li>用于MysQL集群，支持高可用性和高并发。</li>
-<li>数据分布式存储在多个节点。</li>
-</ul>
-<p>适用场景：</p>
-<ul>
-<li>高可用，高性能需求的分布式场景</li>
-</ul>
-<h4 id="区别表"><a href="#区别表" class="headerlink" title="区别表"></a>区别表</h4><p><img src="https://pic1.imgdb.cn/item/677561f9d0e0a243d4ed7057.png"></p>
-<h4 id="引擎选择建议"><a href="#引擎选择建议" class="headerlink" title="引擎选择建议"></a>引擎选择建议</h4><ol>
-<li><strong>事务需求：</strong><ul>
-<li>需要事务：InnoDB</li>
-<li>不需要事务：可选择 MyISAM、Memory 等。</li>
-</ul>
-</li>
-<li><strong>数据访问模式</strong>：<ul>
-<li>读写并发：选择 InnoDB。</li>
-<li>只读或读多写少：可选择 MyISAM。</li>
-</ul>
-</li>
-<li><strong>持久化需求</strong>：<ul>
-<li>持久化：InnoDB、MyISAM。</li>
-<li>非持久化：Memory。</li>
-</ul>
-</li>
-<li><strong>数据规模和性能</strong>：<ul>
-<li>数据量大，索引优化重要：选择 InnoDB。</li>
-<li>极高性能，数据可以丢失：选择 Memory。</li>
-</ul>
-</li>
-</ol>
-<p>总结：</p>
-<ul>
-<li>MySQL 提供了多种存储引擎以满足不同的需求。</li>
-<li><strong>InnoDB</strong> 是大多数场景下的首选，因其支持事务、高并发和外键。</li>
-<li>其他存储引擎（如 MyISAM、Memory）则适用于特定的场景</li>
-</ul>
-<h3 id="MySQL的索引有哪些？"><a href="#MySQL的索引有哪些？" class="headerlink" title="MySQL的索引有哪些？"></a>MySQL的索引有哪些？</h3><p>主要包括：</p>
-<ul>
-<li>普通索引</li>
-<li>唯一索引</li>
-<li>主键索引</li>
-<li>组合索引</li>
-<li>全文索引</li>
-</ul>
-<h4 id="普通索引"><a href="#普通索引" class="headerlink" title="普通索引"></a>普通索引</h4><p>是最基本的索引，它没有任何限制。</p>
-<p>创建一个索引</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"># ①创建普通的索引</span><br><span class="line"><span class="keyword">CREATE TABLE</span> book(</span><br><span class="line">    book_id <span class="type">INT</span> ,</span><br><span class="line">    book_name <span class="type">VARCHAR</span>(<span class="number">100</span>),</span><br><span class="line">    AUTHORS <span class="type">VARCHAR</span>(<span class="number">100</span>),</span><br><span class="line">    info <span class="type">VARCHAR</span>(<span class="number">100</span>) ,</span><br><span class="line">    COMMENT <span class="type">VARCHAR</span>(<span class="number">100</span>),</span><br><span class="line">    year_publication <span class="keyword">YEAR</span>,</span><br><span class="line">    # 声明索引</span><br><span class="line">    INDEX idx_bname(book_name) # 这里是索引名（对应的列）</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
-
-<p>查看索引</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"># 方式<span class="number">1</span>：</span><br><span class="line"><span class="keyword">SHOW</span> <span class="keyword">CREATE TABLE</span> book; # Linux下添加G参数</span><br><span class="line"></span><br><span class="line"># 方式<span class="number">2</span>：</span><br><span class="line"><span class="keyword">SHOW</span> INDEX <span class="keyword">FROM</span> book;</span><br><span class="line"></span><br><span class="line">#性能分析工具：EXPLAIN，查看索引是否正在使用</span><br><span class="line">EXPLAIN <span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">from</span> book <span class="keyword">where</span> book_name <span class="operator">=</span> <span class="string">&#x27;mysql高级&#x27;</span>;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id="唯一索引"><a href="#唯一索引" class="headerlink" title="唯一索引"></a>唯一索引</h4><p>与前面的普通索引类似，不同的就是：索引列的值必须唯一，但允许有空值。如果是组合索引，则列值的组合必须唯一。</p>
-<p>创建：</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"># ②创建唯一索引</span><br><span class="line"><span class="keyword">CREATE TABLE</span> book1 (</span><br><span class="line">  book_id <span class="type">INT</span>,</span><br><span class="line">  book_name <span class="type">VARCHAR</span> (<span class="number">100</span>),</span><br><span class="line">  AUTHORS <span class="type">VARCHAR</span> (<span class="number">100</span>),</span><br><span class="line">  info <span class="type">VARCHAR</span> (<span class="number">100</span>),</span><br><span class="line">  COMMENT <span class="type">VARCHAR</span> (<span class="number">100</span>),</span><br><span class="line">  year_publication <span class="keyword">YEAR</span>,</span><br><span class="line">  #声明索引</span><br><span class="line">  <span class="keyword">UNIQUE</span> INDEX uk_idx_cmt (COMMENT)</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">show</span> INDEX <span class="keyword">from</span> book1;# 查看索引</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-
-
-
-
-<h4 id="主键索引"><a href="#主键索引" class="headerlink" title="主键索引"></a>主键索引</h4><p>是一种特殊的唯一索引，一个表只能有一个主键，不允许有空值。一般是在建表的时候同时创建主键索引</p>
-<p>创建：</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"># ③主键索引</span><br><span class="line"># 通过定义主键约束的方式定义主键索引</span><br><span class="line"><span class="keyword">create table</span> book2(</span><br><span class="line">    book_id <span class="type">int</span> <span class="keyword">primary key</span>,</span><br><span class="line">    book_name <span class="type">varchar</span>(<span class="number">100</span>),</span><br><span class="line">    AUTHORS <span class="type">VARCHAR</span> (<span class="number">100</span>),</span><br><span class="line">    info <span class="type">VARCHAR</span> (<span class="number">100</span>),</span><br><span class="line">    COMMENT <span class="type">VARCHAR</span> (<span class="number">100</span>),</span><br><span class="line">    year_publication <span class="keyword">YEAR</span></span><br><span class="line">) ;</span><br><span class="line"></span><br><span class="line"># 通过删除主键约束的方式删除主键索引</span><br><span class="line"><span class="keyword">alter table</span> book2</span><br><span class="line"><span class="keyword">drop</span> <span class="keyword">primary key</span>;</span><br></pre></td></tr></table></figure>
-
-
-
-
-
-<h4 id="组合索引"><a href="#组合索引" class="headerlink" title="组合索引"></a>组合索引</h4><p>指多个字段上创建的索引，只有在查询条件中使用了创建索引时的第一个字段，索引才会被使用。使用组合索引时遵循最左前缀集合</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"># ⑤ 创建联合索引</span><br><span class="line"><span class="keyword">create table</span> book4(</span><br><span class="line">    book_id <span class="type">INT</span>,</span><br><span class="line">    book_name <span class="type">VARCHAR</span>(<span class="number">100</span>),</span><br><span class="line">    AUTHORS <span class="type">VARCHAR</span> (<span class="number">100</span>),</span><br><span class="line">    info <span class="type">VARCHAR</span> (<span class="number">100</span>),</span><br><span class="line">    COMMENT <span class="type">VARCHAR</span> (<span class="number">100</span>),</span><br><span class="line">    year_publication <span class="keyword">YEAR</span>,</span><br><span class="line">    index mul_bid_bname_info(book_id,book_name,info)	</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="keyword">SHOW</span> INDEX <span class="keyword">FROM</span> book4;</span><br></pre></td></tr></table></figure>
-
-<p>注意：注意上面三行依次是book_id,book_name,info，与我们创建索引时指定的顺序是严格对应的。在查询时会遵守最左索引原则，先进行book_id条件的比较，然后再进行book_name比较，最后才是info。因此注意把最常用的查询字段放在索引的最左边。</p>
-<h4 id="全文索引"><a href="#全文索引" class="headerlink" title="全文索引"></a>全文索引</h4><p>主要用来查找文本中的关键字，而不是直接与索引中的值相比较。fulltext索引跟其它索引大不相同，它更像是一个搜索引擎，而不是简单的where语句的参数匹配。fulltext索引配合match against操作使用，而不是一般的where语句加like。它可以在create table，alter table ，create index使用，不过目前只有char、varchar，text 列上可以创建全文索引。值得一提的是，在数据量较大时候，现将数据放入一个没有全局索引的表中，然后再用CREATE index创建fulltext索引，要比先为一张表建立fulltext然后再将数据写入的速度快很多。</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE TABLE</span> test4(</span><br><span class="line">    id <span class="type">INT</span> <span class="keyword">NOT NULL</span>,</span><br><span class="line">    name <span class="type">CHAR</span>(<span class="number">30</span>) <span class="keyword">NOT NULL</span>,</span><br><span class="line">    age <span class="type">INT</span> <span class="keyword">NOT NULL</span>,</span><br><span class="line">    info <span class="type">VARCHAR</span>(<span class="number">255</span>),</span><br><span class="line">    FULLTEXT INDEX futxt_idx_info(info)</span><br><span class="line">) ENGINE<span class="operator">=</span>MyISAM;</span><br><span class="line"></span><br><span class="line"><span class="keyword">SHOW</span> INDEX <span class="keyword">FROM</span> test4G;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h2 id="Day2"><a href="#Day2" class="headerlink" title="Day2"></a>Day2</h2><h3 id="MySQL-三层B-树能存储多少数据？"><a href="#MySQL-三层B-树能存储多少数据？" class="headerlink" title="MySQL 三层B+树能存储多少数据？"></a>MySQL 三层B+树能存储多少数据？</h3><h4 id="计算思路"><a href="#计算思路" class="headerlink" title="计算思路"></a>计算思路</h4><blockquote>
-<ol>
-<li>计算叶子结点的大小</li>
-<li>计算子结点的个数，由此算出第三层叶子结点的个数（n*n)<ul>
-<li>一个结点的子节点个数 &#x3D; 页大小 &#x2F; (索引键大小 + 只想该子结点的指针大小)</li>
-</ul>
-</li>
-<li>计算每个叶子几点存储的数据行个数（多少条数据)</li>
-<li>算出第三层能存储的总的数据行。</li>
-</ol>
-</blockquote>
-<h4 id="b-树的存储结构"><a href="#b-树的存储结构" class="headerlink" title="b+树的存储结构"></a>b+树的存储结构</h4><blockquote>
-<p>根节点，非叶子结点，叶子结点</p>
-</blockquote>
-<blockquote>
-<p>非叶子结点： 存储索引和子结点的指针</p>
-<p>叶子结点： 存储完整的数据行</p>
-</blockquote>
-<h4 id="页"><a href="#页" class="headerlink" title="页"></a>页</h4><blockquote>
-<p>每个节点就是一个页，页是mysql InnoDB引擎中最小的存储单元，一个<strong>页里面有一个页目录，存储的是所有索引键和子结点指针的组合。</strong></p>
-</blockquote>
-<h4 id="具体介绍"><a href="#具体介绍" class="headerlink" title="具体介绍"></a>具体介绍</h4><ol>
-<li><p>页大小： 默认16kb</p>
-<blockquote>
-<p>16 * 1024 &#x3D; 16384字节</p>
-</blockquote>
-</li>
-<li><p>索引键和指针大小</p>
-<blockquote>
-<p>指针大小通常是6字节，索引键使用BigInt 8字节</p>
-</blockquote>
-</li>
-<li><p>计算扇出</p>
-<blockquote>
-<p>扇出： 非叶子结点所拥有的子节点的数量。</p>
-<p>扇出 &#x3D; 页大小（16kb) &#x2F; (索引键大小 + 只想该子结点的指针大小)(14b) 大约1170</p>
-</blockquote>
-</li>
-<li><p>由此计算b+树层级存储</p>
-<blockquote>
-<ul>
-<li><strong>根节点</strong>：根节点是<strong>一个</strong>非叶子节点，可以存储大约1170个索引键和指针</li>
-<li><strong>第二层节点</strong>：每个根节点的指针可以指向一个第二层的节点，所以第二层最多有1170个节点。每个第二层节点也可以存储1170个指针。</li>
-<li><strong>第三层节点（叶子节点）</strong>：每个第二层节点的指针可以指向多个第三层节点（叶子节点）。因此，第三层的节点数是第二层节点数乘以每个第二层节点的指针数，即1170 * 1170。</li>
-</ul>
-</blockquote>
-</li>
-<li><p>结果</p>
-<blockquote>
-<p>数据大小 &#x3D; 1170  * 1170 * (16kb &#x2F; 单条数据行的大小)</p>
-</blockquote>
-</li>
-</ol>
-<h3 id="MySQL-最左前缀匹配原则是什么？"><a href="#MySQL-最左前缀匹配原则是什么？" class="headerlink" title="MySQL 最左前缀匹配原则是什么？"></a>MySQL 最左前缀匹配原则是什么？</h3><p>最左前缀匹配原则是 MySQL 在使用索引时遵循的一种规则，尤其在涉及组合索引时。</p>
-<p>mysql在查询时，会<strong>从最左边的索引列开始匹配，直到遇到第一个无法继续匹配的列为止</strong>。这意味着，若通过组合索引查询数据时，查询条件必须遵循 “最左前缀” 的要求，<strong>必须从组合索引最左边的字段开始匹配，逐步向右，不能跳过任何列。</strong></p>
-<p>类型：</p>
-<ol>
-<li><p>完全匹配最左前缀：当你查询条件完全包含最左边的字段，MySQL可以使用这个索引。</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> users <span class="keyword">WHERE</span> first_name <span class="operator">=</span> <span class="string">&#x27;John&#x27;</span>;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>匹配多个最左前缀： 有多个字段符合最左前缀</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> users <span class="keyword">WHERE</span> first_name <span class="operator">=</span> <span class="string">&#x27;John&#x27;</span> <span class="keyword">AND</span> last_name <span class="operator">=</span> <span class="string">&#x27;Doe&#x27;</span>;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>部分前缀匹配： 如果查询条件值匹配索引的前几个字段一部分</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> users <span class="keyword">WHERE</span> first_name <span class="operator">=</span> <span class="string">&#x27;John&#x27;</span> <span class="keyword">AND</span> age <span class="operator">=</span> <span class="number">25</span>;</span><br><span class="line"># 注意：这里实现最左前缀的之后first_name,关于age的条件需要回表搜索。</span><br></pre></td></tr></table></figure></li>
-</ol>
-<h3 id="为什么MySQL选择使用B-树作为索引"><a href="#为什么MySQL选择使用B-树作为索引" class="headerlink" title="为什么MySQL选择使用B+树作为索引"></a>为什么MySQL选择使用B+树作为索引</h3><p>B+树是B树的变种，它具有与B树类似的结构和特点，但在某些方面有所改进，特别是在存储和查找效率上。B+树通常用于数据库和文件系统中，作为一种高效的索引结构</p>
-<p><strong>1. 所有数据都存储在叶子结点</strong></p>
-<ul>
-<li>在B树中，数据可以存储在内部节点和叶子节点中，而在B+树中，所有的数据（即关键字）都仅存储在叶子节点中。内部节点只存储关键字，用于引导查找过程</li>
-<li>这种设计可以减少内部节点的存储空间，提高查询效率。</li>
-</ul>
-<p><strong>2. 叶子节点通过链表连接</strong></p>
-<ul>
-<li>B+树的叶子节点通常是通过一个链表连接起来的，这使得范围查询（例如查找某个区间内的所有数据）变得更加高效</li>
-<li>通过遍历链表，可以一次性返回区间内的所有数据，而不需要回溯到其他节点。</li>
-</ul>
-<p><strong>3. 树的高度较小</strong>：</p>
-<ul>
-<li>由于所有数据都存储在叶子节点中，B+树的内部节点只需要存储关键字和指向子节点的指针。</li>
-<li>因此，相比于B树，B+树可以将更多的数据存储在每个节点中，从而使树的高度变得更小，查找操作的效率更高。</li>
-</ul>
-<p><strong>4. 查找操作的效率更高</strong>：</p>
-<ul>
-<li>B+树的查找操作通常仅限于叶子节点，而B树在查找时可能需要在内部节点和叶子节点之间反复跳转。</li>
-<li>由于叶子节点之间有链表连接，B+树在范围查询时特别高效。</li>
-</ul>
-<h4 id="B-树结构"><a href="#B-树结构" class="headerlink" title="B+树结构"></a>B+树结构</h4><p><img src="https://pic1.imgdb.cn/item/6776ad76d0e0a243d4ede61f.png"></p>
-<p>B+树相较于B树，在查找和范围查询上有显著的优势，尤其在数据库和文件系统中，因为它能够有效地减少磁盘I&#x2F;O操作，并提高查询效率。因此，MySQL选择了B+树作为索引的数据结构。</p>
-<h2 id="Day3"><a href="#Day3" class="headerlink" title="Day3"></a>Day3</h2><h3 id="MySQL-中使用索引就一定有效吗？如何排查索引？"><a href="#MySQL-中使用索引就一定有效吗？如何排查索引？" class="headerlink" title="MySQL 中使用索引就一定有效吗？如何排查索引？"></a>MySQL 中使用索引就一定有效吗？如何排查索引？</h3><p>索引的使用取决于：查询条件，数据分布，索引设计等多个因素</p>
-<p><strong>1. 索引未必一定有效</strong></p>
-<p><strong>（1）索引选择性差</strong></p>
-<ul>
-<li>如果索引列的数据选择性较低（例如某个值大部分相同），索引就可能不被使用。这时，mysql就会使用全表扫描， 选择成本更低的选项。</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">SELECT * FROM users WHERE gender = &#x27;Male&#x27;;</span><br><span class="line"># 这里gender索引值只有Male和Female两个值</span><br><span class="line"># 索引选择性差</span><br></pre></td></tr></table></figure>
-
-
-
-<p><strong>（2）范围查询</strong></p>
-<ul>
-<li>使用了范围查询（如 <code>BETWEEN</code>、<code>&gt;</code>、<code>&lt;</code>、<code>LIKE</code> 等）时，索引会被部分使用，通常只能利用范围查询前的字段索引。</li>
-</ul>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> users <span class="keyword">WHERE</span> age <span class="operator">&gt;</span> <span class="number">30</span> <span class="keyword">AND</span> name <span class="operator">=</span> <span class="string">&#x27;Alice&#x27;</span>;</span><br><span class="line"># 这里索引只用到了age，之后回表查询，没有用到name。</span><br></pre></td></tr></table></figure>
-
-<p><strong>（3）对索引使用了函数或表达式</strong></p>
-<ul>
-<li>在查询中对索引列使用了函数（如 <code>YEAR(date_column)</code>）或进行表达式计算时，索引可能会失效，因为计算后值与存储的索引值不匹配。</li>
-</ul>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> orders <span class="keyword">WHERE</span> <span class="keyword">YEAR</span>(order_date) <span class="operator">=</span> <span class="number">2023</span>;</span><br><span class="line"># <span class="keyword">YEAR</span>(order_date) 会导致索引失效，除非使用适当的索引，如索引覆盖完整的 order_date 列</span><br></pre></td></tr></table></figure>
-
-<p><strong>（4） 隐式类型转换</strong></p>
-<ul>
-<li>在查询中，如果传入的查询条件数据类型与索引列的数据类型不同，MySQL 可能会进行隐式类型转换，导致索引失效。</li>
-</ul>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> users <span class="keyword">WHERE</span> age <span class="operator">=</span> <span class="string">&#x27;25&#x27;</span>;</span><br><span class="line">#如果 age 列是 <span class="type">INT</span> 类型，而查询条件是字符串 <span class="string">&#x27;25&#x27;</span>，会导致类型不匹配，进而导致索引失效。</span><br></pre></td></tr></table></figure>
-
-<p><strong>(5) 使用OR连接</strong></p>
-<ul>
-<li>在查询中使用 <code>OR</code> 时，如果 <code>OR</code> 连接的条件不能充分利用索引，MySQL 可能会选择全表扫描。</li>
-</ul>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> users <span class="keyword">WHERE</span> name <span class="operator">=</span> <span class="string">&#x27;Alice&#x27;</span> <span class="keyword">OR</span> age <span class="operator">=</span> <span class="number">30</span>;</span><br></pre></td></tr></table></figure>
-
-<p>如果 <code>name</code> 和 <code>age</code> 列分别有索引，MySQL 可能不能有效使用这两个索引，而是选择全表扫描。</p>
-<p><strong>2. 如何排查索引</strong></p>
-<p><strong>(1) 使用 <code>EXPLAIN</code> 命令分析查询计划</strong></p>
-<ul>
-<li><code>EXPLAIN</code> 命令可以显示 MySQL 执行查询时选择的执行计划，帮助我们判断是否使用了索引。</li>
-</ul>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">EXPLAIN <span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> users <span class="keyword">WHERE</span> name <span class="operator">=</span> <span class="string">&#x27;Alice&#x27;</span> <span class="keyword">AND</span> age <span class="operator">=</span> <span class="number">30</span>;</span><br></pre></td></tr></table></figure>
-
-<p>常见的<code>EXPLAIN</code> 输出解释：</p>
-<ul>
-<li><code>key</code>：显示使用的索引。</li>
-<li><code>type</code>：连接类型，<code>ALL</code> 表示全表扫描，<code>range</code> 表示范围扫描，<code>ref</code> 表示索引查找。</li>
-<li><code>rows</code>：MySQL 预计扫描的行数。</li>
-</ul>
-<p><strong>（2）使用 <code>SHOW WARNINGS</code> 排查索引失效原因</strong></p>
-<ul>
-<li>如果查询没有使用索引，MySQL 会通过 <code>SHOW WARNINGS</code> 显示相关警告信息，指示索引未能使用的原因。</li>
-</ul>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SHOW</span> WARNINGS; #显示相关警告信息</span><br></pre></td></tr></table></figure>
-
-<p><strong>（3）查看慢日志</strong></p>
-<ul>
-<li>通过启用慢查询日志，可以查看哪些查询可能因为没有使用索引而执行缓慢。</li>
-</ul>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"># 配置 my.cnf 或 my.ini来启动</span><br><span class="line">[mysqld]</span><br><span class="line">slow_query_log <span class="operator">=</span> <span class="number">1</span></span><br><span class="line">slow_query_log_file <span class="operator">=</span> <span class="operator">/</span>var<span class="operator">/</span>log<span class="operator">/</span>mysql<span class="operator">/</span>mysql<span class="operator">-</span>slow.log</span><br><span class="line">long_query_time <span class="operator">=</span> <span class="number">2</span></span><br><span class="line"></span><br><span class="line"># slow_query_log: 启用慢查询日志（<span class="number">1</span> 表示启用，<span class="number">0</span> 表示禁用）。</span><br><span class="line">#slow_query_log_file: 指定慢查询日志的文件路径。</span><br><span class="line">#long_query_time: 定义慢查询的时间阈值（单位：秒），默认是 <span class="number">10</span> 秒。</span><br></pre></td></tr></table></figure>
-
-<p>配置好后重启mysql生效</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">udo systemctl restart mysql</span><br><span class="line"># 或者</span><br><span class="line">sudo service mysql restart</span><br><span class="line">#来重启mysql服务</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cat <span class="operator">/</span>var<span class="operator">/</span>log<span class="operator">/</span>mysql<span class="operator">/</span>mysql<span class="operator">-</span>slow.log</span><br><span class="line"># 用来查看整个日志文件</span><br></pre></td></tr></table></figure>
-
-<p><strong>3. 索引优化</strong></p>
-<p><strong>（1）优化查询条件</strong></p>
-<ul>
-<li>确保查询字段顺序与联合索引顺序匹配，这里遵循了最左前缀原则</li>
-</ul>
-<p><strong>（2）避免函数和类型转化</strong></p>
-<ul>
-<li>尽量避免在查询条件中使用对索引列的函数或表达式。保持查询条件与索引列的数据类型一致。</li>
-</ul>
-<p><strong>（3）减少不必要的or操作</strong></p>
-<ul>
-<li>使用 <code>IN</code> 替代 <code>OR</code>，或者根据需要重写查询以避免导致索引失效的 <code>OR</code> 条件。</li>
-</ul>
-<p><strong>（4）增加覆盖索引</strong></p>
-<ul>
-<li>对查询中常用的字段，设计覆盖索引，这样 MySQL 可以直接从索引中返回结果，避免回表操作。</li>
-</ul>
-<h3 id="MySQL中的回表是什么？"><a href="#MySQL中的回表是什么？" class="headerlink" title="MySQL中的回表是什么？"></a>MySQL中的回表是什么？</h3><p><strong>回表</strong>是 MySQL 查询优化中的一个概念，指的是在使用<strong>非聚簇索引</strong>查询时，无法直接从索引中获取所需的所有数据，需要通过非聚簇索引查找到主键值，然后再去<strong>聚簇索引</strong>中根据主键值获取完整数据行的过程。</p>
-<h4 id="1-回表的触发条件"><a href="#1-回表的触发条件" class="headerlink" title="1.回表的触发条件"></a>1.回表的触发条件</h4><ul>
-<li>使用了非聚簇索引（二级索引或辅助索引）</li>
-<li>查询的字段不全在索引中（未成功触发索引覆盖）</li>
-<li>索引覆盖失效</li>
-</ul>
-<h4 id="2-回表的实现过程"><a href="#2-回表的实现过程" class="headerlink" title="2. 回表的实现过程"></a>2. 回表的实现过程</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE TABLE</span> users (</span><br><span class="line">    id <span class="type">INT</span> <span class="keyword">PRIMARY KEY</span>,</span><br><span class="line">    name <span class="type">VARCHAR</span>(<span class="number">50</span>),</span><br><span class="line">    age <span class="type">INT</span>,</span><br><span class="line">    email <span class="type">VARCHAR</span>(<span class="number">100</span>),</span><br><span class="line">    KEY idx_name (name)</span><br><span class="line">);</span><br><span class="line"># 创建表users， 主键 id; 索引 name</span><br><span class="line"></span><br><span class="line"># 查询</span><br><span class="line"><span class="keyword">SELECT</span> age, email <span class="keyword">FROM</span> users <span class="keyword">WHERE</span> name <span class="operator">=</span> <span class="string">&#x27;Alice&#x27;</span>;</span><br></pre></td></tr></table></figure>
-
-<ol>
-<li>通过二级索引name查找Alice</li>
-<li>或取二级索引的叶子结点里面对应的主键id</li>
-<li>通过主键id在回表查询需要的数据</li>
-<li>获取完整数据行里的age和name</li>
-</ol>
-<h4 id="3-回表的性能开销"><a href="#3-回表的性能开销" class="headerlink" title="3. 回表的性能开销"></a>3. 回表的性能开销</h4><ul>
-<li>磁盘 I&#x2F;O：回表可能导致多次随机磁盘读取（如果数据不在内存中）。</li>
-<li>查询延迟：需要在聚簇索引和非聚簇索引之间来回跳转，增加查询时间。</li>
-</ul>
-<h4 id="4-如何减少回表"><a href="#4-如何减少回表" class="headerlink" title="4. 如何减少回表"></a><strong>4. 如何减少回表</strong></h4><ol>
-<li>索引覆盖<ul>
-<li>定义：当查询的所有字段都包含在非聚簇索引中时，MySQL 可以直接从索引中获取数据，无需回表。</li>
-<li>优化方式：<ul>
-<li>在索引中添加查询需要的字段（称为索引覆盖）</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>减少查询的列<ul>
-<li>目的：为满足条件1</li>
-</ul>
-</li>
-<li>合理设计表结构<ul>
-<li>通过优化索引设计，将查询的高频字段优先纳入索引</li>
-</ul>
-</li>
-</ol>
-<h3 id="MySQL-创建索引时需要注意哪些事项？"><a href="#MySQL-创建索引时需要注意哪些事项？" class="headerlink" title="MySQL 创建索引时需要注意哪些事项？"></a>MySQL 创建索引时需要注意哪些事项？</h3><ol>
-<li><strong>选择合适的列作为索引</strong>：：‌选择最频繁用于查询的列作为索引列</li>
-<li><strong>避免索引过多</strong>： 过多的索引占用内存</li>
-<li><strong>考虑联合索引（符合索引</strong>）： 当多个条件用来查询时</li>
-<li><strong>注意联合索引的顺序</strong>： 联合索引的顺序需要和查询的条件顺序一致（最左前缀原则）最好将最常用的列放在前面</li>
-<li><strong>选择合适的数据结构</strong></li>
-<li><strong>注意空值处理</strong></li>
-<li><strong>定期维护</strong></li>
-<li><strong>注意索引和写操作的权衡</strong>：索引的存在可能提高读取性能，‌但会导致写入操作变慢。‌在进行写密集型操作的表上，‌需要谨慎选择创建索引的列</li>
-<li><strong>监控索引性能</strong>：定期监控数据库性能，‌特别是与索引相关的性能指标，‌以及查询执行计划。‌根据监控结果进行必要的调整和优化。‌</li>
-</ol>
-<h2 id="Day4"><a href="#Day4" class="headerlink" title="Day4"></a>Day4</h2><h3 id="MySQL的索引是不是越多越好？"><a href="#MySQL的索引是不是越多越好？" class="headerlink" title="MySQL的索引是不是越多越好？"></a>MySQL的索引是不是越多越好？</h3><p>首先，这是否定的，索引并不是越多越好。索引会提高查询效率，但在写操作的频繁下，索引数量的增多会造成负面影响。</p>
-<h4 id="索引数量的潜在问题"><a href="#索引数量的潜在问题" class="headerlink" title="索引数量的潜在问题"></a>索引数量的潜在问题</h4><p><strong>1. 增加存储开销</strong></p>
-<ul>
-<li>每个索引都会占用一定的磁盘空间，尤其是对于大表，多个索引可能会显著增加数据库的存储需求</li>
-<li>如果表的数据量很大，多个索引会导致磁盘空间消耗较大，影响存储成本。</li>
-</ul>
-<p><strong>2. 降低写性能</strong></p>
-<ul>
-<li>在进行插入、更新、删除等写操作时，MySQL 不仅需要修改数据，还需要更新相关的索引。因此，索引数量越多，写操作的性能就越低，尤其是在高并发场景下，写操作的延迟可能会显著增加。</li>
-<li>例如，在操作<code>INSERT</code> 操作更新数据，需要更新响应的索引。</li>
-</ul>
-<p><strong>3. 维护成本增加</strong></p>
-<ul>
-<li>索引的维护需要消耗 CPU 和内存资源，尤其是当表发生大量更新时，索引维护的成本也会随之增加。频繁更新的字段上的索引可能会导致额外的计算负担。</li>
-</ul>
-<p><strong>4. 影响查询优化器的选择</strong></p>
-<ul>
-<li>虽然索引的目的是加速查询，但过多的索引可能会导致 MySQL 在查询优化时难以做出最佳决策。数据库查询优化器可能会选择错误的索引，从而导致查询效率不如预期。</li>
-</ul>
-<h4 id="索引的合理设计原则"><a href="#索引的合理设计原则" class="headerlink" title="索引的合理设计原则"></a>索引的合理设计原则</h4><p><strong>1. 只为常用的查询字段创建索引</strong></p>
-<ul>
-<li>对频繁出现在 <code>WHERE</code>、<code>JOIN</code>、<code>GROUP BY</code>、<code>ORDER BY</code> 等子句中的列创建索引，可以提高查询效率。对于不常查询的列，避免创建索引。</li>
-</ul>
-<p><strong>2. 避免重复索引</strong></p>
-<ul>
-<li>不要为每个查询条件单独创建索引。可以创建联合索引（多列索引），覆盖多个查询条件，避免冗余索引</li>
-</ul>
-<p><strong>3. 根据查询模式选择合适的索引</strong></p>
-<ul>
-<li>创建单列索引和联合索引时，考虑查询的字段顺序和访问模式。使用覆盖索引来避免回表查询，提高查询效率。</li>
-</ul>
-<p><strong>4. 定期优化索引</strong></p>
-<ul>
-<li>在数据库使用过程中，随着查询需求的变化，可能需要调整索引策略。定期检查索引使用情况，删除不再使用或冗余的索引，以减少性能开销。</li>
-</ul>
-<h3 id="MySQL如何进行SQL调优？"><a href="#MySQL如何进行SQL调优？" class="headerlink" title="MySQL如何进行SQL调优？"></a>MySQL如何进行SQL调优？</h3><p>调优的整体思想</p>
-<p><img src="https://pic1.imgdb.cn/item/677946c7d0e0a243d4ef0338.png"></p>
-<p>这里主要是sql调优，看下图</p>
-<p><img src="https://pic1.imgdb.cn/item/6779495fd0e0a243d4ef038d.png"></p>
-<p>平时进行sql调优时，主要通过观察慢sql，然后利用explain分析查询语句的执行计划识别性能瓶颈，优化查询语句。</p>
-<ol>
-<li>合理设计索引，使用覆盖索引，避免回表操作，减少一次查询和随机IO。</li>
-<li>避免<code>SELECT *</code> 的使用，只查询必要字段。</li>
-<li>避免在SQL中，使用 <code>%like</code> ，会导致全表扫描</li>
-<li>避免对非索引字段进行排序</li>
-<li>避免sql中的函数操作，使得索引无法命中</li>
-<li>遵循联合索引的最左前缀原则</li>
-<li>连表查询需要注意不同字段的字符集是否一致，否则也会导致全表扫描</li>
-</ol>
-<p>除此之外，还可以尝试利用缓存优化，提升查询效率。</p>
-<h4 id="慢sql"><a href="#慢sql" class="headerlink" title="慢sql"></a>慢sql</h4><p>mysql自带的日志，通过 <code>set global slow_query_log=&#39;ON&#39;</code>来开启</p>
-<p>通过 <code>show variables like %slow_query_log%</code> 即可查询当前慢日志是否开启，及其存储路径。</p>
-<p>通过 <code>set global long_query_time=3</code> 即可设置慢SQL的阈值3就是3秒，当一个SQL执行的时间操作3秒，就会别记录到慢日志中。</p>
-<h3 id="如何使用MySQL的EXPLAN-语句进行查询分析？"><a href="#如何使用MySQL的EXPLAN-语句进行查询分析？" class="headerlink" title="如何使用MySQL的EXPLAN 语句进行查询分析？"></a>如何使用MySQL的EXPLAN 语句进行查询分析？</h3><h4 id="EXPLAIN的使用方法"><a href="#EXPLAIN的使用方法" class="headerlink" title="EXPLAIN的使用方法"></a>EXPLAIN的使用方法</h4><p>基本语法：</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">EXPLAIN <span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> table_name <span class="keyword">WHERE</span> conditions;</span><br></pre></td></tr></table></figure>
-
-<p>或者：</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">EXPLAIN FORMAT<span class="operator">=</span>JSON <span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> table_name <span class="keyword">WHERE</span> conditions;</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><code>EXPLAIN</code> 会返回查询的执行计划信息，包括涉及的表、索引的使用情况、扫描方式等。</li>
-<li><code>FORMAT=JSON</code> 提供结构化的 JSON 格式信息，包含更详细的执行计划内容。</li>
-</ul>
-<h4 id="EXPLAIN输出的字段"><a href="#EXPLAIN输出的字段" class="headerlink" title="EXPLAIN输出的字段"></a>EXPLAIN输出的字段</h4><p><img src="https://pic1.imgdb.cn/item/67794cf9d0e0a243d4ef03ed.png"></p>
-<h4 id="EXPLAIN-的常见优化点"><a href="#EXPLAIN-的常见优化点" class="headerlink" title="EXPLAIN 的常见优化点"></a><strong>EXPLAIN 的常见优化点</strong></h4><ol>
-<li><strong>优先使用合适的索引</strong><ul>
-<li>查看 <code>possible_keys</code> 和 <code>key</code>，确保查询语句能命中预期的索引。</li>
-</ul>
-</li>
-<li><strong>优化扫描范围</strong><ul>
-<li>避免 <code>type</code> 为 <code>ALL</code> 或 <code>index</code>，优先通过 <code>ref</code>、<code>range</code> 等高效方式访问数据。</li>
-</ul>
-</li>
-<li><strong>减少扫描行数</strong><ul>
-<li>查看 <code>rows</code> 字段，减少扫描的行数，降低查询的 I&#x2F;O 成本。</li>
-</ul>
-</li>
-<li><strong>消除临时表和文件排序</strong><ul>
-<li>如果 <code>Extra</code> 中出现 <code>Using temporary</code> 或 <code>Using filesort</code>，尝试优化语句，避免使用临时表或文件排序。</li>
-</ul>
-</li>
-<li><strong>使用覆盖索引</strong><ul>
-<li>确保查询可以通过索引直接返回所需数据，避免回表操作。</li>
-</ul>
-</li>
-</ol>
-<h2 id="Day5"><a href="#Day5" class="headerlink" title="Day5"></a>Day5</h2><h3 id="请详细描述MySQL的B-树查询的全过程？"><a href="#请详细描述MySQL的B-树查询的全过程？" class="headerlink" title="请详细描述MySQL的B+树查询的全过程？"></a>请详细描述MySQL的B+树查询的全过程？</h3><h3 id="MySQL中的varchar和char有什么区别？"><a href="#MySQL中的varchar和char有什么区别？" class="headerlink" title="MySQL中的varchar和char有什么区别？"></a>MySQL中的varchar和char有什么区别？</h3><h3 id="MySQL中-count（-count-1-count-字段名-有什么区别？"><a href="#MySQL中-count（-count-1-count-字段名-有什么区别？" class="headerlink" title="MySQL中 count（*) ,count(1), count(字段名) 有什么区别？"></a>MySQL中 count（*) ,count(1), count(字段名) 有什么区别？</h3><h2 id="Day6"><a href="#Day6" class="headerlink" title="Day6"></a>Day6</h2><h3 id="MySQL-中的日志类型有哪些？并说名其作用"><a href="#MySQL-中的日志类型有哪些？并说名其作用" class="headerlink" title="MySQL 中的日志类型有哪些？并说名其作用"></a>MySQL 中的日志类型有哪些？并说名其作用</h3><h3 id="MySQL是如何实现事务的？"><a href="#MySQL是如何实现事务的？" class="headerlink" title="MySQL是如何实现事务的？"></a>MySQL是如何实现事务的？</h3><h3 id="MySQL-的MVCC是什么？"><a href="#MySQL-的MVCC是什么？" class="headerlink" title="MySQL 的MVCC是什么？"></a>MySQL 的MVCC是什么？</h3><h2 id="Day7"><a href="#Day7" class="headerlink" title="Day7"></a>Day7</h2><h3 id="MySQL-的事务隔离级别有哪些？"><a href="#MySQL-的事务隔离级别有哪些？" class="headerlink" title="MySQL 的事务隔离级别有哪些？"></a>MySQL 的事务隔离级别有哪些？</h3><h3 id="MySQL-默认的事务隔离级别是什么？为什么选择这个级别？"><a href="#MySQL-默认的事务隔离级别是什么？为什么选择这个级别？" class="headerlink" title="MySQL 默认的事务隔离级别是什么？为什么选择这个级别？"></a>MySQL 默认的事务隔离级别是什么？为什么选择这个级别？</h3><h3 id="数据库的脏读，不可重复读和幻读分别是什么？"><a href="#数据库的脏读，不可重复读和幻读分别是什么？" class="headerlink" title="数据库的脏读，不可重复读和幻读分别是什么？"></a>数据库的脏读，不可重复读和幻读分别是什么？</h3><h2 id="Day8"><a href="#Day8" class="headerlink" title="Day8"></a>Day8</h2><h3 id="MySQL-中的锁有哪些？"><a href="#MySQL-中的锁有哪些？" class="headerlink" title="MySQL 中的锁有哪些？"></a>MySQL 中的锁有哪些？</h3><h3 id="事务的二阶段提交是什么？"><a href="#事务的二阶段提交是什么？" class="headerlink" title="事务的二阶段提交是什么？"></a>事务的二阶段提交是什么？</h3><h3 id="MySQL-中如果发生死锁应该如何解决？"><a href="#MySQL-中如果发生死锁应该如何解决？" class="headerlink" title="MySQL 中如果发生死锁应该如何解决？"></a>MySQL 中如果发生死锁应该如何解决？</h3><h2 id="Day9"><a href="#Day9" class="headerlink" title="Day9"></a>Day9</h2><h3 id="Mysql中如何理解深度分页问题"><a href="#Mysql中如何理解深度分页问题" class="headerlink" title="Mysql中如何理解深度分页问题?"></a>Mysql中如何理解深度分页问题?</h3><h3 id="什么是MySQL-的主从同步机制？它是如何实现的？"><a href="#什么是MySQL-的主从同步机制？它是如何实现的？" class="headerlink" title="什么是MySQL 的主从同步机制？它是如何实现的？"></a>什么是MySQL 的主从同步机制？它是如何实现的？</h3><h3 id="如何理解MySQL的主从同步延迟？"><a href="#如何理解MySQL的主从同步延迟？" class="headerlink" title="如何理解MySQL的主从同步延迟？"></a>如何理解MySQL的主从同步延迟？</h3>
       
     </div>
 
