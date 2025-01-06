@@ -122,7 +122,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">16</span>
+          <span class="site-state-item-count">17</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -158,6 +158,100 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2025/01/02/%E5%85%B3%E4%BA%8Emysql%E7%9A%84%E5%AD%97%E7%AC%A6%E9%9B%86/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/111.png">
+      <meta itemprop="name" content="ZhangYuHao">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Zhang'Blog">
+      <meta itemprop="description" content="一个小人物的个人博客">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Zhang'Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2025/01/02/%E5%85%B3%E4%BA%8Emysql%E7%9A%84%E5%AD%97%E7%AC%A6%E9%9B%86/" class="post-title-link" itemprop="url">关于mysql的字符集</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2025-01-02 12:28:18 / 修改时间：23:39:05" itemprop="dateCreated datePublished" datetime="2025-01-02T12:28:18+08:00">2025-01-02</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" itemprop="url" rel="index"><span itemprop="name">数据库</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="关于数据库字符集修改"><a href="#关于数据库字符集修改" class="headerlink" title="关于数据库字符集修改"></a>关于数据库字符集修改</h1><h2 id="字符集的使用"><a href="#字符集的使用" class="headerlink" title="字符集的使用"></a>字符集的使用</h2><p>推荐使用utf8mb4</p>
+<h5 id="utf8mb4-的优势"><a href="#utf8mb4-的优势" class="headerlink" title="utf8mb4 的优势"></a>utf8mb4 的优势</h5><ol>
+<li><strong>兼容性强</strong>：支持包括大部分表情符号在内的更多 Unicode 字符，满足应用程序中常见的多语言需求。</li>
+<li><strong>一致性</strong>：在许多国际化应用中，<code>utf8mb4</code>已经成为了标准字符集。</li>
+<li><strong>数据完整性</strong>：通过将数据库字符集设置为<code>utf8mb4</code>，可以减少字符集冲突带来的潜在错误。</li>
+</ol>
+<h2 id="关于数据库修改字符集"><a href="#关于数据库修改字符集" class="headerlink" title="关于数据库修改字符集"></a>关于数据库修改字符集</h2><p><strong>1. 数据库修改字符集</strong></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> DATABASE cloud<span class="operator">-</span>test <span class="keyword">CHARACTER SET</span> utf8mb4 <span class="keyword">COLLATE</span> utf8mb4_unicode_ci;</span><br><span class="line"># 注意这里的数据库名是 cloud<span class="operator">-</span>test，执行完成这个代码后，之后创建的表都会使用设置的字符集。</span><br></pre></td></tr></table></figure>
+
+<p><strong>2. 修改表中所有列的字符集</strong></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">ALTER TABLE</span> `users` <span class="keyword">CONVERT</span> <span class="keyword">TO</span> <span class="keyword">CHARACTER SET</span> utf8mb4 <span class="keyword">COLLATE</span> utf8mb4_unicode_ci;</span><br><span class="line"># 这里表名是users，修改后表的字符集就会更改成对应的字符集。</span><br></pre></td></tr></table></figure>
+
+<p><strong>3. 修改某一类的字符集</strong></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">ALTER TABLE</span> `cloud<span class="operator">-</span>test`.`users` MODIFY <span class="keyword">COLUMN</span> `username` <span class="type">VARCHAR</span>(<span class="number">255</span>) <span class="keyword">CHARACTER SET</span> utf8mb4 <span class="keyword">COLLATE</span> utf8mb4_unicode_ci;</span><br><span class="line"># 这里是 cloud<span class="operator">-</span>test库的users表里的username列。</span><br></pre></td></tr></table></figure>
+
+<p>通过将数据库、表和列的字符集统一更改为<code>utf8mb4</code>，我们可以确保数据存储具有更高的兼容性和灵活性。特别是对于需要存储多语言内容或特殊字符的应用程序，<code>utf8mb4</code>字符集提供了广泛的支持。</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -964,7 +1058,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2025-01-05 15:17:13" itemprop="dateModified" datetime="2025-01-05T15:17:13+08:00">2025-01-05</time>
+      <time title="修改时间：2025-01-06 17:10:01" itemprop="dateModified" datetime="2025-01-06T17:10:01+08:00">2025-01-06</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -1372,6 +1466,101 @@
 <h4 id="配置http超时"><a href="#配置http超时" class="headerlink" title="配置http超时"></a>配置http超时</h4><p><img src="https://pic1.imgdb.cn/item/677a307bd0e0a243d4ef1fda.png"></p>
 <h4 id="跨域配置"><a href="#跨域配置" class="headerlink" title="跨域配置"></a>跨域配置</h4><p><img src="https://pic1.imgdb.cn/item/677a30c9d0e0a243d4ef1feb.png"></p>
 <h4 id="可以尝试看一下小代码式例。"><a href="#可以尝试看一下小代码式例。" class="headerlink" title="可以尝试看一下小代码式例。"></a>可以尝试看一下小代码式例。</h4><p>通过阅读代码来了解geteway编程式开发。</p>
+<h2 id="第五期"><a href="#第五期" class="headerlink" title="第五期"></a>第五期</h2><p>业务流程</p>
+<p><img src="https://pic1.imgdb.cn/item/677b228fd0e0a243d4ef56bc.png"></p>
+<ol>
+<li>实现统一的用户鉴权，统一的接口调用次数统计（把API网关应用到项目当中）</li>
+<li>完善功能</li>
+</ol>
+<h3 id="要用到的特性"><a href="#要用到的特性" class="headerlink" title="要用到的特性"></a>要用到的特性</h3><ol>
+<li>路由（转发请求到模拟接口项目）</li>
+<li>负载均衡（需要用到注册中心）</li>
+<li>统一鉴权（accessKey,secreKey)</li>
+<li>跨域</li>
+<li>统一的业务处理（每次请求接口后，接口调用次数+1）</li>
+<li>访问控制（黑白名单）</li>
+<li>发布控制（灰度发布）</li>
+<li>流量染色（记录请求是否为网关）（或用来链路追踪）</li>
+<li>接口保护<ul>
+<li>限制请求</li>
+<li>信息脱敏</li>
+<li>降级（熔断）</li>
+<li>限流：学习令牌桶算法</li>
+<li>超时时间</li>
+</ul>
+</li>
+<li>统一日志（记录每次的接口响应）</li>
+<li>统一文档</li>
+</ol>
+<h3 id="业务逻辑"><a href="#业务逻辑" class="headerlink" title="业务逻辑"></a>业务逻辑</h3><ol>
+<li>用户发送请求请求到API网关</li>
+<li>请求日志</li>
+<li>（黑白名单）</li>
+<li>API对用户鉴权（判断ak，sk是否合法）</li>
+<li>判断请求的接口是否存在</li>
+<li>请求转发，调用模拟接口</li>
+<li>响应日志</li>
+<li>调用成功，接口次数+1</li>
+<li>调用失败，返回一个规范的错误码</li>
+</ol>
+<h3 id="具体实现"><a href="#具体实现" class="headerlink" title="具体实现"></a>具体实现</h3><p><strong>1. 请求转发</strong></p>
+<p>使用前缀匹配断言</p>
+<p>所有路径为：&#x2F;api&#x2F;** 的请求进行转发，到<a target="_blank" rel="noopener" href="http://localhost:8123/api//*/">http://localhost:8123/api/\*\</a>*</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">spring:</span></span><br><span class="line">  <span class="attr">cloud:</span></span><br><span class="line">    <span class="attr">gateway:</span></span><br><span class="line">      <span class="attr">httpclient:</span> <span class="comment"># ??????</span></span><br><span class="line">        <span class="attr">connect-timeout:</span> <span class="number">1000</span></span><br><span class="line">        <span class="attr">response-timeout:</span> <span class="string">5s</span></span><br><span class="line">      <span class="attr">routes:</span></span><br><span class="line">        <span class="bullet">-</span> <span class="attr">id:</span> <span class="string">after_route</span> <span class="comment"># ???????????????????</span></span><br><span class="line">          <span class="attr">uri:</span> <span class="string">http://localhost:8123/api/</span>  <span class="comment"># ?????</span></span><br><span class="line">          <span class="attr">predicates:</span></span><br><span class="line">            <span class="bullet">-</span> <span class="string">Path=/api/**</span></span><br><span class="line">          <span class="attr">filters:</span></span><br><span class="line">            <span class="bullet">-</span> <span class="string">AddRequestHeader=zhang,shuaiqi</span></span><br></pre></td></tr></table></figure>
+
+<p> <strong>2. 业务逻辑</strong></p>
+<p>设置全局过滤器：<code>GlobalFilters</code> 所有的网关都会走这个过滤器</p>
+<p>全局请求拦截处理（类似AOP）</p>
+<p>由于网关项目没引入MyBatis等操作数库的类库，如果该操作较为复杂，可以有backend增删改查项目提供接口，我们直接调用，不用重复写逻辑了。</p>
+<p>方法：</p>
+<ul>
+<li>Http请求（用HTTpClient，用RestTemplate，Feign）</li>
+<li>RPC（Dubbo）</li>
+</ul>
+<p><strong>3. 问题</strong></p>
+<p>网关的 <code>Mono</code> 类是一个异步操作。</p>
+<p>预期是等模拟接口调用完成，才记录响应日志，统计接口次数。</p>
+<p>但现实是chain。filter方法立克返回了，知道filter过滤器 return后才调用了模拟接口。</p>
+<p>原因： chainfilter是一个异步操作，</p>
+<p>解决方案： 利用response装饰者，增强原有response的处理能力。</p>
+<h2 id="第六期"><a href="#第六期" class="headerlink" title="第六期"></a>第六期</h2><h3 id="计划"><a href="#计划" class="headerlink" title="计划"></a>计划</h3><ol>
+<li>补充完整的网关的业务逻辑（怎么去操作数据库，怎么复用之前的方法。</li>
+<li>完善系统，开发一个监控统计功能。</li>
+</ol>
+<h3 id="网关业务逻辑"><a href="#网关业务逻辑" class="headerlink" title="网关业务逻辑"></a>网关业务逻辑</h3><p>问题：网关项目比较纯净可没有操作数据库的包，并且还调用我们之前写过的代码。</p>
+<p>理想：直接请求到其他项目的方法。</p>
+<h3 id="怎么调用其他项目的方法"><a href="#怎么调用其他项目的方法" class="headerlink" title="怎么调用其他项目的方法"></a>怎么调用其他项目的方法</h3><ol>
+<li>复制代码和依赖，环境</li>
+<li>HTTP请求（提供一个接口，供其他项目调用）</li>
+<li>RPC </li>
+<li>打个jar包，其他项目去引用。（客户端SDK项目）</li>
+</ol>
+<h3 id="HTTP-请求怎么调用"><a href="#HTTP-请求怎么调用" class="headerlink" title="HTTP 请求怎么调用"></a>HTTP 请求怎么调用</h3><ol>
+<li>提供方开发一个接口（地址，请求方法，参数，返回值）</li>
+<li>调用方使用HTTPClient之类的代码包去发送HTTP请求。</li>
+</ol>
+<h3 id="RPC"><a href="#RPC" class="headerlink" title="RPC"></a>RPC</h3><p><strong>作用：像调用本地方法一样调用远程方法。</strong></p>
+<p>对开发者更透明，减少了很多的沟通成本。</p>
+<p><strong>RPC向远程发送请求时，未必要使用HTTP协议。</strong>比如还可以用TCP&#x2F;IP.(内部服务更适用)</p>
+<p><strong>RPC框架运行结构</strong></p>
+<p><img src="https://pic1.imgdb.cn/item/677b9933d0e0a243d4efc47e.png"></p>
+<p><strong>Dubbo框架（RPC实现）</strong></p>
+<p>GRPC，TRPC</p>
+<p>最好的学习方式：阅读官方文档：<a target="_blank" rel="noopener" href="https://cn.dubbo.apache.org/zh-cn/overview/mannual/java-sdk/quick-start/starter/">https://cn.dubbo.apache.org/zh-cn/overview/mannual/java-sdk/quick-start/starter/</a></p>
+<p>注意：Dubbo底层用的是 Triple 协议</p>
+<p><strong>两种方式</strong></p>
+<ul>
+<li>Spring Boot代码（注解式）:写java的接口，服务提供者和消费者去引用这个接口。</li>
+<li>IDL（接口调用语法）</li>
+</ul>
+<p><strong>示例项目学习</strong><br>zookeeper 注册中心：通过内嵌的方式更方便。</p>
+<p>先启动注册中心，在启动服务提供者，最后启动消费者。</p>
+<h4 id="整合运用"><a href="#整合运用" class="headerlink" title="整合运用"></a>整合运用</h4><ol>
+<li>管理后端项目作为服务提供者：<ol>
+<li></li>
+</ol>
+</li>
+</ol>
 
       
     </div>
