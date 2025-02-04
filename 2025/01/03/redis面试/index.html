@@ -34,8 +34,14 @@
 <meta property="og:image" content="https://pic1.imgdb.cn/item/679c39fcd0e0a243d4f8ba86.png">
 <meta property="og:image" content="https://pic1.imgdb.cn/item/679c3c62d0e0a243d4f8bab8.png">
 <meta property="og:image" content="https://pic1.imgdb.cn/item/679c3eb9d0e0a243d4f8bafb.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/679ebd59d0e0a243d4f98418.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/679ec0a2d0e0a243d4f98424.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/679edd3ed0e0a243d4f9855f.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/679edfacd0e0a243d4f9857c.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/679f2d2bd0e0a243d4f98d6d.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/679f34b1d0e0a243d4f98e18.png">
 <meta property="article:published_time" content="2025-01-03T13:57:31.000Z">
-<meta property="article:modified_time" content="2025-01-31T13:10:47.432Z">
+<meta property="article:modified_time" content="2025-02-03T00:57:46.851Z">
 <meta property="article:author" content="ZhangYuHao">
 <meta property="article:tag" content="redis">
 <meta name="twitter:card" content="summary">
@@ -120,7 +126,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Redis%E9%9D%A2%E8%AF%95"><span class="nav-number">1.</span> <span class="nav-text">Redis面试</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Day1"><span class="nav-number">1.1.</span> <span class="nav-text">Day1</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88-Redis-%E8%AE%BE%E8%AE%A1%E4%B8%BA%E5%8D%95%E7%BA%BF%E7%A8%8B%EF%BC%9F6-0-%E7%89%88%E6%9C%AC%E4%B8%BA%E4%BD%95%E5%BC%95%E5%85%A5%E5%A4%9A%E7%BA%BF%E7%A8%8B%EF%BC%9F"><span class="nav-number">1.1.1.</span> <span class="nav-text">为什么 Redis 设计为单线程？6.0 版本为何引入多线程？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Redis-%E4%B8%BA%E4%BB%80%E4%B9%88%E9%82%A3%E4%B9%88%E5%BF%AB%EF%BC%9F"><span class="nav-number">1.1.2.</span> <span class="nav-text">Redis 为什么那么快？</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Redis%E7%9A%84%E7%B3%BB%E7%BB%9F%E8%A7%82"><span class="nav-number">1.1.2.1.</span> <span class="nav-text">Redis的系统观</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Redis%E5%BF%AB%E7%9A%84%E5%8E%9F%E5%9B%A0"><span class="nav-number">1.1.2.2.</span> <span class="nav-text">Redis快的原因</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Redis%E4%B8%AD%E5%B8%B8%E8%A7%81%E7%9A%84%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E6%98%AF%EF%BC%9F"><span class="nav-number">1.1.3.</span> <span class="nav-text">Redis中常见的数据类型是？</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="nav-number">1.1.3.1.</span> <span class="nav-text">基本数据类型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%89%E7%A7%8D%E7%89%B9%E6%AE%8A%E7%9A%84%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="nav-number">1.1.3.2.</span> <span class="nav-text">三种特殊的数据类型</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8B%93%E5%B1%95"><span class="nav-number">1.1.4.</span> <span class="nav-text">拓展</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Redis%E4%B8%ADHash%E7%9A%84%E8%AF%A6%E7%BB%86%E5%88%86%E6%9E%90"><span class="nav-number">1.1.4.1.</span> <span class="nav-text">Redis中Hash的详细分析</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0session%E5%85%B1%E4%BA%AB"><span class="nav-number">1.1.4.2.</span> <span class="nav-text">如何实现session共享</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Day2"><span class="nav-number">1.2.</span> <span class="nav-text">Day2</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Redis%E4%B8%AD%E8%B7%B3%E8%A1%A8%E7%9A%84%E5%8E%9F%E7%90%86%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="nav-number">1.2.1.</span> <span class="nav-text">Redis中跳表的原理是什么？</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E8%B7%B3%E8%B7%83%E8%A1%A8%EF%BC%9F"><span class="nav-number">1.2.1.1.</span> <span class="nav-text">什么是跳跃表？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%85%B3%E4%BA%8E%E7%B4%A2%E5%BC%95%E7%9A%84%E6%8F%92%E5%85%A5"><span class="nav-number">1.2.1.2.</span> <span class="nav-text">关于索引的插入</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%85%B3%E4%BA%8ERedis%E7%9A%84%E8%B7%B3%E8%B7%83%E8%A1%A8"><span class="nav-number">1.2.1.3.</span> <span class="nav-text">关于Redis的跳跃表</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%87%8D%E7%82%B9"><span class="nav-number">1.2.1.4.</span> <span class="nav-text">重点</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Redis%E7%9A%84hash%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="nav-number">1.2.2.</span> <span class="nav-text">Redis的hash是什么？</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%8B%93%E5%B1%95-1"><span class="nav-number">1.2.2.1.</span> <span class="nav-text">拓展</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Redis-Hash%E7%9A%84%E5%BA%95%E5%B1%82%E7%BB%93%E6%9E%84%E6%8B%93%E5%B1%95"><span class="nav-number">1.2.2.2.</span> <span class="nav-text">Redis Hash的底层结构拓展</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Redis-Zset%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="nav-number">1.2.3.</span> <span class="nav-text">Redis Zset的实现原理是什么？</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Day3"><span class="nav-number">1.3.</span> <span class="nav-text">Day3</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E4%BF%9D%E8%AF%81%E7%BC%93%E5%AD%98%E5%92%8C%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9A%84%E4%B8%80%E8%87%B4%E6%80%A7%EF%BC%9F"><span class="nav-number">1.3.1.</span> <span class="nav-text">如何保证缓存和数据库的一致性？</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E4%B8%80%E8%87%B4%E6%80%A7"><span class="nav-number">1.3.1.1.</span> <span class="nav-text">数据一致性</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Redis%E4%B8%AD%E7%9A%84%E7%BC%93%E5%AD%98%E5%87%BB%E7%A9%BF%E3%80%81%E7%BC%93%E5%AD%98%E7%A9%BF%E9%80%8F%E5%92%8C%E7%BC%93%E5%AD%98%E9%9B%AA%E5%B4%A9%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="nav-number">1.3.2.</span> <span class="nav-text">Redis中的缓存击穿、缓存穿透和缓存雪崩是什么？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Redis-String-%E7%B1%BB%E5%9E%8B%E7%9A%84%E5%BA%95%E5%B1%82%E5%AE%9E%E7%8E%B0%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="nav-number">1.3.3.</span> <span class="nav-text">Redis String 类型的底层实现是什么？</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%BA%95%E5%B1%82%E5%AE%9E%E7%8E%B0"><span class="nav-number">1.3.3.1.</span> <span class="nav-text">底层实现</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Day4"><span class="nav-number">1.4.</span> <span class="nav-text">Day4</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Redis-%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81%EF%BC%9F"><span class="nav-number">1.4.1.</span> <span class="nav-text">Redis 如何实现分布式锁？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Redis-%E7%9A%84Red-Lock%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F%E4%BD%A0%E4%BA%86%E8%A7%A3%E5%90%97%EF%BC%9F"><span class="nav-number">1.4.2.</span> <span class="nav-text">Redis 的Red Lock是什么？你了解吗？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Redis%E5%AE%9E%E7%8E%B0%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81%E6%97%B6%E5%8F%AF%E8%83%BD%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98%E6%9C%89%E5%93%AA%E4%BA%9B%EF%BC%9F"><span class="nav-number">1.4.3.</span> <span class="nav-text">Redis实现分布式锁时可能遇到的问题有哪些？</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Day5"><span class="nav-number">1.5.</span> <span class="nav-text">Day5</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Redis%E7%9A%84%E6%8C%81%E4%B9%85%E5%8C%96%E6%9C%BA%E5%88%B6%E6%9C%89%E5%93%AA%E4%BA%9B%EF%BC%9F"><span class="nav-number">1.5.1.</span> <span class="nav-text">Redis的持久化机制有哪些？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Redis%E7%9A%84%E4%B8%BB%E4%BB%8E%E5%A4%8D%E5%88%B6%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="nav-number">1.5.2.</span> <span class="nav-text">Redis的主从复制实现原理是什么？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Redis%E6%95%B0%E6%8D%AE%E8%BF%87%E6%9C%9F%E5%90%8E%E7%9A%84%E5%88%A0%E9%99%A4%E7%AD%96%E7%95%A5%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="nav-number">1.5.3.</span> <span class="nav-text">Redis数据过期后的删除策略是什么？</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Day6"><span class="nav-number">1.6.</span> <span class="nav-text">Day6</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E8%A7%A3%E5%86%B3Redis%E4%B8%AD%E7%9A%84%E7%83%AD%E7%82%B9key%E9%97%AE%E9%A2%98%EF%BC%9F"><span class="nav-number">1.6.1.</span> <span class="nav-text">如何解决Redis中的热点key问题？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Redis%E9%9B%86%E7%BE%A4%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="nav-number">1.6.2.</span> <span class="nav-text">Redis集群的实现原理是什么？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Redis%E4%B8%AD%E7%9A%84Big-Key%E9%97%AE%E9%A2%98%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F%E5%A6%82%E4%BD%95%E8%A7%A3%E5%86%B3%EF%BC%9F"><span class="nav-number">1.6.3.</span> <span class="nav-text">Redis中的Big Key问题是什么？如何解决？</span></a></li></ol></li></ol></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Redis%E9%9D%A2%E8%AF%95"><span class="nav-number">1.</span> <span class="nav-text">Redis面试</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Day1"><span class="nav-number">1.1.</span> <span class="nav-text">Day1</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88-Redis-%E8%AE%BE%E8%AE%A1%E4%B8%BA%E5%8D%95%E7%BA%BF%E7%A8%8B%EF%BC%9F6-0-%E7%89%88%E6%9C%AC%E4%B8%BA%E4%BD%95%E5%BC%95%E5%85%A5%E5%A4%9A%E7%BA%BF%E7%A8%8B%EF%BC%9F"><span class="nav-number">1.1.1.</span> <span class="nav-text">为什么 Redis 设计为单线程？6.0 版本为何引入多线程？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Redis-%E4%B8%BA%E4%BB%80%E4%B9%88%E9%82%A3%E4%B9%88%E5%BF%AB%EF%BC%9F"><span class="nav-number">1.1.2.</span> <span class="nav-text">Redis 为什么那么快？</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Redis%E7%9A%84%E7%B3%BB%E7%BB%9F%E8%A7%82"><span class="nav-number">1.1.2.1.</span> <span class="nav-text">Redis的系统观</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Redis%E5%BF%AB%E7%9A%84%E5%8E%9F%E5%9B%A0"><span class="nav-number">1.1.2.2.</span> <span class="nav-text">Redis快的原因</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Redis%E4%B8%AD%E5%B8%B8%E8%A7%81%E7%9A%84%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E6%98%AF%EF%BC%9F"><span class="nav-number">1.1.3.</span> <span class="nav-text">Redis中常见的数据类型是？</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="nav-number">1.1.3.1.</span> <span class="nav-text">基本数据类型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%89%E7%A7%8D%E7%89%B9%E6%AE%8A%E7%9A%84%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="nav-number">1.1.3.2.</span> <span class="nav-text">三种特殊的数据类型</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8B%93%E5%B1%95"><span class="nav-number">1.1.4.</span> <span class="nav-text">拓展</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Redis%E4%B8%ADHash%E7%9A%84%E8%AF%A6%E7%BB%86%E5%88%86%E6%9E%90"><span class="nav-number">1.1.4.1.</span> <span class="nav-text">Redis中Hash的详细分析</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0session%E5%85%B1%E4%BA%AB"><span class="nav-number">1.1.4.2.</span> <span class="nav-text">如何实现session共享</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Day2"><span class="nav-number">1.2.</span> <span class="nav-text">Day2</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Redis%E4%B8%AD%E8%B7%B3%E8%A1%A8%E7%9A%84%E5%8E%9F%E7%90%86%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="nav-number">1.2.1.</span> <span class="nav-text">Redis中跳表的原理是什么？</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E8%B7%B3%E8%B7%83%E8%A1%A8%EF%BC%9F"><span class="nav-number">1.2.1.1.</span> <span class="nav-text">什么是跳跃表？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%85%B3%E4%BA%8E%E7%B4%A2%E5%BC%95%E7%9A%84%E6%8F%92%E5%85%A5"><span class="nav-number">1.2.1.2.</span> <span class="nav-text">关于索引的插入</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%85%B3%E4%BA%8ERedis%E7%9A%84%E8%B7%B3%E8%B7%83%E8%A1%A8"><span class="nav-number">1.2.1.3.</span> <span class="nav-text">关于Redis的跳跃表</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%87%8D%E7%82%B9"><span class="nav-number">1.2.1.4.</span> <span class="nav-text">重点</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Redis%E7%9A%84hash%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="nav-number">1.2.2.</span> <span class="nav-text">Redis的hash是什么？</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%8B%93%E5%B1%95-1"><span class="nav-number">1.2.2.1.</span> <span class="nav-text">拓展</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Redis-Hash%E7%9A%84%E5%BA%95%E5%B1%82%E7%BB%93%E6%9E%84%E6%8B%93%E5%B1%95"><span class="nav-number">1.2.2.2.</span> <span class="nav-text">Redis Hash的底层结构拓展</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Redis-Zset%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="nav-number">1.2.3.</span> <span class="nav-text">Redis Zset的实现原理是什么？</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Day3"><span class="nav-number">1.3.</span> <span class="nav-text">Day3</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E4%BF%9D%E8%AF%81%E7%BC%93%E5%AD%98%E5%92%8C%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9A%84%E4%B8%80%E8%87%B4%E6%80%A7%EF%BC%9F"><span class="nav-number">1.3.1.</span> <span class="nav-text">如何保证缓存和数据库的一致性？</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E4%B8%80%E8%87%B4%E6%80%A7"><span class="nav-number">1.3.1.1.</span> <span class="nav-text">数据一致性</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Redis%E4%B8%AD%E7%9A%84%E7%BC%93%E5%AD%98%E5%87%BB%E7%A9%BF%E3%80%81%E7%BC%93%E5%AD%98%E7%A9%BF%E9%80%8F%E5%92%8C%E7%BC%93%E5%AD%98%E9%9B%AA%E5%B4%A9%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="nav-number">1.3.2.</span> <span class="nav-text">Redis中的缓存击穿、缓存穿透和缓存雪崩是什么？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Redis-String-%E7%B1%BB%E5%9E%8B%E7%9A%84%E5%BA%95%E5%B1%82%E5%AE%9E%E7%8E%B0%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="nav-number">1.3.3.</span> <span class="nav-text">Redis String 类型的底层实现是什么？</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%BA%95%E5%B1%82%E5%AE%9E%E7%8E%B0"><span class="nav-number">1.3.3.1.</span> <span class="nav-text">底层实现</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Day4"><span class="nav-number">1.4.</span> <span class="nav-text">Day4</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Redis-%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81%EF%BC%9F"><span class="nav-number">1.4.1.</span> <span class="nav-text">Redis 如何实现分布式锁？</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81%EF%BC%9F"><span class="nav-number">1.4.1.1.</span> <span class="nav-text">什么是分布式锁？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81%E7%9A%84%E5%AE%9E%E7%8E%B0"><span class="nav-number">1.4.1.2.</span> <span class="nav-text">分布式锁的实现</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Redis-%E7%9A%84Red-Lock%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F%E4%BD%A0%E4%BA%86%E8%A7%A3%E5%90%97%EF%BC%9F"><span class="nav-number">1.4.2.</span> <span class="nav-text">Redis 的Red Lock是什么？你了解吗？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Redis%E5%AE%9E%E7%8E%B0%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81%E6%97%B6%E5%8F%AF%E8%83%BD%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98%E6%9C%89%E5%93%AA%E4%BA%9B%EF%BC%9F"><span class="nav-number">1.4.3.</span> <span class="nav-text">Redis实现分布式锁时可能遇到的问题有哪些？</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Day5"><span class="nav-number">1.5.</span> <span class="nav-text">Day5</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Redis%E7%9A%84%E6%8C%81%E4%B9%85%E5%8C%96%E6%9C%BA%E5%88%B6%E6%9C%89%E5%93%AA%E4%BA%9B%EF%BC%9F"><span class="nav-number">1.5.1.</span> <span class="nav-text">Redis的持久化机制有哪些？</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%84%8F%E4%B9%89"><span class="nav-number">1.5.1.1.</span> <span class="nav-text">意义</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Redis%E7%9A%84%E6%8C%81%E4%B9%85%E5%8C%96%E6%9C%BA%E5%88%B6"><span class="nav-number">1.5.1.2.</span> <span class="nav-text">Redis的持久化机制</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#RDB"><span class="nav-number">1.5.1.3.</span> <span class="nav-text">RDB</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#AOF%E6%8C%81%E4%B9%85%E5%8C%96"><span class="nav-number">1.5.1.4.</span> <span class="nav-text">AOF持久化</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Redis%E7%9A%84%E4%B8%BB%E4%BB%8E%E5%A4%8D%E5%88%B6%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="nav-number">1.5.2.</span> <span class="nav-text">Redis的主从复制实现原理是什么？</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A6%82%E8%BF%B0"><span class="nav-number">1.5.2.1.</span> <span class="nav-text">概述</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%BB%E4%BB%8E%E5%A4%8D%E5%88%B6%E7%9A%84%E4%BD%9C%E7%94%A8"><span class="nav-number">1.5.2.2.</span> <span class="nav-text">主从复制的作用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#CAP%E5%8E%9F%E7%90%86"><span class="nav-number">1.5.2.3.</span> <span class="nav-text">CAP原理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86"><span class="nav-number">1.5.2.4.</span> <span class="nav-text">实现原理</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Redis%E6%95%B0%E6%8D%AE%E8%BF%87%E6%9C%9F%E5%90%8E%E7%9A%84%E5%88%A0%E9%99%A4%E7%AD%96%E7%95%A5%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="nav-number">1.5.3.</span> <span class="nav-text">Redis数据过期后的删除策略是什么？</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Day6"><span class="nav-number">1.6.</span> <span class="nav-text">Day6</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E8%A7%A3%E5%86%B3Redis%E4%B8%AD%E7%9A%84%E7%83%AD%E7%82%B9key%E9%97%AE%E9%A2%98%EF%BC%9F"><span class="nav-number">1.6.1.</span> <span class="nav-text">如何解决Redis中的热点key问题？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Redis%E9%9B%86%E7%BE%A4%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="nav-number">1.6.2.</span> <span class="nav-text">Redis集群的实现原理是什么？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Redis%E4%B8%AD%E7%9A%84Big-Key%E9%97%AE%E9%A2%98%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F%E5%A6%82%E4%BD%95%E8%A7%A3%E5%86%B3%EF%BC%9F"><span class="nav-number">1.6.3.</span> <span class="nav-text">Redis中的Big Key问题是什么？如何解决？</span></a></li></ol></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -217,7 +223,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2025-01-31 21:10:47" itemprop="dateModified" datetime="2025-01-31T21:10:47+08:00">2025-01-31</time>
+      <time title="修改时间：2025-02-03 08:57:46" itemprop="dateModified" datetime="2025-02-03T08:57:46+08:00">2025-02-03</time>
     </span>
 
   
@@ -459,7 +465,220 @@
 <li>raw： 存储大于44Bytes的数据</li>
 <li>int： 存储整数类型</li>
 </ul>
-<h2 id="Day4"><a href="#Day4" class="headerlink" title="Day4"></a>Day4</h2><h3 id="Redis-如何实现分布式锁？"><a href="#Redis-如何实现分布式锁？" class="headerlink" title="Redis 如何实现分布式锁？"></a>Redis 如何实现分布式锁？</h3><h3 id="Redis-的Red-Lock是什么？你了解吗？"><a href="#Redis-的Red-Lock是什么？你了解吗？" class="headerlink" title="Redis 的Red Lock是什么？你了解吗？"></a>Redis 的Red Lock是什么？你了解吗？</h3><h3 id="Redis实现分布式锁时可能遇到的问题有哪些？"><a href="#Redis实现分布式锁时可能遇到的问题有哪些？" class="headerlink" title="Redis实现分布式锁时可能遇到的问题有哪些？"></a>Redis实现分布式锁时可能遇到的问题有哪些？</h3><h2 id="Day5"><a href="#Day5" class="headerlink" title="Day5"></a>Day5</h2><h3 id="Redis的持久化机制有哪些？"><a href="#Redis的持久化机制有哪些？" class="headerlink" title="Redis的持久化机制有哪些？"></a>Redis的持久化机制有哪些？</h3><h3 id="Redis的主从复制实现原理是什么？"><a href="#Redis的主从复制实现原理是什么？" class="headerlink" title="Redis的主从复制实现原理是什么？"></a>Redis的主从复制实现原理是什么？</h3><h3 id="Redis数据过期后的删除策略是什么？"><a href="#Redis数据过期后的删除策略是什么？" class="headerlink" title="Redis数据过期后的删除策略是什么？"></a>Redis数据过期后的删除策略是什么？</h3><h2 id="Day6"><a href="#Day6" class="headerlink" title="Day6"></a>Day6</h2><h3 id="如何解决Redis中的热点key问题？"><a href="#如何解决Redis中的热点key问题？" class="headerlink" title="如何解决Redis中的热点key问题？"></a>如何解决Redis中的热点key问题？</h3><h3 id="Redis集群的实现原理是什么？"><a href="#Redis集群的实现原理是什么？" class="headerlink" title="Redis集群的实现原理是什么？"></a>Redis集群的实现原理是什么？</h3><h3 id="Redis中的Big-Key问题是什么？如何解决？"><a href="#Redis中的Big-Key问题是什么？如何解决？" class="headerlink" title="Redis中的Big Key问题是什么？如何解决？"></a>Redis中的Big Key问题是什么？如何解决？</h3>
+<h2 id="Day4"><a href="#Day4" class="headerlink" title="Day4"></a>Day4</h2><h3 id="Redis-如何实现分布式锁？"><a href="#Redis-如何实现分布式锁？" class="headerlink" title="Redis 如何实现分布式锁？"></a>Redis 如何实现分布式锁？</h3><h4 id="什么是分布式锁？"><a href="#什么是分布式锁？" class="headerlink" title="什么是分布式锁？"></a>什么是分布式锁？</h4><p>与分布式锁相对应的就是单机锁，单线程通常是保证多线程状态下共享变量的正确性，通过锁的互斥性，保证同一时间只会有一个线程进入（多线程）</p>
+<p>而分布式锁，则是多进程下的共享数据安全，通常用在微服务的架构下。（多进程）</p>
+<p><img src="https://pic1.imgdb.cn/item/679ebd59d0e0a243d4f98418.png"></p>
+<h4 id="分布式锁的实现"><a href="#分布式锁的实现" class="headerlink" title="分布式锁的实现"></a>分布式锁的实现</h4><p><strong>加锁</strong></p>
+<p>可以通过redis的键值对来保存锁变量，在处理不同进程之间的共享数据时，通过读取redis的锁是否存在来判断该锁是否被占用。</p>
+<p>需要保证redis的互斥能力，在加锁时，需要先判断锁是否存在，在进行加锁。</p>
+<p>为保证在redis服务宕机时能正确的防止锁占用，可以给锁加过期时间，redis在2.6.12中，保证了加锁和设置过期时间的<strong>原子性</strong></p>
+<p><strong>锁释放</strong></p>
+<ul>
+<li>需要先判断锁是否是自己的，在进行锁的释放。</li>
+<li>第一步的两个步骤必须保证原子性，可以使用Lua脚本来保证。</li>
+</ul>
+<blockquote>
+<p><strong>因为Redis处理每个请求是单线程执行的，在执行一个Lua脚本时其它请求必须等待，直到这个Lua脚本处理完成</strong></p>
+</blockquote>
+<blockquote>
+<p>关于锁使用时未执行完任务，就过期，<strong>加锁时，先设置一个预估的过期时间，然后开启一个守护线程，定时去检测这个锁的失效时间，如果锁快要过期了，操作共享资源还未完成，那么就自动对锁进行续期</strong>，Resdisson就是使用这种方法。<strong>看门狗机制</strong>。</p>
+</blockquote>
+<p><img src="https://pic1.imgdb.cn/item/679ec0a2d0e0a243d4f98424.png"></p>
+<h3 id="Redis-的Red-Lock是什么？你了解吗？"><a href="#Redis-的Red-Lock是什么？你了解吗？" class="headerlink" title="Redis 的Red Lock是什么？你了解吗？"></a>Redis 的Red Lock是什么？你了解吗？</h3><p><strong>Redis常见的部署方式</strong></p>
+<ul>
+<li>单机模式</li>
+<li>主从模式</li>
+<li>哨兵（sentinel)模式</li>
+<li>集群模式</li>
+</ul>
+<p>当我们使用redis时： 一般会采用主从集群+哨兵的模式部署，哨兵的作用就是监测redis的节点的运行状态，普通的主从模式当master崩溃时，需要手动切换让slave成为master，使用主从+哨兵结合的好处在于，当master异常宕机是，哨兵可以实现故障的自动切换，把slave切换成master，继续提升服务，以此保证可用性。</p>
+<p>当master宕机时，若锁设置还未同步到slave上，可能导致锁丢失，无法保证进程的安全。</p>
+<p><strong>解决</strong></p>
+<p><strong>集群模式+Redlock实现高可靠的分布式锁</strong></p>
+<p>为了避免redis实例故障导致的锁无法工作的问题，Redis的开发者 Antirez 提出来分布式锁算法 Redlock。</p>
+<p>Redlock算法的基本思路，是<strong>让客户端与多个独立的Redis实例依次请求加锁，如果客户端能够和半数以上的实例成功的完成加锁操作，那么我们就认为，客户端成功的获取了分布式锁，否则加锁失败</strong>。</p>
+<p>Redlock的实现需要在redis的集群模式下，无哨兵结点， </p>
+<p>步骤</p>
+<ol>
+<li>客户端获取当前时间</li>
+<li>给每个redis加锁，设置超时时间，过了直接跳过这个redis。</li>
+<li>完成整个加锁后，客户端计算整个加锁时间。</li>
+</ol>
+<p><strong>满足加锁成功的两个条件</strong></p>
+<ul>
+<li>客户端超过半数加锁成功</li>
+<li>客户端获取锁的总耗时，没有超过锁的过期时间。</li>
+</ul>
+<blockquote>
+<p>目的： 只要存在的节点占大多数，那么整个系统就可以提供正常工作。</p>
+</blockquote>
+<p>满足以上两个条件之后</p>
+<p><strong>重新计算这把锁的有效时间，计算的结果是锁的最初有效时间减去客户端为获取锁的总耗时。如果锁的有效时间已经来不及完成共享数据的操作了，我们可以释放锁，以免出现还没完成共享资源操作，锁就过期了的情况</strong>。</p>
+<p>若为满足</p>
+<p><strong>当然，如果客户端在和所有实例执行完加锁操作后，没能同时满足这两个条件，那么，客户端就要向所有Redis节点发起释放锁的操作。</strong></p>
+<h3 id="Redis实现分布式锁时可能遇到的问题有哪些？"><a href="#Redis实现分布式锁时可能遇到的问题有哪些？" class="headerlink" title="Redis实现分布式锁时可能遇到的问题有哪些？"></a>Redis实现分布式锁时可能遇到的问题有哪些？</h3><p>问题</p>
+<ul>
+<li>redis宕机导致的死锁问题（保证加锁设设置过期时间的原子性）</li>
+<li>未执行完操作锁过期（可以设置较长的过期时间，或设置守护进程，随时检测，快过期时增加过期时间，看门狗）</li>
+<li>删除的不是自己的锁（在释放锁时，先检测是否是自己的锁在进行删除，检测和删除必须保证原子性Lua)</li>
+<li>主从集群+哨兵模式下的锁失效（采用redlock解决，集群模式）</li>
+</ul>
+<h2 id="Day5"><a href="#Day5" class="headerlink" title="Day5"></a>Day5</h2><h3 id="Redis的持久化机制有哪些？"><a href="#Redis的持久化机制有哪些？" class="headerlink" title="Redis的持久化机制有哪些？"></a>Redis的持久化机制有哪些？</h3><h4 id="意义"><a href="#意义" class="headerlink" title="意义"></a>意义</h4><p>redis的数据全部存储在内存中，如果突然宕机，数据就会全部丢失，因此必须有一种机制来保证redis的数据在发生冲突时，不会丢失，需要一些策略来把redis内存中的数据写到磁盘中，这样redis服务重启时，就会将硬盘中的数据恢复到内存中。<strong>Redis持久化的意义就是为了保证突然宕机，内存数据不会全部丢失</strong></p>
+<h4 id="Redis的持久化机制"><a href="#Redis的持久化机制" class="headerlink" title="Redis的持久化机制"></a>Redis的持久化机制</h4><p>redis有两种持久方式<strong>RDB和AOF</strong>，每种持久化机制各有优缺点，了解每种持久机制的原理对我们使用Redis有很大的帮助。Redis后支持RDB和AOF的混合使用</p>
+<h4 id="RDB"><a href="#RDB" class="headerlink" title="RDB"></a>RDB</h4><p>RDB是基于快照一次的全量备份，即周期性的把redis当前内存中的数据写入到一个快照文件中（周期时间可以通过配置来调整），redis是单线程程序。在redis6.0之后，写入IO的操作变成了多线程。</p>
+<p>两种触发方式</p>
+<ul>
+<li>自动触发</li>
+<li>手动触发</li>
+</ul>
+<p><img src="https://pic1.imgdb.cn/item/679edd3ed0e0a243d4f9855f.png"></p>
+<p><strong>(1)RDB的优缺点</strong><br><strong>优点：</strong></p>
+<p>RDB会生成多个数据文件，每个数据文件都代表了某一个时刻中redis的数据，这种多个数据文件的方式，非常适合做冷备，可以将这种完整的数据文件发送到一些远程的安全存储上去。</p>
+<p>生成RDB文件的时候，主进程不需要进行任何磁盘IO操作。当进行RDB持久化时，对redis服务处理读写请求的影响非常小，可以让redis保持高性能，因为redis主进程只需要fork一个子进程，让子进程执行磁盘IO操作来进行RDB持久化即可。生成一次RDB文件的过程就是把当前时刻内存中的数据一次性写入文件中，而AOF则需要先把当前内存中的小量数据转换为操作指令，然后把指令写到内存缓存中，然后再刷写入磁盘。</p>
+<p>RDB 在恢复大数据集时的速度比 AOF 的恢复速度要快。AOF存放的是指令日志，做数据恢复的时候，要回放和执行所有的指令日志，从而恢复内存中的所有数据；而RDB，就是一份数据文件，恢复的时候，直接加载到内存中即可。</p>
+<p><strong>缺点：</strong></p>
+<p>RDB方式数据没办法做到实时持久化&#x2F;秒级持久化，会导致数据丢失。一般来说，RDB数据快照文件，都是每隔5分钟，或者更长时间生成一次，这个时候就得接受一旦redis进程宕机，那么会丢失最近5分钟的数据。这个问题，也是RDB最大的缺点，就是不适合做第一优先的恢复方案，如果你依赖RDB做第一优先恢复方案，会导致数据丢失的比较多。</p>
+<p>RDB文件使用特定二进制格式保存，Redis版本演进过程中有多个格式的RDB版本，存在老版本Redis服务无法兼容新版RDB格式的问题(版本不兼容)。</p>
+<p>RDB每次在fork子进程来执行RDB快照数据文件生成的时候，如果数据文件特别大，可能会导致对客户端提供的服务暂停数毫秒，甚至数秒。所以一般不要让生成RDB文件的间隔太长，否则每次生成的RDB文件太大了，对redis本身的性能会有影响。</p>
+<h4 id="AOF持久化"><a href="#AOF持久化" class="headerlink" title="AOF持久化"></a>AOF持久化</h4><p><strong>（Append-only file) 日志存储的是redis服务器的顺序指令序列，即对内存中数据进行修改的指令记录。</strong>当redis收到客户端修改指令后，先进行参数校验，如果校验通过，先把该指令存储到AOF日志文件中，也就是先存到磁盘中，然后执行修改指令。</p>
+<p>redis把操作指令追加到AOF文件这个过程中，并不是直接写到AOF文件中，而是先写到操作系统的内存缓存中，这个内存缓存是由操作系统内核分配的，如果操作系统内核会<strong>异步</strong>地把内存缓存中的redis操作指令刷写到AOF文件中，当redis宕机重启后，可以读取AOF文件中的指令，进行数据恢复，恢复的过程就是把记录的指令在顺序执行一次，这样就可以恢复到宕机之前的状态。</p>
+<p><img src="https://pic1.imgdb.cn/item/679edfacd0e0a243d4f9857c.png"></p>
+<p>redis在长期运行过程中，AOF日志会越来越大，如果redis服务重启后根据很大的AOF文件来顺序执行指令，将会非常耗时，导致redis服务长时间无法对外提供服务，所以需要对AOF文件进行**”瘦身”<strong>。</strong>“瘦身”的过程称作AOF重写(rewrite)**</p>
+<p><strong>(2)AOF的优缺点</strong><br><strong>优点：</strong></p>
+<p>AOF可以更好的保护数据不丢失，一般AOF会每隔1秒，通过一个后台线程执行一次fsync操作，最多丢失1秒钟的数据。</p>
+<p>AOF日志文件以append-only模式(追加)写入，所以没有任何磁盘寻址的开销，写入性能非常高，而且文件不容易破损，即使文件尾部破损，也很容易修复。</p>
+<p>AOF日志文件即使过大的时候，出现后台重写操作，也不会影响客户端的读写。因为在rewrite的时候，会对其中的指令进行压缩，会创建出一份需要恢复数据的最小日志出来。</p>
+<p>AOF日志文件的命令通过非常可读的方式进行记录，这个特性非常适合做灾难性的误删除的紧急恢复。比如某人不小心用flushall命令清空了所有数据，只要这个时候后台rewrite还没有发生，那么就可以立即拷贝AOF文件，将最后一条flushall命令给删了，然后再将该AOF文件放回去，就可以通过恢复机制，自动恢复所有数据。</p>
+<p><strong>缺点：</strong></p>
+<p>对于同一份数据来说，AOF日志文件通常比RDB数据快照文件更大。因为AOF是指令文件，RDB是二进制文件。</p>
+<p>AOF的写性能比RDB的写性能低，因为AOF一般会配置成每秒fsync一次日志文件，当然，每秒一次fsync，性能也还是很高的，只不过比起RDB来说性能低，如果要保证一条数据都不丢，也是可以的，AOF的fsync设置成每写入一条数据，fsync一次，但是这样，redis的性能会大大下降。</p>
+<p>基于AOF文件做恢复的速度不如基于RDB文件做恢复的速度。</p>
+<h3 id="Redis的主从复制实现原理是什么？"><a href="#Redis的主从复制实现原理是什么？" class="headerlink" title="Redis的主从复制实现原理是什么？"></a>Redis的主从复制实现原理是什么？</h3><h4 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h4><p>主从复制，是指将一台Redis服务器的数据，复制到其他redis服务器，前者指的是主节点（master），后者指的是从节点（slave)。数据的复制是单向的，只能从主节点复制到从节点。</p>
+<p>默认情况下，每台redis服务器都是主节点，且一个主节点可以有多个从节点（或没有从节点），但一个从节点只能有一个主节点。</p>
+<p>目前很多中小企业都没有使用到Redis的集群，但是至少都做到了主从，有了主从，当master挂掉的时候运维让从库过来接管，服务就可以继续，否则master需要经过数据恢复和重启的过程，这就可能需要很长时间，影响线上业务的持续服务。</p>
+<h4 id="主从复制的作用"><a href="#主从复制的作用" class="headerlink" title="主从复制的作用"></a>主从复制的作用</h4><p>主从复制的作用主要包括：</p>
+<ul>
+<li>数据冗余：主从复制实现了数据的热备份，是持久化之外的一种数据冗余方式。</li>
+<li>故障恢复：当主节点出现问题时，可以由从节点提供服务，实现快速的故障恢复；实际上是一种服务的冗余。</li>
+<li>负载均衡：在主从复制的基础上，配合读写分离，可以由主节点提供写服务，由从节点提供读服务网（即写Redis数据时应用链接到主节点，读Redis数据时，应用链接到从节点），分担服务负载；尤其是在写少读多的场景下。通过多个从节点分担负载，可以大大提高Redis服务器的并发量。</li>
+<li>高可用基石： 主从复制还是集群和哨兵能够实施的基础，因此说主从复制是Redis高可用的基础。</li>
+</ul>
+<h4 id="CAP原理"><a href="#CAP原理" class="headerlink" title="CAP原理"></a>CAP原理</h4><ul>
+<li><p>C - Consistent，一致性</p>
+</li>
+<li><p>A - Availability， 可用性</p>
+</li>
+<li><p>P - Partition tolerance， 分区容忍性</p>
+<p>分布式系统的节点往往都是分布在不同机器上进行网络隔开的，这意味着必然会有网络断开的风险，这个网络断开的场景的专业词汇叫做 网络分区。</p>
+</li>
+</ul>
+<p>网络分区发生时，会暂停分布式服务。</p>
+<p>概括CAP原理： 网路分区发生时，一致性和可用性两难全。</p>
+<h4 id="实现原理"><a href="#实现原理" class="headerlink" title="实现原理"></a>实现原理</h4><p>主从复制的实现步骤</p>
+<ol>
+<li>设置主节点的地址和端口</li>
+<li>建立套接字连接</li>
+<li>发送PING命令</li>
+<li>权限校验</li>
+<li>同步</li>
+<li>命令传播</li>
+</ol>
+<p>步骤结构图：</p>
+<p><strong><img src="https://pic1.imgdb.cn/item/679f2d2bd0e0a243d4f98d6d.png"></strong></p>
+<h3 id="Redis数据过期后的删除策略是什么？"><a href="#Redis数据过期后的删除策略是什么？" class="headerlink" title="Redis数据过期后的删除策略是什么？"></a>Redis数据过期后的删除策略是什么？</h3><p><strong>1. 常见的删除策略</strong></p>
+<ul>
+<li><p>定时删除： 在设置键的过期时间时，创建一个定时器，让定时器在键的过期时间来临时，立即执行对键的删除操作。</p>
+<ul>
+<li>优点： 对内存非常友好，可以即使释放内存</li>
+<li>缺点： 对CPU不友好</li>
+<li>需要为每隔键创建定时器，占用CPU。</li>
+</ul>
+</li>
+<li><p>惰性删除： 放任过期键不管，每次从键空间中获取键时，检出是否超出过期时间，过期就删除，若未过期，就返回改健。</p>
+<ul>
+<li>优点： 对CPU友好</li>
+<li>缺点： 对内存不友好</li>
+<li>不能及时释放内存</li>
+</ul>
+</li>
+<li><p>定期删除： 每隔一段时间，程序对数据库进行一次检查，删除里面的过期键，至于要删除哪些数据库中的过期键，由算法决定</p>
+<ul>
+<li>属于上面的两种方式折中</li>
+<li>定期删除每隔一段时间执行一次删除过期键操作，并通过限制删除操作执行的时长和频率来减少删除操作对于CPU的影响，同时定期删除策略也有效的减少了因为过期键而带来的内存浪费问题。</li>
+</ul>
+<p><strong>2. Redis使用的删除策略</strong></p>
+<p>Redis使用的是过期删除策略和定期删除策略</p>
+<p>过期删除：由expireIfNeeded函数实现，所有读写数据库的Redis命令在执行之前都会调用expireIfNeeded函数对输入键进行检查</p>
+<p>定期删除： 由activeExpireCycle函数实现，每当Redis服务器的周期性操作serverCron函数执行时，activeExpireCycle函数就会被调用，它在规定的时间内，分多次遍历服务器中的各个数据库，从数据库的expires字典中随机检查一部分键的过期时间，并删除其中的过期键。</p>
+</li>
+</ul>
+<p><strong>3. 复制功能对过期键的处理</strong></p>
+<p>在主从复制模式下，从服务器的过期键删除动作由主服务器控制：</p>
+<ul>
+<li>主服务器在删除一个过期键后，会显式地向所有从服务器发送一个DEL命令，告知从服务器删除这个过期键。</li>
+<li>从服务器在执行客户端发送的读命令时，即使发现该键已过期也不会删除该键，照常返回该键的值。</li>
+<li>从服务器只有接收到主服务器发送的DEL命令后，才会删除过期键。</li>
+</ul>
+<h2 id="Day6"><a href="#Day6" class="headerlink" title="Day6"></a>Day6</h2><h3 id="如何解决Redis中的热点key问题？"><a href="#如何解决Redis中的热点key问题？" class="headerlink" title="如何解决Redis中的热点key问题？"></a>如何解决Redis中的热点key问题？</h3><p><strong>1. 热点数据和冷数据是什么</strong></p>
+<ul>
+<li>热点数据：读取频率高，如果不做缓存，给数据库造成很大的压力，可能被击穿。（hotkey）</li>
+<li>冷数据：读取频率低，数据设置缓存后有可能没有被访问就被挤出内存(超时dele)。</li>
+</ul>
+<p><strong>2. 危害</strong><br>可能导致redis分片集群瘫痪</p>
+<p>redis是单线程结构，在读取数据时，需要排队处理，当redis的处理能力无法处理远大于自身能力的请求时，就会陷入等待，超时。</p>
+<p>由于该redis分片完全被这个key的请求给打满，导致分片上所有其他数据操作都无法实行，</p>
+<p>这样，redis 缓存没有响应之后，相当于 redis 击穿， 请求直接转向DB</p>
+<p>DB的吞吐量，比如会低很多，DB 就会雪崩。</p>
+<p><img src="https://pic1.imgdb.cn/item/679f34b1d0e0a243d4f98e18.png"></p>
+<p><strong>3. 解决方案</strong></p>
+<ol>
+<li><p><strong>本地缓存</strong></p>
+<p>实现就近访问</p>
+<p>在应用层引入本地缓存（如Guava Cache、Caffeine、nginx share dict等），将热点数据缓存在本地内存中，减少对Redis的直接访问，从而降低Redis的压力。</p>
+<p><strong>优点</strong>：减少了对Redis的读请求，降低了热点Key带来的负载压力。</p>
+</li>
+<li><p><strong>打撒热点</strong></p>
+<p>通过改变Key的结构（如添加随机前缀），将同一个热点Key拆分成多个Key，使其分布在不同的Redis节点上，从而避免所有流量集中在一个节点上。</p>
+<p><strong>优点</strong>：有效避免了单点瓶颈，提高了Redis集群的整体吞吐量。</p>
+</li>
+<li><p><strong>节点扩容</strong></p>
+<p>如果是用 ： redis 主从架构，可以通过增加Redis集群中的从节点，增加 多个读的副本。</p>
+<p>通过对读流量进行 负载均衡， 将读流量 分散到更多的从节点 上，减轻单个节点的压力。</p>
+<p><strong>优点</strong>：通过水平扩展，Redis可以处理更大的负载，特别是针对高并发的读请求。</p>
+<p>Redis 从节点扩容 方案非常受限： 如果是用 redis cluster 集群架构，这种方案就没辙了</p>
+</li>
+<li><p><strong>热点探测</strong></p>
+<p>通过检测突然变得特别热门的key，并将这些数据推送到服务器集群内存中，从而降低热数据对数据层的查询压力</p>
+</li>
+<li><p><strong>本地缓存预加载</strong></p>
+<p>本地缓存的预加载是一种优化策略，提前加载可能会用到的热点数据，以便在需要时能够快速访问。</p>
+</li>
+</ol>
+<h3 id="Redis集群的实现原理是什么？"><a href="#Redis集群的实现原理是什么？" class="headerlink" title="Redis集群的实现原理是什么？"></a>Redis集群的实现原理是什么？</h3><h3 id="Redis中的Big-Key问题是什么？如何解决？"><a href="#Redis中的Big-Key问题是什么？如何解决？" class="headerlink" title="Redis中的Big Key问题是什么？如何解决？"></a>Redis中的Big Key问题是什么？如何解决？</h3><p>是指内存空间占用比较大的键</p>
+<p>危害：</p>
+<ul>
+<li>内存分布不均， 在集群模式下，不同slot分配不同的实例中，如果大Key都映射到一个实例，则分布不均，查询效率也会受到影响。</li>
+<li>由于Redis但线程执行命令，操作Key时耗时长，从而导致Redis出现其他命令阻塞的问题</li>
+<li>大Key对资源的占用巨大，在你进行网络IO传输时，导致你获取过程中产生的网络流量较大，从而产生网络传输时间延长甚至网络传输发现阻塞的现象</li>
+<li>客户端超时，因为操作key耗时较长，肯呢个导致客户端等待超时。</li>
+</ul>
+<p>解决：</p>
+<p><strong>开发方面</strong></p>
+<ul>
+<li>对存储的数据进行压缩，压缩后在进行存储</li>
+<li>大化小，即把大对象拆分成小对象，即将一个大的Key拆分成若干个小Key，降低单个Key的内存大小。</li>
+<li>使用合适的数据结构进行存储，比如一些用String的场景，可以考虑Hash，Set等结构进行优化。</li>
+</ul>
+<p><strong>业务层面</strong></p>
+<ul>
+<li>可以根据实际情况，调整存储策略，只存一些必要的数据，比如用户的不常用信息不存储，仅存储用户ID，姓名，头像等</li>
+<li>优化业务逻辑，从根源上避免大Key的产生。</li>
+</ul>
+<p><strong>数据分布方面</strong></p>
+<ul>
+<li>采用Redsi集群方式进行Redis的部署，然后将大Key拆分散落到不同的服务器上面，加快响应。</li>
+</ul>
+
     </div>
 
     
