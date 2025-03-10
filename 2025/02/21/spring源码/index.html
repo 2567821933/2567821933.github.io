@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha256-5eIC48iZUHmSlSUz9XtjRyK2mzQkHScZY1WdMaoz74E=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.21.1","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"always","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="SpringSpring的启动流程什么是spring容器？ 管理Bean对象，通过依赖注入组织Bean之间关系，从而降低业务对象之间耦合性， -IOC 学习Spring容器的启动流程，就是去学校application context 的创建过程   创建：ApplicationContext   创建容器后，通过getBean来获取Bean对象  组件 读取配置类读取配置类，通过配置类来找到要读取">
+<meta property="og:type" content="article">
+<meta property="og:title" content="spring源码">
+<meta property="og:url" content="http://example.com/2025/02/21/spring%E6%BA%90%E7%A0%81/index.html">
+<meta property="og:site_name" content="Zhang&#39;Blog">
+<meta property="og:description" content="SpringSpring的启动流程什么是spring容器？ 管理Bean对象，通过依赖注入组织Bean之间关系，从而降低业务对象之间耦合性， -IOC 学习Spring容器的启动流程，就是去学校application context 的创建过程   创建：ApplicationContext   创建容器后，通过getBean来获取Bean对象  组件 读取配置类读取配置类，通过配置类来找到要读取">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/67b98643d0e0a243d401e754.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/67b98688d0e0a243d401e7a7.png">
+<meta property="og:image" content="c:\Users\Lenovo\AppData\Roaming\Typora\typora-user-images\image-20250222161328079.png">
+<meta property="og:image" content="c:\Users\Lenovo\AppData\Roaming\Typora\typora-user-images\image-20250222163135114.png">
+<meta property="og:image" content="c:\Users\Lenovo\AppData\Roaming\Typora\typora-user-images\image-20250222161521409.png">
+<meta property="og:image" content="c:\Users\Lenovo\AppData\Roaming\Typora\typora-user-images\image-20250222162024143.png">
+<meta property="og:image" content="c:\Users\Lenovo\AppData\Roaming\Typora\typora-user-images\image-20250222162449029.png">
+<meta property="og:image" content="c:\Users\Lenovo\AppData\Roaming\Typora\typora-user-images\image-20250222162829953.png">
+<meta property="og:image" content="c:\Users\Lenovo\AppData\Roaming\Typora\typora-user-images\image-20250222164210750.png">
+<meta property="og:image" content="c:\Users\Lenovo\AppData\Roaming\Typora\typora-user-images\image-20250222164559415.png">
+<meta property="og:image" content="c:\Users\Lenovo\AppData\Roaming\Typora\typora-user-images\image-20250222165416502.png">
+<meta property="og:image" content="c:\Users\Lenovo\AppData\Roaming\Typora\typora-user-images\image-20250222165809114.png">
+<meta property="og:image" content="c:\Users\Lenovo\AppData\Roaming\Typora\typora-user-images\image-20250222165930034.png">
+<meta property="og:image" content="c:\Users\Lenovo\AppData\Roaming\Typora\typora-user-images\image-20250222170905614.png">
+<meta property="og:image" content="c:\Users\Lenovo\AppData\Roaming\Typora\typora-user-images\image-20250222171307910.png">
+<meta property="og:image" content="c:\Users\Lenovo\AppData\Roaming\Typora\typora-user-images\image-20250222172029850.png">
+<meta property="article:published_time" content="2025-02-21T06:36:18.000Z">
+<meta property="article:modified_time" content="2025-02-23T02:15:31.730Z">
+<meta property="article:author" content="ZhangYuHao">
+<meta property="article:tag" content="spring源码结构">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://pic1.imgdb.cn/item/67b98643d0e0a243d401e754.png">
+
+
+<link rel="canonical" href="http://example.com/2025/02/21/spring%E6%BA%90%E7%A0%81/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/2025/02/21/spring%E6%BA%90%E7%A0%81/","path":"2025/02/21/spring源码/","title":"spring源码"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>spring源码 | Zhang'Blog</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Zhang'Blog</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-schedule"><a href="/schedule/" rel="section"><i class="fa fa-calendar fa-fw"></i>日程表</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Spring"><span class="nav-number">1.</span> <span class="nav-text">Spring</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Spring%E7%9A%84%E5%90%AF%E5%8A%A8%E6%B5%81%E7%A8%8B"><span class="nav-number">1.1.</span> <span class="nav-text">Spring的启动流程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BB%84%E4%BB%B6"><span class="nav-number">1.1.1.</span> <span class="nav-text">组件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AF%BB%E5%8F%96%E9%85%8D%E7%BD%AE%E7%B1%BB"><span class="nav-number">1.1.2.</span> <span class="nav-text">读取配置类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AD%98%E5%82%A8"><span class="nav-number">1.1.3.</span> <span class="nav-text">存储</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%9B%E5%BB%BABean"><span class="nav-number">1.1.4.</span> <span class="nav-text">创建Bean</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%8E%B7%E5%8F%96"><span class="nav-number">1.1.5.</span> <span class="nav-text">获取</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA"><span class="nav-number">1.1.6.</span> <span class="nav-text">创建</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%9D%E5%A7%8B%E5%8C%96%E6%96%B9%E6%B3%95%E5%9B%9E%E8%B0%83"><span class="nav-number">1.1.6.1.</span> <span class="nav-text">初始化方法回调</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Bean%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F"><span class="nav-number">1.1.7.</span> <span class="nav-text">Bean的生命周期</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8C%BA%E5%88%AB"><span class="nav-number">1.2.</span> <span class="nav-text">区别</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%8D%E4%BD%BF%E7%94%A8applicationcontext%E8%AF%BB%E5%8F%96%E9%85%8D%E7%BD%AE%E7%B1%BB"><span class="nav-number">1.2.1.</span> <span class="nav-text">不使用applicationcontext读取配置类</span></a></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="ZhangYuHao"
+      src="/images/111.png">
+  <p class="site-author-name" itemprop="name">ZhangYuHao</p>
+  <div class="site-description" itemprop="description">一个小人物的个人博客</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">34</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">19</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/2567821933" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;2567821933" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:103903Zyh@gmail.com" title="E-Mail → mailto:103903Zyh@gmail.com" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2025/02/21/spring%E6%BA%90%E7%A0%81/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/111.png">
+      <meta itemprop="name" content="ZhangYuHao">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Zhang'Blog">
+      <meta itemprop="description" content="一个小人物的个人博客">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="spring源码 | Zhang'Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          spring源码
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2025-02-21 14:36:18" itemprop="dateCreated datePublished" datetime="2025-02-21T14:36:18+08:00">2025-02-21</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-02-23 10:15:31" itemprop="dateModified" datetime="2025-02-23T10:15:31+08:00">2025-02-23</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1 id="Spring"><a href="#Spring" class="headerlink" title="Spring"></a>Spring</h1><h2 id="Spring的启动流程"><a href="#Spring的启动流程" class="headerlink" title="Spring的启动流程"></a>Spring的启动流程</h2><p>什么是spring容器？</p>
+<p>管理Bean对象，通过依赖注入组织Bean之间关系，从而降低业务对象之间耦合性， -IOC</p>
+<p>学习Spring容器的启动流程，就是去学校application context 的创建过程</p>
+<img src="https://pic1.imgdb.cn/item/67b98643d0e0a243d401e754.png" alt="image.png">
+
+<p>创建：ApplicationContext</p>
+<img src="https://pic1.imgdb.cn/item/67b98688d0e0a243d401e7a7.png" alt="image.png">
+
+<p>创建容器后，通过getBean来获取Bean对象</p>
+<p><img src="C:\Users\Lenovo\AppData\Roaming\Typora\typora-user-images\image-20250222161328079.png" alt="image-20250222161328079"></p>
+<h3 id="组件"><a href="#组件" class="headerlink" title="组件"></a>组件</h3><p><img src="C:\Users\Lenovo\AppData\Roaming\Typora\typora-user-images\image-20250222163135114.png" alt="image-20250222163135114"></p>
+<h3 id="读取配置类"><a href="#读取配置类" class="headerlink" title="读取配置类"></a>读取配置类</h3><p>读取配置类，通过配置类来找到要读取的xml文件，来加载Bean。</p>
+<p><img src="C:\Users\Lenovo\AppData\Roaming\Typora\typora-user-images\image-20250222161521409.png" alt="image-20250222161521409"></p>
+<p>上：读取配置类，来加载Bean信息</p>
+<p>下：读取Xml文件，来读取Bean信息</p>
+<h3 id="存储"><a href="#存储" class="headerlink" title="存储"></a>存储</h3><p>读取完配置信息后，这些配置就会存储到<strong>BeanDefinition</strong>的对象中。</p>
+<p>他是个接口，查看它的实现类，里面会存储配置的信息</p>
+<p><img src="C:\Users\Lenovo\AppData\Roaming\Typora\typora-user-images\image-20250222162024143.png" alt="image-20250222162024143"></p>
+<p>这些都是将配置信息复制到实现类中。</p>
+<p>通常情况下， 有一个Bean 就会有一个 <strong>BeanDefinition</strong>。</p>
+<p>这些保存在一个集合中， <strong>BeanDefinitionMap &lt; beanName, BeanDefiniton&gt;</strong> </p>
+<p><img src="C:\Users\Lenovo\AppData\Roaming\Typora\typora-user-images\image-20250222162449029.png" alt="image-20250222162449029"> </p>
+<h3 id="创建Bean"><a href="#创建Bean" class="headerlink" title="创建Bean"></a>创建Bean</h3><p>循环BeanDefinition，获取Bean信息，懒加载则不会创建，判断是不是多例Bean</p>
+<p><img src="C:\Users\Lenovo\AppData\Roaming\Typora\typora-user-images\image-20250222162829953.png" alt="image-20250222162829953"></p>
+<p>可以通过@Scope 改变Bean的类型。</p>
+<p>singlenObjects&lt;beanName, Object&gt; 存储Bean对象的map。从里面获取bean。</p>
+<h3 id="获取"><a href="#获取" class="headerlink" title="获取"></a>获取</h3><p><img src="C:\Users\Lenovo\AppData\Roaming\Typora\typora-user-images\image-20250222164210750.png" alt="image-20250222164210750"></p>
+<p>未获取到则创建Bean - 》 拿 BeanDfinitio。</p>
+<h3 id="创建"><a href="#创建" class="headerlink" title="创建"></a>创建</h3><p>实例化， 通过反射的方式获取对象实例。</p>
+<p><img src="C:\Users\Lenovo\AppData\Roaming\Typora\typora-user-images\image-20250222164559415.png" alt="image-20250222164559415"></p>
+<h4 id="初始化方法回调"><a href="#初始化方法回调" class="headerlink" title="初始化方法回调"></a>初始化方法回调</h4><p>初始化方法回调的方式有三种</p>
+<ul>
+<li>实现接口InitializingBean，通过实现里面的初始化方法来初始化。</li>
+<li>通过注解 @PostConstruct，来把注解的方法变成初始化方法。</li>
+<li>通过xml来初始化。</li>
+</ul>
+<p>初始化完成后，会将Bean放入单例池中。</p>
+<h3 id="Bean的生命周期"><a href="#Bean的生命周期" class="headerlink" title="Bean的生命周期"></a>Bean的生命周期</h3><p>实例化 -》 依赖注入 -》 初始化 -》 放入单例池中 -&gt; 销毁</p>
+<p><img src="C:\Users\Lenovo\AppData\Roaming\Typora\typora-user-images\image-20250222165416502.png" alt="image-20250222165416502"></p>
+<p>销毁方法回调的三种方式</p>
+<ul>
+<li>DisposableBean接口来实现销毁方法回调。</li>
+</ul>
+<p>实例化时， 会通过反射的方式，去推断构造函数，默认会调用无参函数。</p>
+<p><img src="C:\Users\Lenovo\AppData\Roaming\Typora\typora-user-images\image-20250222165809114.png" alt="image-20250222165809114"></p>
+<p>通过反射的方式获取工厂方法，来获取对应的Bean。</p>
+<p><img src="C:\Users\Lenovo\AppData\Roaming\Typora\typora-user-images\image-20250222165930034.png" alt="image-20250222165930034"></p>
+<p>初始化这里会调用初始化方法，还会调用Aware。</p>
+<p><img src="C:\Users\Lenovo\AppData\Roaming\Typora\typora-user-images\image-20250222170905614.png" alt="image-20250222170905614"></p>
+<p>会调用9次后置处理器。</p>
+<h2 id="区别"><a href="#区别" class="headerlink" title="区别"></a>区别</h2><p><img src="C:\Users\Lenovo\AppData\Roaming\Typora\typora-user-images\image-20250222171307910.png" alt="image-20250222171307910"></p>
+<p>BeanFactory没有读取配置的功能，需要传入BenaDefinition。</p>
+<h3 id="不使用applicationcontext读取配置类"><a href="#不使用applicationcontext读取配置类" class="headerlink" title="不使用applicationcontext读取配置类"></a>不使用applicationcontext读取配置类</h3><p><img src="C:\Users\Lenovo\AppData\Roaming\Typora\typora-user-images\image-20250222172029850.png" alt="image-20250222172029850"></p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/spring%E6%BA%90%E7%A0%81%E7%BB%93%E6%9E%84/" rel="tag"># spring源码结构</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2025/02/20/spring/" rel="prev" title="spring">
+                  <i class="fa fa-angle-left"></i> spring
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2025/02/23/springcloud/" rel="next" title="springcloud">
+                  springcloud <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">ZhangYuHao</span>
+  </div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/mist/" rel="noopener" target="_blank">NexT.Mist</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script size="300" alpha="0.6" zIndex="-1" src="https://cdnjs.cloudflare.com/ajax/libs/ribbon.js/1.0.2/ribbon.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/sidebar.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

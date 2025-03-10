@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha256-5eIC48iZUHmSlSUz9XtjRyK2mzQkHScZY1WdMaoz74E=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.21.1","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"always","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="JVM跨平台的原理JVM是运行在操作系统上的程序，不同的操作系统的安装包不同。 不同的操作系统上的JVM不同，这才是JVM跨平台的本质。 字节码的作用  JVM与字节码  JVM的整体结构 方法区通常是class对象 类加载子系统 类加载器的分类  双亲委派加载类的本质是得到类的class对象  AppClassLoader 会在需要加载时，查找目录，看看这个类是否已经加载，若未加载，则调用父类E">
+<meta property="og:type" content="article">
+<meta property="og:title" content="spring">
+<meta property="og:url" content="http://example.com/2025/02/20/spring/index.html">
+<meta property="og:site_name" content="Zhang&#39;Blog">
+<meta property="og:description" content="JVM跨平台的原理JVM是运行在操作系统上的程序，不同的操作系统的安装包不同。 不同的操作系统上的JVM不同，这才是JVM跨平台的本质。 字节码的作用  JVM与字节码  JVM的整体结构 方法区通常是class对象 类加载子系统 类加载器的分类  双亲委派加载类的本质是得到类的class对象  AppClassLoader 会在需要加载时，查找目录，看看这个类是否已经加载，若未加载，则调用父类E">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/67b6c659d0e0a243d400edfb.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/67b6c745d0e0a243d400ee5f.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/67b6c8c3d0e0a243d400eef2.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/67b6c9f3d0e0a243d400ef25.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/67b6ca90d0e0a243d400ef6d.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/67b6cbcad0e0a243d400efbc.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/67b6cf65d0e0a243d400f0c8.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/67b6d159d0e0a243d400f19c.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/67b6d1f3d0e0a243d400f1f4.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/67b6e100d0e0a243d400f820.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/67b6e138d0e0a243d400f839.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/67b6e1e2d0e0a243d400f87c.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/67b6e2ead0e0a243d400f8b0.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/67b6e33cd0e0a243d400f8cd.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/67b6e658d0e0a243d400f9a4.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/67b6e9acd0e0a243d400fae5.png">
+<meta property="og:image" content="c:\Users\Lenovo\AppData\Roaming\Typora\typora-user-images\image-20250220163814715.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/67b6ec05d0e0a243d400fb6b.png">
+<meta property="og:image" content="c:\Users\Lenovo\AppData\Roaming\Typora\typora-user-images\image-20250220164729281.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/67b6ed09d0e0a243d400fbe1.png">
+<meta property="og:image" content="c:\Users\Lenovo\AppData\Roaming\Typora\typora-user-images\image-20250220165117992.png">
+<meta property="og:image" content="c:\Users\Lenovo\AppData\Roaming\Typora\typora-user-images\image-20250220165156641.png">
+<meta property="og:image" content="c:\Users\Lenovo\AppData\Roaming\Typora\typora-user-images\image-20250220165227467.png">
+<meta property="og:image" content="c:\Users\Lenovo\AppData\Roaming\Typora\typora-user-images\image-20250220165545242.png">
+<meta property="og:image" content="c:\Users\Lenovo\AppData\Roaming\Typora\typora-user-images\image-20250220165629075.png">
+<meta property="og:image" content="c:\Users\Lenovo\AppData\Roaming\Typora\typora-user-images\image-20250220170324112.png">
+<meta property="og:image" content="c:\Users\Lenovo\AppData\Roaming\Typora\typora-user-images\image-20250220170533820.png">
+<meta property="og:image" content="c:\Users\Lenovo\AppData\Roaming\Typora\typora-user-images\image-20250220170600689.png">
+<meta property="og:image" content="c:\Users\Lenovo\AppData\Roaming\Typora\typora-user-images\image-20250220170843704.png">
+<meta property="og:image" content="c:\Users\Lenovo\AppData\Roaming\Typora\typora-user-images\image-20250220170927390.png">
+<meta property="og:image" content="c:\Users\Lenovo\AppData\Roaming\Typora\typora-user-images\image-20250220170944539.png">
+<meta property="article:published_time" content="2025-02-20T02:24:06.000Z">
+<meta property="article:modified_time" content="2025-02-21T06:35:55.232Z">
+<meta property="article:author" content="ZhangYuHao">
+<meta property="article:tag" content="jvm">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://pic1.imgdb.cn/item/67b6c659d0e0a243d400edfb.png">
+
+
+<link rel="canonical" href="http://example.com/2025/02/20/spring/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/2025/02/20/spring/","path":"2025/02/20/spring/","title":"spring"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>spring | Zhang'Blog</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Zhang'Blog</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-schedule"><a href="/schedule/" rel="section"><i class="fa fa-calendar fa-fw"></i>日程表</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#JVM"><span class="nav-number">1.</span> <span class="nav-text">JVM</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%B7%A8%E5%B9%B3%E5%8F%B0%E7%9A%84%E5%8E%9F%E7%90%86"><span class="nav-number">1.1.</span> <span class="nav-text">跨平台的原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JVM%E7%9A%84%E6%95%B4%E4%BD%93%E7%BB%93%E6%9E%84"><span class="nav-number">1.2.</span> <span class="nav-text">JVM的整体结构</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%B1%BB%E5%8A%A0%E8%BD%BD%E5%AD%90%E7%B3%BB%E7%BB%9F"><span class="nav-number">1.2.1.</span> <span class="nav-text">类加载子系统</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%8C%E4%BA%B2%E5%A7%94%E6%B4%BE"><span class="nav-number">1.2.2.</span> <span class="nav-text">双亲委派</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Tomcat%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E8%87%AA%E5%AE%9A%E4%B9%89%E7%B1%BB%E5%8A%A0%E8%BD%BD%E5%99%A8%EF%BC%9F"><span class="nav-number">1.2.3.</span> <span class="nav-text">Tomcat为什么要自定义类加载器？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%90%E8%A1%8C%E6%97%B6%E6%95%B0%E6%8D%AE%E5%8C%BA"><span class="nav-number">1.2.4.</span> <span class="nav-text">运行时数据区</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%A8%8B%E5%BA%8F%E8%AE%A1%E6%95%B0%E5%99%A8"><span class="nav-number">1.2.4.1.</span> <span class="nav-text">程序计数器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%99%9A%E6%8B%9F%E6%9C%BA%E6%A0%88"><span class="nav-number">1.2.4.2.</span> <span class="nav-text">虚拟机栈</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A0%88%E5%B8%A7"><span class="nav-number">1.2.4.3.</span> <span class="nav-text">栈帧</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9C%AC%E5%9C%B0%E6%96%B9%E6%B3%95%E6%A0%88"><span class="nav-number">1.2.4.4.</span> <span class="nav-text">本地方法栈</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A0%86"><span class="nav-number">1.2.4.5.</span> <span class="nav-text">堆</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF-YoungGC%EF%BC%8CFull-GC%EF%BC%8C-MinorGC"><span class="nav-number">1.2.4.5.1.</span> <span class="nav-text">什么是 YoungGC，Full GC， MinorGC</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E8%BF%9B%E8%A1%8C%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E5%91%A2%EF%BC%9F"><span class="nav-number">1.2.4.5.2.</span> <span class="nav-text">为什么要进行垃圾回收呢？</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E5%99%A8"><span class="nav-number">1.2.5.</span> <span class="nav-text">垃圾回收器</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%B8%B8%E8%A7%81%E7%9A%84%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8"><span class="nav-number">1.2.5.1.</span> <span class="nav-text">常见的垃圾收集器</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#CMS"><span class="nav-number">1.2.5.1.1.</span> <span class="nav-text">CMS</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#G1"><span class="nav-number">1.2.5.1.2.</span> <span class="nav-text">G1</span></a></li></ol></li></ol></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="ZhangYuHao"
+      src="/images/111.png">
+  <p class="site-author-name" itemprop="name">ZhangYuHao</p>
+  <div class="site-description" itemprop="description">一个小人物的个人博客</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">34</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">19</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/2567821933" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;2567821933" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:103903Zyh@gmail.com" title="E-Mail → mailto:103903Zyh@gmail.com" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2025/02/20/spring/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/111.png">
+      <meta itemprop="name" content="ZhangYuHao">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Zhang'Blog">
+      <meta itemprop="description" content="一个小人物的个人博客">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="spring | Zhang'Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          spring
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2025-02-20 10:24:06" itemprop="dateCreated datePublished" datetime="2025-02-20T10:24:06+08:00">2025-02-20</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-02-21 14:35:55" itemprop="dateModified" datetime="2025-02-21T14:35:55+08:00">2025-02-21</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1 id="JVM"><a href="#JVM" class="headerlink" title="JVM"></a>JVM</h1><h2 id="跨平台的原理"><a href="#跨平台的原理" class="headerlink" title="跨平台的原理"></a>跨平台的原理</h2><p>JVM是运行在操作系统上的程序，不同的操作系统的安装包不同。</p>
+<p>不同的操作系统上的JVM不同，这才是JVM跨平台的本质。</p>
+<p><strong>字节码的作用</strong></p>
+<p><img src="https://pic1.imgdb.cn/item/67b6c659d0e0a243d400edfb.png"></p>
+<p><strong>JVM与字节码</strong></p>
+<p><img src="https://pic1.imgdb.cn/item/67b6c745d0e0a243d400ee5f.png"></p>
+<h2 id="JVM的整体结构"><a href="#JVM的整体结构" class="headerlink" title="JVM的整体结构"></a>JVM的整体结构</h2><p><img src="https://pic1.imgdb.cn/item/67b6c8c3d0e0a243d400eef2.png"></p>
+<p>方法区通常是class对象</p>
+<h3 id="类加载子系统"><a href="#类加载子系统" class="headerlink" title="类加载子系统"></a>类加载子系统</h3><p><img src="https://pic1.imgdb.cn/item/67b6c9f3d0e0a243d400ef25.png"></p>
+<p>类加载器的分类</p>
+<p><img src="https://pic1.imgdb.cn/item/67b6ca90d0e0a243d400ef6d.png"></p>
+<h3 id="双亲委派"><a href="#双亲委派" class="headerlink" title="双亲委派"></a>双亲委派</h3><p>加载类的本质是得到类的class对象</p>
+<p><img src="https://pic1.imgdb.cn/item/67b6cbcad0e0a243d400efbc.png"></p>
+<p>AppClassLoader 会在需要加载时，查找目录，看看这个类是否已经加载，若未加载，则调用父类ExtClassLoader来查找目录，BootStrapClassLoader同理。若加载过，则返回对应类，若未加载，则返回null，让子类加载。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">String.class.getClassLoad(); <span class="comment">// 获取类加载器。可以通过类加载器来加载对应的类。</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="Tomcat为什么要自定义类加载器？"><a href="#Tomcat为什么要自定义类加载器？" class="headerlink" title="Tomcat为什么要自定义类加载器？"></a>Tomcat为什么要自定义类加载器？</h3><p><img src="https://pic1.imgdb.cn/item/67b6cf65d0e0a243d400f0c8.png"></p>
+<p>目的实现隔离</p>
+<h3 id="运行时数据区"><a href="#运行时数据区" class="headerlink" title="运行时数据区"></a>运行时数据区</h3><p><img src="https://pic1.imgdb.cn/item/67b6d159d0e0a243d400f19c.png"></p>
+<h4 id="程序计数器"><a href="#程序计数器" class="headerlink" title="程序计数器"></a>程序计数器</h4><p><img src="https://pic1.imgdb.cn/item/67b6d1f3d0e0a243d400f1f4.png"></p>
+<h4 id="虚拟机栈"><a href="#虚拟机栈" class="headerlink" title="虚拟机栈"></a>虚拟机栈</h4><p><img src="https://pic1.imgdb.cn/item/67b6e100d0e0a243d400f820.png"></p>
+<p><img src="https://pic1.imgdb.cn/item/67b6e138d0e0a243d400f839.png"></p>
+<h4 id="栈帧"><a href="#栈帧" class="headerlink" title="栈帧"></a>栈帧</h4><p><img src="https://pic1.imgdb.cn/item/67b6e1e2d0e0a243d400f87c.png"></p>
+<h4 id="本地方法栈"><a href="#本地方法栈" class="headerlink" title="本地方法栈"></a>本地方法栈</h4><p><img src="https://pic1.imgdb.cn/item/67b6e2ead0e0a243d400f8b0.png"></p>
+<p>OOM： 内存溢出异常</p>
+<p>SOF： 栈多次调用</p>
+<h4 id="堆"><a href="#堆" class="headerlink" title="堆"></a>堆</h4><p><img src="https://pic1.imgdb.cn/item/67b6e33cd0e0a243d400f8cd.png"></p>
+<h5 id="什么是-YoungGC，Full-GC，-MinorGC"><a href="#什么是-YoungGC，Full-GC，-MinorGC" class="headerlink" title="什么是 YoungGC，Full GC， MinorGC"></a>什么是 YoungGC，Full GC， MinorGC</h5><p><img src="https://pic1.imgdb.cn/item/67b6e658d0e0a243d400f9a4.png"></p>
+<h5 id="为什么要进行垃圾回收呢？"><a href="#为什么要进行垃圾回收呢？" class="headerlink" title="为什么要进行垃圾回收呢？"></a>为什么要进行垃圾回收呢？</h5><p>垃圾是指在JVM中没有任何引用指向它的对象，如果不清理这些垃圾对象，那么他们就一直占用这内存，而不能给其他对象使用，最终垃圾对象越来越多，就会出现OOM</p>
+<p><strong>垃圾标记阶段</strong></p>
+<p>也就是JVM中（主要是堆中）有哪些垃圾对象，有两种方式：</p>
+<ul>
+<li>引用计数法</li>
+<li>可达性分析法</li>
+</ul>
+<p><strong>引用计数法</strong>（很少用）</p>
+<p>每个对象都保存一个引用计数器属性，用户记录对象被引用次数。</p>
+<p>优点： 实现简单，计数器为0则表示是垃圾回收对象</p>
+<p>缺点：</p>
+<ul>
+<li>需要额外的空间来存储引用计数</li>
+<li>以及需要额外的时间来维护引用计数</li>
+<li>还有一个严重问题，无法处理循环引用的问题</li>
+</ul>
+<p><strong>可达性分析法</strong></p>
+<p>可达分析法会以GC Roots 作为起始点，然后一层一层找到所引用的对象，被找到的对象就是存活对象，那么其他不可达的对象就是垃圾对象。</p>
+<p><img src="https://pic1.imgdb.cn/item/67b6e9acd0e0a243d400fae5.png"></p>
+<p><img src="C:\Users\Lenovo\AppData\Roaming\Typora\typora-user-images\image-20250220163814715.png" alt="image-20250220163814715"></p>
+<p><strong>标记清除算法</strong></p>
+<p>一种非常基础和常用的垃圾回收算法，针对某一块内存空间，比如新生代，老年代，如果可用内存不足后，就会STW，暂定用户线程的执行，然后执行算法进行垃圾回收。</p>
+<ol>
+<li>标记阶段：从GC Roots开始遍历找到可达对象，并在对象头中进行记录。</li>
+<li>清除阶段： 堆空间进行线性遍历，如果发现对象头中没有记录是可达对象，则回收它。</li>
+</ol>
+<p>缺点：</p>
+<ol>
+<li>效率不高</li>
+<li>存在内存碎片</li>
+</ol>
+<p>优点：思路简单</p>
+<p><strong>复制算法</strong></p>
+<p><img src="https://pic1.imgdb.cn/item/67b6ec05d0e0a243d400fb6b.png"></p>
+<p><img src="C:\Users\Lenovo\AppData\Roaming\Typora\typora-user-images\image-20250220164729281.png" alt="image-20250220164729281"></p>
+<p>优点：</p>
+<ol>
+<li>没有标记和清除阶段， 通过GC Roots 找到可达对象，直接复制，不需要修改对象头，效率更高。</li>
+<li>不会出现内存碎片。</li>
+</ol>
+<p>缺点；</p>
+<ol>
+<li>需要更多内存，始终有一半空闲</li>
+<li>对象复制后，对象存放的内存地址发生变化，需要额外的时间修改栈帧中记录的地址</li>
+<li>如果可达对象比较多，垃圾对象少，那么复制算法的效率就会比较低，所以垃圾对象多的情况下，复制算法比较合适。</li>
+</ol>
+<p><strong>标记整理算法</strong></p>
+<p><img src="https://pic1.imgdb.cn/item/67b6ed09d0e0a243d400fbe1.png"></p>
+<p><img src="C:\Users\Lenovo\AppData\Roaming\Typora\typora-user-images\image-20250220165117992.png" alt="image-20250220165117992"></p>
+<p><img src="C:\Users\Lenovo\AppData\Roaming\Typora\typora-user-images\image-20250220165156641.png" alt="image-20250220165156641"></p>
+<p><img src="C:\Users\Lenovo\AppData\Roaming\Typora\typora-user-images\image-20250220165227467.png" alt="image-20250220165227467"></p>
+<h3 id="垃圾回收器"><a href="#垃圾回收器" class="headerlink" title="垃圾回收器"></a>垃圾回收器</h3><p><img src="C:\Users\Lenovo\AppData\Roaming\Typora\typora-user-images\image-20250220165545242.png" alt="image-20250220165545242"></p>
+<h4 id="常见的垃圾收集器"><a href="#常见的垃圾收集器" class="headerlink" title="常见的垃圾收集器"></a>常见的垃圾收集器</h4><p><img src="C:\Users\Lenovo\AppData\Roaming\Typora\typora-user-images\image-20250220165629075.png" alt="image-20250220165629075"></p>
+<p>STW 停止等待状态： 它的存在是因为Java的垃圾回收器需要扫描整个堆内存来标记和清除不再使用的对象，如果不停止应用的线程的话，会导致垃圾回收器扫描是出现漏标和误删的情况。</p>
+<h5 id="CMS"><a href="#CMS" class="headerlink" title="CMS"></a>CMS</h5><p><img src="C:\Users\Lenovo\AppData\Roaming\Typora\typora-user-images\image-20250220170324112.png" alt="image-20250220170324112"></p>
+<p><img src="C:\Users\Lenovo\AppData\Roaming\Typora\typora-user-images\image-20250220170533820.png" alt="image-20250220170533820"></p>
+<p><img src="C:\Users\Lenovo\AppData\Roaming\Typora\typora-user-images\image-20250220170600689.png" alt="image-20250220170600689"></p>
+<h5 id="G1"><a href="#G1" class="headerlink" title="G1"></a>G1</h5><p><img src="C:\Users\Lenovo\AppData\Roaming\Typora\typora-user-images\image-20250220170843704.png" alt="image-20250220170843704"></p>
+<p><img src="C:\Users\Lenovo\AppData\Roaming\Typora\typora-user-images\image-20250220170927390.png" alt="image-20250220170927390"></p>
+<p><img src="C:\Users\Lenovo\AppData\Roaming\Typora\typora-user-images\image-20250220170944539.png" alt="image-20250220170944539"></p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/jvm/" rel="tag"># jvm</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2025/02/19/%E9%9D%A2%E8%AF%95%E8%AE%AD%E7%BB%83/" rel="prev" title="面试训练">
+                  <i class="fa fa-angle-left"></i> 面试训练
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2025/02/21/spring%E6%BA%90%E7%A0%81/" rel="next" title="spring源码">
+                  spring源码 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">ZhangYuHao</span>
+  </div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/mist/" rel="noopener" target="_blank">NexT.Mist</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script size="300" alpha="0.6" zIndex="-1" src="https://cdnjs.cloudflare.com/ajax/libs/ribbon.js/1.0.2/ribbon.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/sidebar.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

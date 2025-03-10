@@ -42,7 +42,7 @@
 <meta property="og:image" content="https://pic1.imgdb.cn/item/677e8323d0e0a243d4f23e27.png">
 <meta property="og:image" content="https://pic1.imgdb.cn/item/677e89edd0e0a243d4f2401b.png">
 <meta property="article:published_time" content="2025-01-01T13:48:38.000Z">
-<meta property="article:modified_time" content="2025-02-03T00:24:04.208Z">
+<meta property="article:modified_time" content="2025-02-27T02:02:24.923Z">
 <meta property="article:author" content="ZhangYuHao">
 <meta property="article:tag" content="mysql">
 <meta name="twitter:card" content="summary">
@@ -142,7 +142,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">20</span>
+          <span class="site-state-item-count">34</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -153,7 +153,7 @@
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-count">19</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -224,7 +224,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2025-02-03 08:24:04" itemprop="dateModified" datetime="2025-02-03T08:24:04+08:00">2025-02-03</time>
+      <time title="修改时间：2025-02-27 10:02:24" itemprop="dateModified" datetime="2025-02-27T10:02:24+08:00">2025-02-27</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -336,6 +336,7 @@
 <li>使用 聚簇索引， 主键数据和索引存储在一起</li>
 <li>支持外键约束</li>
 <li>采用MVCC（多版本并发控制）提高并发性能</li>
+<li>在mysql5.6.4版本之后也加入了全文索引</li>
 </ul>
 <p>适用场景</p>
 <ul>
@@ -530,6 +531,7 @@
 </ol>
 <h3 id="MySQL-最左前缀匹配原则是什么？"><a href="#MySQL-最左前缀匹配原则是什么？" class="headerlink" title="MySQL 最左前缀匹配原则是什么？"></a>MySQL 最左前缀匹配原则是什么？</h3><p>最左前缀匹配原则是 MySQL 在使用索引时遵循的一种规则，尤其在涉及组合索引时。</p>
 <p>mysql在查询时，会<strong>从最左边的索引列开始匹配，直到遇到第一个无法继续匹配的列为止</strong>。这意味着，若通过组合索引查询数据时，查询条件必须遵循 “最左前缀” 的要求，<strong>必须从组合索引最左边的字段开始匹配，逐步向右，不能跳过任何列。</strong></p>
+<p>联合索引<code>(first_name,last_name,age)</code></p>
 <p>类型：</p>
 <ol>
 <li><p>完全匹配最左前缀：当你查询条件完全包含最左边的字段，MySQL可以使用这个索引。</p>
@@ -661,7 +663,7 @@
 <li>获取完整数据行里的age和name</li>
 </ol>
 <h4 id="3-回表的性能开销"><a href="#3-回表的性能开销" class="headerlink" title="3. 回表的性能开销"></a>3. 回表的性能开销</h4><ul>
-<li>磁盘 I&#x2F;O：回表可能导致多次随机磁盘读取（如果数据不在内存中）。</li>
+<li>磁盘 I&#x2F;O：回表可能导致多次随机磁盘读取（如果数据不在内存中）。（随机IO，非聚簇索引查出来的主键值是不连续的)</li>
 <li>查询延迟：需要在聚簇索引和非聚簇索引之间来回跳转，增加查询时间。</li>
 </ul>
 <h4 id="4-如何减少回表"><a href="#4-如何减少回表" class="headerlink" title="4. 如何减少回表"></a><strong>4. 如何减少回表</strong></h4><ol>
