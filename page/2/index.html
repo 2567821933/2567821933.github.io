@@ -195,9 +195,15 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
-      
 
-      <time title="创建时间：2025-02-14 08:21:53 / 修改时间：11:04:46" itemprop="dateCreated datePublished" datetime="2025-02-14T08:21:53+08:00">2025-02-14</time>
+      <time title="创建时间：2025-02-14 08:21:53" itemprop="dateCreated datePublished" datetime="2025-02-14T08:21:53+08:00">2025-02-14</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-03-10 21:04:31" itemprop="dateModified" datetime="2025-03-10T21:04:31+08:00">2025-03-10</time>
     </span>
 
   
@@ -210,7 +216,9 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h1 id="集合"><a href="#集合" class="headerlink" title="集合"></a>集合</h1><h2 id="CopyOnWriteArraylist"><a href="#CopyOnWriteArraylist" class="headerlink" title="CopyOnWriteArraylist"></a>CopyOnWriteArraylist</h2><p>是线程安全的Arraylist，并且没有用到锁。</p>
+          <h1 id="集合"><a href="#集合" class="headerlink" title="集合"></a>集合</h1><h2 id="思维导图"><a href="#思维导图" class="headerlink" title="思维导图"></a>思维导图</h2><img src="https://pic1.imgdb.cn/item/67cee345066befcec6e2791c.png" alt="集合.png">
+
+<h2 id="CopyOnWriteArraylist"><a href="#CopyOnWriteArraylist" class="headerlink" title="CopyOnWriteArraylist"></a>CopyOnWriteArraylist</h2><p>是线程安全的Arraylist，并且没有用到锁。</p>
 <ul>
 <li>是线程安全的Arraylist的实现类，是写时复制。</li>
 <li>写操作会加锁，但是读操作不会加锁。</li>
@@ -594,7 +602,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2025-03-08 22:14:10" itemprop="dateModified" datetime="2025-03-08T22:14:10+08:00">2025-03-08</time>
+      <time title="修改时间：2025-03-10 18:25:03" itemprop="dateModified" datetime="2025-03-10T18:25:03+08:00">2025-03-10</time>
     </span>
 
   
@@ -824,8 +832,33 @@
 <li>因为 IO 操作会阻塞线程，增加线程数可以提高 CPU 利用率。</li>
 </ul>
 </li>
-<li><h2 id="混合型任务：既有-CPU-密集型任务，也有-IO-密集型任务。-可以根据任务的比例动态调整，或者通过性能测试来确定最佳值。"><a href="#混合型任务：既有-CPU-密集型任务，也有-IO-密集型任务。-可以根据任务的比例动态调整，或者通过性能测试来确定最佳值。" class="headerlink" title="混合型任务：既有 CPU 密集型任务，也有 IO 密集型任务。- 可以根据任务的比例动态调整，或者通过性能测试来确定最佳值。"></a><strong>混合型任务</strong>：既有 CPU 密集型任务，也有 IO 密集型任务。<br>- 可以根据任务的比例动态调整，或者通过性能测试来确定最佳值。</h2></li>
+<li><strong>混合型任务</strong>：既有 CPU 密集型任务，也有 IO 密集型任务。<ul>
+<li>可以根据任务的比例动态调整，或者通过性能测试来确定最佳值。</li>
 </ul>
+</li>
+</ul>
+<h2 id="Java中有哪些拒绝策略"><a href="#Java中有哪些拒绝策略" class="headerlink" title="Java中有哪些拒绝策略"></a>Java中有哪些拒绝策略</h2><p>一共有4种：</p>
+<ul>
+<li><strong>AbortPolicy</strong>：当任务队列满且没有线程空闲，此时添加任务会直接抛出 <code>RejectedExecutionException</code> 错误，这也是默认的拒绝策略，适合于必须通知调用者任务未能被执行。（abort 放弃）</li>
+<li><strong>CallerRunsPolicy：</strong> 当任务队列满没有空闲空间，此时添加任务由即调用者线程执行。适用于希望通过减缓任务提交速度来稳定系统的场景（Caller调用）</li>
+<li><strong>DiscardOldestPolicy:</strong>  当任务队列满且没有线程空闲，会删除最早的任务，然后重新提交当前任务。适用于希望丢弃最旧的任务以保证新的重要任务能够被处理的场景。</li>
+<li><strong>DiscardPolicy</strong>： 直接丢弃当前任务，不会执行任何操作，也不会抛出异常。适用于对部分任务丢弃没有影响的场景，或系统负载较高时不需要处理所有任务。</li>
+</ul>
+<h2 id="Java-并发库中提供了哪些线程池实现？他们有什么区别？"><a href="#Java-并发库中提供了哪些线程池实现？他们有什么区别？" class="headerlink" title="Java 并发库中提供了哪些线程池实现？他们有什么区别？"></a>Java 并发库中提供了哪些线程池实现？他们有什么区别？</h2><p><strong>1. FixedThreadPool：</strong> 创建一个固定数量的线程池。</p>
+<p>线程池中的线程数是固定的，空闲的线程会被复用。如果所有线程都在忙，则新任务会放入队列中等待。</p>
+<p>适合负载稳定的场景，任务数量确定且不需要动态调整线程数。（fixed 固定的）</p>
+<p><strong>2. CachedThreadPool：</strong>一个可以根据需要创建新线程的线程池。</p>
+<p>线程池的线程数量没有上限，空闲线程会在60秒后被回收，如果有新任务且没有可用线程，会创建线程。</p>
+<p>适合短期大量并发场景，任务执行时间短且线程数需求变化较大。（Cached 缓存）</p>
+<p><strong>3. SingleThreadExecutor：</strong> 创建一个只有单个线程的线程池。</p>
+<p>只有一个线程处理任务，任务会按照提交顺序一次执行。</p>
+<p>适用于需要保证任务按顺序执行的场景，或者不需要并发处理任务的情况。</p>
+<p><strong>4. ScheduledThreadPool：</strong> 支持定时任务和周期性任务的线程池。</p>
+<p>可以定时或以固定频率执行任务，线程池大小可以由用户指定。</p>
+<p>适用于需要周期性任务执行的场景，如定时任务调度。</p>
+<p><strong>5. WorkStealingPool:</strong> 基于任务窃取算法的线程池</p>
+<p>线程池中的每个线程维护着一个双端队里（deque），线程可以从自己的队列中去任务队列执行，如果线程的任务队列为空，它可以从其他线程的队列中”窃取” 任务来执行，达到负载均衡的效果。</p>
+<p>适合大量小任务并行执行，特别是递归算法或大任务分解成小任务。</p>
 
       
     </div>
