@@ -19,13 +19,14 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.21.1","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"always","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="SpringSpring的启动流程什么是spring容器？ 管理Bean对象，通过依赖注入组织Bean之间关系，从而降低业务对象之间耦合性， -IOC 学习Spring容器的启动流程，就是去学校application context 的创建过程   创建：ApplicationContext   创建容器后，通过getBean来获取Bean对象  组件 读取配置类读取配置类，通过配置类来找到要读取">
+    <meta name="description" content="Spring结构图  Spring的启动流程什么是spring容器？ 管理Bean对象，通过依赖注入组织Bean之间关系，从而降低业务对象之间耦合性， -IOC 学习Spring容器的启动流程，就是去学校application context 的创建过程   创建：ApplicationContext   创建容器后，通过getBean来获取Bean对象  组件 读取配置类读取配置类，通过配置类来">
 <meta property="og:type" content="article">
 <meta property="og:title" content="spring源码">
 <meta property="og:url" content="http://example.com/2025/02/21/spring%E6%BA%90%E7%A0%81/index.html">
 <meta property="og:site_name" content="Zhang&#39;Blog">
-<meta property="og:description" content="SpringSpring的启动流程什么是spring容器？ 管理Bean对象，通过依赖注入组织Bean之间关系，从而降低业务对象之间耦合性， -IOC 学习Spring容器的启动流程，就是去学校application context 的创建过程   创建：ApplicationContext   创建容器后，通过getBean来获取Bean对象  组件 读取配置类读取配置类，通过配置类来找到要读取">
+<meta property="og:description" content="Spring结构图  Spring的启动流程什么是spring容器？ 管理Bean对象，通过依赖注入组织Bean之间关系，从而降低业务对象之间耦合性， -IOC 学习Spring容器的启动流程，就是去学校application context 的创建过程   创建：ApplicationContext   创建容器后，通过getBean来获取Bean对象  组件 读取配置类读取配置类，通过配置类来">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/67ceff5a066befcec6e27f31.png">
 <meta property="og:image" content="https://pic1.imgdb.cn/item/67b98643d0e0a243d401e754.png">
 <meta property="og:image" content="https://pic1.imgdb.cn/item/67b98688d0e0a243d401e7a7.png">
 <meta property="og:image" content="c:\Users\Lenovo\AppData\Roaming\Typora\typora-user-images\image-20250222161328079.png">
@@ -43,11 +44,11 @@
 <meta property="og:image" content="c:\Users\Lenovo\AppData\Roaming\Typora\typora-user-images\image-20250222171307910.png">
 <meta property="og:image" content="c:\Users\Lenovo\AppData\Roaming\Typora\typora-user-images\image-20250222172029850.png">
 <meta property="article:published_time" content="2025-02-21T06:36:18.000Z">
-<meta property="article:modified_time" content="2025-02-23T02:15:31.730Z">
+<meta property="article:modified_time" content="2025-03-10T15:04:33.332Z">
 <meta property="article:author" content="ZhangYuHao">
 <meta property="article:tag" content="spring源码结构">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://pic1.imgdb.cn/item/67b98643d0e0a243d401e754.png">
+<meta name="twitter:image" content="https://pic1.imgdb.cn/item/67ceff5a066befcec6e27f31.png">
 
 
 <link rel="canonical" href="http://example.com/2025/02/21/spring%E6%BA%90%E7%A0%81/">
@@ -128,7 +129,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Spring"><span class="nav-number">1.</span> <span class="nav-text">Spring</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Spring%E7%9A%84%E5%90%AF%E5%8A%A8%E6%B5%81%E7%A8%8B"><span class="nav-number">1.1.</span> <span class="nav-text">Spring的启动流程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BB%84%E4%BB%B6"><span class="nav-number">1.1.1.</span> <span class="nav-text">组件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AF%BB%E5%8F%96%E9%85%8D%E7%BD%AE%E7%B1%BB"><span class="nav-number">1.1.2.</span> <span class="nav-text">读取配置类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AD%98%E5%82%A8"><span class="nav-number">1.1.3.</span> <span class="nav-text">存储</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%9B%E5%BB%BABean"><span class="nav-number">1.1.4.</span> <span class="nav-text">创建Bean</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%8E%B7%E5%8F%96"><span class="nav-number">1.1.5.</span> <span class="nav-text">获取</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA"><span class="nav-number">1.1.6.</span> <span class="nav-text">创建</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%9D%E5%A7%8B%E5%8C%96%E6%96%B9%E6%B3%95%E5%9B%9E%E8%B0%83"><span class="nav-number">1.1.6.1.</span> <span class="nav-text">初始化方法回调</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Bean%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F"><span class="nav-number">1.1.7.</span> <span class="nav-text">Bean的生命周期</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8C%BA%E5%88%AB"><span class="nav-number">1.2.</span> <span class="nav-text">区别</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%8D%E4%BD%BF%E7%94%A8applicationcontext%E8%AF%BB%E5%8F%96%E9%85%8D%E7%BD%AE%E7%B1%BB"><span class="nav-number">1.2.1.</span> <span class="nav-text">不使用applicationcontext读取配置类</span></a></li></ol></li></ol></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Spring"><span class="nav-number">1.</span> <span class="nav-text">Spring</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%93%E6%9E%84%E5%9B%BE"><span class="nav-number">1.1.</span> <span class="nav-text">结构图</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Spring%E7%9A%84%E5%90%AF%E5%8A%A8%E6%B5%81%E7%A8%8B"><span class="nav-number">1.2.</span> <span class="nav-text">Spring的启动流程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BB%84%E4%BB%B6"><span class="nav-number">1.2.1.</span> <span class="nav-text">组件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AF%BB%E5%8F%96%E9%85%8D%E7%BD%AE%E7%B1%BB"><span class="nav-number">1.2.2.</span> <span class="nav-text">读取配置类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AD%98%E5%82%A8"><span class="nav-number">1.2.3.</span> <span class="nav-text">存储</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%9B%E5%BB%BABean"><span class="nav-number">1.2.4.</span> <span class="nav-text">创建Bean</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%8E%B7%E5%8F%96"><span class="nav-number">1.2.5.</span> <span class="nav-text">获取</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA"><span class="nav-number">1.2.6.</span> <span class="nav-text">创建</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%9D%E5%A7%8B%E5%8C%96%E6%96%B9%E6%B3%95%E5%9B%9E%E8%B0%83"><span class="nav-number">1.2.6.1.</span> <span class="nav-text">初始化方法回调</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Bean%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F"><span class="nav-number">1.2.7.</span> <span class="nav-text">Bean的生命周期</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8C%BA%E5%88%AB"><span class="nav-number">1.3.</span> <span class="nav-text">区别</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%8D%E4%BD%BF%E7%94%A8applicationcontext%E8%AF%BB%E5%8F%96%E9%85%8D%E7%BD%AE%E7%B1%BB"><span class="nav-number">1.3.1.</span> <span class="nav-text">不使用applicationcontext读取配置类</span></a></li></ol></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -225,7 +226,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2025-02-23 10:15:31" itemprop="dateModified" datetime="2025-02-23T10:15:31+08:00">2025-02-23</time>
+      <time title="修改时间：2025-03-10 23:04:33" itemprop="dateModified" datetime="2025-03-10T23:04:33+08:00">2025-03-10</time>
     </span>
 
   
@@ -237,7 +238,9 @@
     
     
     
-    <div class="post-body" itemprop="articleBody"><h1 id="Spring"><a href="#Spring" class="headerlink" title="Spring"></a>Spring</h1><h2 id="Spring的启动流程"><a href="#Spring的启动流程" class="headerlink" title="Spring的启动流程"></a>Spring的启动流程</h2><p>什么是spring容器？</p>
+    <div class="post-body" itemprop="articleBody"><h1 id="Spring"><a href="#Spring" class="headerlink" title="Spring"></a>Spring</h1><h2 id="结构图"><a href="#结构图" class="headerlink" title="结构图"></a>结构图</h2><img src="https://pic1.imgdb.cn/item/67ceff5a066befcec6e27f31.png" alt="Spring.png">
+
+<h2 id="Spring的启动流程"><a href="#Spring的启动流程" class="headerlink" title="Spring的启动流程"></a>Spring的启动流程</h2><p>什么是spring容器？</p>
 <p>管理Bean对象，通过依赖注入组织Bean之间关系，从而降低业务对象之间耦合性， -IOC</p>
 <p>学习Spring容器的启动流程，就是去学校application context 的创建过程</p>
 <img src="https://pic1.imgdb.cn/item/67b98643d0e0a243d401e754.png" alt="image.png">
