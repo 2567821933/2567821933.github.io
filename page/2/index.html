@@ -602,7 +602,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2025-03-10 18:25:03" itemprop="dateModified" datetime="2025-03-10T18:25:03+08:00">2025-03-10</time>
+      <time title="修改时间：2025-03-13 16:56:51" itemprop="dateModified" datetime="2025-03-13T16:56:51+08:00">2025-03-13</time>
     </span>
 
   
@@ -859,6 +859,161 @@
 <p><strong>5. WorkStealingPool:</strong> 基于任务窃取算法的线程池</p>
 <p>线程池中的每个线程维护着一个双端队里（deque），线程可以从自己的队列中去任务队列执行，如果线程的任务队列为空，它可以从其他线程的队列中”窃取” 任务来执行，达到负载均衡的效果。</p>
 <p>适合大量小任务并行执行，特别是递归算法或大任务分解成小任务。</p>
+<h2 id="线程池的shutdown和shutdownNow的区别是什么？"><a href="#线程池的shutdown和shutdownNow的区别是什么？" class="headerlink" title="线程池的shutdown和shutdownNow的区别是什么？"></a>线程池的shutdown和shutdownNow的区别是什么？</h2><p>这两个方法都是用来关闭线程池的，但工作方式有所不同：</p>
+<p><strong>1. shutdown</strong></p>
+<p>启动线程池的 <strong>平滑关闭</strong>， 它不再接受新的任务，但会继续执行已经提交的任务（包括在队列内的任务）。</p>
+<p>线程池会进入 <code>SHUTDOWN</code> 状态，所有已执行和正在执行的任务都会继续完成，只有所有任务完成后，线程池才会完全终止。</p>
+<p><strong>2. shutdownNow</strong></p>
+<p>启动线程池的 <strong>强制关闭</strong>， 它会尝试停止所有正在执行的任务，并<strong>返回等待执行的任务队列</strong>。它会尽力中断正在执行的任务， <strong>但不能保证所有任务都能被立即停止</strong>。</p>
+<p>线程池进入 <code>STOP</code> 状态，除了尝试中断正在执行的任务外，还会清空任务队列，返回未执行的任务队列。</p>
+<p><strong>使用场景：</strong></p>
+<ul>
+<li><strong>shutdown：</strong> 适用于程序需要平滑停止线程池的场景，如应用程序正常退出时，保证所有已提交的任务都能执行完毕，避免任务丢失。</li>
+<li><strong>shutdownNow：</strong> 适用于紧急情况或需要立即停止线程池的场景，如应用程序异常退出时。快速清理资源，但可能导致部分任务未完成。</li>
+</ul>
+<p><strong>线程池的生命周期：</strong></p>
+<ul>
+<li>运行状态： 线程池可以接受新任务并处理已提交的任务。</li>
+<li>关闭状态： 通过<code>shutdown</code> 进入，该状态下线程池不再接受新任务，但会继续执行已有的任务。</li>
+<li>停止状态： 通过调用 <code>shutdownNow</code> 进入，该状态下线程池会试图中断所有正在执行的任务并清空任务队列。</li>
+<li>终止状态： 所有任务执行完毕且线程池完全关闭后，线程池进入 终止状态。</li>
+</ul>
+<p><strong>注意：</strong></p>
+<ul>
+<li>调用 shutdown 和 shutdownNow后，再次调用他们不会有额外效果。shutdownNow只会在第一次调用时有效果。</li>
+<li>并且，即使线程池进入 关闭状态，相关资源不会立即释放。必须等待所有线程完成任务，线程池进入 终止状态后，资源才会释放。</li>
+</ul>
+<h2 id="线程池内部出现任务异常后，如何知道是哪个线程出了异常？"><a href="#线程池内部出现任务异常后，如何知道是哪个线程出了异常？" class="headerlink" title="线程池内部出现任务异常后，如何知道是哪个线程出了异常？"></a>线程池内部出现任务异常后，如何知道是哪个线程出了异常？</h2><p>默认情况下， <strong>线程池不会直接报告哪个线程发生异常</strong>，但是可以采取一下几种方式：</p>
+<p><strong>1. 自定义线程池 ThreadFactory</strong></p>
+<ul>
+<li>通过自定义 <code>ThreadFactory</code> ， 为每个线程设置一个异常处理器（<code>UncaughtExceptionHandler</code>)，在其中记录发生异常的线程信息。</li>
+</ul>
+<p><strong>2. 通过<code>Future</code></strong></p>
+<ul>
+<li>提交任务时使用 <code>submit()</code>方法，而不是 <code>execute()</code> , 这样可以通过 <code>Future</code> 对象捕获并检查任务执行结果和异常。</li>
+</ul>
+<p><strong>3. 通过内部手动捕获异常并记录</strong></p>
+<ul>
+<li>在任务 <code>run()</code> 方法内部，使用 <code>try-catch</code> 结构捕获异常，并记录或处理异常，同时记录线程信息。</li>
+</ul>
+<h2 id="Java中的DelayQueue和-ScheduledThreadPool有什么区别？"><a href="#Java中的DelayQueue和-ScheduledThreadPool有什么区别？" class="headerlink" title="Java中的DelayQueue和 ScheduledThreadPool有什么区别？"></a>Java中的DelayQueue和 ScheduledThreadPool有什么区别？</h2><p>DelayQueue是一个阻塞队列，而ScheduledThreadPool是线程池，不过内不核心原理都是差不多。</p>
+<p>DelayQueue是利用优先队列存储元素，当从队列中获取任务时，如果最老的任务已经到了执行时间，可以从队列中出队一个任务，返之，可以获得null或者阻塞等待任务到时。</p>
+<p>ScheduledThreadPool 内部也是用了一个优先队列 DelayWorkQueue且可以内部多线程执行任务，支持定时执行的任务，即每隔一段时间执行一次的任务。</p>
+<p><strong>关于</strong></p>
+<p>这两个底层几乎一样，差别就是 DelayWorkQueue没有使用 PriorityQueue而是用RunnableScheduledFuture数组来实现优先队列，不过底层原理都是一样的。</p>
+<h2 id="Java中的Timer"><a href="#Java中的Timer" class="headerlink" title="Java中的Timer"></a>Java中的Timer</h2><p>Java中的timer是一个用于调度任务的工具类，用于在未来某个时刻执行任务或周期性地执行任务，Timer类一般与TimerTask搭配使用，其中TimerTask是一个需要执行的任务。</p>
+<p>适用于简单的定时任务，如定时更新，定期发送报告等。</p>
+<h3 id="Timer使用"><a href="#Timer使用" class="headerlink" title="Timer使用"></a>Timer使用</h3><p>TimerTask是Timer需要执行的任务，它是一个实现了Runnable接口的抽象类，必须通过继承并实现其run（）方法。</p>
+<p>基本使用：</p>
+<ul>
+<li><code>Timer.schedule(TimerTask task, long delay)</code> 在指定的延迟之后执行任务。</li>
+<li><code>Timer.scheduleAtFixedRate(TimerTask task,long dalay, long period)</code> 周期性的执行任务。</li>
+</ul>
+<p>代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Timer</span> <span class="variable">timer</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Timer</span>();</span><br><span class="line"><span class="type">TimerTask</span> <span class="variable">task</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">TimerTask</span>() &#123;</span><br><span class="line">   <span class="meta">@Override</span></span><br><span class="line">   <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">run</span><span class="params">()</span> &#123;</span><br><span class="line">       System.out.println(<span class="string">&quot;Task executed!&quot;</span>);</span><br><span class="line">   &#125;</span><br><span class="line">&#125;;</span><br><span class="line">timer.schedule(task, <span class="number">2000</span>);  <span class="comment">// 2 秒后执行任务</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h3><p>Timer可以实现延时任务，也可以实现周期任务，它的核心就是一个优先队列和封装的执行任务的线程。</p>
+<p>实现原理是：<strong>维持一个小顶堆</strong>，即最快需要执行的任务排在优先队列的第一个，根据堆的特性我们知道插入和删除的时间复杂度都是O（logn）</p>
+<p>然后有个TimerThread线程	不断地拿排着第一个任务的执行时间和当前时间做对比。</p>
+<p>如果时间到了先看看这个任务是不是周期性执行的任务，如果是则修改当前任务时间为下次执行的时间，如果不是周期性任务则将任务从优先队列中移除，最后执行任务，如果时间还未到则调用wait（）等待。</p>
+<p>执行结构图：</p>
+<img src="https://pic1.imgdb.cn/item/67d288fe88c538a9b5bc72c2.png" alt="image.png">
+
+<p>可以看出Timer实际就是根据任务的执行时间维护一个优先队列，并且起了一个线程不断地拉取任务执行。</p>
+<h3 id="Timer弊端"><a href="#Timer弊端" class="headerlink" title="Timer弊端"></a>Timer弊端</h3><p>首先优先队列的插入和删除的时间复杂度是O（logn），当数据量大的时候，频繁的入堆出堆性能有待考虑。</p>
+<p>并且是 <strong>单线程执行</strong>， 那么如果一个任务执行的时间过久则会影响下一个任务的执行时间</p>
+<p>并且从它对异常没有做什么处理，所以一个任务出错的时候会导致之后的任务都无法执行。</p>
+<h3 id="关于-Timer-和-Schedule"><a href="#关于-Timer-和-Schedule" class="headerlink" title="关于 Timer 和 @Schedule"></a>关于 Timer 和 @Schedule</h3><p>@Schedule 和 Timer 类虽然都用于定时任务，但它们的使用场景和功能有所不同，各有优缺点。</p>
+<p><strong>1. @Schedule</strong></p>
+<p>是javaEE中的注解，通常与EJB或Spring等框架结合使用，用于声明周期性任务，它的特点是：</p>
+<ul>
+<li><strong>声明式编程：</strong> 通过注解即可定义任务执行的时间，简化了代码。</li>
+<li><strong>基于cron表达式</strong>： 支持复杂的调度规则。</li>
+<li><strong>依赖框架：</strong> 需要框架支持，如Spring或JavaEE容器。</li>
+</ul>
+<p>示例：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Scheduled(cron = &quot;0 0 * * * ?&quot;)</span> <span class="comment">// 每小时执行一次</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">scheduledTask</span><span class="params">()</span> &#123;</span><br><span class="line">    System.out.println(<span class="string">&quot;Task executed at: &quot;</span> + <span class="keyword">new</span> <span class="title class_">Date</span>());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>2. Timer类</strong></p>
+<p>Timer 是Java标准库中的类，用于调度任务。它的特点是：</p>
+<ul>
+<li><strong>编程式配置：</strong> 通过代码控制任务的调度，灵活性提高。</li>
+<li><strong>简单任务调度：</strong> 适合一次性或周期性任务，但不支持复杂的cron表达式。</li>
+<li><strong>独立于框架：</strong> 不依赖外部框架，适用于纯Java应用。</li>
+</ul>
+<p>示例：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Timer</span> <span class="variable">timer</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Timer</span>();</span><br><span class="line">timer.schedule(<span class="keyword">new</span> <span class="title class_">TimerTask</span>() &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">run</span><span class="params">()</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;Task executed at: &quot;</span> + <span class="keyword">new</span> <span class="title class_">Date</span>());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;, <span class="number">0</span>, <span class="number">60</span> * <span class="number">60</span> * <span class="number">1000</span>); <span class="comment">// 每小时执行一次</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>3. 主要区别</strong></p>
+<table>
+<thead>
+<tr>
+<th align="left">特性</th>
+<th align="left"><code>@Schedule</code> 注解</th>
+<th align="left"><code>Timer</code> 类</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><strong>配置方式</strong></td>
+<td align="left">声明式（注解）</td>
+<td align="left">编程式（代码）</td>
+</tr>
+<tr>
+<td align="left"><strong>灵活性</strong></td>
+<td align="left">依赖框架，适合固定规则的任务</td>
+<td align="left">灵活，适合动态任务</td>
+</tr>
+<tr>
+<td align="left"><strong>复杂度</strong></td>
+<td align="left">支持复杂 cron 表达式</td>
+<td align="left">仅支持简单的时间间隔</td>
+</tr>
+<tr>
+<td align="left"><strong>依赖</strong></td>
+<td align="left">需要 Spring 或 Java EE 容器</td>
+<td align="left">纯 Java，无需额外依赖</td>
+</tr>
+<tr>
+<td align="left"><strong>适用场景</strong></td>
+<td align="left">周期性任务，规则固定</td>
+<td align="left">一次性或简单周期性任务</td>
+</tr>
+</tbody></table>
+<p><strong>4. 总结</strong></p>
+<ul>
+<li><strong><code>@Schedule</code></strong> 适合在框架支持的场景下使用，尤其是需要复杂调度规则的任务。</li>
+<li><strong><code>Timer</code></strong> 适合纯 Java 应用或需要动态调度的任务。</li>
+</ul>
+<h2 id="如何在Java中控制多个线程的执行顺序？"><a href="#如何在Java中控制多个线程的执行顺序？" class="headerlink" title="如何在Java中控制多个线程的执行顺序？"></a>如何在Java中控制多个线程的执行顺序？</h2><p>在Java中控制多个线程的执行顺序有很多种方法：</p>
+<ul>
+<li><p>CompletableFuture，它内部有thenRun的方式，假设我们现在有三个任务T1、T2、T3需要按顺序执行，那么仅需要使用一下伪代码即可：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">CompletableFuture.runAsync(() -&gt; &#123;<span class="keyword">do</span> t1 sth&#125;)</span><br><span class="line">   .thenRun(()-&gt; &#123;<span class="keyword">do</span> t2 sth&#125;)</span><br><span class="line">   .thenRun(()-&gt; &#123;<span class="keyword">do</span> t3 sth&#125;);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>synchronized + wait()&#x2F;notify(), 通过对象锁和线程间通讯机制来控制线程的执行顺序。</p>
+</li>
+<li><p>ReentrantLock + condition</p>
+</li>
+<li><p>Thread 类的 join（），通过调用这个方法，可以使一个线程等待另一个线程执行完毕后在继续执行。</p>
+</li>
+<li><p>CountDownLatch（），使一个或多个线程等待其他线程完成各自工作后再继续执行。</p>
+</li>
+<li><p>CyclicBarrier，使多个线程相互等待，直到所有线程都达到某个共同点后在继续执行。</p>
+</li>
+<li><p>Semaphore，控制线程的执行顺序，适用于需要限制同时访问资源的线程数量的场景。</p>
+</li>
+<li><p>线程池，内部仅设置一个线程来执行任务，按序的将任务提交到线程池中就可以了。</p>
+</li>
+</ul>
+<h2 id="你使用过Java中的哪些阻塞队列？"><a href="#你使用过Java中的哪些阻塞队列？" class="headerlink" title="你使用过Java中的哪些阻塞队列？"></a>你使用过Java中的哪些阻塞队列？</h2><p>阻塞队列主要用来阻塞队列的插入和获取操作，当队列满了的时候插入操作会被阻塞，直到队列有空位。当队列为空的时候获取操作会被阻塞，知道队列有值。</p>
+<p>常用在实现 生产者和消费者 场景，在笔试题中比较常见。</p>
+<p>常见的阻塞队列：</p>
+<ul>
+<li>ArrayBlockingQueue: 一个有界队列，底层基于数组实现。需要在初始化是指定队列的大小，队列满时，生产者会被阻塞，队列空时，消费者会被阻塞。</li>
+<li>LinkedBlockingQueue：基于链表的阻塞队列，允许可选的界限（有界或无界）。无界模式下可以不断添加元素，直到耗尽系统资源。有界模式则类似与 <code>ArrayBlockingQueue</code>，但吞吐量通常较高。</li>
+<li>PriorityBlockingQueue: 一个无界的优先级队列，元素按照自然顺序或指定的比较器顺序进行排序。与其他阻塞队列不同的是，PriorityBlockingQueue 不保证元素的FIFO顺序。</li>
+</ul>
 
       
     </div>

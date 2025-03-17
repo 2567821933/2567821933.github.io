@@ -195,9 +195,15 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
-      
 
-      <time title="创建时间：2025-03-02 15:16:19 / 修改时间：16:31:26" itemprop="dateCreated datePublished" datetime="2025-03-02T15:16:19+08:00">2025-03-02</time>
+      <time title="创建时间：2025-03-02 15:16:19" itemprop="dateCreated datePublished" datetime="2025-03-02T15:16:19+08:00">2025-03-02</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-03-16 09:18:04" itemprop="dateModified" datetime="2025-03-16T09:18:04+08:00">2025-03-16</time>
     </span>
 
   
@@ -254,7 +260,64 @@
 <li>统计分析，用户判题记录</li>
 <li>权限校验</li>
 </ol>
+<h2 id="实现核心"><a href="#实现核心" class="headerlink" title="实现核心"></a>实现核心</h2><ol>
+<li><p>权限校验：谁能提代码，谁不能提代码</p>
+</li>
+<li><p>代码沙箱（安全沙箱）：用户代码藏毒，写个木马，修改系统权限</p>
+<p>沙箱：用户的代码不能影响到沙箱之外的系统运行。</p>
+<p>资源分配： 系统内存就2个G，用户疯狂占用资源占满内存。所以要限制占用资源。</p>
+</li>
+<li><p>判题规则：题目用例的比对，结果调用</p>
+</li>
+<li><p>任务调度：服务器资源有限，用户要排队，按照顺序去执行判题，而不是拒绝。</p>
+</li>
+</ol>
+<h2 id="核心业务流程"><a href="#核心业务流程" class="headerlink" title="核心业务流程"></a>核心业务流程</h2><img src="https://pic1.imgdb.cn/item/67d544af88c538a9b5bec3b8.png" alt="image.png">
 
+<p>时序图：</p>
+<img src="https://pic1.imgdb.cn/item/67d546a388c538a9b5bec434.png" alt="image.png">
+
+<img src="https://pic1.imgdb.cn/item/67d546e188c538a9b5bec440.png" alt="image.png">
+
+<p>判题服务：获取题目信息，预计的输入输出结果，返回给主业务后端：用户的答案是否正确</p>
+<p>代码沙箱：只负责运行代码，给出结果，不管什么结果是正确的</p>
+<p><strong>实现了解耦</strong></p>
+<h3 id="功能-1"><a href="#功能-1" class="headerlink" title="功能"></a>功能</h3><ol>
+<li>题目模块<ul>
+<li>创建题目（管理员）</li>
+<li>删除题目（管理员）</li>
+<li>修改题目（管理员）</li>
+<li>搜索题目（用户）</li>
+<li>在线做题</li>
+<li>提价代码</li>
+</ul>
+</li>
+<li>用户模块：<ul>
+<li>注册</li>
+<li>登录</li>
+</ul>
+</li>
+<li>判题模块<ul>
+<li>提交判断（结果是否正确或错误）</li>
+<li>错误处理（内存溢出，安全性，超时）</li>
+<li>自主实现（代码沙箱，安全沙箱）</li>
+<li>开放接口（提供一个独立的新服务）</li>
+</ul>
+</li>
+</ol>
+<h2 id="技术选型"><a href="#技术选型" class="headerlink" title="技术选型"></a>技术选型</h2><p>前后：</p>
+<p>Vue3、项目模版 Arco Design，在线代码编辑器，在线文档浏览</p>
+<p>Java进程控制，Java安全管理器、部分JVM知识点</p>
+<p>虚拟机（云服务）、Docker（代码沙箱实现）</p>
+<p>Spring Cloud微服务（改造成微服务）、消息队列</p>
+<h2 id="架构设计"><a href="#架构设计" class="headerlink" title="架构设计"></a>架构设计</h2><img src="https://pic1.imgdb.cn/item/67d54a7888c538a9b5bec4ff.png" alt="image.png">
+
+<h2 id="OJ系统实现方案"><a href="#OJ系统实现方案" class="headerlink" title="OJ系统实现方案"></a>OJ系统实现方案</h2><p>开发原则： 能用别人现成的，就不要自己写</p>
+<p>1）用现成的OJ系统，比如judge0（github）</p>
+<p>2） 用现成的判题API，现成的代码沙箱。</p>
+<p>3） 自主开发</p>
+<p>4） 把AI来当做代码沙箱。</p>
+<h2 id="前端"><a href="#前端" class="headerlink" title="前端"></a>前端</h2>
       
     </div>
 
@@ -1559,7 +1622,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2025-03-10 15:21:54" itemprop="dateModified" datetime="2025-03-10T15:21:54+08:00">2025-03-10</time>
+      <time title="修改时间：2025-03-17 11:30:56" itemprop="dateModified" datetime="2025-03-17T11:30:56+08:00">2025-03-17</time>
     </span>
 
   
@@ -1966,7 +2029,7 @@
 <li><strong>Error log</strong>（错误日志）： 帮助程序员调试和监控数据库错误。</li>
 <li><strong>Slow Query Log</strong>（慢查询日志） 记录慢查询，用于性能调优。</li>
 <li><strong>General Query Log</strong>（一般查询日志） 记录所有查询，用于调试和审计。</li>
-<li><strong>Relay Log</strong> （转发日志）支持主从复制，确保数据同步。</li>
+<li><strong>Relay Log</strong> （中继日志）支持主从复制，确保数据同步。</li>
 <li><strong>Transaction Log</strong> （事务日志）记录事务的整个过程，确保事务的原子性、一致性和持久性。</li>
 </ol>
 <p>区别：</p>
@@ -2242,6 +2305,97 @@
 <li>优化网络：确保主从节点稳定</li>
 <li>提高从服务器性能：增加硬件的资源处理能力</li>
 <li>并行复制：利用MySQL并行复制功能提升效率，减少延迟。</li>
+</ul>
+<h3 id="其他-关于union-和-union-all"><a href="#其他-关于union-和-union-all" class="headerlink" title="其他 关于union 和 union all"></a>其他 关于union 和 union all</h3><p>在 SQL 中，<code>UNION</code> 和 <code>UNION ALL</code> 是用于<strong>合并多个查询结果集的操作符</strong>。它们的主要区别在于是否去重。以下是它们的详细对比：</p>
+<h3 id="1-UNION"><a href="#1-UNION" class="headerlink" title="1. UNION"></a><strong>1. UNION</strong></h3><ul>
+<li><p><strong>功能</strong>：</p>
+<ul>
+<li>合并多个查询的结果集，并去除重复的行。</li>
+</ul>
+</li>
+<li><p><strong>语法</strong>：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> column1, column2 <span class="keyword">FROM</span> table1</span><br><span class="line"><span class="keyword">UNION</span></span><br><span class="line"><span class="keyword">SELECT</span> column1, column2 <span class="keyword">FROM</span> table2;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>特点</strong>：</p>
+<ul>
+<li>结果集中的每一行都是唯一的。</li>
+<li>会对结果集进行排序和去重操作，因此性能较低。</li>
+</ul>
+</li>
+<li><p><strong>适用场景</strong>：</p>
+<ul>
+<li>当需要合并多个查询结果，并且希望去除重复数据时使用。</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> name <span class="keyword">FROM</span> employees</span><br><span class="line"><span class="keyword">UNION</span></span><br><span class="line"><span class="keyword">SELECT</span> name <span class="keyword">FROM</span> managers;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>如果 <code>employees</code> 表和 <code>managers</code> 表中有相同的 <code>name</code>，<code>UNION</code> 会只保留一个。</p>
+</li>
+</ul>
+<h3 id="2-UNION-ALL"><a href="#2-UNION-ALL" class="headerlink" title="2. UNION ALL"></a><strong>2. UNION ALL</strong></h3><ul>
+<li><strong>功能</strong>：<ul>
+<li>合并多个查询的结果集，但不去除重复的行。</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> column1, column2 <span class="keyword">FROM</span> table1</span><br><span class="line"><span class="keyword">UNION</span> <span class="keyword">ALL</span></span><br><span class="line"><span class="keyword">SELECT</span> column1, column2 <span class="keyword">FROM</span> table2;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>特点</strong>：<ul>
+<li>结果集中可能包含重复的行。</li>
+<li>不会对结果集进行排序和去重操作，因此性能较高。</li>
+</ul>
+</li>
+<li><strong>适用场景</strong>：<ul>
+<li>当需要合并多个查询结果，并且不需要去除重复数据时使用。</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> name <span class="keyword">FROM</span> employees</span><br><span class="line"><span class="keyword">UNION</span> <span class="keyword">ALL</span></span><br><span class="line"><span class="keyword">SELECT</span> name <span class="keyword">FROM</span> managers;</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-UNION-和-UNION-ALL-的区别"><a href="#3-UNION-和-UNION-ALL-的区别" class="headerlink" title="3. UNION 和 UNION ALL 的区别"></a><strong>3. UNION 和 UNION ALL 的区别</strong></h3><table>
+<thead>
+<tr>
+<th align="left">特性</th>
+<th align="left">UNION</th>
+<th align="left">UNION ALL</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><strong>去重</strong></td>
+<td align="left">去除重复行</td>
+<td align="left">不去除重复行</td>
+</tr>
+<tr>
+<td align="left"><strong>性能</strong></td>
+<td align="left">较低（需要排序和去重）</td>
+<td align="left">较高（无需排序和去重）</td>
+</tr>
+<tr>
+<td align="left"><strong>结果集大小</strong></td>
+<td align="left">结果集较小（去重后）</td>
+<td align="left">结果集较大（包含所有行）</td>
+</tr>
+<tr>
+<td align="left"><strong>适用场景</strong></td>
+<td align="left">需要去重的场景</td>
+<td align="left">不需要去重的场景<strong>3. UNION 和 UNION ALL 的区别</strong></td>
+</tr>
+</tbody></table>
+<h3 id="4-使用注意事项"><a href="#4-使用注意事项" class="headerlink" title="4. 使用注意事项"></a><strong>4. 使用注意事项</strong></h3><ol>
+<li><strong>列数和数据类型</strong>：<ul>
+<li><code>UNION</code> 和 <code>UNION ALL</code> 要求每个查询的列数和数据类型必须一致。</li>
+<li>如果列数不一致或数据类型不匹配，会导致错误。</li>
+</ul>
+</li>
+<li><strong>排序</strong>：<ul>
+<li>如果需要对最终结果集排序，可以在最外层使用 <code>ORDER BY</code>。</li>
+</ul>
+</li>
+</ol>
+<h3 id="5-总结"><a href="#5-总结" class="headerlink" title="5. 总结"></a><strong>5. 总结</strong></h3><ul>
+<li>**<code>UNION</code>**：合并结果集并去重，适合需要去重的场景。</li>
+<li>**<code>UNION ALL</code>**：合并结果集但不去重，性能更高，适合不需要去重的场景。</li>
+<li>根据实际需求选择合适的操作符，并注意列数和数据类型的匹配。</li>
 </ul>
 <h2 id="day10"><a href="#day10" class="headerlink" title="day10"></a>day10</h2><h3 id="Redis-中常见的数据类型包括哪些？"><a href="#Redis-中常见的数据类型包括哪些？" class="headerlink" title="Redis 中常见的数据类型包括哪些？"></a>Redis 中常见的数据类型包括哪些？</h3><p>Redis中常见的数据类型包括： String、list、hash、Set、ZSet（也叫sort set）</p>
 <p><strong>String</strong></p>
@@ -2687,7 +2841,7 @@
 <h4 id="枚举单例"><a href="#枚举单例" class="headerlink" title="枚举单例"></a>枚举单例</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 枚举单例模式</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">enum</span> <span class="title class_">EnumSingle</span> &#123;</span><br><span class="line"></span><br><span class="line">    INSTANCE;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> EnumSingle <span class="title function_">getInstance</span><span class="params">()</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> INSTANCE;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>特点： 不会被反射破坏。</p>
-<h3 id="什么是策略模式？一般用在什么场景？"><a href="#什么是策略模式？一般用在什么场景？" class="headerlink" title="什么是策略模式？一般用在什么场景？"></a>什么是策略模式？一般用在什么场景？</h3><p>策略模式： 是一种行为设计模式，它允许在运行时，选择算法的行为。策略模式定义了一些列算法，并将每一个算法封装起来，使他们可以互相替换，。策略模式使得算法可以独立于使用它的客户端而变化。</p>
+<h3 id="什么是策略模式？一般用在什么场景？"><a href="#什么是策略模式？一般用在什么场景？" class="headerlink" title="什么是策略模式？一般用在什么场景？"></a>什么是策略模式？一般用在什么场景？</h3><p>策略模式： 是一种行为设计模式，它允许在运行时，选择算法的行为。策略模式定义了一系列算法，并将每一个算法封装起来，使他们可以互相替换，。策略模式使得算法可以独立于使用它的客户端而变化。</p>
 <p>定义思想：</p>
 <p>策略模式的核心思想是将算法的定义与使用分离。通过将算法封装在独立的类中，客户端可以在运行时根据需要选择不同的策略，而不需要修改客户端的代码。</p>
 <p>结构：</p>
@@ -2747,7 +2901,25 @@
 <blockquote>
 <p>注意：Spring使用的是工厂模式，虽然管理多个Bean，但是这些 Bean 之间并不一定具有相关性或依赖性。（不是抽象工厂）</p>
 </blockquote>
-<h2 id="day18"><a href="#day18" class="headerlink" title="day18"></a>day18</h2><h3 id="常见的-HTTP-状态码有哪些？"><a href="#常见的-HTTP-状态码有哪些？" class="headerlink" title="常见的 HTTP 状态码有哪些？"></a>常见的 HTTP 状态码有哪些？</h3><p><strong>1XX</strong>: <strong>信息性状态码</strong></p>
+<h2 id="day18"><a href="#day18" class="headerlink" title="day18"></a>day18</h2><h3 id="HTTP-是什么？"><a href="#HTTP-是什么？" class="headerlink" title="HTTP 是什么？"></a>HTTP 是什么？</h3><h4 id="HTTP概述"><a href="#HTTP概述" class="headerlink" title="HTTP概述"></a>HTTP概述</h4><p>HTTP（超文本传输协议）是一种用于分布式，协作式，超媒体信息系统的应用层协议。它是万维网（www）数据通讯的基础，设计目的是确保客户端和服务器之间的通信。</p>
+<h4 id="HTTP工作原理"><a href="#HTTP工作原理" class="headerlink" title="HTTP工作原理"></a>HTTP工作原理</h4><p>HTTP基于<strong>客户端-服务器模型</strong>，客户端（通常是Web浏览器）向服务端发送请求，服务器收到请求后，返回相应的资源。这些资源可以是网页，图像，音频文件、视频等。</p>
+<p><strong>请求响应模型</strong></p>
+<ul>
+<li><strong>建立连接:</strong>  客户端与服务器之间建立连接，通常是基于TCP&#x2F;IP协议。</li>
+<li><strong>发送请求：</strong> 客户端向服务器发送请求，请求中包含要访问的资源的URL、请求方法、请求头以及可选的请求体。</li>
+<li><strong>处理请求：</strong> 服务器接受到请求后，根据请求中的信息找到相应的资源，执行相应的处理操作。</li>
+<li><strong>发送响应：</strong> 服务器将处理后的结果封装在响应中，并将其发送会客户端。</li>
+<li><strong>关闭连接：</strong> 在完成请求和响应周期后，客户端和服务器之间的连接可以被关闭。</li>
+</ul>
+<p><strong>HTTP的方法：</strong></p>
+<p>HTTP指定了客户端可以对服务器上的资源执行哪些动作。主要的HTTP方法：</p>
+<ul>
+<li>GET：请求从服务器获取指定资源</li>
+<li>POST： 请求服务器接受并处理请求体中的数据，通常用于表单提交。</li>
+<li>PUT： 请求服务器存储一个资源，并用请求体中的内容替换目标资源的所有内容。</li>
+<li>DELETE:  请求服务器删除指定的资源。</li>
+</ul>
+<h3 id="常见的-HTTP-状态码有哪些？"><a href="#常见的-HTTP-状态码有哪些？" class="headerlink" title="常见的 HTTP 状态码有哪些？"></a>常见的 HTTP 状态码有哪些？</h3><p><strong>1XX</strong>: <strong>信息性状态码</strong></p>
 <ul>
 <li>100 Contionue： 客户端应继续发送请求</li>
 <li>101 Switching Protocols： 服务器要求客户端切换协议；</li>
@@ -2925,7 +3097,230 @@
 <li><strong>拥塞控制：</strong> TCP是通过拥塞算法（如慢启动、拥塞避免、快速重传和快速恢复）来防止网络过载，确保网络资源的公平性和稳定性。</li>
 <li><strong>连接管理：</strong> TCP是面向连接的协议,采用三次握手（建立连接）和四次挥手（断开连接）机制来管理会话，确保通信的可靠性和状态的同步。</li>
 </ol>
-
+<h2 id="day21"><a href="#day21" class="headerlink" title="day21"></a>day21</h2><h2 id="day22"><a href="#day22" class="headerlink" title="day22"></a>day22</h2><h2 id="day23"><a href="#day23" class="headerlink" title="day23"></a>day23</h2><h3 id="线程和进程有什么区别？"><a href="#线程和进程有什么区别？" class="headerlink" title="线程和进程有什么区别？"></a>线程和进程有什么区别？</h3><p><strong>进程：</strong> 进程是资源分配的基本单位，每个进程有自己独立的内存空间（代码段，数据段，堆栈），可以看做一个程序正在运行的实例，进程间是相互独立的。</p>
+<p><strong>线程：</strong> 线程是CPU调度的基本单位，线程属于进程，一个进程可以有多个线程，线程共享进程之间的内存空间和资源（文件句柄，数据段），但每个线程有自己独立的栈和寄存器。</p>
+<p><strong>本质：</strong> 进程作为操作系统进行资源分配的基本单元，而线程则构成任务调度与执行的核心单元。</p>
+<p>开销： 进程有独立的代码和数据段，导致进程间切换开销较大。而线程是轻量级的，同进程内的线程共享代码和数据段，只各自维护独立的堆栈和程序计数器，因此线程切换的成本较低。</p>
+<h3 id="进程之间的通信方式有哪些？"><a href="#进程之间的通信方式有哪些？" class="headerlink" title="进程之间的通信方式有哪些？"></a>进程之间的通信方式有哪些？</h3><p>在Java中，线程之间的通信是指 <strong>多个线程协同工作</strong>， 主要实现方式包括：</p>
+<p><strong>1. 共享变量</strong></p>
+<ul>
+<li>线程可以通过访问共享内存变量来交换信息（需要注意同步问题，防止数据竞争和不一致）</li>
+<li>共享也可以是文件，例如写入同一个文件来进行通信。</li>
+</ul>
+<p><strong>2. 同步机制：</strong></p>
+<ul>
+<li>synchronized：Java中的同步关键字，用于确保同一时刻只有一个线程可以访问共享资源，利用Object类提供的<code>wait(),notify(),notifyAll()</code> 实现线程之间的等待、通知机制。</li>
+<li>ReentrantLock： 配置Condition提供了类似于wait(),notify()的等待、通知。</li>
+<li>BlockingQueue: 通过阻塞队列实现生产者-消费者模式</li>
+<li>CountDownLatch：可以允许一个或多个线程等待，直到在其他线程中执行一组操作完成</li>
+<li>Cyclicbarrier：可以让一组线程互相等待，直到达到某个公共屏障点。</li>
+<li>Volatile： Java中的关键字，确保变量的可加性，防止指令重排。</li>
+<li>Semaphore：信号量，可以控制对特定资源的访问线程数。</li>
+</ul>
+<h3 id="进程的调度算法你知道吗？"><a href="#进程的调度算法你知道吗？" class="headerlink" title="进程的调度算法你知道吗？"></a>进程的调度算法你知道吗？</h3><p>常见的进程调度算法有以下几种：</p>
+<ul>
+<li><strong>先来先服务（FCFS，Firt-Come，First-Served）：</strong> 按照进程到达的执行顺序进行调度，适用于批处理系统。简单易实现，但可能造成“长任务” 拖延其他任务的执行。</li>
+<li><strong>短作业优先（SJF，Shortest Job First）：</strong> 优先调度执行时间最短的进程，能减少平均等待时间。分为非抢占式和抢占式。但它需要预先直到任务执行时间，不适用于交互式系统。</li>
+<li><strong>优先级调度（Priority Scheduling):</strong> 根据进程的重要性（优先级）来调度，优先级高的进程先执行。适用于需要不同优先级服务的场景。可能导致“低优先级进程”  长期得不到调度，造成饥饿现象。</li>
+<li><strong>时间片轮（RR，Round Robin）：</strong> 为每个进程分配固定的时间片，结束后调度下一个进程。适用于交互式系统，能提升系统响应性。时间片的选择对系统性能有重要影响。</li>
+<li><strong>最高响应比优先（HRRN）：</strong> 通过计算响应比来决定下一个被调度的进程，适合在批处理环境中平衡长短任务的等待时间，防止任务过度导致长任务饥饿。</li>
+<li><strong>多级反馈队列调度：</strong> 结合多个调度策略，通过将进程放入不同优先级的队列，实现灵活的调度机制。优先级较高的进程先被调度，随着执行时间增加，进程可能被降至低优先级队列，社会多任务，多类型的操作系统。</li>
+</ul>
+<h2 id="day24"><a href="#day24" class="headerlink" title="day24"></a>day24</h2><h3 id="IO模型有哪些？"><a href="#IO模型有哪些？" class="headerlink" title="IO模型有哪些？"></a>IO模型有哪些？</h3><p><strong>IO的基本概念</strong></p>
+<p>IO即输入输出，涉及计算机核心与其他设备数据迁移的过程，就是IO，如磁盘IO，就是从磁盘读取数据到内存，这算一次输入；将内存中的数据写入磁盘，就算输出。</p>
+<p>IO就是把进程的内部数据转移到外部设备中，或者把外部设备的数据迁移到进程内部，外部设备一般指硬盘，socket，通讯网卡。</p>
+<p>I&#x2F;O（输入&#x2F;输出）模型是计算机系统中处理输入输出操作的方式，常见的 I&#x2F;O 模型包括以下几种：</p>
+<hr>
+<p><strong>1.  阻塞 I&#x2F;O（Blocking I&#x2F;O）</strong></p>
+<ul>
+<li><strong>描述</strong>：当应用程序发起 I&#x2F;O 操作时，线程会被阻塞，直到操作完成。</li>
+<li><strong>特点</strong>：<ul>
+<li>简单易用。</li>
+<li>线程在等待 I&#x2F;O 完成时无法执行其他任务，效率较低。</li>
+</ul>
+</li>
+<li><strong>适用场景</strong>：适合连接数较少、对性能要求不高的场景。</li>
+</ul>
+<hr>
+<p><strong>2. 非阻塞 I&#x2F;O（Non-blocking I&#x2F;O）</strong></p>
+<ul>
+<li><strong>描述</strong>：当应用程序发起 I&#x2F;O 操作时，线程不会被阻塞，而是立即返回一个状态（成功或失败）。线程需要不断轮询检查 I&#x2F;O 操作是否完成。</li>
+<li><strong>特点</strong>：<ul>
+<li>线程不会被阻塞，可以执行其他任务。</li>
+<li>轮询会消耗 CPU 资源。</li>
+</ul>
+</li>
+<li><strong>适用场景</strong>：适合需要高并发但连接数较少的场景。</li>
+</ul>
+<hr>
+<p><strong>3. I&#x2F;O 多路复用（I&#x2F;O Multiplexing）</strong></p>
+<ul>
+<li><strong>描述</strong>：通过系统调用（如 <code>select</code>、<code>poll</code>、<code>epoll</code>）监听多个文件描述符（fd），当某个 fd 就绪时，通知应用程序进行处理。</li>
+<li><strong>特点</strong>：<ul>
+<li>单线程可以处理多个 I&#x2F;O 操作。</li>
+<li>减少了线程切换的开销。</li>
+</ul>
+</li>
+<li><strong>适用场景</strong>：适合高并发、连接数较多的场景（如 Web 服务器）。</li>
+<li><strong>常见实现</strong>：<ul>
+<li><code>select</code>：支持的文件描述符数量有限，效率较低。</li>
+<li><code>poll</code>：解决了 <code>select</code> 的文件描述符数量限制，但效率仍然不高。</li>
+<li><code>epoll</code>（Linux）：高效支持大量文件描述符，是 Linux 下常用的 I&#x2F;O 多路复用技术。</li>
+</ul>
+</li>
+</ul>
+<hr>
+<p><strong>4. 信号驱动 I&#x2F;O（Signal-driven I&#x2F;O）</strong></p>
+<ul>
+<li><strong>描述</strong>：应用程序发起 I&#x2F;O 操作后，内核在数据就绪时通过信号（如 <code>SIGIO</code>）通知应用程序。</li>
+<li><strong>特点</strong>：<ul>
+<li>不需要轮询，减少了 CPU 开销。</li>
+<li>信号处理可能引入复杂性。</li>
+</ul>
+</li>
+<li><strong>适用场景</strong>：适合对实时性要求较高的场景。</li>
+</ul>
+<hr>
+<p><strong>5. 异步 I&#x2F;O（Asynchronous I&#x2F;O，AIO）</strong></p>
+<ul>
+<li><strong>描述</strong>：应用程序发起 I&#x2F;O 操作后，立即返回，内核在操作完成后通知应用程序（通过回调或信号）。</li>
+<li><strong>特点</strong>：<ul>
+<li>完全非阻塞，应用程序无需等待或轮询。</li>
+<li>实现复杂，需要操作系统支持。</li>
+</ul>
+</li>
+<li><strong>适用场景</strong>：适合高并发、高性能的场景（如大规模文件读写）。</li>
+<li><strong>常见实现</strong>：<ul>
+<li>Linux：<code>aio_read</code>、<code>aio_write</code>。</li>
+<li>Windows：<code>IOCP</code>（I&#x2F;O Completion Port）。</li>
+</ul>
+</li>
+</ul>
+<h3 id="Select、Poll、Epoll之间有什么区别？"><a href="#Select、Poll、Epoll之间有什么区别？" class="headerlink" title="Select、Poll、Epoll之间有什么区别？"></a>Select、Poll、Epoll之间有什么区别？</h3><p>都是IO多路复用的机制</p>
+<p>select：</p>
+<ul>
+<li>早期IO多路复用机制，使用固定长度的数组表示文件描述符集。每次调用select时都需要重新构建和检查文件描述符集。</li>
+<li>支持的文件描述符数量有限，在大规模链接的场景下效率低下。</li>
+</ul>
+<p>poll</p>
+<ul>
+<li>poll与select类似，但使用动态数组来存储文件描述符，因此没有select的最大连接数限制。</li>
+<li>每次调用时仍需遍历全部描述符，在处理大量链接时，效率不高。</li>
+</ul>
+<p>epoll</p>
+<ul>
+<li>epoll是Linux系统对select和poll的优化，提供了边缘触发ET和水平触发LT模式</li>
+<li>不会遍历所有文件描述符而是通过事件通知的方式，只处理实际发生变化的描述符，适合高并发服务器。</li>
+<li>epoll在注册文件描述符后，只需要用一次添加操作，后续的事件管理更高效。</li>
+</ul>
+<h3 id="为什么网络IO会被阻塞？"><a href="#为什么网络IO会被阻塞？" class="headerlink" title="为什么网络IO会被阻塞？"></a>为什么网络IO会被阻塞？</h3><p>网络IO会被阻塞是因为在进行网络数组传输时，操作系统在等待数据的发送或接受完成后，会将进程挂起，直到数据传输完成后才恢复进程执行。</p>
+<p>阻塞原因：</p>
+<ul>
+<li>等待数据到达或发送完成</li>
+<li>系统资源有限</li>
+<li>默认的阻塞行为</li>
+</ul>
+<h2 id="day25"><a href="#day25" class="headerlink" title="day25"></a>day25</h2><h3 id="说一下Linux常用命令"><a href="#说一下Linux常用命令" class="headerlink" title="说一下Linux常用命令"></a>说一下Linux常用命令</h3><p>文件与目录操作:</p>
+<p>ls:列出当前目录的文件和子目录,常用参数如-1(详细信息)、<br>cd:切换目录,用于在文件系统中导航。<br>mkdir:创建新目录。<br>rm:删除文件或目录,用于删除文件时加上-f参数,删除目录时加上-r参数。<br>cp:复制文件或目录,cp-r用于递归复制目录。<br>mv:移动或重命名文件或目录。</p>
+<p>文件内容查看:</p>
+<p>cat:查看文件内容,常用于查看小型文本文件。<br>more&#x2F;less:分页查看文件内容,less支持向上翻页,适合查看大文件。<br>tail:查看文件末尾的若干行,tail-f用于实时监控文件内容变化,如日志文件。<br>head:查看文件的开头几行。</p>
+<p>系统管理:</p>
+<p>ps:显示当前运行的进程列表,ps aux 可以查看所有用户的进程。<br>top&#x2F;htop:实时查看系统中的进程状态和资源使用情况。<br>kill&#x2F;killall:终止进程,kill后跟进程ID,killall后跟进程名。<br>df:显示文件系统的磁盘使用情况。<br>du:统计目录或文件所占用的磁盘空间,du -h 以人类可读的格式显示。</p>
+<p>网络配置与调试:</p>
+<p>ping:测试与目标主机的连通性。<br>ifconfig&#x2F;ip:查看和配置网络接口信息,ifconfig 已逐渐被ip命令替代。<br>netstat&#x2F;ss:查看网络连接和端口使用情况,</p>
+<p>ss是netstat的替代品,提供更详细的信息。</p>
+<p>chown :更改文件或目录的所有者</p>
+<p>curl&#x2F;wget:发送HTTP请求或下载文件,</p>
+<p>文件权限与用户管理:</p>
+<p>chmod:修改文件或目录权限,常用模式如 chmod 755。<br>更改文件或目录的所有者。<br>useradd&#x2F;userdel:添加或删除用户。<br>passwd:修改用户密码。</p>
+<h3 id="什么是分段？什么是分页？"><a href="#什么是分段？什么是分页？" class="headerlink" title="什么是分段？什么是分页？"></a>什么是分段？什么是分页？</h3><p><strong>分段</strong>和<strong>分页</strong>是操作系统内存管理的两种技术，用于管理进程的内存空间，解决内存碎片化和内存保护问题。它们的主要区别在于内存划分的方式和管理机制。</p>
+<p><strong>分段</strong></p>
+<ul>
+<li><strong>分段将内存划分为不同大小的逻辑段，每个段对应程序的一个逻辑单元（如代码段、数据段、堆段、栈段等）。</strong></li>
+<li>每个段的大小可以不同，由程序的需求决定。</li>
+</ul>
+<p><strong>分页</strong></p>
+<ul>
+<li>分页将内存划分为固定大小的页（Page），同时将程序的逻辑地址空间也划分为相同大小的页框（Page Frame）。</li>
+<li>页的大小固定（如4KB）。</li>
+<li>页表（Page Table）用于记录逻辑页与物理页框的映射关系。</li>
+<li>地址由<strong>页号</strong>和<strong>页内偏移量</strong>组成</li>
+</ul>
+<h3 id="什么是软中断？什么是硬中断？"><a href="#什么是软中断？什么是硬中断？" class="headerlink" title="什么是软中断？什么是硬中断？"></a>什么是软中断？什么是硬中断？</h3><p><strong>硬中断</strong></p>
+<p>硬中断由硬件设备触发，用于通知处理器有紧急事件需要处理。常见来源包括键盘、鼠标、硬盘、网卡等。</p>
+<p><strong>特点：</strong></p>
+<ul>
+<li><strong>硬件触发</strong>：由硬件设备发起。</li>
+<li><strong>异步</strong>：随时可能发生，与处理器当前任务无关。</li>
+<li><strong>优先级高</strong>：处理器会暂停当前任务，优先处理中断。</li>
+<li><strong>中断服务程序（ISR）</strong>：处理器执行特定的ISR来处理中断。</li>
+</ul>
+<p><strong>软中断</strong></p>
+<p>软中断由软件触发，通常用于内核态的任务处理，如系统调用、任务调度等。</p>
+<p><strong>特点：</strong></p>
+<ul>
+<li><strong>软件触发</strong>：由程序或操作系统发起。</li>
+<li><strong>同步</strong>：在特定代码位置触发，执行时机可预测。</li>
+<li><strong>优先级较低</strong>：通常在内核态处理，不会立即打断当前任务。</li>
+<li><strong>中断处理程序</strong>：由操作系统内核处理。</li>
+</ul>
+<h2 id="day26"><a href="#day26" class="headerlink" title="day26"></a>day26</h2><h3 id="接口类和抽象类的区别？"><a href="#接口类和抽象类的区别？" class="headerlink" title="接口类和抽象类的区别？"></a>接口类和抽象类的区别？</h3><p>接口和抽象类在设计动机上不同。</p>
+<p>接口的设计是 <strong>自上而下的</strong> ，我们知晓某一行为，是基于这些行为约束定义了接口，一些类需要这些行为，因此实现对应的接口。</p>
+<p>抽象类的设计是 <strong>自下而上的</strong>， 我们写了很多类，发现他们之间有共性，很多代码可以复用，因此将公共逻辑封装成一个抽象类，减少代码冗余。</p>
+<p>所谓的 <strong>自上而下</strong> 指的是先约定接口，在实现。</p>
+<p>而 <strong>自下而上的</strong> 是先有一些类，才抽象了共同父类（可能和学校教的不一样，但是实战的时候都是因为重构才有的抽象）</p>
+<h4 id="其他区别"><a href="#其他区别" class="headerlink" title="其他区别"></a>其他区别</h4><p><strong>1. 方法实现</strong></p>
+<p>接口中的方法默认是public和abstract（但在Java8之后可以设置default方法或静态方）。</p>
+<p>抽象类可以包含abstract方法（没有实现）和具体方法（有实现），它允许子类继承并重用抽象类中的方法实现。</p>
+<p><strong>2. 构造函数和成员变量</strong></p>
+<p>接口不能包含构造函数，接口中的成员变量默认为 public static final，即常量。</p>
+<p>抽象类可以包含构造函数成员变量可以有不同的访问修饰符（private, protected, public), 并且可以不是常量。</p>
+<p><strong>3. 多继承</strong></p>
+<p>接口可以有多个实现，抽象类只能单继承。</p>
+<blockquote>
+<p>注意： 抽象类和接口都不能创建实例</p>
+</blockquote>
+<h4 id="为什么抽象类不能直接实例？"><a href="#为什么抽象类不能直接实例？" class="headerlink" title="为什么抽象类不能直接实例？"></a>为什么抽象类不能直接实例？</h4><p>抽象类<strong>不能直接实例化</strong>（即不能使用 <code>new</code> 关键字创建对象），因为它可能包含未实现的抽象方法。抽象类的主要目的是作为其他类的基类，由其子类实现抽象方法并完成具体功能。</p>
+<p>结构：</p>
+<ul>
+<li>抽象方法: 没有实现的方法，必须有子类实现</li>
+<li>具体方法： 有实现的方法，可以直接使用</li>
+<li>成员变量： 可以包含普通成员变量。</li>
+</ul>
+<p>如果允许直接实例化抽象类，调用未实现的抽象方法会导致问题，因此 Java 和其他面向对象语言禁止直接实例化抽象类。</p>
+<h3 id="JDK和CGLIB"><a href="#JDK和CGLIB" class="headerlink" title="JDK和CGLIB"></a>JDK和CGLIB</h3><p><strong>JDK动态代理</strong> 和 <strong>CGLIB动态代理</strong> 是Java中实现动态代理的两种主要方式，它们在实现原理、适用场景和性能上有所不同。</p>
+<p><strong>JDK动态代理特点</strong></p>
+<ul>
+<li>基于Java放射机制</li>
+<li>要求目标类必须实现一个接口</li>
+<li>通过反射机制生对象。</li>
+<li>代理对象实现目标接口，并在方法调用时通过InvocationHandle抽离逻辑。</li>
+</ul>
+<p><strong>SpringAOP</strong> 默认对接口使用JDK动态代理</p>
+<p><strong>CGLIB动态代理特点</strong></p>
+<ul>
+<li>基于字节码增强技术（通过ASM库操作字节码）</li>
+<li>不要求目标类生成子类，可以直接代理普通类</li>
+<li>通过继承目标生成子类，并重写父类方法类实现代理。</li>
+</ul>
+<p><strong>SpringBoot2XX</strong> 默认使用CGLIB</p>
+<h3 id="关于Java的反射机制"><a href="#关于Java的反射机制" class="headerlink" title="关于Java的反射机制"></a>关于Java的反射机制</h3><p>Java的反射机制是 <strong>在运行时</strong> 获取类的信息，并操作对象的一种机制。反射机制提供了在运行时动态创建对象、调用方法、访问字段等功能，而无需在编译时知道这些类的具体信息。</p>
+<p><strong>反射机制的优点</strong></p>
+<ul>
+<li>可以动态地获取类的信息，不需要在编译时就知道类的信息。</li>
+<li>可以动态地创建对象，不需要在编译时就知道对象的类型。</li>
+<li>可以动态地调用对象的属性和方法，在运行时动态地改变对象的行为。</li>
+</ul>
+<p><strong>反射</strong></p>
+<p><strong>Class类</strong>:  反射机制的核心，通过Class类的实例可以获取类的各种信息。</p>
+<p><strong>反射的主要功能：</strong></p>
+<ul>
+<li>创建对象： 通过 <code>Class.newInstance</code> 和 <code>Constructor.newInstance()</code>创建对象实例。</li>
+<li>访问字段： 使用<code>Field</code> 类访问和修改对象的字段。</li>
+<li>调用方法： 使用<code>Method</code> 类调用对象的方法</li>
+<li>获取类信息： 获取类的名称、父类、接口信息。</li>
+</ul>
+<h2 id="Linux"><a href="#Linux" class="headerlink" title="Linux"></a>Linux</h2><h3 id="如何查找一个进程并关闭？"><a href="#如何查找一个进程并关闭？" class="headerlink" title="如何查找一个进程并关闭？"></a>如何查找一个进程并关闭？</h3>
       
     </div>
 
