@@ -122,7 +122,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">34</span>
+          <span class="site-state-item-count">37</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -133,7 +133,7 @@
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">19</span>
+        <span class="site-state-item-count">22</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -158,6 +158,2262 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2025/02/19/%E9%9D%A2%E8%AF%95%E8%AE%AD%E7%BB%83/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/111.png">
+      <meta itemprop="name" content="ZhangYuHao">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Zhang'Blog">
+      <meta itemprop="description" content="一个小人物的个人博客">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Zhang'Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2025/02/19/%E9%9D%A2%E8%AF%95%E8%AE%AD%E7%BB%83/" class="post-title-link" itemprop="url">面试训练</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2025-02-19 08:41:47" itemprop="dateCreated datePublished" datetime="2025-02-19T08:41:47+08:00">2025-02-19</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-03-20 22:13:46" itemprop="dateModified" datetime="2025-03-20T22:13:46+08:00">2025-03-20</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="day01"><a href="#day01" class="headerlink" title="day01"></a>day01</h2><h3 id="Mysql的存储引擎有哪些？他们之间的区别是什么？"><a href="#Mysql的存储引擎有哪些？他们之间的区别是什么？" class="headerlink" title="Mysql的存储引擎有哪些？他们之间的区别是什么？"></a>Mysql的存储引擎有哪些？他们之间的区别是什么？</h3><p>在8.4版本的mysql中，支持的存储引擎有10个，这里着重分析一下比较重要的三个存储引擎，<strong>Innodb，MyISAM，Memory</strong>。</p>
+<h4 id="InnoDB"><a href="#InnoDB" class="headerlink" title="InnoDB"></a>InnoDB</h4><ul>
+<li>采用聚簇索引，索引值和数据行存储在一起（B+树结构）</li>
+<li>支持事务，和外键</li>
+<li>采用行级锁</li>
+<li>不支持全文索引，在5.6.4版本之后支持全文索引</li>
+<li>默认隔离级别是可重复读，并且存储持久化。</li>
+<li>采用MVCC多版本并发控制</li>
+</ul>
+<p><strong>优势：</strong>高并发，事务安全，支持外键支持崩溃恢复（redo日志）</p>
+<p><strong>缺点：</strong> 相比与<strong>MyISAM</strong>占用更多的存储空间，全文索引在mysql5.6之后才支持。</p>
+<h4 id="MyISAM"><a href="#MyISAM" class="headerlink" title="MyISAM"></a>MyISAM</h4><ul>
+<li>采用非聚簇索引，叶子结点保存的是数据的物理地址（B+树结构）</li>
+<li>不支持事务和外键</li>
+<li>采用表级锁</li>
+<li>支持全文索引</li>
+</ul>
+<p><strong>优势：</strong> 在只读情况下，效率高，比Innodb占用空间少</p>
+<p><strong>缺点：</strong>当有写操作时，由于是表级锁，效率低，需要手动崩溃恢复</p>
+<h4 id="Memeory"><a href="#Memeory" class="headerlink" title="Memeory"></a>Memeory</h4><ul>
+<li>存储在内存中，读取速度快，无法数据持久化</li>
+<li>表级锁，并发情况下可能性能受限。</li>
+<li>不支持事务和外键</li>
+<li>底层采用<strong>哈希索引</strong>（Hash Table），支持<strong>B树</strong></li>
+</ul>
+<p><strong>优势</strong>： 读取速度快，高速数据访问</p>
+<p><strong>缺点：</strong> 存储大小受限，无法做到数据持久化，通常用来临时存储</p>
+<h4 id="扩展-Mysql-的InnoDB存储引擎和MyISAM存储存储引擎有什么不同？"><a href="#扩展-Mysql-的InnoDB存储引擎和MyISAM存储存储引擎有什么不同？" class="headerlink" title="扩展 Mysql 的InnoDB存储引擎和MyISAM存储存储引擎有什么不同？"></a>扩展 Mysql 的InnoDB存储引擎和MyISAM存储存储引擎有什么不同？</h4><p><img src="https://pic1.imgdb.cn/item/67b5cf89d0e0a243d400cdf5.png"></p>
+<p>这里比起<strong>MyISAM</strong>存储引擎，<strong>InnoDB</strong>采用的是聚簇索引，叶子结点存储的是索引值和数据行。</p>
+<p>MyISAM的叶子结点存储的是数据的物理地址，采用了数据和索引分离的方式。</p>
+<p>而InnoDB则是由于其需要支持事务和外键。</p>
+<p>优点：</p>
+<p><strong>1. 保证了事务支持和数据一致性</strong></p>
+<ul>
+<li>InnoDB 是一个支持事务的存储引擎，需要保证数据的 ACID 特性（原子性、一致性、隔离性、持久性）。</li>
+<li>为了实现事务的隔离性和一致性，InnoDB 需要将数据与索引紧密关联，确保在事务中能够快速定位和锁定数据。</li>
+<li>如果采用 MyISAM 的方式（索引和数据分离），事务的实现会变得复杂，性能也会受到影响</li>
+</ul>
+<p><strong>2. 聚簇设计</strong></p>
+<ul>
+<li>排列数据有序方便搜索，叶子结点本身存储数据行</li>
+<li>MyISAM数据无需，范围查找效率低</li>
+</ul>
+<p><strong>3. 辅助索引设置</strong></p>
+<ul>
+<li>InnoDB采用二级索引，<strong>数据移动时无需更新辅助索引</strong>：如果数据行的物理地址发生变化（例如数据页分裂），辅助索引无需更新，因为它存储的是主键值。</li>
+<li><strong>支持行级锁</strong>：InnoDB 的行级锁是基于主键实现的，辅助索引通过主键值定位数据行，可以高效地加锁。</li>
+</ul>
+<p><strong>4. 采用聚簇索引的原因</strong></p>
+<ul>
+<li>InnoDB 需要支持外键约束、MVCC（多版本并发控制）等高级功能。</li>
+<li>聚簇索引的设计使得这些功能更容易实现。例如：<ul>
+<li>MVCC 需要存储多个版本的数据行，聚簇索引可以高效地管理这些版本。</li>
+<li>外键约束需要快速定位相关数据行，聚簇索引提供了高效的查找能力。</li>
+</ul>
+</li>
+</ul>
+<p><strong>总结</strong></p>
+<ul>
+<li><p>InnoDB 更适合高并发和事务处理的场景 </p>
+</li>
+<li><p>MyISAM 则适合读操作较多的场景。</p>
+</li>
+</ul>
+<h3 id="MySQL-InnoDB-引擎中的聚簇索引和非聚簇索引有什么区别？"><a href="#MySQL-InnoDB-引擎中的聚簇索引和非聚簇索引有什么区别？" class="headerlink" title="MySQL InnoDB 引擎中的聚簇索引和非聚簇索引有什么区别？"></a>MySQL InnoDB 引擎中的聚簇索引和非聚簇索引有什么区别？</h3><p><strong>聚簇索引</strong></p>
+<ul>
+<li>通常是主键索引，只能出现一个。</li>
+<li>叶子节点存储的是索引值和数据行。</li>
+<li>B+树按照主键排序，非叶子节点存储的是主键值，无数据行</li>
+</ul>
+<p><strong>非聚簇索引</strong></p>
+<ul>
+<li>又叫做二级索引，通常作为辅助索引，可以存在多个（不建议太多，会占用资源，维护消耗也大）</li>
+<li>叶子结点存储的是索引值和主键值</li>
+<li>B+树按照索引排序，非叶子结点存储索引</li>
+<li>通常需要回表，索引覆盖等操作</li>
+</ul>
+<h3 id="MySQL的索引类型有哪些？"><a href="#MySQL的索引类型有哪些？" class="headerlink" title="MySQL的索引类型有哪些？"></a>MySQL的索引类型有哪些？</h3><p>基于 <strong>数据结构</strong> ：</p>
+<ul>
+<li>B+树索引</li>
+<li>Hash索引</li>
+<li>全文索引（Full-Text）</li>
+<li>R-树索引</li>
+</ul>
+<p>基于 <strong>B+树：</strong></p>
+<ul>
+<li>聚簇索引</li>
+<li>非聚簇索引</li>
+</ul>
+<p>基于 <strong>索引性质</strong>：</p>
+<ul>
+<li>主键索引（一个表唯一）非空，字段不重复</li>
+<li>唯一索引：字段可以为空，但是非空字段唯一</li>
+<li>联合索引（最左前缀匹配）</li>
+<li>普通索引：无要求</li>
+<li>全文索引</li>
+<li>空间索引</li>
+</ul>
+<h2 id="day02"><a href="#day02" class="headerlink" title="day02"></a>day02</h2><h3 id="为什么MySQL采用B-树来作为索引结构？"><a href="#为什么MySQL采用B-树来作为索引结构？" class="headerlink" title="为什么MySQL采用B+树来作为索引结构？"></a>为什么MySQL采用B+树来作为索引结构？</h3><p>B+ 树相对于二叉树和红黑树来说，采用多分支，避免了树的阶层更长。</p>
+<p>这里主要来和B树做一下比较。</p>
+<p>首先，来了解一下 <strong>B+树的结构</strong></p>
+<p><img src="https://pic1.imgdb.cn/item/6776ad76d0e0a243d4ede61f.png"></p>
+<p><strong>1. 数据行都存储在叶子结点</strong></p>
+<ul>
+<li>相比于B树，b+树的数据行都存储在叶子结点，非叶子结点只存储主键值，来引导查询过程。</li>
+<li>减少了非叶子节点的空间占用。</li>
+</ul>
+<p><strong>2. 叶子结点采用双向链表链接</strong></p>
+<ul>
+<li>叶子结点采用双向链表链接，若使用范围查找的话，效率更高（采用遍历链表的形式）</li>
+<li>而b树则需要遍历B树，效率较低</li>
+</ul>
+<p><strong>3. 树的高度更小</strong></p>
+<ul>
+<li>B+树的非叶子结点存储的是主键值，所占页资源更少，可以存储更多的页，使得每页有更多的子结点。</li>
+<li>而B树则非叶子结点也存储数据行，占用更多的存储空间，造成子结点相对B+树更少。</li>
+</ul>
+<p><strong>4. 查找操作的效率更高</strong>：</p>
+<ul>
+<li>B+树的查找操作通常仅限于叶子节点，而B树在查找时可能需要在内部节点和叶子节点之间反复跳转。</li>
+<li>由于叶子节点之间有链表连接，B+树在范围查询时特别高效。</li>
+</ul>
+<h3 id="MySQL索引的最左前缀匹配原则是什么？"><a href="#MySQL索引的最左前缀匹配原则是什么？" class="headerlink" title="MySQL索引的最左前缀匹配原则是什么？"></a>MySQL索引的最左前缀匹配原则是什么？</h3><p>首先来了解一下应用背景</p>
+<p>在InnoDB存储引擎中，采用B+树的结构来存储数据，B+树是顺序存储的，通常根据索引来排序。</p>
+<p>若要使用联合索引的话<code>（a, b, c)</code>， 则会按照<code>(a,b,c)</code> 的形式来进行排序。</p>
+<p>查询时也是一句顺序，来进行从左到右的查找。</p>
+<p>最左前缀匹配原则是 MySQL 在使用索引时遵循的一种规则，尤其在涉及组合索引时。</p>
+<p>mysql在查询时，会<strong>从最左边的索引列开始匹配，直到遇到第一个无法继续匹配的列为止</strong>。这意味着，若通过联合索引查询数据时，查询条件必须遵循 “最左前缀” 的要求，<strong>必须从组合索引最左边的字段开始匹配，逐步向右，不能跳过任何列。</strong></p>
+<p>联合索引<code>(first_name,last_name,age)</code></p>
+<p>类型：</p>
+<ol>
+<li><p>完全匹配最左前缀：当你查询条件完全包含最左边的字段，MySQL可以使用这个索引。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> users <span class="keyword">WHERE</span> first_name <span class="operator">=</span> <span class="string">&#x27;John&#x27;</span>;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>匹配多个最左前缀： 有多个字段符合最左前缀</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> users <span class="keyword">WHERE</span> first_name <span class="operator">=</span> <span class="string">&#x27;John&#x27;</span> <span class="keyword">AND</span> last_name <span class="operator">=</span> <span class="string">&#x27;Doe&#x27;</span>;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>部分前缀匹配： 如果查询条件值匹配索引的前几个字段一部分</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> users <span class="keyword">WHERE</span> first_name <span class="operator">=</span> <span class="string">&#x27;John&#x27;</span> <span class="keyword">AND</span> age <span class="operator">=</span> <span class="number">25</span>;</span><br><span class="line"># 注意：这里实现最左前缀的之后first_name,关于age的条件需要回表搜索。</span><br></pre></td></tr></table></figure></li>
+</ol>
+<p><strong>注意：</strong></p>
+<ul>
+<li>关于范围查询，若使用 &gt; 或 &lt; ,这样的形式，则会将遇到的第一个进行范围查询，而之后则不会。因为之后的数据经过范围查询后是无序的。</li>
+<li>若遇到等值的形式， &gt;&#x3D;, &lt;&#x3D;, BETWEEN, like 则不会停止。</li>
+</ul>
+<h3 id="MySQL三层B-树能存储多大的数据？"><a href="#MySQL三层B-树能存储多大的数据？" class="headerlink" title="MySQL三层B+树能存储多大的数据？"></a>MySQL三层B+树能存储多大的数据？</h3><p>通常情况下面试官并不是问的具体的数据，而是计算过程和对B+树的结构了解，以及数据存储的上限。</p>
+<p>在mysql的InnDB存储引擎下，默认的页大小为<strong>16KB。</strong></p>
+<p>数据和主键大小取整的话大概<strong>1kb。</strong></p>
+<p>主键和指针， <strong>8字节 和 6字节</strong></p>
+<p>好的，有了基础数据参数后就可以开始计算了。</p>
+<ul>
+<li>主节点有一页，里面存储的子页面个数， 16  * 1080 &#x2F; (6+8) &#x3D; 1170 中间结点</li>
+<li>中间结点计算同主节点，1170 * 1170</li>
+<li>叶子结点，每页存储的数据 （16 &#x2F; 1) *1170 * 1170 &#x3D; 21902400</li>
+</ul>
+<p>所以， 三层B+树存储的数据大约时 2000万条。</p>
+<h2 id="day03"><a href="#day03" class="headerlink" title="day03"></a>day03</h2><h3 id="MySQL中的回表是什么？"><a href="#MySQL中的回表是什么？" class="headerlink" title="MySQL中的回表是什么？"></a>MySQL中的回表是什么？</h3><p><strong>回表</strong>通常出现在二级索引中，二级索引的叶子结点存储的是索引和主键值，通过索引查询到主键id后，由于主键索引的叶子结点保存数据行，需要在回到主键中进行查找，这个过程被称为<strong>回表</strong>。</p>
+<p>注意：回表会带来随机io，会影响查询效率。</p>
+<p><strong>索引覆盖：</strong> 同样出现在二级索引中，当查询的值在索引中保存时，就不需要进行回表操作，减少了I&#x2F;O操作，提升了效率。</p>
+<p><strong>索引下推：</strong> MySQL 5.6之后引入的一种优化技术，默认开启，可以在有like的条件下，减少回表的次数。用索引查询数据时，将部分查询条件下推到存储引擎中层来过滤减少要读取的数据。</p>
+<h3 id="MySQL中建立索引的注意事项"><a href="#MySQL中建立索引的注意事项" class="headerlink" title="MySQL中建立索引的注意事项"></a>MySQL中建立索引的注意事项</h3><p>这里说一下自己总结的注意事项</p>
+<ol>
+<li><strong>索引并不是越多越好</strong>，索引的建立需要空间的占用，索引要平衡好查询效率和空间的占用</li>
+<li><strong>不要建立大量重复的值的索引</strong>， 建立索引后，B+树通过索引的值进行排序，提高查询效率，若值大量的重复，则不会提升查询效率，还会造成空间的浪费。</li>
+<li><strong>不要对频繁修改的表建立索引</strong>， 前面说了，建立索引后需要占用空间和维护，每次主键索引修改数据后，索引也需要进行相应的修改，会导致修改效率降低。</li>
+<li><strong>根据 where，order by， group by， distinct</strong>，根据这些关键字的条件建立索引。</li>
+<li><strong>不要建立长字段索引</strong>，占用空间较大，影响整体性能。</li>
+</ol>
+<h3 id="MySQL中的索引一定有效吗？如何进行排查？"><a href="#MySQL中的索引一定有效吗？如何进行排查？" class="headerlink" title="MySQL中的索引一定有效吗？如何进行排查？"></a>MySQL中的索引一定有效吗？如何进行排查？</h3><p>索引的使用取决于：查询条件，数据分布，索引设计等多个因素</p>
+<p><strong>1. 索引未必一定有效</strong></p>
+<p><strong>（1）索引选择性差</strong></p>
+<ul>
+<li>如果索引列的数据选择性较低（例如某个值大部分相同），索引就可能不被使用。这时，mysql就会使用全表扫描， 选择成本更低的选项。</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">SELECT * FROM users WHERE gender = &#x27;Male&#x27;;</span><br><span class="line"># 这里gender索引值只有Male和Female两个值</span><br><span class="line"># 索引选择性差</span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>（2）范围查询</strong></p>
+<ul>
+<li>使用了范围查询（如 <code>BETWEEN</code>、<code>&gt;</code>、<code>&lt;</code>、<code>LIKE</code> 等）时，索引会被部分使用，通常只能利用范围查询前的字段索引。</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> users <span class="keyword">WHERE</span> age <span class="operator">&gt;</span> <span class="number">30</span> <span class="keyword">AND</span> name <span class="operator">=</span> <span class="string">&#x27;Alice&#x27;</span>;</span><br><span class="line"># 这里索引只用到了age，之后回表查询，没有用到name。</span><br></pre></td></tr></table></figure>
+
+<p><strong>（3）对索引使用了函数或表达式</strong></p>
+<ul>
+<li>在查询中对索引列使用了函数（如 <code>YEAR(date_column)</code>）或进行表达式计算时，索引可能会失效，因为计算后值与存储的索引值不匹配。</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> orders <span class="keyword">WHERE</span> <span class="keyword">YEAR</span>(order_date) <span class="operator">=</span> <span class="number">2023</span>;</span><br><span class="line"># <span class="keyword">YEAR</span>(order_date) 会导致索引失效，除非使用适当的索引，如索引覆盖完整的 order_date 列</span><br></pre></td></tr></table></figure>
+
+<p><strong>（4） 隐式类型转换</strong></p>
+<ul>
+<li>在查询中，如果传入的查询条件数据类型与索引列的数据类型不同，MySQL 可能会进行隐式类型转换，导致索引失效。</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> users <span class="keyword">WHERE</span> age <span class="operator">=</span> <span class="string">&#x27;25&#x27;</span>;</span><br><span class="line">#如果 age 列是 <span class="type">INT</span> 类型，而查询条件是字符串 <span class="string">&#x27;25&#x27;</span>，会导致类型不匹配，进而导致索引失效。</span><br></pre></td></tr></table></figure>
+
+<p><strong>(5) 使用OR连接</strong></p>
+<ul>
+<li>在查询中使用 <code>OR</code> 时，如果 <code>OR</code> 连接的条件不能充分利用索引，MySQL 可能会选择全表扫描。</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> users <span class="keyword">WHERE</span> name <span class="operator">=</span> <span class="string">&#x27;Alice&#x27;</span> <span class="keyword">OR</span> age <span class="operator">=</span> <span class="number">30</span>;</span><br></pre></td></tr></table></figure>
+
+<p>如果 <code>name</code> 和 <code>age</code> 列分别有索引，MySQL 可能不能有效使用这两个索引，而是选择全表扫描。</p>
+<h4 id="如何进行排查？"><a href="#如何进行排查？" class="headerlink" title="如何进行排查？"></a>如何进行排查？</h4><ol>
+<li><strong>explan的使用</strong>： <code>EXPLAIN</code> 命令可以显示 MySQL 执行查询时选择的执行计划，帮助我们判断是否使用了索引。</li>
+<li><strong>SHOW WARNINGS</strong>： 来排除索引失效的原因</li>
+<li><strong>慢日志</strong>：查看慢日志，通过启用慢日志，可以查看哪些查询可能没有使用到索引而执行缓慢。</li>
+</ol>
+<h2 id="day04"><a href="#day04" class="headerlink" title="day04"></a>day04</h2><h3 id="MySQL-中的索引数量是否越多越好？为什么？"><a href="#MySQL-中的索引数量是否越多越好？为什么？" class="headerlink" title="MySQL 中的索引数量是否越多越好？为什么？"></a>MySQL 中的索引数量是否越多越好？为什么？</h3><p>答：并不是</p>
+<ul>
+<li><strong>增加存储开销</strong>：索引也是需要开销的，创建过多的索引会导致索引占用空间资源过多。</li>
+<li><strong>降低写效率</strong>：每次添加修改删除数据都要同步修改索引的b+树，若索引过多，会导致修改数据的效率降低。</li>
+<li><strong>维护效率增加：</strong> 索引的维护需要CPU和内存资源，尤其是当表发生大量更新时，索引维护的成本也会随之增加。频繁更新字段上的索引可能导致额外的计算开销。</li>
+<li><strong>影响查询优化器的选择：</strong> 虽然索引的目的是加速查询，但过多的索引可能会导致 MySQL 在查询优化时难以做出最佳决策。数据库查询优化器可能会选择错误的索引，从而导致查询效率不如预期。</li>
+</ul>
+<h3 id="如何使用MySQL中的explain语句进行查询分析？"><a href="#如何使用MySQL中的explain语句进行查询分析？" class="headerlink" title="如何使用MySQL中的explain语句进行查询分析？"></a>如何使用MySQL中的explain语句进行查询分析？</h3><p><code>explain</code> MySQL中的关键字，放在查询语句之前可以对这个查询语句进行分析。</p>
+<p>以下是实践操作：</p>
+<p><img src="https://pic1.imgdb.cn/item/67b96db5d0e0a243d401d203.png"></p>
+<p>可以看到explain查询出的属性图表。</p>
+<p><img src="https://pic1.imgdb.cn/item/67794cf9d0e0a243d4ef03ed.png"></p>
+<p><strong>重点：</strong></p>
+<ul>
+<li><strong>select_type:</strong> 显示查询的类型，包含 SIMPLE（简单查询），PRIMARY（子查询或联合查询中执行的外层查询），SUBQUERY（独立的查询）</li>
+<li><strong>type</strong>： 显示访问的类型，可以通过这个来就行优化。<ul>
+<li>ALL： 全表扫描</li>
+<li>index： 全索引扫描</li>
+<li>range： 索引范围扫描</li>
+<li>ref： 索引等值匹配</li>
+<li>eq_ref: 唯一索引等值匹配（链表查询的等值匹配）</li>
+<li>const： 主键或唯一索引匹配</li>
+<li>system： 表中只有一行数据。</li>
+</ul>
+</li>
+<li>rows： 估计要扫描的行数</li>
+<li>Extra：额外做了哪些操作</li>
+</ul>
+<h3 id="MySQL如何进行调优？"><a href="#MySQL如何进行调优？" class="headerlink" title="MySQL如何进行调优？"></a>MySQL如何进行调优？</h3><p>操作方面：查看慢日志，通过explain对查询语句进行。</p>
+<p><strong>1. 索引优化</strong></p>
+<ul>
+<li>选择合适的索引</li>
+<li>删除冗余的索引</li>
+<li>增加索引覆盖的实现</li>
+<li>联合索引遵循最左匹配原则</li>
+</ul>
+<p><strong>2. 查询语句优化</strong></p>
+<ul>
+<li>避免使用* ， 只查询需要的字段</li>
+<li>使用JOIN代替子查询</li>
+<li>使用EXISTS 或 in 代替 NOT EXISTS 或NOT IN</li>
+</ul>
+<h2 id="day05"><a href="#day05" class="headerlink" title="day05"></a>day05</h2><h3 id="MySQL中的varchar和char有什么区别？"><a href="#MySQL中的varchar和char有什么区别？" class="headerlink" title="MySQL中的varchar和char有什么区别？"></a>MySQL中的varchar和char有什么区别？</h3><h4 id="1-存储方式"><a href="#1-存储方式" class="headerlink" title="1. 存储方式"></a>1. 存储方式</h4><p><strong>varchar（可变字符）</strong></p>
+<ul>
+<li>VARCHAR 是<em>可变长度</em>的字符串类型，它只存储实际的字符长度*，并且在<strong>数据后面不补足空格</strong>。在 VARCHAR 字段中，<strong>MySQL会额外使用 1 个或 2 个字节来存储该字符串的长度信息</strong>（长度小于 255 字符使用 1 个字节，大于等于 255 字符使用 2 个字节）。这些额外的字节用于记录字符串的实际长度。</li>
+<li>场景：适用于长度变化较大的字符串，例如用户名或电子邮件地址等</li>
+</ul>
+<p><strong>char（固定长度字符）</strong></p>
+<ul>
+<li>CHAR 是固定长度的字符串类型，不论存储的字符串有多长，MySQL 总是<strong>使用固定的长度分配存储空间。</strong><br>如果存储的字符串长度小于定义的长度，MySQL 会在字符串的<strong>末尾补足空格</strong>，以使其达到定义的长度。</li>
+<li>适用于那些长度相对固定、变化不大的字符串字段，例如国家代码、邮政编码等。</li>
+</ul>
+<h4 id="2-性能差异"><a href="#2-性能差异" class="headerlink" title="2. 性能差异"></a>2. 性能差异</h4><p><strong>varchar</strong></p>
+<ul>
+<li>MySQL需要消耗一定的资源对varchar的长度进行计算，影响查询和修改效率。</li>
+</ul>
+<p><strong>char</strong></p>
+<ul>
+<li>长度固定，不需要计算长度，可以快速定位，存储和读取速度较快。</li>
+</ul>
+<h4 id="3-长度限制"><a href="#3-长度限制" class="headerlink" title="3. 长度限制"></a>3. 长度限制</h4><p><strong>VACHAR</strong></p>
+<ul>
+<li>可以存储可变长度的字符，最大储存长度为<strong>65535 字节</strong>（包括存储字符串长度的 1-2 字节）。（在MySQL中的）</li>
+</ul>
+<p><strong>CHAR</strong></p>
+<ul>
+<li>CHAR存储的是固定长度的字符串，最长可定义255个字符。</li>
+</ul>
+<h4 id="4-存储空间的占用"><a href="#4-存储空间的占用" class="headerlink" title="4. 存储空间的占用"></a>4. 存储空间的占用</h4><p><strong>varchar</strong></p>
+<ul>
+<li>根据实际大小进行改变，对于较长的字符，可以节省存储开销。</li>
+<li>但是，对于较短的字符，会记录字符的长度，占用空间。（适合较长的字符）</li>
+</ul>
+<p><strong>char</strong></p>
+<ul>
+<li>字符大小固定，未使用的会用空格填充，对于未使用的部分会造成存储空间的浪费。</li>
+<li>不需要记录数组长度，对于较短的字符，占用空间更小。（适合较短的字符）</li>
+</ul>
+<h4 id="5-空格处理的方式不同"><a href="#5-空格处理的方式不同" class="headerlink" title="5. 空格处理的方式不同"></a>5. 空格处理的方式不同</h4><p><strong>VACHAR</strong></p>
+<ul>
+<li>在 <code>VARCHAR</code> 中，存储的字符串后面的<strong>空格不会被自动去掉</strong>。例如，插入 <code>VARCHAR(5)</code> 列的值 <code>&#39;abc &#39;</code>，查询时仍会显示 <code>&#39;abc &#39;</code>（带空格）。</li>
+</ul>
+<p><strong>CAHR</strong></p>
+<ul>
+<li><code>CHAR</code> 会在存储时自动将字符串末尾的<strong>空格去除</strong>。例如，插入 <code>CHAR(5)</code> 列的值 <code>&#39;abc &#39;</code>，查询时只会得到 <code>&#39;abc&#39;</code>，末尾的空格会被忽略。</li>
+</ul>
+<p><strong>总结</strong></p>
+<p><img src="https://pic1.imgdb.cn/item/677a9d6dd0e0a243d4ef34e8.png"></p>
+<h3 id="MySQL中count（-、count（1）、count（字段名）有什么区别？"><a href="#MySQL中count（-、count（1）、count（字段名）有什么区别？" class="headerlink" title="MySQL中count（*)、count（1）、count（字段名）有什么区别？"></a>MySQL中count（*)、count（1）、count（字段名）有什么区别？</h3><p><strong>count（*)</strong></p>
+<ul>
+<li>会对所行的数据进行个数统计，效率较高（不需要查看具体的数据）</li>
+</ul>
+<p><strong>count（字段名）</strong></p>
+<ul>
+<li>会对这个字段进行个数统计，会忽略null。（会查看这个字段的数据）</li>
+</ul>
+<p><strong>count（1）</strong></p>
+<ul>
+<li>效果同**count（*)<strong>，MySQL底层会优化成</strong>count（*)**（实际效率没有差异）</li>
+</ul>
+<h3 id="请详细描述MySQL的B-树查询的全过程？"><a href="#请详细描述MySQL的B-树查询的全过程？" class="headerlink" title="请详细描述MySQL的B+树查询的全过程？"></a>请详细描述MySQL的B+树查询的全过程？</h3><p>在 MySQL 中，B+ 树被广泛用于实现索引，特别是 InnoDB 存储引擎中的聚簇索引。B+ 树是一种平衡树，具有良好的查询性能。</p>
+<p><strong>1. B+树的基本结构</strong></p>
+<ul>
+<li><strong>根节点</strong>：B+ 树的顶部节点，包含指向子节点的指针。</li>
+<li><strong>内部节点</strong>：包含索引键（key），指向子节点的指针，形成索引的层次结构。</li>
+<li><strong>叶子节点</strong>：包含实际的数据或者数据的指针，叶子节点通过链表连接形成一个有序链表。</li>
+<li><strong>指针</strong>：用于连接节点的指针。内部节点指向其他节点（包括叶子节点），而叶子节点指向实际数据或下一叶子节点。</li>
+<li>注意：在 MySQL 的 <strong>B+树索引结构</strong>中，<strong>非叶子节点</strong>存储的是<strong>子节点页的最小值</strong>（或称为“下限值”），而不是最大值。</li>
+</ul>
+<p>结构图：</p>
+<p><img src="https://i-blog.csdnimg.cn/direct/6e80a433101c4f869bf15d3e0b688a05.jpeg#pic_center"></p>
+<p><strong>2. 查询数据流程</strong></p>
+<p><strong>（1）从根节点开始查询</strong></p>
+<ul>
+<li>查询开始时，MySQL 从 B+ 树的根节点开始。根节点通常包含指向子节点的指针以及一些键（key）。</li>
+<li>通过比较查询条件与根节点中存储的键值，MySQL 可以确定应该向哪个子节点继续查询。</li>
+</ul>
+<p><strong>（2）遍历内部节点</strong></p>
+<ul>
+<li>通过根节点的指针，MySQL 会进入到下一级的内部节点。在每个内部节点中，键值用于决定向哪个子节点继续查询。</li>
+<li>内部节点的每个键值都将查询条件与它进行比较，选择最匹配的子节点。如果查询条件大于某个键，则继续向指向该键右边的子节点查询；如果小于某个键，则查询左边的子节点。</li>
+</ul>
+<p><strong>（3）直达叶子结点</strong></p>
+<ul>
+<li>继续沿着内部节点的指针查询，直到到达 B+ 树的叶子节点。在叶子节点中，存储的是实际的数据或者指向数据的指针。</li>
+<li>对于 <code>SELECT</code> 查询，叶子节点中存储的是具体的行数据；对于某些索引查询，叶子节点中可能只存储数据行的地址</li>
+</ul>
+<p><strong>（4）数据检索</strong></p>
+<ul>
+<li>一旦到达叶子节点，MySQL 会在叶子节点中进行数据检索。对于聚簇索引，数据会直接存储在叶子节点中，而对于非聚簇索引，叶子节点存储的是指向数据行的指针，MySQL 需要根据这些指针回表查询对应的数据。</li>
+<li>如果是聚簇索引，查询的结果可能直接从叶子节点返回；如果是非聚簇索引，MySQL 会根据索引中存储的指针回到表中查找完整数据。</li>
+</ul>
+<p><strong>（5）返回结果</strong></p>
+<ul>
+<li>数据检索完成后，MySQL 将查询结果返回给用户。如果是聚簇索引，数据会直接返回；如果是非聚簇索引，则需要回表获取完整数据。</li>
+</ul>
+<p><strong>5.总结</strong></p>
+<p>B+ 树在 MySQL 中用于实现高效的索引查询。查询过程从根节点开始，通过内部节点逐层查找，直到到达叶子节点并返回数据。聚簇索引与非聚簇索引在查询过程中有不同的表现，聚簇索引可以直接从叶子节点返回数据，而非聚簇索引需要回表查找。合理设计索引并优化查询条件，可以显著提升查询性能。</p>
+<h2 id="day06"><a href="#day06" class="headerlink" title="day06"></a>day06</h2><h3 id="MySQL是如何实现事务的？"><a href="#MySQL是如何实现事务的？" class="headerlink" title="MySQL是如何实现事务的？"></a>MySQL是如何实现事务的？</h3><p>事务的实现，必须保证<strong>ACID</strong></p>
+<p><strong>ACID</strong></p>
+<ul>
+<li>原子性（Atomicity）： 事务中的操作要么都完成，要么全部都不完成，不会结束再中间某个点。</li>
+<li>一致性（Consistency）： 事务必须保证数据库从一个一致的状态转移到另一一致的状态。</li>
+<li>隔离性（Isolation）： 并发执行的事务之间不会互相影响。</li>
+<li>持久性（Durability）：一旦事务提交，它对数据的改变就是永久的，系统发生故障也不会丢失。</li>
+</ul>
+<p><strong>原子性：</strong></p>
+<p>InnoDB中，通过undo log记录来记录事务开始之后的反向操作，若在事务过程中出现了错误，则通过undo log 来实现回滚事务。</p>
+<p><strong>一致性：</strong></p>
+<p>约束检查：</p>
+<ul>
+<li>InnoDB 在事务执行过程中会检查约束条件（如主键、唯一键、外键等）。</li>
+<li>如果违反约束，事务会回滚</li>
+</ul>
+<p><strong>隔离性：</strong></p>
+<p>隔离级别： RU，RC，RR（默认），Serializable</p>
+<p>InnDB默认使用RR隔离级别</p>
+<p>通过MVCC解决 脏读 和 不可重复读</p>
+<p>通过行锁或表锁解决 幻读问题</p>
+<p><strong>持久性：</strong></p>
+<p>Buffer poll （内存缓存区）</p>
+<p>Redo_log , 保证了数据的持久性。</p>
+<h3 id="MySQL中的MVCC是什么？"><a href="#MySQL中的MVCC是什么？" class="headerlink" title="MySQL中的MVCC是什么？"></a>MySQL中的MVCC是什么？</h3><p>是多版本并发控制。</p>
+<p>是事务隔离级别的<strong>无锁</strong>的实现方式。</p>
+<p>用于提高事务的并发性能。</p>
+<p>版本链</p>
+<p>底层使用， undo log + ReadView</p>
+<p>undo log： 实现版本链</p>
+<p><img src="https://pic1.imgdb.cn/item/67bbe15dd0e0a243d40328b7.png"></p>
+<p>ReadView： 定位数据,快照信息。</p>
+<p><img src="https://pic1.imgdb.cn/item/67bbe039d0e0a243d4032831.png"></p>
+<ol>
+<li>如果当前数据版本 &#x3D; db_trx_id ，说明修改这条数据的事务是当前事务。可见。</li>
+<li>如果当前数据版本 &lt; min_trx_id, 说明这条数据的事务在当前事务生成readView的时候已提交，可见。</li>
+<li>如果当前数据版本 在min 和 max之间，说明这条数据在事务开启时未提交。不可见</li>
+<li>如果当前数据版本大于max，说明这条数据在事务开启时，未开启。不可见。</li>
+</ol>
+<h3 id="MySQL中的日志类型有哪些？binlog，redolog和undo-log的作用和区别是什么？"><a href="#MySQL中的日志类型有哪些？binlog，redolog和undo-log的作用和区别是什么？" class="headerlink" title="MySQL中的日志类型有哪些？binlog，redolog和undo log的作用和区别是什么？"></a>MySQL中的日志类型有哪些？binlog，redolog和undo log的作用和区别是什么？</h3><p>MySQL中用于数据持久化和恢复的机制非常关键，常见的日志类型包括 <strong>Redo log、Undo log、 Binary log 和 error log</strong>等， 每种日志都都有特定的作用，确保数据库在不同情况下的可恢复性、事务的隔离性和一致性。</p>
+<p>日志类型：</p>
+<ol>
+<li><strong>Redo log</strong>（重做日志）： 是InnoDB存储引擎生成的日志，用于崩溃后修复数据，保证了事务的持久性。（重要）</li>
+<li><strong>Undo log</strong>（回滚日志）：是InnodDB存储引擎生成的日志。用于事务的回滚和MVCC，保证了事务的原子性。（重要）</li>
+<li><strong>Binary Log</strong>（二进制日志）：记录对数据的变更操作，用于主从复制，增量备份和数据恢复。（重要）</li>
+<li><strong>Error log</strong>（错误日志）： 帮助程序员调试和监控数据库错误。</li>
+<li><strong>Slow Query Log</strong>（慢查询日志） 记录慢查询，用于性能调优。</li>
+<li><strong>General Query Log</strong>（一般查询日志） 记录所有查询，用于调试和审计。</li>
+<li><strong>Relay Log</strong> （中继日志）支持主从复制，确保数据同步。</li>
+<li><strong>Transaction Log</strong> （事务日志）记录事务的整个过程，确保事务的原子性、一致性和持久性。</li>
+</ol>
+<p>区别：</p>
+<p><strong>Undo Log</strong></p>
+<p>回滚日志，通常用在 <strong>事务和MVCC</strong>， 用于在事务崩溃后的数据恢复（回滚操作）</p>
+<p>注意Undo log 不能保证持久性</p>
+<ul>
+<li>undo log 本身不强制在事务提交时写入磁盘</li>
+<li>如果系统崩溃可能导致undolog丢失</li>
+<li>undolog记录的是旧数据，无法用于恢复已提交事务的新数据</li>
+<li>提交事务后，undolog可能被清理。</li>
+</ul>
+<p>操作例子：</p>
+<ul>
+<li>假设有一个事务执行以下操作：<ol>
+<li>开始事务。</li>
+<li>更新一行数据，将 <code>name</code> 从 <code>Alice</code> 改为 <code>Bob</code>。</li>
+<li>删除一行数据。</li>
+<li>插入一行新数据。</li>
+</ol>
+</li>
+<li><strong>undo log 记录的内容</strong>：<ul>
+<li>更新操作：记录 <code>name</code> 的旧值 <code>Alice</code>。</li>
+<li>删除操作：记录被删除行的完整内容。</li>
+<li>插入操作：记录插入行的主键。</li>
+</ul>
+</li>
+<li><strong>回滚时</strong>：<ul>
+<li>根据 undo log 中的记录，InnoDB 会执行以下反向操作：<ol>
+<li>将 <code>name</code> 恢复为 <code>Alice</code>（反向 <code>UPDATE</code>）。</li>
+<li>重新插入被删除的行（反向 <code>DELETE</code>）。</li>
+<li>删除新插入的行（反向 <code>INSERT</code>）。</li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+<p>undo log 并不是同时记录两者，而是通过记录旧数据来实现反向操作</p>
+<p><strong>Redo log</strong></p>
+<p>重写日志，通常在提交事务之后</p>
+<p>作用：</p>
+<ol>
+<li><p>性能优化：</p>
+<ul>
+<li>事务提交时，MySQL并不会立即将修改的数据页写入磁盘（数据写入磁盘的方式是随机写，效率低），redolog是顺序写，效率高。</li>
+<li>随机写，分布位置不同，写效率低</li>
+<li>顺序写， 追加到日志尾，顺序写的性能高于随机写。</li>
+</ul>
+</li>
+<li><p>崩溃恢复：</p>
+<ul>
+<li><strong>数据页写入的延迟性</strong>：<ul>
+<li>事务提交时，数据可能还在内存<strong>（Buffer Pool）</strong>中，并没有立即写入磁盘。</li>
+<li>如果此时系统崩溃，内存中的数据会丢失，导致已提交的事务修改丢失。</li>
+</ul>
+</li>
+<li><strong>redo log 的作用</strong>：<ul>
+<li>redo log 记录了事务的所有修改操作，并且是 <strong>持久化到磁盘</strong> 的（顺序写，性能高）。</li>
+<li>即使系统崩溃，MySQL 在重启时可以通过 redo log 重做（redo）已提交的事务，确保数据不会丢失。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<blockquote>
+<p>注意： 事务提交之后并不会立即写入磁盘中，而是可能存在内存中，这时候数据崩溃，就会导致数据的丢失。</p>
+</blockquote>
+<p> <strong>Write-Ahead Logging (WAL)</strong></p>
+<p>数据页在写入磁盘之前，必须先将其修改记录到redolog中。</p>
+<p>保证数据页写入前的日志持久化，是数据库实现持久性和高性能的关键。</p>
+<blockquote>
+<p><strong>这里提一下</strong>： 无论是使不使用redo log，实际数据的写入都是随机的，但是redo log 的使用，可以将事务的提交信息顺序的记录到日志的尾部，之后数据页的写入可以延迟到后台进行，不影响执行的效率。 而不使用的话，则会在提交后，开始写入磁盘，影响执行效率。</p>
+</blockquote>
+<p>总结：</p>
+<ul>
+<li><strong>redo log 的核心作用</strong>：<ul>
+<li>将事务提交时的随机写转化为顺序写，提高性能。</li>
+<li>通过延迟数据页写入，减少随机写的频率。</li>
+<li>保证数据的持久性，即使系统崩溃，数据也不会丢失。</li>
+</ul>
+</li>
+</ul>
+<p><strong>3. Binary Log</strong></p>
+<p>二进制日志；</p>
+<ul>
+<li><strong>作用</strong>：Binary Log 主要用于记录数据库的所有更改操作（如插入、更新、删除），是 MySQL 用于复制（Replication）和数据恢复的重要日志。它并不记录事务的详细数据，而是记录对数据的修改操作。记录的是逻辑日志</li>
+</ul>
+<p>Buffer Poll 缓存区</p>
+<h2 id="day07"><a href="#day07" class="headerlink" title="day07"></a>day07</h2><h3 id="MySQL中事务的隔离级别有哪些？"><a href="#MySQL中事务的隔离级别有哪些？" class="headerlink" title="MySQL中事务的隔离级别有哪些？"></a>MySQL中事务的隔离级别有哪些？</h3><p><strong>读未提交</strong></p>
+<p>最低隔离级别，在事务中，可以读取未提交的数据，可能造成脏读，不可重复读，幻读</p>
+<p><strong>读已提交</strong></p>
+<p>在事务中，读取已经提交的数据，解决了脏读的问题，但是会出现不可重复读的问题。</p>
+<p><strong>可重复读</strong></p>
+<p>在这个级别下，确保在一个事务中的多个查询返回的结果是一致的，可以避免不可重复读问题，但是可能引发幻读。</p>
+<p><strong>串行化</strong></p>
+<p>在这个隔离级别下，保证了事务间的操作结果是一个单线程的操作，避免了所有并发问题，但是，会对性能造成很大的影响。</p>
+<h3 id="MySQL-默认的事务隔离级别是什么？为什么选择这个隔离级别"><a href="#MySQL-默认的事务隔离级别是什么？为什么选择这个隔离级别" class="headerlink" title="MySQL 默认的事务隔离级别是什么？为什么选择这个隔离级别"></a>MySQL 默认的事务隔离级别是什么？为什么选择这个隔离级别</h3><p>答：默认的隔离级别是RR，就是可重复读。</p>
+<p>原因是binlog的statement格式问题。</p>
+<p>binlog记录了原先是SQL语句，当处在ru和rc两种隔离级别下，会出现执行顺序的问题，会导致，主从不一致。</p>
+<h3 id="数据库的脏读，不可重复读，幻读分别是什么？"><a href="#数据库的脏读，不可重复读，幻读分别是什么？" class="headerlink" title="数据库的脏读，不可重复读，幻读分别是什么？"></a>数据库的脏读，不可重复读，幻读分别是什么？</h3><ul>
+<li>脏读： 一个事务读取到了另一个事务未提交的数据。</li>
+<li>不可重复读： 在同一事务中，读取同一数据的两次结果不一致（由于中间有其他事务的提交）。</li>
+<li>幻读： 在同一事务中，执行相同的查询操作，返回的结果集由于其他事务的插入而发生变化。</li>
+</ul>
+<h2 id="day08"><a href="#day08" class="headerlink" title="day08"></a>day08</h2><h3 id="MySQL中有哪些锁？"><a href="#MySQL中有哪些锁？" class="headerlink" title="MySQL中有哪些锁？"></a>MySQL中有哪些锁？</h3><p>mysql中有很多不同的锁，这里进行一些分类：</p>
+<p><strong>1. 粒度分类</strong></p>
+<ul>
+<li><strong>表级锁</strong>：开销较小，加锁快，避免死锁，并发度低，适合查询</li>
+<li><strong>行级锁</strong>： 开销大，加锁慢，可能出现死锁，并发度高，适合并发写，事务控制。</li>
+<li><strong>页面锁</strong>： 开销，加锁速度，并发度都介于表级锁与行级锁之间，可能出现死锁。</li>
+</ul>
+<p><strong>2. 按照加锁机制分类（逻辑上）</strong></p>
+<ul>
+<li>悲观锁： 认为并发及易发生，所以每次操作时无论读写都先对记录进行加锁，防止其他线程对数据进行修改</li>
+<li>乐观锁： 认为多个线程操作不会发生冲突，线程过来先去修改，如果没修改过或修改成功，修改过则失败或重试。</li>
+</ul>
+<p><strong>3. 兼容性分类</strong></p>
+<ul>
+<li><strong>共享锁（S读锁，shared locks）：</strong> 允许当前线程对共享资源加共享锁，其他线程可以读取，可以继续追加锁，但不能修改，不能追加排他锁。</li>
+<li><strong>排他锁（X写锁，exclusive locks）</strong>： 会锁住共享资源，其他线程不能读取也不能追加共享锁或排他锁。</li>
+</ul>
+<p><strong>4. 可见性分析</strong></p>
+<ul>
+<li>隐式锁： 数据库根据事务隔离级别和执行操作自动加的锁，不用用户去进行干预。</li>
+<li>显示锁： 用户指定的锁，通过SQL语句来进行控制。</li>
+</ul>
+<p><strong>5. 按锁模式划分</strong></p>
+<ul>
+<li><p>记录锁（Record lock): 锁定单个数据行的锁类型，是最精细的锁，会锁定某一行数据，防止其他事务对其进行修改。（行级锁）</p>
+</li>
+<li><p><strong>间隙锁（Gap lock）</strong>： 不是锁住具体的数据行，而是行之间的间隙，防止其他事务在改间隙中插入。（行级锁）</p>
+</li>
+<li><p><strong>临键锁（next-key 锁）</strong>： 是记录锁与间隙锁的结合，锁定某一行及其与下一行之间的间隙，防止其他事务对当前记录和改记录的范围进行修改或插入。（行级锁）</p>
+</li>
+<li><p>意向锁（IntentionLock）： <strong>表级锁</strong>的一种特殊类型，为更细力度的锁提供一个表示，避免其他事务在相同力度上加锁，避免冲突。分为（共享意向锁【IS】和独占意向锁【IX】)</p>
+<blockquote>
+<p>意向锁时一种标识，它的作用就是在上表级锁的时候，可以快速判断是否可以上锁，而不需要建立表中的所有记录。</p>
+</blockquote>
+</li>
+<li><p>插入意向锁（Insert Intention Lock）：一种特殊的意向锁，表示事务打算在某间隙插入一行数据。</p>
+</li>
+</ul>
+<p>元数据锁（Metadata Lock，MDL）： 用于保护数据库对象的元数据，防止在进行DDL操作时其他事务对这些对象进行修改。(表级锁)</p>
+<p>自增锁（Auto Increment Lock）： 在插入自增列时，加锁以保证自增值的唯一性，防止并发插入导致的冲突，通常在插入操作时被使用，以确保生成的自增id是唯一的。</p>
+<h4 id="间隙锁和临键锁时如何解决幻读问题的？"><a href="#间隙锁和临键锁时如何解决幻读问题的？" class="headerlink" title="间隙锁和临键锁时如何解决幻读问题的？"></a>间隙锁和临键锁时如何解决幻读问题的？</h4><p>数据id： 1 2 3 4 8 </p>
+<p>例如： select * from … where  id &gt;&#x3D; 4</p>
+<ol>
+<li>会在4位置加行级锁</li>
+<li>在8的位置加临键锁（锁住8 和 4到 8 的间隙）</li>
+<li>在8之后加临键锁</li>
+</ol>
+<p>目的： <strong>防止在该范围插入幻影数据</strong></p>
+<h3 id="MySQL的二阶段事务提交是什么？"><a href="#MySQL的二阶段事务提交是什么？" class="headerlink" title="MySQL的二阶段事务提交是什么？"></a>MySQL的二阶段事务提交是什么？</h3><p>涉及日志： <strong>redo log(重做日志） 和 binlog（二进制日志）</strong></p>
+<p>答：在事务提交时，MySQL会将事务分为二阶段提交</p>
+<p><strong>准备阶段（Prepare Phase）</strong>： 在准备阶段，将事务的提交信息写入redolog中，并将其标记为准备阶段，表示事务已经准备完成。</p>
+<p><strong>提交阶段（Commit Phase）</strong>： 在提交阶段， MySQL Server 会写入 binlog（记录用户的DML操作）。当完成binlog写入后，MySQL会通知InnoDB，将redo log状态改为commit，完成这个事务的提价。</p>
+<p><strong>目的</strong>： 保证redo log 和 binlog 之间的一致性，确保在数据崩溃恢复阶段，不会出现 <strong>数据丢失</strong> 或 <strong>数据不一致问题</strong>。</p>
+<h3 id="MySQL中如果发生死锁应该如何解决？"><a href="#MySQL中如果发生死锁应该如何解决？" class="headerlink" title="MySQL中如果发生死锁应该如何解决？"></a>MySQL中如果发生死锁应该如何解决？</h3><p><strong>1. 死锁自动检测机制</strong></p>
+<ul>
+<li>MySQL自带着死锁检测机制，当检测到死锁时，数据库会回滚其中一个事务。通常会回滚事务中持有最资源的那个。</li>
+</ul>
+<p><strong>2. 等待锁超时</strong></p>
+<p>获取锁的等待时间操作了这个阈值（50s），就释放锁，对事务回滚，解除死锁。</p>
+<p><strong>3. 通过kill来手动处理死锁</strong></p>
+<p>通过死锁日志定位发生死锁的事务，手动KILL死锁事务。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SHOW</span> ENGINE INNODB STATUS <span class="comment">-- 查看死锁日志</span></span><br><span class="line">kill 线程ID <span class="comment">-- 通过线程ID，手动KILL死锁事务</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>死锁的避免</strong></p>
+<ul>
+<li>避免大事务：大事务占据锁的时间长，可以尝试将大事务分解成小事务。降低死锁的概率。</li>
+<li>合理建立索引，减少加锁的范围： 命中索引会对该行上行锁；没有命中索引则会对整张表上表所，表锁的冲突概率大。</li>
+<li>更改数据库隔离级别：可重复度比读已提交多了间隙锁，临键锁，通过降低隔离级别，减少死锁概率</li>
+<li>开启死锁检测</li>
+</ul>
+<h2 id="day09"><a href="#day09" class="headerlink" title="day09"></a>day09</h2><h3 id="MySQL如何解决深度分页问题？"><a href="#MySQL如何解决深度分页问题？" class="headerlink" title="MySQL如何解决深度分页问题？"></a>MySQL如何解决深度分页问题？</h3><h4 id="什么是深度分页？"><a href="#什么是深度分页？" class="headerlink" title="什么是深度分页？"></a>什么是深度分页？</h4><p>深度分页是指在数据库查询过程中，使用分页查询时，由于分页较多，导致查询到后面数据遇到到的问题。</p>
+<p>具体情况：当查询的页数比较多时，分页行为会对前面的数据进行排序，走索引的话会造成多次回表操作，影响效率。</p>
+<p>造成的影响：</p>
+<ul>
+<li><strong>响应时间增加：</strong>随着分页深度的增加，查询所需要的时间也会增加，导致用户体验下降。</li>
+<li><strong>服务器资源消耗：</strong>深分页查询会消耗更多的CPU和内存资源，可能导致服务器性能瓶颈。</li>
+<li><strong>锁竞争和数据不一致：</strong>在并发环境下，长时间的查询可能导致锁竞争和数据不一致问题。</li>
+</ul>
+<h4 id="分析一下性能下降的原因"><a href="#分析一下性能下降的原因" class="headerlink" title="分析一下性能下降的原因"></a>分析一下性能下降的原因</h4><p>注意：<code>limit</code>是在构建结果集后，对数据丢弃处理的，所以需要先构建结果集。（会扫描每条数据，判断是否丢弃）</p>
+<p><strong>1. 索引扫描的局限性</strong></p>
+<ul>
+<li>全索引扫描：（查询结果集时）当<code>LIMIT</code>语句的<code>offset</code>值很大时，MySQL 可能需要执行全索引扫描来找到满足条件的记录。这意味着从索引的根节点开始，一直扫描到叶子节点，无论这些节点是否包含目标数据。</li>
+<li>索引跳跃性：（使用limit时） 即使是索引扫描，MySQL 也无法直接跳转到特定的<code>offset</code>位置。它必须从索引的开始位置顺序扫描，直到达到所需的位置。这种顺序扫描的过程是耗时的。</li>
+<li>回表开销：对于非聚簇索引，找到满足条件的索引记录后，MySQL 需要执行回表操作来获取完整的行数据。在深分页查询中，由于<code>offset</code>值大，这会导致大量的回表操作，从而增加 I&#x2F;O 开销。</li>
+</ul>
+<p><strong>2. 数据访问模式</strong></p>
+<ul>
+<li>随机IO</li>
+<li>缓存效率低下：数据量过大，可能导致缓存淘汰过快。</li>
+</ul>
+<p><strong>3. 锁和事务</strong></p>
+<p>在并发环境下，深度分页查询可能遇到的问题（由于执行时间过长造成的问题）</p>
+<ul>
+<li>长事务和锁竞争</li>
+<li>死锁风险</li>
+</ul>
+<h4 id="优化"><a href="#优化" class="headerlink" title="优化"></a>优化</h4><p><strong>1. 使用子查询</strong></p>
+<p>通过使用子查询，快速定位到id的起点位置，在通过回表来完成查询，<strong>减少了多次回表</strong>造成的随机IO。</p>
+<p><strong>2. 通过Inner Join（延迟关联策略）</strong></p>
+<p>先在二级索引中找到满足条件的id，在通过和表的内连接，找到对应的数据行。</p>
+<p><strong>底层原理：</strong></p>
+<ul>
+<li>通过在二级索引上快速找到满足条件的ID集合。</li>
+<li>使用INNER JOIN在主键索引上检索这些ID对应的数据，<strong>减少了回表次数</strong>。</li>
+</ul>
+<p><strong>3. 记录ID</strong></p>
+<p>在每次返回时，记录当前数据的最大id，下次查询时，只需要插叙 大于这个最大id的数据就行。</p>
+<p>注意： 此方法<strong>仅适用于连续查询</strong>，跳页无法生效。</p>
+<p><strong>4. 使用between…and</strong></p>
+<p><strong>策略描述：</strong> 使用<code>BETWEEN…AND…</code>来代替<code>LIMIT</code>，直接指定查询的范围。</p>
+<p><strong>底层原理：</strong></p>
+<ul>
+<li><code>BETWEEN…AND…</code>允许 MySQL 直接定位到查询的起始和结束点。</li>
+<li>减少了扫描的行数，提高了查询效率。</li>
+</ul>
+<h3 id="什么是MySQL的主从同步？如何实现？"><a href="#什么是MySQL的主从同步？如何实现？" class="headerlink" title="什么是MySQL的主从同步？如何实现？"></a>什么是MySQL的主从同步？如何实现？</h3><p><strong>用到的日志： binlog（二进制日志）， relay log（中继日志）</strong></p>
+<h4 id="什么是主从复制？作用"><a href="#什么是主从复制？作用" class="headerlink" title="什么是主从复制？作用"></a>什么是主从复制？作用</h4><p>MySQL主从复制是指数据可以从一个MySQL数据库服务器主节点复制到一个或多个从节点。MySQL默认采用 <strong>异步复制方式</strong>，这样从节点可以复制主数据库中所有数据库或特定数据库，或者特定表。</p>
+<p>MySQL支持的主从复制类型：</p>
+<ul>
+<li><strong>异步复制：</strong> 主库不需要等待从库的响应（性能较高，数据一致性低）</li>
+<li><strong>同步复制：</strong> 主库等待所有从库确认收到数据（性能差，数据一致性高）</li>
+<li><strong>半同步复制：</strong>主库等待至少一个从库确认收到数据（折中，数据一致性高）</li>
+</ul>
+<p><strong>作用</strong></p>
+<ul>
+<li><strong>数据备份</strong>：确保数据安全，做数据的备份，slave作为后备数据库，主数据库服务器故障后，可以切换到从数据库继续工作，避免数据的丢失。</li>
+<li><strong>性能提升：</strong> 提升IO性能，随着业务的增大，IO访问频率增大，但库无法满足性能效率，通过多库的存储，有效的增加了IO访问的频率，减轻了单机的压力。</li>
+<li><strong>读写分离：</strong> 将写操作放到master数据库，读操作放到slave数据库，实现读写分离，减轻了数据库的访问压力。</li>
+</ul>
+<h4 id="主从同步的原理"><a href="#主从同步的原理" class="headerlink" title="主从同步的原理"></a>主从同步的原理</h4><p>原理图：</p>
+<p><img src="https://pic1.imgdb.cn/item/67bfd0bad0e0a243d4067f84.png"></p>
+<p><img src="C:\Users\Lenovo\AppData\Roaming\Typora\typora-user-images\image-20250227104140364.png" alt="image-20250227104140364"></p>
+<ol>
+<li>master 服务器将数据的改变写入 <code>binlog</code>日志中</li>
+<li>salve 服务器会在一定时间间隔内对 master 二进制日志进行探测是否有变化，若发生改变， 会开启一个IO Thread 请求master 的binlog事件</li>
+<li>主节点为每个IO线程启动一个dump线程，用于向其发送二进制事件，并保存在本地中继日志（relay log）中，从节点将启动SQL线程从中继日志中读取二进制日志，在本地进行重放，使得其数据库和主节点保持一致，最后IO Thread和SQL Thread将进入睡眠，等待下一次唤醒。</li>
+</ol>
+<p><strong>涉及线程</strong></p>
+<p>主库：<strong>Binlog_Dump Thread</strong> -&gt; 发送binlog给从库</p>
+<p>从库： <strong>SLAVE_IO_THREAD</strong> -&gt; 请求主库的binlog，并将得到的<strong>binlog</strong>写入到本地的<strong>relay log</strong>中。（定期向主库发送请求，判断是否有binlog更新，轮询）</p>
+<p><strong>SLAVE_SQL_THREAD</strong> -&gt; 读取 中继日志 ，解析成sql语句进行执行，更新到 slave 的数据中。</p>
+<p><strong>注意点：</strong></p>
+<ul>
+<li>每个slave只有一个master</li>
+<li>每个slave只能有一个唯一的服务器ID</li>
+<li>每个master可以有多个slave</li>
+<li>master一定开启binlog二进制日志功能；通常为了数据库安全考虑，slave也要开启binlog</li>
+</ul>
+<h4 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h4><ol>
+<li>主库宕机后，可能导致数据丢失<ul>
+<li>MySQL 默认异步复制，写入binlog并发送后，不需要等待响应，一旦主库宕机，可能导致主库宕机。</li>
+<li>使用 半同步复制（等待至少一个从库）</li>
+<li>缺点： 性能稍微降低，网络异常会卡主主库。</li>
+</ul>
+</li>
+<li>从库的SQL线程是<strong>单线程</strong>，或从库有大量的查询时，主从复制可能导致延迟。（可以尝试使用并行复制）</li>
+</ol>
+<h3 id="如何处理MySQL中的主从同步延迟问题？"><a href="#如何处理MySQL中的主从同步延迟问题？" class="headerlink" title="如何处理MySQL中的主从同步延迟问题？"></a>如何处理MySQL中的主从同步延迟问题？</h3><blockquote>
+<p>主从同步问题无法避免，但可以降低延迟时间</p>
+</blockquote>
+<ul>
+<li>二次查询： 从库查询不到数据时，在去主库进行查询，防止主从同步的数据不一致问题</li>
+<li>强制主库操作： 把写后立即读的操作固定走主库。</li>
+<li>按业务分区： 关键业务都走主库，从库采用读写分离的方式。</li>
+<li>使用缓存： 主库写入后同步到缓存，查询先查缓存以避开延迟问题，可能会出现缓存数据一致性问题。</li>
+</ul>
+<p>优化硬件：</p>
+<ul>
+<li>优化网络：确保主从节点稳定</li>
+<li>提高从服务器性能：增加硬件的资源处理能力</li>
+<li>并行复制：利用MySQL并行复制功能提升效率，减少延迟。</li>
+</ul>
+<h3 id="其他-关于union-和-union-all"><a href="#其他-关于union-和-union-all" class="headerlink" title="其他 关于union 和 union all"></a>其他 关于union 和 union all</h3><p>在 SQL 中，<code>UNION</code> 和 <code>UNION ALL</code> 是用于<strong>合并多个查询结果集的操作符</strong>。它们的主要区别在于是否去重。以下是它们的详细对比：</p>
+<h3 id="1-UNION"><a href="#1-UNION" class="headerlink" title="1. UNION"></a><strong>1. UNION</strong></h3><ul>
+<li><p><strong>功能</strong>：</p>
+<ul>
+<li>合并多个查询的结果集，并去除重复的行。</li>
+</ul>
+</li>
+<li><p><strong>语法</strong>：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> column1, column2 <span class="keyword">FROM</span> table1</span><br><span class="line"><span class="keyword">UNION</span></span><br><span class="line"><span class="keyword">SELECT</span> column1, column2 <span class="keyword">FROM</span> table2;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>特点</strong>：</p>
+<ul>
+<li>结果集中的每一行都是唯一的。</li>
+<li>会对结果集进行排序和去重操作，因此性能较低。</li>
+</ul>
+</li>
+<li><p><strong>适用场景</strong>：</p>
+<ul>
+<li>当需要合并多个查询结果，并且希望去除重复数据时使用。</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> name <span class="keyword">FROM</span> employees</span><br><span class="line"><span class="keyword">UNION</span></span><br><span class="line"><span class="keyword">SELECT</span> name <span class="keyword">FROM</span> managers;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>如果 <code>employees</code> 表和 <code>managers</code> 表中有相同的 <code>name</code>，<code>UNION</code> 会只保留一个。</p>
+</li>
+</ul>
+<h3 id="2-UNION-ALL"><a href="#2-UNION-ALL" class="headerlink" title="2. UNION ALL"></a><strong>2. UNION ALL</strong></h3><ul>
+<li><strong>功能</strong>：<ul>
+<li>合并多个查询的结果集，但不去除重复的行。</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> column1, column2 <span class="keyword">FROM</span> table1</span><br><span class="line"><span class="keyword">UNION</span> <span class="keyword">ALL</span></span><br><span class="line"><span class="keyword">SELECT</span> column1, column2 <span class="keyword">FROM</span> table2;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>特点</strong>：<ul>
+<li>结果集中可能包含重复的行。</li>
+<li>不会对结果集进行排序和去重操作，因此性能较高。</li>
+</ul>
+</li>
+<li><strong>适用场景</strong>：<ul>
+<li>当需要合并多个查询结果，并且不需要去除重复数据时使用。</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> name <span class="keyword">FROM</span> employees</span><br><span class="line"><span class="keyword">UNION</span> <span class="keyword">ALL</span></span><br><span class="line"><span class="keyword">SELECT</span> name <span class="keyword">FROM</span> managers;</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-UNION-和-UNION-ALL-的区别"><a href="#3-UNION-和-UNION-ALL-的区别" class="headerlink" title="3. UNION 和 UNION ALL 的区别"></a><strong>3. UNION 和 UNION ALL 的区别</strong></h3><table>
+<thead>
+<tr>
+<th align="left">特性</th>
+<th align="left">UNION</th>
+<th align="left">UNION ALL</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><strong>去重</strong></td>
+<td align="left">去除重复行</td>
+<td align="left">不去除重复行</td>
+</tr>
+<tr>
+<td align="left"><strong>性能</strong></td>
+<td align="left">较低（需要排序和去重）</td>
+<td align="left">较高（无需排序和去重）</td>
+</tr>
+<tr>
+<td align="left"><strong>结果集大小</strong></td>
+<td align="left">结果集较小（去重后）</td>
+<td align="left">结果集较大（包含所有行）</td>
+</tr>
+<tr>
+<td align="left"><strong>适用场景</strong></td>
+<td align="left">需要去重的场景</td>
+<td align="left">不需要去重的场景<strong>3. UNION 和 UNION ALL 的区别</strong></td>
+</tr>
+</tbody></table>
+<h3 id="4-使用注意事项"><a href="#4-使用注意事项" class="headerlink" title="4. 使用注意事项"></a><strong>4. 使用注意事项</strong></h3><ol>
+<li><strong>列数和数据类型</strong>：<ul>
+<li><code>UNION</code> 和 <code>UNION ALL</code> 要求每个查询的列数和数据类型必须一致。</li>
+<li>如果列数不一致或数据类型不匹配，会导致错误。（注意： 列数和类型必须一样）</li>
+</ul>
+</li>
+<li><strong>排序</strong>：<ul>
+<li>如果需要对最终结果集排序，可以在最外层使用 <code>ORDER BY</code>。</li>
+</ul>
+</li>
+</ol>
+<h3 id="5-总结"><a href="#5-总结" class="headerlink" title="5. 总结"></a><strong>5. 总结</strong></h3><ul>
+<li>**<code>UNION</code>**：合并结果集并去重，适合需要去重的场景。</li>
+<li>**<code>UNION ALL</code>**：合并结果集但不去重，性能更高，适合不需要去重的场景。</li>
+<li>根据实际需求选择合适的操作符，并注意列数和数据类型的匹配。</li>
+</ul>
+<h2 id="day10"><a href="#day10" class="headerlink" title="day10"></a>day10</h2><h3 id="Redis-中常见的数据类型包括哪些？"><a href="#Redis-中常见的数据类型包括哪些？" class="headerlink" title="Redis 中常见的数据类型包括哪些？"></a>Redis 中常见的数据类型包括哪些？</h3><p>Redis中常见的数据类型包括： String、list、hash、Set、ZSet（也叫sort set）</p>
+<p><strong>String</strong></p>
+<p>字符串，最基本的数据类型，一个key对应一个value，value不仅可以是字符串，还可以是数字（整数或浮点数）。字符串类型是二进制安全的，这意味着可以包含任何数据类型，比如图片、序列化后的对象，最大大小为512MB</p>
+<p><strong>应用场景</strong></p>
+<ul>
+<li>缓存： 存储临时数据，比如用户对话，页面缓存。</li>
+<li>计数器： 用于统计访问量，点赞数等信息，可以通过原子操作增加或减少。</li>
+</ul>
+<p><strong>Hash</strong></p>
+<p>Redis 哈希是一个包含键值对的无序列表，哈希特别适合存储对象，每个哈希可以存储 2^32-1 个键值对。Redis内部使用Hash表实现。</p>
+<p><strong>使用场景：</strong> 常用来存储对象，如商品的相关属性</p>
+<p><strong>List</strong></p>
+<p>Redis列表是简单的字符串列表，按照插入顺序排序，可以在列表的头部（左边）或尾部（右边）添加元素，支持两端的推入和弹出。</p>
+<p><strong>使用场景：</strong> </p>
+<ul>
+<li>消息队列： 用于简单的任务调度，消息传递场景。</li>
+<li>历史消息记录： 存储用户的历史操作记录，便于快速访问。</li>
+</ul>
+<p><strong>Set</strong></p>
+<p>Redis 的集合是一个无序的字符串集合，集合中的每个元素都是唯一的。集合中的元素没有重复，并且不保证顺序，支持快速查找和去重。</p>
+<p><strong>使用场景：</strong></p>
+<ul>
+<li>标签系统： 为用户添加兴趣标签，将这些标签存储在一个集合中，通过集合的操作可以方便地进行标签的添加、删除和查询。</li>
+<li>唯一用户集合：访问过某个页面的唯一用户，方便进行分析</li>
+</ul>
+<p><strong>ZSet</strong></p>
+<p>有序集合，类似于集合，但是每个集合都有一个分数，用于排序，底层使用跳表实现，支持快速排序。</p>
+<p><strong>应用场景:</strong> </p>
+<ul>
+<li>排行榜：存储用户的分数，并且根据分数进行实时排行</li>
+<li>任务调度：根据任务优先级进行排序。</li>
+</ul>
+<p>以下是不常用的数据类型。</p>
+<p><strong>BitMap</strong></p>
+<p>位图， 不是一种独立的数据结构，而是在字符串类型的基础上定义的按位操作，它通过一个二进制数组类表示数据，每个元素对应一个二级制位，适合用来保存布尔值，或表示某一个状态。</p>
+<p>用户签到，统计活跃用户状态</p>
+<p><strong>HypeLogLog</strong></p>
+<p>是一种<strong>用于估算集合基数（集合中不重复元素的数量）的数据结构</strong>。它使用极小的内存空间来实现对海量数据的基数估算，具有很高的空间效率。处理大规模数据的去重和计数。</p>
+<p> <strong>GEO</strong></p>
+<p>是Redis提供的一种用于存储地理位置信息的数据结构，可以存储经纬度信息并支持空间查询</p>
+<p><strong>Stream</strong></p>
+<p>Stream是Redis提供的一种日志数据结构，适合于存储时间序列数据或消息流。支持高效的消息和消费模式，具有持久和序列化特性。</p>
+<h3 id="Redis为什么那么快？"><a href="#Redis为什么那么快？" class="headerlink" title="Redis为什么那么快？"></a>Redis为什么那么快？</h3><p>主要在三个方面，存储形式、线程和IO、数据结构</p>
+<ul>
+<li>存储形式：Redis是内存存储的，比起其他数据库，内存存储的速度会更快。</li>
+<li>线程和IO: Redis采用了单线程的读写操作，避免的上线文切换的开销，通过对客户端连接采用了多路IO复用，可以同时监听多个客户端，提升了效率。</li>
+<li>数据类型： Redis采用了高效的数据类型，这些数据类型经过优化，能够快速完成各种操作。</li>
+</ul>
+<h3 id="Redis为什么设计单线程？6-0为何又引入了多线程？"><a href="#Redis为什么设计单线程？6-0为何又引入了多线程？" class="headerlink" title="Redis为什么设计单线程？6.0为何又引入了多线程？"></a>Redis为什么设计单线程？6.0为何又引入了多线程？</h3><h4 id="Redis的系统观"><a href="#Redis的系统观" class="headerlink" title="Redis的系统观"></a>Redis的系统观</h4><p>从应用维度： 缓存使用，集群运用，数据结构的巧妙运用</p>
+<p>从系统维度：</p>
+<ul>
+<li>高性能： 线程模型，网络IO模型，数据结构，持久化机制；</li>
+<li>高可用：主从复制，哨兵机制；</li>
+<li>高拓展： Cluster 分片集群</li>
+</ul>
+<h4 id="Redis快的原因"><a href="#Redis快的原因" class="headerlink" title="Redis快的原因"></a>Redis快的原因</h4><ul>
+<li>Redis是基于内存操作的，需要的时候需要我们手动持久化到内存中。</li>
+<li>Redis高效数据结构，对数据的操作也比较简单</li>
+<li>Redis是单线程模型，从而避开了多线程的上下文频繁切换操作和锁的使用。</li>
+<li>使用到了多路IO复用，非阻塞IO。</li>
+</ul>
+<h4 id="关于多线程"><a href="#关于多线程" class="headerlink" title="关于多线程"></a>关于多线程</h4><p>注意：这里的多线程是指 <strong>针对网络请求过程使用多线程，其数据读写命令的处理依旧是使用单线程</strong></p>
+<p>Redis使用了IO多路复用，非阻塞 IO，使用了单线程来轮询描述符，将数据库的开、关、读、写都转换成了事件，Redis 采用自己实现的事件分离器，效率比较高。</p>
+<h4 id="这里是一些概念："><a href="#这里是一些概念：" class="headerlink" title="这里是一些概念："></a>这里是一些概念：</h4><h5 id="多路复用"><a href="#多路复用" class="headerlink" title="多路复用"></a><strong>多路复用</strong></h5><p>多路复用是一种IO模型，允许一个线程同时监听多个文件描述符，在某个文件描述符就绪时进行处理</p>
+<p><strong>核心思想</strong>：</p>
+<ul>
+<li>使用功能一个线程管理多个IO模型，避免为每个连接创建单独的线程。</li>
+<li>通过事件驱动的方式，高效处理大量并发连接。</li>
+</ul>
+<p><strong>优点</strong>：</p>
+<ul>
+<li><strong>资源占用少</strong>：只需要一个线程即可管理多个连接，减少了线程创建和上下文切换的开销。</li>
+<li><strong>高并发</strong>：适合处理大量并发连接（如网络服务器）。</li>
+<li><strong>简单性</strong>：避免了多线程的复杂性（如锁竞争、线程同步）。</li>
+</ul>
+<p><strong>缺点</strong>：</p>
+<ul>
+<li><strong>CPU 密集型任务不适用</strong>：多路复用适合 I&#x2F;O 密集型任务，但如果任务是 CPU 密集型的，单线程会成为性能瓶颈。</li>
+<li><strong>编程复杂度较高</strong>：需要处理事件循环和回调逻辑。</li>
+</ul>
+<h4 id="多线程"><a href="#多线程" class="headerlink" title="多线程"></a>多线程</h4><p>多线程是指在一个进程中创建多个线程，每个线程可以独立执行工作。线程之间共享进程的内存空间，但每个线程有自己的栈和寄存器。</p>
+<p><strong>核心思想</strong>：</p>
+<ul>
+<li>通过并行执行多个线程来提高程序的并发性能。</li>
+<li>每个线程可以处理一个独立的任务或连接。</li>
+</ul>
+<p><strong>优点</strong>：</p>
+<ul>
+<li><strong>并行计算</strong>：适合 CPU 密集型任务，可以充分利用多核 CPU 的性能。</li>
+<li><strong>直观性</strong>：每个线程独立处理一个任务，逻辑清晰。</li>
+</ul>
+<p><strong>缺点</strong>：</p>
+<ul>
+<li><strong>资源占用高</strong>：每个线程都需要占用内存和 CPU 资源，线程过多会导致资源耗尽。</li>
+<li><strong>复杂性</strong>：需要处理线程同步、锁竞争、死锁等问题。</li>
+<li><strong>上下文切换开销</strong>：线程切换会消耗 CPU 资源。</li>
+</ul>
+<h4 id="总结："><a href="#总结：" class="headerlink" title="总结："></a>总结：</h4><ul>
+<li><strong>多路复用</strong>：适合 I&#x2F;O 密集型任务，资源占用少，适合高并发场景。</li>
+<li><strong>多线程</strong>：适合 CPU 密集型任务，可以充分利用多核 CPU 的性能。</li>
+</ul>
+<h2 id="day11"><a href="#day11" class="headerlink" title="day11"></a>day11</h2><h3 id="跳表的实现原理是什么？"><a href="#跳表的实现原理是什么？" class="headerlink" title="跳表的实现原理是什么？"></a>跳表的实现原理是什么？</h3><h4 id="什么是跳跃表？"><a href="#什么是跳跃表？" class="headerlink" title="什么是跳跃表？"></a>什么是跳跃表？</h4><p>对于一个单链表来讲，即便链表中的存储是有序的，如果需要查找某个元素的时候，也只能从头到尾遍历。这样查找效率就会很低，时间复杂度会很高，这个时候，可以尝试在链表上建立索引，每几个结点之间提取一个结点到上一级，作为索引。</p>
+<p><img src="https://pic1.imgdb.cn/item/679c374ad0e0a243d4f8ba4e.png"></p>
+<p>在次建立，</p>
+<p><img src="https://pic1.imgdb.cn/item/679c3776d0e0a243d4f8ba50.png"></p>
+<p>通过建立索引的方式，提高查找效率，是一种空间换取时间的方式。</p>
+<p><strong>像这种链表施加多级索引的方式，提高查询效率，这是一种通过空间换取时间的方式。</strong></p>
+<blockquote>
+<p>跳跃表主要是通过 <strong>多层链表实现</strong>， 底层链表	保存所有元素，而每一层链表都是下一层的子集</p>
+</blockquote>
+<p><strong>关于插入</strong></p>
+<p>在插入时， 首先从最高层开始查找插入位置，然后随机决定新节点的层数，最后在相应的层中插入节点并更新指针。</p>
+<p>例： 在三级索引插入数据时，会在第一二层里面插入相同的数据，从上往下。（最多的层数在Redis5.0中是64，在Redis7.0中是32）</p>
+<p><strong>关于删除</strong></p>
+<p>删除时，同样从最高层查找要删除的节点，并在各层中更新指针，以保证跳表的结构。</p>
+<p><strong>关于查找</strong></p>
+<p>查找时，从最高层开始，逐层向下，直到找到目标元素或确定元素不存在。查找效率高，时间复杂度为O（logn）</p>
+<h4 id="为什么Redis跳表实现了多个回退指针？"><a href="#为什么Redis跳表实现了多个回退指针？" class="headerlink" title="为什么Redis跳表实现了多个回退指针？"></a>为什么Redis跳表实现了多个回退指针？</h4><p>回退指针主要是 <strong>为了提高跳表的操作效率和灵活性</strong></p>
+<p>结构：</p>
+<p>注意：只有最底层是双向链表，其他层都是单向链表。</p>
+<p><strong>最底层：</strong></p>
+<ul>
+<li>这一层包含了所有节点，是一个完整的有序链表</li>
+<li>每个节点有一个 <strong>回退指针</strong>，因此这一层是一个双向链表</li>
+</ul>
+<p><strong>其它层：</strong></p>
+<ul>
+<li>每一层都是一个单向链表，节点通过 <strong>前进指针</strong>指向下一个节点</li>
+<li>高层链表是底层的快速通道，分配层级时，越高的层级概率越低</li>
+<li>高层链表没有回退指针</li>
+</ul>
+<p>实现原因：</p>
+<p><strong>设计目的</strong>：</p>
+<ul>
+<li>跳表的主要目标是实现高效的查找、插入和删除操作，而这些操作主要依赖于<strong>高层的前进指针</strong>来实现快速跳跃。</li>
+<li>最底层的双向链表主要用于支持<strong>范围查询</strong>或<strong>从后向前遍历</strong>，但这些操作的使用频率较低，因此不需要在高层实现双向链表。</li>
+</ul>
+<p><strong>空间效率</strong>：</p>
+<ul>
+<li>如果每一层都实现双向链表，会增加额外的指针（回退指针），导致空间复杂度更高。</li>
+<li>跳表的设计在空间和时间效率之间做了权衡，只有最底层实现双向链表，既满足了功能需求，又减少了空间开销。</li>
+</ul>
+<p><strong>功能需求</strong>：</p>
+<ul>
+<li>高层链表的主要作用是加速查找，单向链表已经足够。</li>
+<li>最底层的双向链表主要用于支持一些特殊操作（如逆序遍历），而这些操作通常只需要在最底层完成。</li>
+</ul>
+<p><strong>结构代码</strong></p>
+<p>c语言：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">zskiplistNode</span> &#123;</span></span><br><span class="line">    robj *obj;                      <span class="comment">// 节点存储的对象</span></span><br><span class="line">    <span class="type">double</span> score;                   <span class="comment">// 节点的分数（用于排序）</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">zskiplistNode</span> *<span class="title">backward</span>;</span> <span class="comment">// 回退指针（仅在最底层使用）</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">zskiplistLevel</span> &#123;</span></span><br><span class="line">        <span class="class"><span class="keyword">struct</span> <span class="title">zskiplistNode</span> *<span class="title">forward</span>;</span> <span class="comment">// 前进指针（每一层都有）</span></span><br><span class="line">        <span class="type">unsigned</span> <span class="type">int</span> span;            <span class="comment">// 跨度（用于计算排名）</span></span><br><span class="line">    &#125; level[];                       <span class="comment">// 柔性数组，表示节点的层</span></span><br><span class="line">&#125; zskiplistNode;</span><br></pre></td></tr></table></figure>
+
+<h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a><strong>总结</strong></h4><ul>
+<li><strong>最底层（第 0 层）是双向链表</strong>，支持双向遍历。</li>
+<li><strong>高层（第 1 层及以上）是单向链表</strong>，仅支持单向遍历。</li>
+<li>这种设计既满足了跳表的功能需求，又保证了空间效率。跳表的每一层并不是独立的双向链表，而是一个多层链表的组合结构。</li>
+</ul>
+<h3 id="Redis中的Hash"><a href="#Redis中的Hash" class="headerlink" title="Redis中的Hash"></a>Redis中的Hash</h3><p>Redis的hash是一种键值对集合，可以将多个字段和值存储在一个键中，便于管理一些关联数据。通常用来存储对象的键值对。</p>
+<p><strong>数据结构</strong></p>
+<p>Hash类型的底层数据结构7.0版本之前是由紧凑列表和哈希表组成，在此之前都是压缩列表和哈希表实现：</p>
+<ul>
+<li>哈希类型元素个数  小于  hash-max-ziplish-entiries（512）</li>
+<li>哈希的key值大小（总大小） 小于 64</li>
+</ul>
+<p>以上条件成立的时候，Redis使用压缩列表或紧凑列表作为底层数据结构。</p>
+<p>如果不满足其一，则使用哈希表</p>
+<p><strong>注意：当列表转化成为hashtable时，便会一直使用hashtable，不会在退化。</strong></p>
+<p><strong>关于紧凑列表（listpack） 和 压缩列表（ziplist）</strong></p>
+<p>他们的结构类似数组，是由多个连续的内存块组成的。（通过偏移量计算来遍历数据）</p>
+<p><strong>压缩列表</strong></p>
+<p>压缩列表式Redis早起引入的一种紧凑型数据结构，用于存储小型列表，哈希表或有序集合。它的特点是将多个元素连续存储在一块连续的内存中，以减少内存碎片和提高内存利用率。</p>
+<p><strong>紧凑列表</strong></p>
+<p>紧凑列表是Redis 7.0引入的一种新的紧凑型数据结构，用于替代压缩列表。它的设计目标是解决压缩列表的一些缺陷，同时保持高效的内存利用率。</p>
+<p><strong>区别</strong></p>
+<img src="https://pic1.imgdb.cn/item/67c278b9d0e0a243d4087fbb.png" alt="image.png">
+
+<p><strong>渐进式rehash</strong></p>
+<blockquote>
+<p>就是一点点地扩容，而不是直接一次性完成扩容。</p>
+</blockquote>
+<p>hashtable的结构中保存着两张表，一张是用来存储hashtable数据的表，另一张则是一张空表。</p>
+<p>当触发扩容时</p>
+<ol>
+<li><p>首先为表2分配空间，新表的大小是第一大于等于原表的二次方幂。设置字典的标识，rehash的索引值从-1变成0</p>
+</li>
+<li><p>数据开始实现转移。每次对hahs记性增删改查是，都会将当前rehashidx的数据在哈希表1迁移到2上，然后rehashidx+1， 所以迁移的过程是分多次，渐进式完成的。</p>
+<p>注意：插入数据会直接插入到2表中。</p>
+</li>
+<li><p>随着操作不断执行，最终哈希表1的数据都会别迁移到哈希表2中，这个时候，进行指针互换。并将表2设置成空表，渐进式rehash的过程就完成了。</p>
+</li>
+</ol>
+<h3 id="ZSet的实现原理"><a href="#ZSet的实现原理" class="headerlink" title="ZSet的实现原理"></a>ZSet的实现原理</h3><p>有序集合，由 <code>跳表</code> 和 <code>哈希表</code> 组成。</p>
+<blockquote>
+<p>注意： Zset元素数量较少时，Redis会使用压缩列表来节省空间。</p>
+</blockquote>
+<ul>
+<li>跳表： 用于存储数据的排序和快速查找</li>
+<li>哈希表： 用于存储成员和其分数的映射，提供快速查找。</li>
+</ul>
+<p>编码选择：</p>
+<p><img src="https://pic1.imgdb.cn/item/679c3c62d0e0a243d4f8bab8.png"></p>
+<h4 id="明明跳表中已经存储了member和score了，为什么还需要hashtable？"><a href="#明明跳表中已经存储了member和score了，为什么还需要hashtable？" class="headerlink" title="明明跳表中已经存储了member和score了，为什么还需要hashtable？"></a>明明跳表中已经存储了member和score了，为什么还需要hashtable？</h4><p> <strong>哈希表的结构</strong>：</p>
+<ul>
+<li>哈希表的键（key）是元素的值（<code>member</code>）。</li>
+<li>哈希表的值（value）是元素的分值（<code>score</code>）</li>
+</ul>
+<p>作用： </p>
+<ol>
+<li><ul>
+<li><strong>优化查找性能</strong>：<ul>
+<li>哈希表的 O(1) 查找性能比跳表的 O(n) 查找性能更好。</li>
+<li>在实际应用中，<code>ZSCORE</code> 操作（查找某个 <code>member</code> 的 <code>score</code>）是非常常见的，哈希表可以显著提升这种操作的性能。</li>
+</ul>
+</li>
+<li><strong>避免重复设计</strong>：<ul>
+<li>哈希表的主要作用是快速查找 <code>score</code>。</li>
+</ul>
+</li>
+<li><strong>空间换时间</strong>：<ul>
+<li>哈希表虽然会占用额外的内存空间，但它带来的性能提升是非常值得的。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<p> <strong>跳表的结构</strong>：</p>
+<ul>
+<li>元素的值（<code>member</code>）。</li>
+<li>元素的分值（<code>score</code>）。</li>
+<li>多层指针，用于快速跳跃。</li>
+</ul>
+<p>作用：</p>
+<p>维护了元素的有序性，支持范围查找和排名操作。</p>
+<h4 id="总结；"><a href="#总结；" class="headerlink" title="总结；"></a>总结；</h4><ul>
+<li><strong>跳表</strong> 用于维护元素的有序性，支持范围查询和排名操作。</li>
+<li><strong>哈希表</strong> 用于快速查找 <code>score</code>，时间复杂度为 O(1)。</li>
+<li>虽然跳表中已经存储了 <code>member</code> 和 <code>score</code>，但哈希表的存在是为了优化查找性能，避免在跳表中进行低效的线性查找。</li>
+<li>这种设计是典型的 <strong>空间换时间</strong> 策略，通过额外的内存开销换取更高的性能。</li>
+</ul>
+<h2 id="day12"><a href="#day12" class="headerlink" title="day12"></a>day12</h2><h3 id="Redis如何保证缓存和数据库的一致性"><a href="#Redis如何保证缓存和数据库的一致性" class="headerlink" title="Redis如何保证缓存和数据库的一致性"></a>Redis如何保证缓存和数据库的一致性</h3><h4 id="数据库的一致性"><a href="#数据库的一致性" class="headerlink" title="数据库的一致性"></a>数据库的一致性</h4><ul>
+<li>缓存中有数据，必须和数据库中数据相同</li>
+<li>缓存中没有数据，数据库中数据必须是最新的。</li>
+</ul>
+<p>不符合这两种情况的，就是缓存和数据库不一致。</p>
+<p>当缓存的读写模式不一样时，缓存数据不一致发生的情况一样。</p>
+<p><strong>1. redis作为读写缓存</strong></p>
+<p>对于读写缓存来说，如果对数据库进行增删改查，就需要在缓存中进行，同时还需要根据需求采取写回策略，决定是否同步写回到数据库中。</p>
+<ul>
+<li>**同步只写策略： **写缓存时，同步写回数据库，保证缓存和数据库的一致性（写时必须保证缓存和数据库更新的原子性）（可以采取分布式锁，来保证并发状态下的不一致性问题）</li>
+<li><strong>异步写回策略：</strong> 写缓存时不同步写回数据库，等到数据库从缓存中淘汰时，在写回数据库。（缺点：若缓存还未写回数据库，缓存就发生了故障，会导致数据库没有更新数据）</li>
+</ul>
+<p>总结: 想要保证缓存和数据库的一致性，就要使用同步直写策略，需要保证缓存和数据库同时更新（原子性），在实现业务时，通常使用事务的机制来保证。</p>
+<p><strong>2. redis作为只读缓存</strong></p>
+<p>只读缓存操作：</p>
+<ul>
+<li>如果需要添加数据，就会直接写入数据库</li>
+<li>当数据修改时，需要把只读缓存中的数据标记为无效<ul>
+<li>这样，在对数据进行增删改时，因为缓存中没有数据，就会发生缓存缺失</li>
+<li>这时，就需要通过读取数据库来获取数据，并写入缓存。之后访问数据时，就可以直接从缓存中读取。</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>注意： 在删除数据更新缓存时，也需要保证原子性。</p>
+</blockquote>
+<p>在更新数据库时，需要对缓存进行删除操作（只读缓存）</p>
+<p>为保证缓存和数据库一致性</p>
+<p><strong>重试机制：</strong>可以把要删除的缓存值或要更新的数据库值暂存到消息队列中。当应用没有能够成功的删除缓存或数据库时，可以从消息队列读取这些值，然后再次更新。成功，取出，失败，多次尝试，不然报错。</p>
+<p><strong>两种数据不一致的情况</strong></p>
+<p><strong>1. 先删除缓存，在更新数据库</strong></p>
+<p>可能出现，在跟新数据库时，并发的其他线程读取数据库旧值，并将旧值重新写入缓存，导致缓存数据库不一致。</p>
+<p>解决： 可以让线程1在完成数据库更新后sleep一段时间，然后再次删除redis中的缓存。</p>
+<blockquote>
+<p>休眠是保证线程2完成了对缓存的写入，然后线程1对缓存进行删除</p>
+<p>因为这个方案会在第一次删除缓存值后，延迟一段时间再次进行删除，所以我们也把它叫做“<strong>延迟双删</strong>”。</p>
+</blockquote>
+<p><strong>2. 先更新数据库，在删除缓存</strong></p>
+<p>在线程1更新数据库时，线程二读取到了缓存中的旧值。导致数据不一致。</p>
+<p>不过缓存存在时间极短，如果其他线程并发读缓存的请求不多，那么，就不会有很多请求请求到旧值。对于业务影响较小。基本可以忽略。</p>
+<p>总结：</p>
+<ul>
+<li>对于读写缓存来说，如果我们采用同步写回策略，可以保证缓存和数据库的一致性。</li>
+<li>对于只读缓存，有两种导致数据库不一致<ul>
+<li>删除缓存和更新数据库失败导致的数据不一致，可以通过重试机制确保删除或更新操作成功。</li>
+<li>同步更新，可以先更新数据库在删除缓存，（若先删除缓存在更新数据库，可以通过<strong>延迟双删</strong>的方式来保证）</li>
+</ul>
+</li>
+</ul>
+<h3 id="Redis中的缓存击穿、缓存雪崩和缓存穿透？"><a href="#Redis中的缓存击穿、缓存雪崩和缓存穿透？" class="headerlink" title="Redis中的缓存击穿、缓存雪崩和缓存穿透？"></a>Redis中的缓存击穿、缓存雪崩和缓存穿透？</h3><p>缓存击穿： 一个热点信息过期，导致大量请求请求数据库，导致数据库过载</p>
+<ul>
+<li>解决： 定期更新热点信息，把热点信息设置成永远存在。采用<strong>互斥锁</strong>，防止多个请求同时访问数据库，采用<strong>懒加载</strong><ul>
+<li>懒加载： 通常指，在使用某个数据时，在加载到数据库中。</li>
+<li>热点数据永不过期</li>
+</ul>
+</li>
+</ul>
+<p>缓存穿透： 访问一个缓存中不存在的数据，导致多次访问数据库</p>
+<ul>
+<li>解决： 对于多次访问不存在的信息时，可以缓存一个空值到redis中，防止访问数据库。或<strong>布隆过滤。</strong></li>
+</ul>
+<p>缓存雪崩：大量的缓存数据同时过期，导致多个请求同时访问数据库，导致数据库过载</p>
+<ul>
+<li>解决： 可以把缓存设置不同的过期时间（TTL)，防止同一时间多个数据更新。可以采用预加载策略，提前把可能过期的数据进行加载。</li>
+<li>使用双缓存策略，将数据同时存储在两层缓存中，减少数据库直接请求。</li>
+</ul>
+<h3 id="Redis-String-类型的底层实现是什么？"><a href="#Redis-String-类型的底层实现是什么？" class="headerlink" title="Redis String 类型的底层实现是什么？"></a>Redis String 类型的底层实现是什么？</h3><p>String，是redis中的基本数据类型，可以存储任意类型的数据，比如文本，数字，图片或序列化的对象的等等。</p>
+<p>注意： 一个String类型可以存储512MB的数据。</p>
+<h4 id="底层实现"><a href="#底层实现" class="headerlink" title="底层实现"></a>底层实现</h4><p>底层实现是 <strong>SDS（simple dynamic string)</strong> ，翻译为<strong>简单动态字符</strong>。它是一个动态字符串结构，由<strong>长度，空闲空间和字节数组</strong>三部分组成。</p>
+<p>SDS的三种编码类型：</p>
+<ul>
+<li>embstr： 占用64Bytes的空间，存储44Bytes</li>
+<li>raw： 存储大于44Bytes的数据</li>
+<li>int： 存储整数类型</li>
+</ul>
+<h2 id="day13"><a href="#day13" class="headerlink" title="day13"></a>day13</h2><h3 id="如何实现分布式锁？"><a href="#如何实现分布式锁？" class="headerlink" title="如何实现分布式锁？"></a>如何实现分布式锁？</h3><h4 id="为什么要使用分布式锁？"><a href="#为什么要使用分布式锁？" class="headerlink" title="为什么要使用分布式锁？"></a>为什么要使用分布式锁？</h4><p>在分布式系统中，多个服务实例可能会并发访问共享资源，导致资源竞争和数据一致性问题。例如，在秒杀场景下：</p>
+<ul>
+<li>如果多个用户同时请求库存仅为1的商品，未加锁会导致超卖。</li>
+<li>分布式锁可以保证同一时刻只有一个线程或进程操作共享资源，从而避免并发问题。</li>
+</ul>
+<p>注意：分布式锁是分布式环境下的并发控制机制，确保某资源同一时刻仅能被一个资源使用。</p>
+<h4 id="什么是分布式锁呢？"><a href="#什么是分布式锁呢？" class="headerlink" title="什么是分布式锁呢？"></a>什么是分布式锁呢？</h4><p><strong>两种方式：</strong></p>
+<ul>
+<li>单个Redis实例下：<code>SET NX PX + 重试 + Lua脚本</code></li>
+<li>Redis集群模式下，采用Redlock</li>
+</ul>
+<p>这里着重讨论单个Redis实例下实现分布式锁</p>
+<p>Redis实现分布式锁的核心是利用提供的原子操作命令，例如 set 和 nx（仅在键不存在时使用）和ex（是指键的过期时间），来实现加锁和解锁。</p>
+<p>加锁</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SET lock_key unique_value NX PX 3000</span><br></pre></td></tr></table></figure>
+
+<p>为保证解锁的操作删除的是指定加锁的客户端，需要判断加锁客户端并实现删锁。一般借助Lua脚本实现。</p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">// 释放锁时，先比较 unique_value 是否相等，避免锁的误释放</span><br><span class="line"><span class="keyword">if</span> redis.call(<span class="string">&quot;get&quot;</span>,KEYS[<span class="number">1</span>]) == ARGV[<span class="number">1</span>] <span class="keyword">then</span></span><br><span class="line">  <span class="keyword">return</span> redis.call(<span class="string">&quot;del&quot;</span>,KEYS[<span class="number">1</span>])</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h5 id="关键点"><a href="#关键点" class="headerlink" title="关键点"></a>关键点</h5><ul>
+<li><strong>互斥性</strong>： 通过 <code>SET NX</code> 保证同一时刻只能有一个客户端获取锁。</li>
+<li><strong>避免死锁:</strong> 为锁设置过期时间（如 <code>px</code> 参数），防止客户端崩溃导致锁无法释放。</li>
+<li><strong>防止误删</strong>: 通过唯一标识（UUID）确保只有持有锁的客户端才能释放锁。</li>
+<li><strong>操作原子性</strong>: 加锁和解释删除操作必须是原子性，避免并发问题。解锁是可以使用Lua脚本保证原子性操作。</li>
+</ul>
+<h4 id="秒杀场景下实现分布式锁"><a href="#秒杀场景下实现分布式锁" class="headerlink" title="秒杀场景下实现分布式锁"></a>秒杀场景下实现分布式锁</h4><p><strong>数据库层面</strong></p>
+<ol>
+<li><p>数据库层面解决，查询商品库存的时候，加排他锁。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> stock <span class="keyword">FROM</span> goods <span class="keyword">WHERE</span> id <span class="operator">=</span> xxxx <span class="keyword">for</span> <span class="keyword">update</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>更新数据库时，减去库存的时候，进行库存限制，防止超卖。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">UPDATE</span> goods <span class="keyword">SET</span> stock <span class="operator">=</span> stock <span class="operator">-</span> <span class="number">1</span> <span class="keyword">WHERE</span> id <span class="operator">=</span> xxx <span class="keyword">AND</span> stock <span class="operator">&gt;</span> <span class="number">0</span>;</span><br></pre></td></tr></table></figure></li>
+</ol>
+<p><strong>引入分布式锁</strong></p>
+<ol>
+<li>保证同一时间内仅有一个客户端获取到锁执行秒杀购买操作，但是由于分布式锁会导致串行化处理，没有办法同时处理同一个商品的大量下单请求。</li>
+</ol>
+<p><strong>利用Redis的INCR和DECR的原子性 + 异步队列</strong></p>
+<ol>
+<li>初始化时将商品的库存数量加载到Redis中</li>
+<li>接收到秒杀请求时，Redis先预先减库存 DECR，如果预减库存不足时，直接返回秒杀失败。</li>
+<li>将秒杀请求放到异步队列中，返回秒杀提示</li>
+<li>服务端消费者消费队列中的秒杀信息，取出信息秒杀商品入库生成订单并扣除金额，若成功，响应客户端。</li>
+<li>客户端进行轮询，一旦得到响应，则返回秒杀成功并且显示秒杀详细。</li>
+</ol>
+<h3 id="Redis的Red-Lock-是什么？-你了解吗？"><a href="#Redis的Red-Lock-是什么？-你了解吗？" class="headerlink" title="Redis的Red Lock 是什么？ 你了解吗？"></a>Redis的Red Lock 是什么？ 你了解吗？</h3><p><strong>Redis中的常用部署方式</strong></p>
+<ul>
+<li>单机模式</li>
+<li>主从模式</li>
+<li>哨兵模式</li>
+<li>集群模式</li>
+</ul>
+<p>当我们使用redis时： 一般会采用主从集群+哨兵的模式部署，哨兵的作用就是监测redis的节点的运行状态，普通的主从模式当master崩溃时，需要手动切换让slave成为master，使用主从+哨兵结合的好处在于，当master异常宕机是，哨兵可以实现故障的自动切换，把slave切换成master，继续提升服务，以此保证可用性。</p>
+<p>当master宕机时，若锁设置还未同步到slave上，可能导致锁丢失，无法保证进程的安全。</p>
+<p><strong>解决</strong></p>
+<p><strong>集群模式+Redlock实现高可靠的分布式锁</strong></p>
+<p>为了避免redis实例故障导致的锁无法工作的问题，Redis的开发者 Antirez 提出来分布式锁算法 Redlock。</p>
+<p>Redlock算法的基本思路，是<strong>让客户端与多个独立的Redis实例依次请求加锁，如果客户端能够和半数以上的实例成功的完成加锁操作，那么我们就认为，客户端成功的获取了分布式锁，否则加锁失败</strong>。</p>
+<p>Redlock的实现需要在redis的集群模式下，无哨兵结点， </p>
+<p>步骤</p>
+<ol>
+<li>客户端获取当前时间</li>
+<li>给每个redis加锁，设置超时时间，过了直接跳过这个redis。</li>
+<li>完成整个加锁后，客户端计算整个加锁时间。</li>
+</ol>
+<p><strong>满足加锁成功的两个条件</strong></p>
+<ul>
+<li>客户端超过半数加锁成功</li>
+<li>客户端获取锁的总耗时，没有超过锁的过期时间。</li>
+</ul>
+<blockquote>
+<p>目的： 只要存在的节点占大多数，那么整个系统就可以提供正常工作。</p>
+</blockquote>
+<p>满足以上两个条件之后</p>
+<p><strong>重新计算这把锁的有效时间，计算的结果是锁的最初有效时间减去客户端为获取锁的总耗时。如果锁的有效时间已经来不及完成共享数据的操作了，我们可以释放锁，以免出现还没完成共享资源操作，锁就过期了的情况</strong>。</p>
+<p>若为满足</p>
+<p><strong>当然，如果客户端在和所有实例执行完加锁操作后，没能同时满足这两个条件，那么，客户端就要向所有Redis节点发起释放锁的操作。</strong></p>
+<h3 id="Redis实现分布式锁时可能遇到的问题有哪些？"><a href="#Redis实现分布式锁时可能遇到的问题有哪些？" class="headerlink" title="Redis实现分布式锁时可能遇到的问题有哪些？"></a>Redis实现分布式锁时可能遇到的问题有哪些？</h3><p>问题</p>
+<ul>
+<li>redis宕机导致的死锁问题（保证加锁设设置过期时间的原子性）</li>
+<li>未执行完操作锁过期（可以设置较长的过期时间，或设置守护进程，随时检测，快过期时增加过期时间，看门狗）</li>
+<li>删除的不是自己的锁（在释放锁时，先检测是否是自己的锁在进行删除，检测和删除必须保证原子性Lua)</li>
+<li>主从集群+哨兵模式下的锁失效（采用redlock解决，集群模式）</li>
+</ul>
+<h2 id="day14"><a href="#day14" class="headerlink" title="day14"></a>day14</h2><h3 id="Redis的持久化机制有哪些？"><a href="#Redis的持久化机制有哪些？" class="headerlink" title="Redis的持久化机制有哪些？"></a>Redis的持久化机制有哪些？</h3><h3 id="Redis的主从复制实现原理是什么？"><a href="#Redis的主从复制实现原理是什么？" class="headerlink" title="Redis的主从复制实现原理是什么？"></a>Redis的主从复制实现原理是什么？</h3><h3 id="Redis数据过期后的删除策略是什么？"><a href="#Redis数据过期后的删除策略是什么？" class="headerlink" title="Redis数据过期后的删除策略是什么？"></a>Redis数据过期后的删除策略是什么？</h3><h2 id="day15"><a href="#day15" class="headerlink" title="day15"></a>day15</h2><h3 id="如何解决Redis中的热点key问题？"><a href="#如何解决Redis中的热点key问题？" class="headerlink" title="如何解决Redis中的热点key问题？"></a>如何解决Redis中的热点key问题？</h3><h3 id="Redis集群的实现原理是什么？"><a href="#Redis集群的实现原理是什么？" class="headerlink" title="Redis集群的实现原理是什么？"></a>Redis集群的实现原理是什么？</h3><h3 id="Redis中的Big-Key问题是什么？如何解决？"><a href="#Redis中的Big-Key问题是什么？如何解决？" class="headerlink" title="Redis中的Big Key问题是什么？如何解决？"></a>Redis中的Big Key问题是什么？如何解决？</h3><h2 id="day16"><a href="#day16" class="headerlink" title="day16"></a>day16</h2><h3 id="单例模式有几种实现？如何保证线程安全？"><a href="#单例模式有几种实现？如何保证线程安全？" class="headerlink" title="单例模式有几种实现？如何保证线程安全？"></a>单例模式有几种实现？如何保证线程安全？</h3><p>对于单例模式的理解：一个类只能创建一个对象（或实例)，那这个类就是一个单例类，这种设计模式就叫做单例模式。（主要关注与对象的创建过程）</p>
+<p><strong>常见的单例模式</strong></p>
+<ul>
+<li><strong>饿汉式：</strong> 实例在类加载时就创建，线程安全，但是如果实例初始化比价重或没有被使用就会浪费资源。</li>
+<li><strong>懒汉式：</strong> 实例在首次访问时创建，节省资源，但需要确保线程安全。</li>
+<li><strong>双重检查锁定：</strong> 在懒汉模式基础上进行优化，在第一次检查实例为空时加锁。</li>
+<li><strong>静态内部类：</strong> 利用类加载机制实现懒加载和现场安全，推荐使用。</li>
+<li><strong>枚举单例（Java）：</strong> 通过实现实例，简单防止反射和序列化攻击。</li>
+</ul>
+<h4 id="关于懒汉式解决线程安全问题"><a href="#关于懒汉式解决线程安全问题" class="headerlink" title="关于懒汉式解决线程安全问题"></a>关于懒汉式解决线程安全问题</h4><p><strong>懒汉式</strong>：在首次访问资源时，加载</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//懒汉式单例类.在第一次调用的时候实例化自己 </span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Singleton</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="title function_">Singleton</span><span class="params">()</span> &#123;&#125;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span>  Singleton single=<span class="literal">null</span>;</span><br><span class="line">    <span class="comment">//静态工厂方法 </span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> Singleton <span class="title function_">getInstance</span><span class="params">()</span> &#123;</span><br><span class="line">         <span class="keyword">if</span> (single == <span class="literal">null</span>) &#123;  </span><br><span class="line">             single = <span class="keyword">new</span> <span class="title class_">Singleton</span>();</span><br><span class="line">         &#125;  </span><br><span class="line">        <span class="keyword">return</span> single;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在多线程环境下，可能出现出现线程安全问题，例如实例的多次创建</p>
+<p>可以尝试对<code>getInstance</code> 方法加锁</p>
+<p>方式一：在方法上加锁</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">synchronized</span> Singleton <span class="title function_">getInstance</span><span class="params">()</span> &#123;</span><br><span class="line">         <span class="keyword">if</span> (single == <span class="literal">null</span>) &#123;  </span><br><span class="line">             single = <span class="keyword">new</span> <span class="title class_">Singleton</span>();</span><br><span class="line">         &#125;  </span><br><span class="line">        <span class="keyword">return</span> single;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>缺点：</p>
+<ul>
+<li>每次调用 <code>getInstance（）</code> 方法都要加锁，影响的运行效率，实际上只需要在第一次创建时加锁就能避免这种方式。</li>
+</ul>
+</blockquote>
+<p>方式二：在方法内部加锁</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> Singleton <span class="title function_">getInstance</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (singleton == <span class="literal">null</span>) &#123;  </span><br><span class="line">            <span class="keyword">synchronized</span> (Singleton.class) &#123;  </span><br><span class="line">               <span class="keyword">if</span> (singleton == <span class="literal">null</span>) &#123;  </span><br><span class="line">                  singleton = <span class="keyword">new</span> <span class="title class_">Singleton</span>(); </span><br><span class="line">               &#125;  </span><br><span class="line">            &#125;  </span><br><span class="line">        &#125;  </span><br><span class="line">        <span class="keyword">return</span> singleton; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<ul>
+<li>减少了加锁范围，避免了每次获取实例时都要加锁。</li>
+</ul>
+</blockquote>
+<p><code>volatile</code> 是 Java 中的一个关键字，用于修饰变量，主要作用是确保变量的可见性和禁止指令重排序。它在多线程编程中非常重要，尤其是在处理共享变量时。</p>
+<ul>
+<li><strong>可见性</strong>： <code>volatile</code> 保证了变量的可见性。当一个线程修改了一个 <code>volatile</code> 变量的值，这个新值会立即被写入主内存，而不是仅仅保存在线程的本地缓存中。其他线程在读取这个变量时，会直接从主内存中获取最新的值，而不是使用本地缓存中的旧值。</li>
+<li><strong>禁止指令重排序：</strong> <code>volatile</code> 还禁止了指令重排序。编译器或处理器可能会对指令进行重排序以优化性能，但这种重排序在多线程环境下可能会导致问题。<code>volatile</code> 关键字确保了对该变量的读写操作不会被重排序。</li>
+</ul>
+<p><strong>双重检查锁</strong></p>
+<p>类似于方法二，需要在变量上加 <code>volatile</code></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Singleton</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">volatile</span> Singleton instance; <span class="comment">// 就是这里</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="title function_">Singleton</span><span class="params">()</span> &#123;&#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> Singleton <span class="title function_">getInstance</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (instance == <span class="literal">null</span>) &#123;</span><br><span class="line">            <span class="keyword">synchronized</span> (Singleton.class) &#123;</span><br><span class="line">                <span class="keyword">if</span> (instance == <span class="literal">null</span>) &#123;</span><br><span class="line">                    instance = <span class="keyword">new</span> <span class="title class_">Singleton</span>();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> instance;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h4 id="静态内部类"><a href="#静态内部类" class="headerlink" title="静态内部类"></a>静态内部类</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Singleton</span> &#123;  </span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">class</span> <span class="title class_">LazyHolder</span> &#123;  <span class="comment">// 静态内部类</span></span><br><span class="line">       <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">Singleton</span> <span class="variable">INSTANCE</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Singleton</span>();  <span class="comment">// 通过static final来修饰</span></span><br><span class="line">    &#125;  </span><br><span class="line">    <span class="keyword">private</span> <span class="title function_">Singleton</span> <span class="params">()</span>&#123;&#125;  </span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> Singleton <span class="title function_">getInstance</span><span class="params">()</span> &#123;  </span><br><span class="line">       <span class="keyword">return</span> LazyHolder.INSTANCE;  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;  </span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>通过静态内部类来创建，静态常量，在类加载时创建</p>
+<p>特点： 延迟加载，线程安全，利用类加载机制实现，推荐使用。</p>
+<h4 id="枚举单例"><a href="#枚举单例" class="headerlink" title="枚举单例"></a>枚举单例</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 枚举单例模式</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">enum</span> <span class="title class_">EnumSingle</span> &#123;</span><br><span class="line"></span><br><span class="line">    INSTANCE;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> EnumSingle <span class="title function_">getInstance</span><span class="params">()</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> INSTANCE;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>特点： 不会被反射破坏。</p>
+<h3 id="什么是策略模式？一般用在什么场景？"><a href="#什么是策略模式？一般用在什么场景？" class="headerlink" title="什么是策略模式？一般用在什么场景？"></a>什么是策略模式？一般用在什么场景？</h3><p>策略模式： 是一种行为设计模式，它允许在运行时，选择算法的行为。策略模式定义了一系列算法，并将每一个算法封装起来，使他们可以互相替换，。策略模式使得算法可以独立于使用它的客户端而变化。</p>
+<p>定义思想：</p>
+<p>策略模式的核心思想是将算法的定义与使用分离。通过将算法封装在独立的类中，客户端可以在运行时根据需要选择不同的策略，而不需要修改客户端的代码。</p>
+<p>结构：</p>
+<ul>
+<li><strong>策略接口（Strategy Interface）</strong>：定义所有支持的算法或行为的公共接口。</li>
+<li><strong>具体策略类（Concrete Strategy）</strong>：实现策略接口，提供具体的算法或行为。</li>
+<li><strong>上下文类（Context）</strong>：持有一个策略对象的引用，并通过策略接口与具体策略类进行交互。</li>
+</ul>
+<h4 id="适用场景"><a href="#适用场景" class="headerlink" title="适用场景"></a>适用场景</h4><ul>
+<li>多种算法可互换：需要动态选择算法，例如排序算法。</li>
+<li>避免条件语句： 通过策略模式替代代码中大量的 if-else 或 switch语句</li>
+<li>与上下文独立：客户端不需要知道具体的算法实现细节，只需要依赖抽象策略。</li>
+</ul>
+<h3 id="什么是模版方法模式？一般用在什么场景？"><a href="#什么是模版方法模式？一般用在什么场景？" class="headerlink" title="什么是模版方法模式？一般用在什么场景？"></a>什么是模版方法模式？一般用在什么场景？</h3><p><strong>模版模式：</strong> 是一种行为设计模式，它定义了一个算法框架，并允许子类在不改变算法结构的情况下重新定义某些步骤。模板模式通过将算法的通用部分放在父类中，而将可变的部分留给子类来实现，从而实现了代码的复用和扩展。</p>
+<p>定义思想：</p>
+<p>模板模式的核心思想是将一个算法的结构固定下来，而将其中一些步骤的具体实现延迟到子类中。这样，父类可以控制算法的流程，而子类可以灵活地实现具体的步骤。</p>
+<p>结构：</p>
+<ul>
+<li><strong>抽象类（Abstract Class）</strong>：定义算法的框架，并包含一些抽象方法或钩子方法，这些方法由子类实现。</li>
+<li><strong>具体类（Concrete Class）</strong>：实现抽象类中的抽象方法，完成算法中特定步骤的具体实现。</li>
+</ul>
+<p>特点：</p>
+<ul>
+<li><strong>代码复用</strong>：将算法的通用部分放在父类中，避免了代码重复。</li>
+<li><strong>扩展性</strong>：子类可以通过实现抽象方法来扩展算法的具体步骤，而不需要修改算法的结构。</li>
+<li><strong>控制流程</strong>：父类控制算法的流程，子类只需关注具体的实现细节。</li>
+</ul>
+<h4 id="适用场景-1"><a href="#适用场景-1" class="headerlink" title="适用场景"></a>适用场景</h4><ul>
+<li>当一个算法的步骤是固定的，但某些步骤的具体实现可能不同时。</li>
+<li>当需要在多个类中复用相同的算法框架时。</li>
+<li>当需要控制子类的扩展方式，确保子类遵循特定的算法结构时</li>
+</ul>
+<h2 id="day17"><a href="#day17" class="headerlink" title="day17"></a>day17</h2><h3 id="谈谈你最常用的设计模式，并说一下使用场景"><a href="#谈谈你最常用的设计模式，并说一下使用场景" class="headerlink" title="谈谈你最常用的设计模式，并说一下使用场景"></a>谈谈你最常用的设计模式，并说一下使用场景</h3><p>常见的设计模式包括，单例模式，简单工厂模式，策略模式，模版模式</p>
+<p>单例模式：保证系统中一个对象只能有一个实例，如全局配置，连接池等</p>
+<p>策略模式： 封装一组算法让他们之间能够互相替代，能够有效避免if else，如用户选择支付策略。</p>
+<p>模版模式： 提炼核心流程封装成一个模版方法，如支付逻辑中支付，前置和后置检查是公用，让子类实现即可，调用父类支付方法将流程整合。</p>
+<p>简单工厂：获取不同对象是可以使用，将对象的创建逻辑抽离复用。</p>
+<p>外观模式： 为子系统提供一组统一接口，隐藏内部细节，方便子系统使用。</p>
+<h3 id="好的代码应该具备什么？"><a href="#好的代码应该具备什么？" class="headerlink" title="好的代码应该具备什么？"></a>好的代码应该具备什么？</h3><p>我认为好的代码必须条理清晰，结构间接，并且互相之间分工明确，不相影响。</p>
+<p>总结来讲就是：</p>
+<ol>
+<li>良好的扩展性</li>
+<li>易读性</li>
+<li>实现代码复用</li>
+<li>良好的可维护性</li>
+<li>简洁性</li>
+<li>各种命名规范</li>
+<li>减少硬代码</li>
+</ol>
+<h3 id="工厂模式和抽象工厂模式有什么区别？"><a href="#工厂模式和抽象工厂模式有什么区别？" class="headerlink" title="工厂模式和抽象工厂模式有什么区别？"></a>工厂模式和抽象工厂模式有什么区别？</h3><p>工厂模式<strong>关注的是创建单一类型对象</strong>，定义一个抽象方法，由子类实现具体对象的实例（单个）</p>
+<p>抽象工厂模式 <strong>关注的是创建一族相关对象</strong>， 提供一个接口来创建一组相关的或相互依赖的对象，而无需指定他们的具体类。（一些列相关）</p>
+<p><strong>适用场景</strong></p>
+<ul>
+<li><strong>工厂模式</strong>：适用于创建单一产品对象的场景。例如，一个日志记录器工厂可以创建文件日志记录器或数据库日志记录器。</li>
+<li><strong>抽象工厂模式</strong>：适用于创建一系列相关或依赖的产品对象的场景。例如，一个跨平台的UI组件工厂可以创建Windows风格的按钮和文本框，或者Mac风格的按钮和文本框。</li>
+</ul>
+<blockquote>
+<p>注意：Spring使用的是工厂模式，虽然管理多个Bean，但是这些 Bean 之间并不一定具有相关性或依赖性。（不是抽象工厂）</p>
+</blockquote>
+<h2 id="day18"><a href="#day18" class="headerlink" title="day18"></a>day18</h2><h3 id="HTTP-是什么？"><a href="#HTTP-是什么？" class="headerlink" title="HTTP 是什么？"></a>HTTP 是什么？</h3><h4 id="HTTP概述"><a href="#HTTP概述" class="headerlink" title="HTTP概述"></a>HTTP概述</h4><p>HTTP（超文本传输协议）是一种用于分布式，协作式，超媒体信息系统的应用层协议。它是万维网（www）数据通讯的基础，设计目的是确保客户端和服务器之间的通信。</p>
+<h4 id="HTTP工作原理"><a href="#HTTP工作原理" class="headerlink" title="HTTP工作原理"></a>HTTP工作原理</h4><p>HTTP基于<strong>客户端-服务器模型</strong>，客户端（通常是Web浏览器）向服务端发送请求，服务器收到请求后，返回相应的资源。这些资源可以是网页，图像，音频文件、视频等。</p>
+<p><strong>请求响应模型</strong></p>
+<ul>
+<li><strong>建立连接:</strong>  客户端与服务器之间建立连接，通常是基于TCP&#x2F;IP协议。</li>
+<li><strong>发送请求：</strong> 客户端向服务器发送请求，请求中包含要访问的资源的URL、请求方法、请求头以及可选的请求体。</li>
+<li><strong>处理请求：</strong> 服务器接受到请求后，根据请求中的信息找到相应的资源，执行相应的处理操作。</li>
+<li><strong>发送响应：</strong> 服务器将处理后的结果封装在响应中，并将其发送会客户端。</li>
+<li><strong>关闭连接：</strong> 在完成请求和响应周期后，客户端和服务器之间的连接可以被关闭。</li>
+</ul>
+<p><strong>HTTP的方法：</strong></p>
+<p>HTTP指定了客户端可以对服务器上的资源执行哪些动作。主要的HTTP方法：</p>
+<ul>
+<li>GET：请求从服务器获取指定资源</li>
+<li>POST： 请求服务器接受并处理请求体中的数据，通常用于表单提交。</li>
+<li>PUT： 请求服务器存储一个资源，并用请求体中的内容替换目标资源的所有内容。</li>
+<li>DELETE:  请求服务器删除指定的资源。</li>
+</ul>
+<h3 id="常见的-HTTP-状态码有哪些？"><a href="#常见的-HTTP-状态码有哪些？" class="headerlink" title="常见的 HTTP 状态码有哪些？"></a>常见的 HTTP 状态码有哪些？</h3><p><strong>1XX</strong>: <strong>信息性状态码</strong></p>
+<ul>
+<li>100 Contionue： 客户端应继续发送请求</li>
+<li>101 Switching Protocols： 服务器要求客户端切换协议；</li>
+</ul>
+<p><strong>2XX: 成功状态码</strong></p>
+<ul>
+<li>200 OK： 请求成功</li>
+<li>201 Created： 请求已成功并创建了新的资源。</li>
+<li>204 No Content: 服务器成功处理了请求，但没有返回任何信息</li>
+</ul>
+<p><strong>3XX: 重定向状态码</strong></p>
+<ul>
+<li>301 Moved Permanently：资源的URL已永久更改，需要更新链接。</li>
+<li>302 Found：资源的URL临时性更改。</li>
+<li>304 Not Modified：客户端缓存的资源仍然有效，无需重新传输。</li>
+</ul>
+<p><strong>4XX： 客户端错误状态码</strong></p>
+<ul>
+<li>400 Bad Request：服务器无法理解请求的语法。</li>
+<li>403 Forbidden：服务器拒绝请求。</li>
+<li>404 Not Found：请求的资源不存在。</li>
+</ul>
+<p><strong>5XX: 服务器错误状态码</strong></p>
+<ul>
+<li>500 Internal Server Error：服务器遇到了意外情况。</li>
+<li>503 Service Unavailable：服务器当前无法处理请求</li>
+</ul>
+<h3 id="HTTP请求包含哪些内容？-请求头和请求体有哪些内容？"><a href="#HTTP请求包含哪些内容？-请求头和请求体有哪些内容？" class="headerlink" title="HTTP请求包含哪些内容？ 请求头和请求体有哪些内容？"></a>HTTP请求包含哪些内容？ 请求头和请求体有哪些内容？</h3><p>请求行， 请求头， 请求体</p>
+<p>请求头：</p>
+<ul>
+<li>Host： url地址中的主机</li>
+<li>User-Agent：客户端的信息描述（我是谁？）</li>
+<li>Content-Type： 请求体的消息格式</li>
+</ul>
+<p>请求体：表单数据</p>
+<h3 id="GET和POST区别是什么？"><a href="#GET和POST区别是什么？" class="headerlink" title="GET和POST区别是什么？"></a>GET和POST区别是什么？</h3><ul>
+<li>get 是HTTP协议中的一种请求方式，主要用于服务获取信息</li>
+<li>post 是HTTP协议中的一种请求方式，主要用于向服务器发送数据</li>
+</ul>
+<p><strong>区别</strong></p>
+<ul>
+<li><strong>传输方式不同</strong>， get请求方式数据被包含在URL中，数据在网络上以明文的形式传输，数据量小；post数据存放在请求体里面，可以传输数据量大。</li>
+<li><strong>数据量大小不同：</strong> get小，浏览器对长度有限制；post理论上没有限制，大。</li>
+<li><strong>安全性不同：</strong> 由于get请求在URL中是可见的，不安全，不适合传输敏感信息。post方法的数据在请求体中，相对较为安全</li>
+<li><strong>幂等性不同：</strong> get方法是幂等的，也就是说多次请求同一个URL，服务器的状态不会改变。而post方法不是幂等的，每次请求可能得到不同的结果。</li>
+<li><strong>缓存方式不同：</strong> get方法通常可以被浏览器缓存，而post方法无法缓存。</li>
+</ul>
+<h2 id="day19"><a href="#day19" class="headerlink" title="day19"></a>day19</h2><h3 id="HTTP1-0和2-0有什么区别？"><a href="#HTTP1-0和2-0有什么区别？" class="headerlink" title="HTTP1.0和2.0有什么区别？"></a>HTTP1.0和2.0有什么区别？</h3><p>主要区别如下：</p>
+<p><strong>1. 连接管理</strong></p>
+<ul>
+<li><strong>HTTP&#x2F;1.0</strong>：每个请求都需要建立和关闭一个独立的TCP连接，增加了延迟和资源消耗。</li>
+<li><strong>HTTP&#x2F;2.0</strong>：支持多路复用，允许在单个TCP连接上同时发送多个请求和响应，减少了连接开销。</li>
+</ul>
+<p><strong>2. 多路复用</strong></p>
+<ul>
+<li><strong>HTTP&#x2F;1.0</strong>：请求和响应必须按顺序处理，容易导致队头阻塞。</li>
+<li><strong>HTTP&#x2F;2.0</strong>：通过多路复用，请求和响应可以并行处理，避免了队头阻塞，提升了性能。</li>
+</ul>
+<p><strong>3. 二进制格式</strong></p>
+<ul>
+<li><strong>HTTP&#x2F;1.0</strong>：使用文本格式传输数据，解析效率较低。</li>
+<li><strong>HTTP&#x2F;2.0</strong>：采用二进制格式，解析更高效，减少了错误。</li>
+</ul>
+<p> <strong>4.头部压缩</strong></p>
+<ul>
+<li><strong>HTTP&#x2F;1.0</strong>：每次请求和响应都发送完整的头部信息，增加了开销。</li>
+<li><strong>HTTP&#x2F;2.0</strong>：使用HPACK压缩头部，减少了数据传输量。</li>
+</ul>
+<p><strong>5. 服务器推送</strong></p>
+<ul>
+<li><strong>HTTP&#x2F;1.0</strong>：服务器只能响应客户端请求。</li>
+<li><strong>HTTP&#x2F;2.0</strong>：服务器可以主动推送资源，减少客户端请求次数，提升加载速度。</li>
+</ul>
+<p><strong>6. 流控制</strong></p>
+<ul>
+<li><strong>HTTP&#x2F;1.0</strong>：缺乏流控制机制。</li>
+<li><strong>HTTP&#x2F;2.0</strong>：支持流控制，允许客户端和服务器管理数据流，优化资源使用。</li>
+</ul>
+<p><strong>7. 优先级</strong></p>
+<ul>
+<li><strong>HTTP&#x2F;1.0</strong>：无优先级机制。</li>
+<li><strong>HTTP&#x2F;2.0</strong>：允许为请求设置优先级，确保重要资源优先传输。</li>
+</ul>
+<h3 id="HTTP2-0和3-0区别"><a href="#HTTP2-0和3-0区别" class="headerlink" title="HTTP2.0和3.0区别"></a>HTTP2.0和3.0区别</h3><p>HTTP&#x2F;2.0 和 HTTP&#x2F;3.0 的主要区别在于底层传输协议和性能优化。以下是它们的核心差异：</p>
+<p><strong>1. 传输协议</strong></p>
+<ul>
+<li><strong>HTTP&#x2F;2.0</strong>：基于 <strong>TCP</strong> 协议。<ul>
+<li>虽然通过多路复用解决了队头阻塞问题，但 TCP 的固有特性（如丢包重传）仍可能导致性能下降。</li>
+</ul>
+</li>
+<li><strong>HTTP&#x2F;3.0</strong>：基于 <strong>QUIC</strong> 协议（运行在 UDP 上）。<ul>
+<li>QUIC 解决了 TCP 的队头阻塞问题，丢包只影响单个流，而不是整个连接。</li>
+<li>内置加密（基于 TLS 1.3），减少了握手延迟。</li>
+</ul>
+</li>
+</ul>
+<p><strong>2. 建立连接的速度</strong></p>
+<ul>
+<li><strong>HTTP&#x2F;2.0</strong>：<ul>
+<li>需要 TCP 三次握手 + TLS 握手，通常需要 2-3 个 RTT（往返时间）才能建立安全连接。</li>
+</ul>
+</li>
+<li><strong>HTTP&#x2F;3.0</strong>：<ul>
+<li>QUIC 将传输和加密合二为一，首次连接只需 1 RTT，甚至通过连接恢复实现 0 RTT。</li>
+</ul>
+</li>
+</ul>
+<p><strong>3. 队头阻塞问题</strong></p>
+<ul>
+<li><strong>HTTP&#x2F;2.0</strong>：<ul>
+<li>在 TCP 层仍然存在队头阻塞。如果某个数据包丢失，后续数据包会被阻塞，直到丢失的包重传成功。</li>
+</ul>
+</li>
+<li><strong>HTTP&#x2F;3.0</strong>：<ul>
+<li>QUIC 在传输层解决了队头阻塞问题。每个流（stream）独立处理，丢包不会影响其他流。</li>
+</ul>
+</li>
+</ul>
+<p><strong>4. 连接迁移</strong></p>
+<ul>
+<li><p><strong>HTTP&#x2F;2.0</strong>：</p>
+<ul>
+<li>基于 TCP 的连接依赖于 IP 和端口，切换网络（如从 Wi-Fi 到移动网络）时连接会中断。</li>
+</ul>
+</li>
+<li><p><strong>HTTP&#x2F;3.0</strong>：</p>
+<ul>
+<li>QUIC 使用连接 ID 而不是 IP 和端口来标识连接，支持无缝切换网络，适合移动设备。</li>
+</ul>
+</li>
+</ul>
+<h3 id="HTTP和HTTPS的区别"><a href="#HTTP和HTTPS的区别" class="headerlink" title="HTTP和HTTPS的区别"></a>HTTP和HTTPS的区别</h3><p><strong>1. 数据传输安全性</strong></p>
+<ul>
+<li>HTTP：数据以明文的方式传输容易被窃听，篡改。</li>
+<li>HTTPS： 通过SSL&#x2F;TLS协议对数据进行加密传输，提供数据机密性和完整性保障</li>
+</ul>
+<p><strong>2. 端口号</strong></p>
+<ul>
+<li>HTTP：默认端口号80</li>
+<li>HTTPS；默认端口号443</li>
+</ul>
+<p><strong>3. 性能</strong></p>
+<ul>
+<li>HTTP： 无加密过程，连接建立速度稍快</li>
+<li>HTTPS: 基于HTTP上又加了SSL或TLS协议来实现的加密传输，加密过程增加了计算开销，握手时间较长，但现代硬件和协议优化已使性能差距减小。</li>
+</ul>
+<p><strong>4. SEO影响</strong></p>
+<ul>
+<li>HTTP：搜索引擎一般会降低未加密站点的排名。</li>
+<li>HTTPS：搜索引擎更倾向于优先展示HTTPS网站。</li>
+</ul>
+<h2 id="day20"><a href="#day20" class="headerlink" title="day20"></a>day20</h2><h3 id="TCP和UDP有什么区别？"><a href="#TCP和UDP有什么区别？" class="headerlink" title="TCP和UDP有什么区别？"></a>TCP和UDP有什么区别？</h3><p>关于TCP和UDP，连接、可靠性、传输方式、最后总结，这两个协议的优劣势</p>
+<ul>
+<li>TCP是面向连接的协议，在发送数据的时候，需要先建立TCP三次握手，而UDP无连接协议，直接就可以发送数据</li>
+<li>TCP会通过超时重传、流量控制、拥塞控制保证数据的可靠传输，而UDP并没有这些特性，UDP不考虑数据的可靠性。</li>
+<li>TCP发送的数据是以字节流的形式、没有边界。而UDP是一个包一个包的发送，是有边界的。</li>
+</ul>
+<p>综合来看：</p>
+<ul>
+<li>TCP的优势在于可以保证数据的可靠性，但是缺陷就是实时性没有UDP协议好。</li>
+<li>UDP的优势在于足够简单，不用建立连接，数据直接丢过去即可，并且UDP包头比TCP包头小很多，所以UDP实时性和速度方面是比TCP好的。</li>
+</ul>
+<p><strong>TCP（传输控制协议）</strong></p>
+<p>面向连接的协议，通过建立可靠的连接来传输数据；TCP提供了可靠的传输，利用序号和重传机制确保数据的完整性和可靠性。传输数据慢，消耗资源多</p>
+<p><strong>UDP（用户数据报协议）</strong></p>
+<p>无连接协议，数据包发送前不需要建立连接；不提供可靠性保证，数据发送后不能得到确认和重传，UDP相对于TCP更加轻量，传输数据快，消耗资源少</p>
+<h3 id="说说TCP的三次握手"><a href="#说说TCP的三次握手" class="headerlink" title="说说TCP的三次握手"></a>说说TCP的三次握手</h3><p>客户端会先向服务器发送一个SYN（同步序列编号) 消息给服务器，服务器收到后回复一个SYN-ACK（同步序列编号-确认）消息，最后客户端再发送一个ACK（确认）消息确认服务器已经收到SYN-ACK消息，从而完成了三次握手，建立起一个可靠的TCP连接。</p>
+<p><img src="https://pic1.imgdb.cn/item/67a9508dd0e0a243d4fdbe38.png"></p>
+<p>三次握手是建立连接的，目的是解决网络信道不可靠的问题。</p>
+<p><img src="https://pic1.imgdb.cn/item/67a95118d0e0a243d4fdbe42.png"></p>
+<h3 id="TCP是用来解决什么问题的？"><a href="#TCP是用来解决什么问题的？" class="headerlink" title="TCP是用来解决什么问题的？"></a>TCP是用来解决什么问题的？</h3><p>TCP通过提供可靠传输、流量控制、拥塞控制和连接管理，解决了数据在不可靠的IP网络上的传输问题：</p>
+<ol>
+<li><strong>可靠传输</strong>：TCP确保数据包在网络传输过程中不丢失、不重复，并且按顺序到达。通过确认（ACK），重传机制以及序列号，TCP能够保证数据在不可靠的IP网络上可靠传输。</li>
+<li><strong>流量控制</strong>：TCP通过滑动窗口机制调节发送方的数据发送速率，防止接收方因为处理能力有限而别数据流淹没。</li>
+<li><strong>拥塞控制：</strong> TCP是通过拥塞算法（如慢启动、拥塞避免、快速重传和快速恢复）来防止网络过载，确保网络资源的公平性和稳定性。</li>
+<li><strong>连接管理：</strong> TCP是面向连接的协议,采用三次握手（建立连接）和四次挥手（断开连接）机制来管理会话，确保通信的可靠性和状态的同步。</li>
+</ol>
+<h2 id="day21"><a href="#day21" class="headerlink" title="day21"></a>day21</h2><h3 id="说说TCP的四次挥手"><a href="#说说TCP的四次挥手" class="headerlink" title="说说TCP的四次挥手"></a>说说TCP的四次挥手</h3><h3 id="TCP的粘包和拆包"><a href="#TCP的粘包和拆包" class="headerlink" title="TCP的粘包和拆包"></a>TCP的粘包和拆包</h3><h3 id="说说TCP拥塞控制的步骤"><a href="#说说TCP拥塞控制的步骤" class="headerlink" title="说说TCP拥塞控制的步骤"></a>说说TCP拥塞控制的步骤</h3><h2 id="day22"><a href="#day22" class="headerlink" title="day22"></a>day22</h2><h3 id="TCP-IP-四层模型是什么？"><a href="#TCP-IP-四层模型是什么？" class="headerlink" title="TCP&#x2F;IP 四层模型是什么？"></a>TCP&#x2F;IP 四层模型是什么？</h3><p>应用层（http，https）</p>
+<p>传输层（tcp，udp）</p>
+<p>网络层（ip）</p>
+<p>网络接口层（MAC）</p>
+<h3 id="Cookie、Session、token有什么区别？"><a href="#Cookie、Session、token有什么区别？" class="headerlink" title="Cookie、Session、token有什么区别？"></a>Cookie、Session、token有什么区别？</h3><p>cookie，- 》 服务端 -》 返回cookie，用于识别浏览器</p>
+<p>session，-》 服务端 -》 返回cookie（包括SessionID），再次访问通过sessionID来获取存储的信息</p>
+<p>token ， -》 服务器 -》 返回token，数据保存在浏览器中，通过服务器权限校验</p>
+<h3 id="从网络的角度来看，用户从输入网址到网页显示，期间发生了什么"><a href="#从网络的角度来看，用户从输入网址到网页显示，期间发生了什么" class="headerlink" title="从网络的角度来看，用户从输入网址到网页显示，期间发生了什么"></a>从网络的角度来看，用户从输入网址到网页显示，期间发生了什么</h3><h2 id="day23"><a href="#day23" class="headerlink" title="day23"></a>day23</h2><h3 id="线程和进程有什么区别？"><a href="#线程和进程有什么区别？" class="headerlink" title="线程和进程有什么区别？"></a>线程和进程有什么区别？</h3><p><strong>进程：</strong> 进程是资源分配的基本单位，每个进程有自己独立的内存空间（代码段，数据段，堆栈），可以看做一个程序正在运行的实例，进程间是相互独立的。</p>
+<p><strong>线程：</strong> 线程是CPU调度的基本单位，线程属于进程，一个进程可以有多个线程，线程共享进程之间的内存空间和资源（文件句柄，数据段），但每个线程有自己独立的栈和寄存器。</p>
+<p><strong>本质：</strong> 进程作为操作系统进行资源分配的基本单元，而线程则构成任务调度与执行的核心单元。</p>
+<p>开销： 进程有独立的代码和数据段，导致进程间切换开销较大。而线程是轻量级的，同进程内的线程共享代码和数据段，只各自维护独立的堆栈和程序计数器，因此线程切换的成本较低。</p>
+<h3 id="进程之间的通信方式有哪些？"><a href="#进程之间的通信方式有哪些？" class="headerlink" title="进程之间的通信方式有哪些？"></a>进程之间的通信方式有哪些？</h3><p>在Java中，线程之间的通信是指 <strong>多个线程协同工作</strong>， 主要实现方式包括：</p>
+<p><strong>1. 共享变量</strong></p>
+<ul>
+<li>线程可以通过访问共享内存变量来交换信息（需要注意同步问题，防止数据竞争和不一致）</li>
+<li>共享也可以是文件，例如写入同一个文件来进行通信。</li>
+</ul>
+<p><strong>2. 同步机制：</strong></p>
+<ul>
+<li>synchronized：Java中的同步关键字，用于确保同一时刻只有一个线程可以访问共享资源，利用Object类提供的<code>wait(),notify(),notifyAll()</code> 实现线程之间的等待、通知机制。</li>
+<li>ReentrantLock： 配置Condition提供了类似于wait(),notify()的等待、通知。</li>
+<li>BlockingQueue: 通过阻塞队列实现生产者-消费者模式</li>
+<li>CountDownLatch：可以允许一个或多个线程等待，直到在其他线程中执行一组操作完成</li>
+<li>Cyclicbarrier：可以让一组线程互相等待，直到达到某个公共屏障点。</li>
+<li>Volatile： Java中的关键字，确保变量的可加性，防止指令重排。</li>
+<li>Semaphore：信号量，可以控制对特定资源的访问线程数。</li>
+</ul>
+<h3 id="进程的调度算法你知道吗？"><a href="#进程的调度算法你知道吗？" class="headerlink" title="进程的调度算法你知道吗？"></a>进程的调度算法你知道吗？</h3><p>常见的进程调度算法有以下几种：</p>
+<ul>
+<li><strong>先来先服务（FCFS，Firt-Come，First-Served）：</strong> 按照进程到达的执行顺序进行调度，适用于批处理系统。简单易实现，但可能造成“长任务” 拖延其他任务的执行。</li>
+<li><strong>短作业优先（SJF，Shortest Job First）：</strong> 优先调度执行时间最短的进程，能减少平均等待时间。分为非抢占式和抢占式。但它需要预先直到任务执行时间，不适用于交互式系统。</li>
+<li><strong>优先级调度（Priority Scheduling):</strong> 根据进程的重要性（优先级）来调度，优先级高的进程先执行。适用于需要不同优先级服务的场景。可能导致“低优先级进程”  长期得不到调度，造成饥饿现象。</li>
+<li><strong>时间片轮（RR，Round Robin）：</strong> 为每个进程分配固定的时间片，结束后调度下一个进程。适用于交互式系统，能提升系统响应性。时间片的选择对系统性能有重要影响。</li>
+<li><strong>最高响应比优先（HRRN）：</strong> 通过计算响应比来决定下一个被调度的进程，适合在批处理环境中平衡长短任务的等待时间，防止任务过度导致长任务饥饿。</li>
+<li><strong>多级反馈队列调度：</strong> 结合多个调度策略，通过将进程放入不同优先级的队列，实现灵活的调度机制。优先级较高的进程先被调度，随着执行时间增加，进程可能被降至低优先级队列，社会多任务，多类型的操作系统。</li>
+</ul>
+<h2 id="day24"><a href="#day24" class="headerlink" title="day24"></a>day24</h2><h3 id="IO模型有哪些？"><a href="#IO模型有哪些？" class="headerlink" title="IO模型有哪些？"></a>IO模型有哪些？</h3><p><strong>IO的基本概念</strong></p>
+<p>IO即输入输出，涉及计算机核心与其他设备数据迁移的过程，就是IO，如磁盘IO，就是从磁盘读取数据到内存，这算一次输入；将内存中的数据写入磁盘，就算输出。</p>
+<p>IO就是把进程的内部数据转移到外部设备中，或者把外部设备的数据迁移到进程内部，外部设备一般指硬盘，socket，通讯网卡。</p>
+<p>I&#x2F;O（输入&#x2F;输出）模型是计算机系统中处理输入输出操作的方式，常见的 I&#x2F;O 模型包括以下几种：</p>
+<hr>
+<p><strong>1.  阻塞 I&#x2F;O（Blocking I&#x2F;O）</strong></p>
+<ul>
+<li><strong>描述</strong>：当应用程序发起 I&#x2F;O 操作时，线程会被阻塞，直到操作完成。</li>
+<li><strong>特点</strong>：<ul>
+<li>简单易用。</li>
+<li>线程在等待 I&#x2F;O 完成时无法执行其他任务，效率较低。</li>
+</ul>
+</li>
+<li><strong>适用场景</strong>：适合连接数较少、对性能要求不高的场景。</li>
+</ul>
+<hr>
+<p><strong>2. 非阻塞 I&#x2F;O（Non-blocking I&#x2F;O）</strong></p>
+<ul>
+<li><strong>描述</strong>：当应用程序发起 I&#x2F;O 操作时，线程不会被阻塞，而是立即返回一个状态（成功或失败）。线程需要不断轮询检查 I&#x2F;O 操作是否完成。</li>
+<li><strong>特点</strong>：<ul>
+<li>线程不会被阻塞，可以执行其他任务。</li>
+<li>轮询会消耗 CPU 资源。</li>
+</ul>
+</li>
+<li><strong>适用场景</strong>：适合需要高并发但连接数较少的场景。</li>
+</ul>
+<hr>
+<p><strong>3. I&#x2F;O 多路复用（I&#x2F;O Multiplexing）</strong></p>
+<ul>
+<li><strong>描述</strong>：通过系统调用（如 <code>select</code>、<code>poll</code>、<code>epoll</code>）监听多个文件描述符（fd），当某个 fd 就绪时，通知应用程序进行处理。</li>
+<li><strong>特点</strong>：<ul>
+<li>单线程可以处理多个 I&#x2F;O 操作。</li>
+<li>减少了线程切换的开销。</li>
+</ul>
+</li>
+<li><strong>适用场景</strong>：适合高并发、连接数较多的场景（如 Web 服务器）。</li>
+<li><strong>常见实现</strong>：<ul>
+<li><code>select</code>：支持的文件描述符数量有限，效率较低。</li>
+<li><code>poll</code>：解决了 <code>select</code> 的文件描述符数量限制，但效率仍然不高。</li>
+<li><code>epoll</code>（Linux）：高效支持大量文件描述符，是 Linux 下常用的 I&#x2F;O 多路复用技术。</li>
+</ul>
+</li>
+</ul>
+<hr>
+<p><strong>4. 信号驱动 I&#x2F;O（Signal-driven I&#x2F;O）</strong></p>
+<ul>
+<li><strong>描述</strong>：应用程序发起 I&#x2F;O 操作后，内核在数据就绪时通过信号（如 <code>SIGIO</code>）通知应用程序。</li>
+<li><strong>特点</strong>：<ul>
+<li>不需要轮询，减少了 CPU 开销。</li>
+<li>信号处理可能引入复杂性。</li>
+</ul>
+</li>
+<li><strong>适用场景</strong>：适合对实时性要求较高的场景。</li>
+</ul>
+<hr>
+<p><strong>5. 异步 I&#x2F;O（Asynchronous I&#x2F;O，AIO）</strong></p>
+<ul>
+<li><strong>描述</strong>：应用程序发起 I&#x2F;O 操作后，立即返回，内核在操作完成后通知应用程序（通过回调或信号）。</li>
+<li><strong>特点</strong>：<ul>
+<li>完全非阻塞，应用程序无需等待或轮询。</li>
+<li>实现复杂，需要操作系统支持。</li>
+</ul>
+</li>
+<li><strong>适用场景</strong>：适合高并发、高性能的场景（如大规模文件读写）。</li>
+<li><strong>常见实现</strong>：<ul>
+<li>Linux：<code>aio_read</code>、<code>aio_write</code>。</li>
+<li>Windows：<code>IOCP</code>（I&#x2F;O Completion Port）。</li>
+</ul>
+</li>
+</ul>
+<h3 id="Select、Poll、Epoll之间有什么区别？"><a href="#Select、Poll、Epoll之间有什么区别？" class="headerlink" title="Select、Poll、Epoll之间有什么区别？"></a>Select、Poll、Epoll之间有什么区别？</h3><p>都是IO多路复用的机制</p>
+<p>select：</p>
+<ul>
+<li>早期IO多路复用机制，使用固定长度的数组表示文件描述符集。每次调用select时都需要重新构建和检查文件描述符集。</li>
+<li>支持的文件描述符数量有限，在大规模链接的场景下效率低下。</li>
+</ul>
+<p>poll</p>
+<ul>
+<li>poll与select类似，但使用动态数组来存储文件描述符，因此没有select的最大连接数限制。</li>
+<li>每次调用时仍需遍历全部描述符，在处理大量链接时，效率不高。</li>
+</ul>
+<p>epoll</p>
+<ul>
+<li>epoll是Linux系统对select和poll的优化，提供了边缘触发ET和水平触发LT模式</li>
+<li>不会遍历所有文件描述符而是通过事件通知的方式，只处理实际发生变化的描述符，适合高并发服务器。</li>
+<li>epoll在注册文件描述符后，只需要用一次添加操作，后续的事件管理更高效。</li>
+</ul>
+<h3 id="为什么网络IO会被阻塞？"><a href="#为什么网络IO会被阻塞？" class="headerlink" title="为什么网络IO会被阻塞？"></a>为什么网络IO会被阻塞？</h3><p>网络IO会被阻塞是因为在进行网络数组传输时，操作系统在等待数据的发送或接受完成后，会将进程挂起，直到数据传输完成后才恢复进程执行。</p>
+<p>阻塞原因：</p>
+<ul>
+<li>等待数据到达或发送完成</li>
+<li>系统资源有限</li>
+<li>默认的阻塞行为</li>
+</ul>
+<h2 id="day25"><a href="#day25" class="headerlink" title="day25"></a>day25</h2><h3 id="说一下Linux常用命令"><a href="#说一下Linux常用命令" class="headerlink" title="说一下Linux常用命令"></a>说一下Linux常用命令</h3><p>文件与目录操作:</p>
+<p>ls:列出当前目录的文件和子目录,常用参数如-1(详细信息)、<br>cd:切换目录,用于在文件系统中导航。<br>mkdir:创建新目录。<br>rm:删除文件或目录,用于删除文件时加上-f参数,删除目录时加上-r参数。<br>cp:复制文件或目录,cp-r用于递归复制目录。<br>mv:移动或重命名文件或目录。</p>
+<p>文件内容查看:</p>
+<p>cat:查看文件内容,常用于查看小型文本文件。<br>more&#x2F;less:分页查看文件内容,less支持向上翻页,适合查看大文件。<br>tail:查看文件末尾的若干行,tail-f用于实时监控文件内容变化,如日志文件。<br>head:查看文件的开头几行。</p>
+<p>系统管理:</p>
+<p>ps:显示当前运行的进程列表,ps aux 可以查看所有用户的进程。<br>top&#x2F;htop:实时查看系统中的进程状态和资源使用情况。<br>kill&#x2F;killall:终止进程,kill后跟进程ID,killall后跟进程名。<br>df:显示文件系统的磁盘使用情况。<br>du:统计目录或文件所占用的磁盘空间,du -h 以人类可读的格式显示。</p>
+<p>网络配置与调试:</p>
+<p>ping:测试与目标主机的连通性。<br>ifconfig&#x2F;ip:查看和配置网络接口信息,ifconfig 已逐渐被ip命令替代。<br>netstat&#x2F;ss:查看网络连接和端口使用情况,</p>
+<p>ss是netstat的替代品,提供更详细的信息。</p>
+<p>chown :更改文件或目录的所有者</p>
+<p>curl&#x2F;wget:发送HTTP请求或下载文件,</p>
+<p>文件权限与用户管理:</p>
+<p>chmod:修改文件或目录权限,常用模式如 chmod 755。<br>更改文件或目录的所有者。<br>useradd&#x2F;userdel:添加或删除用户。<br>passwd:修改用户密码。</p>
+<h3 id="什么是分段？什么是分页？"><a href="#什么是分段？什么是分页？" class="headerlink" title="什么是分段？什么是分页？"></a>什么是分段？什么是分页？</h3><p><strong>分段</strong>和<strong>分页</strong>是操作系统内存管理的两种技术，用于管理进程的内存空间，解决内存碎片化和内存保护问题。它们的主要区别在于内存划分的方式和管理机制。</p>
+<p><strong>分段</strong></p>
+<ul>
+<li><strong>分段将内存划分为不同大小的逻辑段，每个段对应程序的一个逻辑单元（如代码段、数据段、堆段、栈段等）。</strong></li>
+<li>每个段的大小可以不同，由程序的需求决定。</li>
+</ul>
+<p><strong>分页</strong></p>
+<ul>
+<li>分页将内存划分为固定大小的页（Page），同时将程序的逻辑地址空间也划分为相同大小的页框（Page Frame）。</li>
+<li>页的大小固定（如4KB）。</li>
+<li>页表（Page Table）用于记录逻辑页与物理页框的映射关系。</li>
+<li>地址由<strong>页号</strong>和<strong>页内偏移量</strong>组成</li>
+</ul>
+<h3 id="什么是软中断？什么是硬中断？"><a href="#什么是软中断？什么是硬中断？" class="headerlink" title="什么是软中断？什么是硬中断？"></a>什么是软中断？什么是硬中断？</h3><p><strong>硬中断</strong></p>
+<p>硬中断由硬件设备触发，用于通知处理器有紧急事件需要处理。常见来源包括键盘、鼠标、硬盘、网卡等。</p>
+<p><strong>特点：</strong></p>
+<ul>
+<li><strong>硬件触发</strong>：由硬件设备发起。</li>
+<li><strong>异步</strong>：随时可能发生，与处理器当前任务无关。</li>
+<li><strong>优先级高</strong>：处理器会暂停当前任务，优先处理中断。</li>
+<li><strong>中断服务程序（ISR）</strong>：处理器执行特定的ISR来处理中断。</li>
+</ul>
+<p><strong>软中断</strong></p>
+<p>软中断由软件触发，通常用于内核态的任务处理，如系统调用、任务调度等。</p>
+<p><strong>特点：</strong></p>
+<ul>
+<li><strong>软件触发</strong>：由程序或操作系统发起。</li>
+<li><strong>同步</strong>：在特定代码位置触发，执行时机可预测。</li>
+<li><strong>优先级较低</strong>：通常在内核态处理，不会立即打断当前任务。</li>
+<li><strong>中断处理程序</strong>：由操作系统内核处理。</li>
+</ul>
+<h2 id="day26"><a href="#day26" class="headerlink" title="day26"></a>day26</h2><h3 id="接口类和抽象类的区别？"><a href="#接口类和抽象类的区别？" class="headerlink" title="接口类和抽象类的区别？"></a>接口类和抽象类的区别？</h3><p>接口和抽象类在设计动机上不同。</p>
+<p>接口的设计是 <strong>自上而下的</strong> ，我们知晓某一行为，是基于这些行为约束定义了接口，一些类需要这些行为，因此实现对应的接口。</p>
+<p>抽象类的设计是 <strong>自下而上的</strong>， 我们写了很多类，发现他们之间有共性，很多代码可以复用，因此将公共逻辑封装成一个抽象类，减少代码冗余。</p>
+<p>所谓的 <strong>自上而下</strong> 指的是先约定接口，在实现。</p>
+<p>而 <strong>自下而上的</strong> 是先有一些类，才抽象了共同父类（可能和学校教的不一样，但是实战的时候都是因为重构才有的抽象）</p>
+<h4 id="其他区别"><a href="#其他区别" class="headerlink" title="其他区别"></a>其他区别</h4><p><strong>1. 方法实现</strong></p>
+<p>接口中的方法默认是public和abstract（但在Java8之后可以设置default方法或静态方）。</p>
+<p>抽象类可以包含abstract方法（没有实现）和具体方法（有实现），它允许子类继承并重用抽象类中的方法实现。</p>
+<p><strong>2. 构造函数和成员变量</strong></p>
+<p>接口不能包含构造函数，接口中的成员变量默认为 public static final，即常量。</p>
+<p>抽象类可以包含构造函数成员变量可以有不同的访问修饰符（private, protected, public), 并且可以不是常量。</p>
+<p><strong>3. 多继承</strong></p>
+<p>接口可以有多个实现，抽象类只能单继承。</p>
+<blockquote>
+<p>注意： 抽象类和接口都不能创建实例</p>
+</blockquote>
+<h4 id="为什么抽象类不能直接实例？"><a href="#为什么抽象类不能直接实例？" class="headerlink" title="为什么抽象类不能直接实例？"></a>为什么抽象类不能直接实例？</h4><p>抽象类<strong>不能直接实例化</strong>（即不能使用 <code>new</code> 关键字创建对象），因为它可能包含未实现的抽象方法。抽象类的主要目的是作为其他类的基类，由其子类实现抽象方法并完成具体功能。</p>
+<p>结构：</p>
+<ul>
+<li>抽象方法: 没有实现的方法，必须有子类实现</li>
+<li>具体方法： 有实现的方法，可以直接使用</li>
+<li>成员变量： 可以包含普通成员变量。</li>
+</ul>
+<p>如果允许直接实例化抽象类，调用未实现的抽象方法会导致问题，因此 Java 和其他面向对象语言禁止直接实例化抽象类。</p>
+<h3 id="JDK和CGLIB"><a href="#JDK和CGLIB" class="headerlink" title="JDK和CGLIB"></a>JDK和CGLIB</h3><p><strong>JDK动态代理</strong> 和 <strong>CGLIB动态代理</strong> 是Java中实现动态代理的两种主要方式，它们在实现原理、适用场景和性能上有所不同。</p>
+<p><strong>JDK动态代理特点</strong></p>
+<ul>
+<li>基于Java放射机制</li>
+<li>要求目标类必须实现一个接口</li>
+<li>通过反射机制生对象。</li>
+<li>代理对象实现目标接口，并在方法调用时通过InvocationHandle抽离逻辑。</li>
+</ul>
+<p><strong>SpringAOP</strong> 默认对接口使用JDK动态代理</p>
+<p><strong>CGLIB动态代理特点</strong></p>
+<ul>
+<li>基于字节码增强技术（通过ASM库操作字节码）</li>
+<li>不要求目标类生成子类，可以直接代理普通类</li>
+<li>通过继承目标生成子类，并重写父类方法类实现代理。</li>
+</ul>
+<p><strong>SpringBoot2XX</strong> 默认使用CGLIB</p>
+<h3 id="关于Java的反射机制"><a href="#关于Java的反射机制" class="headerlink" title="关于Java的反射机制"></a>关于Java的反射机制</h3><p>Java的反射机制是 <strong>在运行时</strong> 获取类的信息，并操作对象的一种机制。反射机制提供了在运行时动态创建对象、调用方法、访问字段等功能，而无需在编译时知道这些类的具体信息。</p>
+<p><strong>反射机制的优点</strong></p>
+<ul>
+<li>可以动态地获取类的信息，不需要在编译时就知道类的信息。</li>
+<li>可以动态地创建对象，不需要在编译时就知道对象的类型。</li>
+<li>可以动态地调用对象的属性和方法，在运行时动态地改变对象的行为。</li>
+</ul>
+<p><strong>反射</strong></p>
+<p><strong>Class类</strong>:  反射机制的核心，通过Class类的实例可以获取类的各种信息。</p>
+<p><strong>反射的主要功能：</strong></p>
+<ul>
+<li>创建对象： 通过 <code>Class.newInstance</code> 和 <code>Constructor.newInstance()</code>创建对象实例。</li>
+<li>访问字段： 使用<code>Field</code> 类访问和修改对象的字段。</li>
+<li>调用方法： 使用<code>Method</code> 类调用对象的方法</li>
+<li>获取类信息： 获取类的名称、父类、接口信息。</li>
+</ul>
+<h2 id="day-27"><a href="#day-27" class="headerlink" title="day 27"></a>day 27</h2><h3 id="说说Java中HashMap的原理"><a href="#说说Java中HashMap的原理" class="headerlink" title="说说Java中HashMap的原理"></a>说说Java中HashMap的原理</h3><p>HashMap：数组，链表，红黑树，尾插法。0.75,2倍扩容</p>
+<p>HashMap 是基于哈希表的数据结构，用于存储键值对。其核心是将键的哈希值映射到数组的索引，通过数组 + 链表 + 红黑树来处理哈希冲突。</p>
+<p>HashMap使用键的 hashCode（）方法计算哈希值，并通过indexFor方法确定元素在数组中的位置。哈希值是经过一定扰动处理的，防止哈希值分布不均匀，从而减少冲突。HashMap的默认容量为16，负载因子为0.75。也就是说，当存储的元素数量超过12个时， HashMap会触发扩容，容量×2并重新分配元素位置。这种扩容是比较耗时的，频繁扩容会影响性能。</p>
+<h3 id="Java中有哪些集合类？"><a href="#Java中有哪些集合类？" class="headerlink" title="Java中有哪些集合类？"></a>Java中有哪些集合类？</h3><p>以下是总结的一些集合类：</p>
+<img src="https://pic1.imgdb.cn/item/67cee345066befcec6e2791c.png" alt="集合.png">
+
+
+
+<h3 id="HashMap的扩容机制？"><a href="#HashMap的扩容机制？" class="headerlink" title="HashMap的扩容机制？"></a>HashMap的扩容机制？</h3><p>HashMap中的扩容基于负载因子来决定，当HashMap的容积×负载因子 &#x3D; 存储元素时，就会触发扩容<code>rehashing</code></p>
+<p><strong>rehashing</strong></p>
+<ul>
+<li>每次扩容时，新数组是老数组的2倍，所以新数组可以看成是老空间 + 一块一样大小的新空间</li>
+<li>扩容时，下标与老数组长度进行&amp;运算，本质上是判断当前下标是在老数组的高位还是低位</li>
+<li>所谓高位、低位，是指该下标在数组的左半边还是右半边</li>
+<li>如果下标在老数组的低位，那么直接平移到新数组中老空间的那半边。</li>
+<li>如果下标在老数组的高位，那么直接平移到新数组中新空间，具体位置就是原位置+老数组的长度。</li>
+</ul>
+<h2 id="day28"><a href="#day28" class="headerlink" title="day28"></a>day28</h2><h3 id="线程池的原理"><a href="#线程池的原理" class="headerlink" title="线程池的原理"></a>线程池的原理</h3><p>核心线程数 -》 工作队列 -》 额外线程数  -》 拒绝策略</p>
+<p>线程池的参数：</p>
+<ul>
+<li>核心线程数</li>
+<li>最大线程数</li>
+<li>工作队列</li>
+<li>回收线程数</li>
+<li>线程工厂</li>
+<li>拒绝策略</li>
+<li>时间单位</li>
+</ul>
+<p><strong>整体结构图</strong></p>
+<img src = https://pic1.imgdb.cn/item/67a2bbe7d0e0a243d4fbdcf7.png >
+
+<h3 id="你使用过哪些Java并发工具"><a href="#你使用过哪些Java并发工具" class="headerlink" title="你使用过哪些Java并发工具"></a>你使用过哪些Java并发工具</h3><p>ConcurrentHashMap</p>
+<p>AtomicInteger</p>
+<p>Semaphore</p>
+<p>CyclicBarrier</p>
+<p>CountDownLatch</p>
+<p>BlockingQueue</p>
+<h3 id="什么是Java中的CAS-Compare-And-Swap"><a href="#什么是Java中的CAS-Compare-And-Swap" class="headerlink" title="什么是Java中的CAS(Compare-And-Swap)"></a>什么是Java中的CAS(Compare-And-Swap)</h3><p>CAS是Java中用于现实无锁并发操作的一种机制，主要通过硬指令来保证操作的原子性。它在 <code>java.util.concurrent</code> 包中广泛应用，如 <code>AtomicInteger</code>、<code>AtomicRefence</code> 等类</p>
+<p><strong>CAS的核心思想</strong></p>
+<p>CAS包含三个操作参数：</p>
+<ul>
+<li><strong>内存位置（V）：</strong> 需要更新的变量。</li>
+<li>**预期值（A）： ** 期望变量当前的值。</li>
+<li><strong>新值（B）：</strong> 要设置的新值。</li>
+</ul>
+<p>CAS的操作逻辑是: 如果内存位置V的值等于预期值A，则将V的值更新为B；否则，不进行任何操作。无论是否更新CAS都会返回V的当前值。</p>
+<p><strong>CAS的工作流程：</strong></p>
+<ul>
+<li><strong>读取内存值：</strong> 从内存中读取变量V的当前值。</li>
+<li><strong>比较：</strong> 检查V的值是否等于预期值A。</li>
+<li><strong>交换：</strong> 如果相等，将V的值更新为B；否则，操作失败。</li>
+</ul>
+<p><strong>CAS的优点：</strong></p>
+<ul>
+<li><strong>无锁：</strong> CAS不需要加锁，减少了线程阻塞和上下文切换的开销。</li>
+<li><strong>高效：</strong> 在低竞争环境下，CAS的性能优于锁机制。</li>
+<li><strong>原子性：</strong> CAS的操作时原子的，确保并发安全。</li>
+</ul>
+<p><strong>CAS的缺点：</strong></p>
+<ul>
+<li><strong>ABA问题：</strong> 如果变量V的值从A变成了B再变回A，CAS会误认为V未被修改。可以通过添加版本号或时间戳来解决。</li>
+<li><strong>自旋开销：</strong> 在高竞争环境下，CAS可能导致大量自旋，增加CPU开销。</li>
+<li><strong>单一变量：</strong> CAS只能保证一个变量的原子性，无法直接用于多个变量。</li>
+</ul>
+<p><strong>总结</strong><br>CAS是一种高效的无锁并发机制适用于低竞争环境。尽管存在ABA问题和自旋开销，但在许多场景下CAS仍然是实现并发控制的理想选择。</p>
+<h2 id="day29"><a href="#day29" class="headerlink" title="day29"></a>day29</h2><h3 id="说一下AQS"><a href="#说一下AQS" class="headerlink" title="说一下AQS"></a>说一下AQS</h3><h4 id="AQS是什么？"><a href="#AQS是什么？" class="headerlink" title="AQS是什么？"></a>AQS是什么？</h4><p>AQS，（AbstractQueuedSynchronizer抽象队列同步器） 它是Java并发编程中的一个核心框架，位于<code>java.util.concurrent.locks</code> 包中，它为实现依赖先进先出（FIFO）等待队列的同步器（如锁、信号量等）提供了基础支持。AQS通过一个int类型的state变量来表示同步状态，并通过内置的FIFO队列来管理线程。</p>
+<blockquote>
+<p>注意：AQS是一个抽象类</p>
+</blockquote>
+<p><strong>核心思想</strong></p>
+<p>AQS的核心思想：</p>
+<ul>
+<li>如果请求的共享资源空闲，则将当前线程设置为工作线程，并将资源标记为锁定状态。</li>
+<li>如果资源被占用，AQS通过双向队列（CLH队列）锁机制将线程加入到队列并阻塞，等待唤醒。</li>
+</ul>
+<p><strong>主要方法</strong></p>
+<p>AQS提供了以下关键方法：</p>
+<ul>
+<li><strong>tryAcquire（int）</strong> ： 尝试获取资源，成功返回true，失败返回false。</li>
+<li><strong>tryRelease（int）：</strong> 尝试释放资源，成功返回true，失败返回false。</li>
+<li><strong>tryAcquireShared（int）：</strong> 共享模式下尝试获取锁资源，返回剩余资源数。</li>
+<li>**tryReleaseShard（int）： ** 共享模式下尝试释放资源，成功返回true，失败返回false。</li>
+<li><strong>isHeldExclusively（）：</strong> 判断当前线程是否独占资源。</li>
+</ul>
+<p>这些方法需要子类根据具体场景实现，AQS本身只负责线程排队和阻塞&#x2F;唤醒机制。</p>
+<p><strong>实现原理</strong></p>
+<p>AQS通过一个双向队列（CLH队列）管理等待线程，并通过CAS（Compare-And-Swap）操作确保线程安全。每个节点包含线程引用、等待状态等信息。</p>
+<p><strong>应用场景</strong></p>
+<p>AQS广泛应用于Java并发工具中，如：</p>
+<ul>
+<li><strong>ReentrantLock</strong>：可重入锁。</li>
+<li><strong>Semaphore</strong>：信号量。</li>
+<li><strong>CountDownLatch</strong>：倒计时门闩。</li>
+<li><strong>ReentrantReadWriteLock</strong>：读写锁</li>
+</ul>
+<h3 id="Synchronized-和-ReentrantLock的区别？"><a href="#Synchronized-和-ReentrantLock的区别？" class="headerlink" title="Synchronized 和 ReentrantLock的区别？"></a>Synchronized 和 ReentrantLock的区别？</h3><blockquote>
+<p>注意： 有时候会看到Synchroized时Lock对比，实际上 ReentrantLock实现了Lock接口。</p>
+</blockquote>
+<p>两者的<strong>共同特点</strong>：</p>
+<ul>
+<li>都是用来协调多线程对共享对象、变量的访问。</li>
+<li>都是可重入锁，同一线程可以多次获得同一个锁</li>
+<li>都保证了可见性和互斥性。</li>
+</ul>
+<p>两者的<strong>不同特点</strong>：</p>
+<ul>
+<li>ReentrantLock显示的获得、释放锁（需要手动控制），synchronized隐式获得锁释放。</li>
+<li>ReentrantLock可影响中断、可轮回，synchronized 是不可以响应中断的，为处理锁的不可用性提供了更高的灵活性。</li>
+<li>ReentrantLock是API级别的（需要写代码实现）， synchronized 是JVM级别的（内置）</li>
+<li>ReentrantLock可以实现公平锁和， synchronized就是一个非公平锁。</li>
+<li>ReentrantLock通过Condition可以绑定多个条件。</li>
+<li>底层实现不同，synchronized 是同步阻塞，   使用的是悲观并发策略，lock是同步非阻塞，采用的是乐观并发策略。</li>
+<li>Lock是一个接口，而sychronized是Java中的关键字，由内置语言实现。</li>
+<li>synchronized发生异常是，会自动释放线程占有的锁，因此不会导致死锁现象发生。而Lock在发生异常时，如果没有主动通过unLock() 去释放锁，则很可能造成死锁现象，因此使用lock是需要在finally快中释放锁。</li>
+<li>Lock可以让等待锁的线程响应中断，而synchronized却不行，使用synchronized时，等待的线程会一直等待下去，不能响应中断。</li>
+<li>通过Lock可以知道有没有成功获取锁，而synchronized却无法办到</li>
+<li>Lock可以提高多个线程进行读操作的效率，即就是<strong>实现读写锁</strong>等。（分为独占锁和共享锁）</li>
+</ul>
+<h3 id="volatile关键字的作用"><a href="#volatile关键字的作用" class="headerlink" title="volatile关键字的作用"></a>volatile关键字的作用</h3><p>volatile它的主要作用是保证变量的可见性和静止指令重排</p>
+<p><strong>1. 可见性</strong></p>
+<p>关键字确保变量的可见性，当一个线程修改了 <code>volatile</code> 变量的值，新值就会立即被刷新到主内存中，其他线程在读取该变量时可以立即获取最新的值。可以避免线程间由于缓存一致性问题导致的“看见”旧值的现象。</p>
+<p><strong>2. 禁止指令重排</strong></p>
+<p>关键字还通过内存屏障来禁止特定情况下的指令重排，从而保证程序的执行顺序符合预期。对 <code>volatile</code> 变量的写操作会在其前面插入一个StoreStore屏障，而对 <code>volatile</code> 变量的读操作则会在其后插入一个LoadLoad的屏障。这确保了在多线程环境下，某些代码块执行顺序的问题。</p>
+<h2 id="Linux"><a href="#Linux" class="headerlink" title="Linux"></a>Linux</h2><h3 id="如何查找一个进程并关闭？"><a href="#如何查找一个进程并关闭？" class="headerlink" title="如何查找一个进程并关闭？"></a>如何查找一个进程并关闭？</h3><p>使用ps查找到对应进程的进程号，在通过kill来关闭进程</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2025/02/18/spring%E9%9D%A2%E8%AF%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/111.png">
+      <meta itemprop="name" content="ZhangYuHao">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Zhang'Blog">
+      <meta itemprop="description" content="一个小人物的个人博客">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Zhang'Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2025/02/18/spring%E9%9D%A2%E8%AF%95/" class="post-title-link" itemprop="url">spring面试</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2025-02-18 08:44:14" itemprop="dateCreated datePublished" datetime="2025-02-18T08:44:14+08:00">2025-02-18</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-02-24 15:14:25" itemprop="dateModified" datetime="2025-02-24T15:14:25+08:00">2025-02-24</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="什么是循环依赖？"><a href="#什么是循环依赖？" class="headerlink" title="什么是循环依赖？"></a>什么是循环依赖？</h2><p>存在两个Bean，且这两个Bean互相依赖，（或自己依赖自己），就会出现循环依赖（类似死锁）</p>
+<h2 id="循环依赖怎么解决？"><a href="#循环依赖怎么解决？" class="headerlink" title="循环依赖怎么解决？"></a>循环依赖怎么解决？</h2><h3 id="三级缓存"><a href="#三级缓存" class="headerlink" title="三级缓存"></a>三级缓存</h3><p>一级缓存（单例池）： 放置创建好的Bean（完整的）</p>
+<p>二级缓存： 用来保存Bean的代理或普通对象，不完整</p>
+<p>三级缓存： Bean的创建工厂，用来初始化bean</p>
+<p><img src="https://pic1.imgdb.cn/item/67b5dbfad0e0a243d400cfd6.png"></p>
+<p><img src="https://pic1.imgdb.cn/item/67b5dd96d0e0a243d400d012.png"></p>
+<p>注意： </p>
+<ul>
+<li>Mysql只支持单例的循环依赖。</li>
+<li>不全是构造器注入</li>
+</ul>
+<h3 id="Lazy"><a href="#Lazy" class="headerlink" title="@Lazy"></a>@Lazy</h3><h4 id="Lazy-的作用"><a href="#Lazy-的作用" class="headerlink" title="@Lazy 的作用"></a><strong><code>@Lazy</code> 的作用</strong></h4><p><code>@Lazy</code> 注解的作用是延迟 Bean 的初始化，直到第一次被使用时才会创建 Bean 实例。通过延迟初始化，可以打破循环依赖的初始化顺序，从而间接解决循环依赖问题。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">A</span> &#123;</span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="meta">@Lazy</span></span><br><span class="line">    <span class="keyword">private</span> B b;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">B</span> &#123;</span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> A a;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>这里，<code>A</code> 中的 <code>B</code> 被标记为 <code>@Lazy</code>，因此 <code>B</code> 不会在 <code>A</code> 初始化时立即创建，而是在第一次使用时才会初始化</li>
+</ul>
+<h4 id="Lazy-解决循环依赖的原理"><a href="#Lazy-解决循环依赖的原理" class="headerlink" title="@Lazy 解决循环依赖的原理"></a><strong><code>@Lazy</code> 解决循环依赖的原理</strong></h4><ol>
+<li><strong>打破初始化顺序</strong>：<ul>
+<li>通过延迟初始化，Spring 不需要在初始化 <code>A</code> 时立即初始化 <code>B</code>，从而打破了循环依赖的初始化顺序。</li>
+</ul>
+</li>
+<li><strong>代理对象的创建</strong>：<ul>
+<li>当使用 <code>@Lazy</code> 时，Spring 会为目标 Bean 创建一个代理对象（通常是基于 CGLIB 或 JDK 动态代理）。</li>
+<li>在第一次访问该 Bean 时，代理对象会触发实际的 Bean 初始化。</li>
+</ul>
+</li>
+<li><strong>避免死锁</strong>：<ul>
+<li>由于延迟初始化，Spring 不会在初始化过程中陷入死锁状态，从而避免了循环依赖问题。</li>
+</ul>
+</li>
+</ol>
+<h2 id="什么是AOP？"><a href="#什么是AOP？" class="headerlink" title="什么是AOP？"></a>什么是AOP？</h2><p>AOP全程（Aspact-Oriented Programming) 面相切面编程是一种编程范式，常用于日志记录，安全检查，事务管理等与业务逻辑分离开来。</p>
+<ul>
+<li><strong>核心思想：</strong> AOP的核心思想是将与业务逻辑无关的关注点抽取出来，通过声明的方式动态的应用到业务方法上，而不是将这些代码直接嵌入到业务逻辑中。</li>
+<li><strong>主要组成部分：</strong> 切面，连接点，通知，切入点，织入</li>
+</ul>
+<p>通常是通过代理的对象来实现动态切入的</p>
+<p>代理可以分成两个类</p>
+<ul>
+<li>动态代理： 在<strong>运行时</strong>将切面的逻辑写入，程序会自动的在运行时生成类似上面的代理类。</li>
+<li>静态代理： 在<strong>编译时或者类加载时</strong> 进行切面的织入，典型的<strong>AspactJ</strong>就是静态代理。</li>
+</ul>
+<h3 id="核心概念"><a href="#核心概念" class="headerlink" title="核心概念"></a>核心概念</h3><ul>
+<li>切面（Aspact）</li>
+<li>连接点（Join Point）</li>
+<li>通知（Advice）<ul>
+<li>前置通知（Before）</li>
+<li>后置通知（After)</li>
+<li>环绕通知（Around）</li>
+<li>异常通知（AfterThrowing）</li>
+<li>返回通知（AfterReturing)</li>
+</ul>
+</li>
+<li>切入点（Poincut)</li>
+<li>织入（Weaving）织入是将切面应用到目标对象的过程。可以在编译时，类加载是或运行时进行织入。</li>
+</ul>
+<h3 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h3><p>日志记录</p>
+<p>事务管理</p>
+<p>安全检查</p>
+<p>性能监控</p>
+<h2 id="SpringAop和AspectJ区别？"><a href="#SpringAop和AspectJ区别？" class="headerlink" title="SpringAop和AspectJ区别？"></a>SpringAop和AspectJ区别？</h2><p>springAop 基于动态代理</p>
+<p>没有自己定义动态代理，通过Aspect，注解的定义。技术是自己实现的，底层的技术是不一样的。</p>
+<p>AspectJ 基于编译期</p>
+<p>在编译成字节码时，将额外的逻辑织入到字节码中。</p>
+<p>更强</p>
+<p><strong>SpringAOP：</strong> 是Spring框架提供的一种AOP实现，主要用于运行时的代理机制</p>
+<ul>
+<li><strong>特点：</strong> Spring AOP是基于<strong>动态代理</strong>实现的，适用于spring容器管理的Bean，较轻量级，使用方便。</li>
+<li><strong>使用场景</strong>： 适合大部分业务场景，尤其是简单AOP功能的Spring应用。</li>
+</ul>
+<p><strong>AspectJ：</strong>AspectJ是功能更强大的AOP框架，支持编译时，类加载时和运行时的AOP功能。</p>
+<ul>
+<li><strong>特点：</strong>AspectJ是支持更加灵活的切点和增强操作，提供<strong>编译时和加载期和运行时</strong>的织入方式，性能较高。</li>
+<li>使用场景： 适合对性能要求较高或需要复杂切入点匹配的场景，如日志，监控等。</li>
+</ul>
+<h2 id="事务"><a href="#事务" class="headerlink" title="事务"></a>事务</h2><h3 id="Spring事务的隔离级别？"><a href="#Spring事务的隔离级别？" class="headerlink" title="Spring事务的隔离级别？"></a>Spring事务的隔离级别？</h3><p>Spring提供了5种隔离级别</p>
+<ul>
+<li><strong>DEFAULT（默认）</strong>： 使用底层数据库的默认隔离级别，如果数据库没有特定的设置，通常默认为READ_COMMITTED（读已提交）</li>
+<li><strong>READ_UNCOMMITTED（读未提交）</strong>：最低的隔离级别，允许事务读取尚未提交的数据，可能会导致出现脏读，不可重复读，幻读。</li>
+<li><strong>READ_COMMITTED（读已提交）</strong>： 仅允许读取已经提交的数据，避免了脏读，可能会导致出现不可重复读和幻读问题。</li>
+<li><strong>REPEATABLE_READ（可重复读）</strong>： 确保在同一个事务内的多次读取结果一致，避免了脏读和不可重复读，会出现幻读的问题。</li>
+<li>**SERIALIZABLE(可串行化)**： 最高的隔离级别，通过强制事务按顺序执行，完全避免脏读，不可重复读和幻读，代价是性能显著下降。</li>
+</ul>
+<h3 id="Spring事务的传播行为有几种？分别是什么？"><a href="#Spring事务的传播行为有几种？分别是什么？" class="headerlink" title="Spring事务的传播行为有几种？分别是什么？"></a>Spring事务的传播行为有几种？分别是什么？</h3><p>答：有七种。</p>
+<p><strong>1. REQUIRED（默认）</strong></p>
+<ul>
+<li>定义： 如果当前存在事务，则加入事务；如果当前没有事务，则创建一个新事务。</li>
+<li>使用场景： 大多数场景下使用，适用于需要事务支持的操作。</li>
+</ul>
+<p><strong>2. REQUIRES_NEW</strong></p>
+<ul>
+<li>定义： 无论当前是否存在事务，都创建一个新事物。如果当前存在事务，则将当前事务挂起。</li>
+<li>使用场景: 适用于需要独立事务的操作，不受外部事务影响。</li>
+</ul>
+<p><strong>3. SUPPORTS</strong></p>
+<ul>
+<li>如果当前存在事务，则加入该事务；如果当前没有事务，则以非事务方式执行。</li>
+<li>使用场景： 适用于不需要强制事务支持的操作。</li>
+</ul>
+<p><strong>4. NOT_SUPPORTD</strong></p>
+<ul>
+<li>以非事务方式执行操作，如果当前存在事务，则将当前事务挂起。</li>
+<li>使用场景：适用于不需要事务支持的操作，且不希望受外部事务影响。</li>
+</ul>
+<p> <strong>5. MANDATORY</strong></p>
+<p>强制性的</p>
+<ul>
+<li>如果当前存在事务，则加入该事务，如果当前没有存在事务，则抛出异常。</li>
+<li>使用场景： 必须在一个已有事务中执行操作。</li>
+</ul>
+<p><strong>6. NEVER</strong></p>
+<p>never</p>
+<ul>
+<li>以非事务方式执行操作，如果当前存在事务，则抛出异常。</li>
+<li>使用场景：适用于绝对不能在一个事务中执行的操作。</li>
+</ul>
+<p><strong>7. NESTED</strong></p>
+<p>nested</p>
+<ul>
+<li>如果当前存在事务，则在嵌套事务中执行；如果当前没有事务，则创建一个事务。</li>
+<li>嵌套事务： 嵌套事务是外部事务的子事务，如果外部事务回滚，嵌套事务也会回滚；但嵌套事务可以独立提交或回滚，而不影响外部事务。</li>
+</ul>
+<p><strong>总结：</strong></p>
+<ul>
+<li><strong>REQUIRED</strong>：默认方式，支持当前事务，不存在则创建新事务。</li>
+<li><strong>REQUIRES_NEW</strong>：总是创建新事务，挂起当前事务（如果有）。</li>
+<li><strong>SUPPORTS</strong>：支持当前事务，不存在则以非事务方式执行。</li>
+<li><strong>NOT_SUPPORTED</strong>：以非事务方式执行，挂起当前事务（如果有）。</li>
+<li><strong>MANDATORY</strong>：必须在一个已有事务中执行，否则抛出异常。</li>
+<li><strong>NEVER</strong>：必须不在事务中执行，否则抛出异常。</li>
+<li><strong>NESTED</strong>：在嵌套事务中执行，支持部分回滚。</li>
+</ul>
+<h3 id="事务的传播行为有什么作用？"><a href="#事务的传播行为有什么作用？" class="headerlink" title="事务的传播行为有什么作用？"></a>事务的传播行为有什么作用？</h3><p>作用：定义事务方法在调用其他事务方法时，事务应该如何传播。</p>
+<h4 id="1-控制事务的创建和加入"><a href="#1-控制事务的创建和加入" class="headerlink" title="1. 控制事务的创建和加入"></a>1. 控制事务的创建和加入</h4><ul>
+<li>传播行为决定了当前方法是否需要创建一个新事务，或者是否加入一个已有事务。</li>
+<li>例如：<ul>
+<li><strong>REQUIRED</strong>：如果当前没有事务，则创建一个新事务；如果当前有事务，则加入该事务。</li>
+<li><strong>REQUIRES_NEW</strong>：无论当前是否有事务，都创建一个新事务，并挂起当前事务（如果有）。</li>
+</ul>
+</li>
+</ul>
+<h4 id="2-管理事务的独立性"><a href="#2-管理事务的独立性" class="headerlink" title="2. 管理事务的独立性"></a>2. 管理事务的独立性</h4><ul>
+<li>传播行为可以控制事务的独立性，确保某些操作不受外部事务的影响。</li>
+<li>例如：<ul>
+<li><strong>REQUIRES_NEW</strong>：创建一个独立的新事务，即使外部事务回滚，也不会影响当前事务。</li>
+<li><strong>NOT_SUPPORTED</strong>：以非事务方式执行操作，挂起当前事务（如果有），确保操作不受事务影响。</li>
+</ul>
+</li>
+</ul>
+<h4 id="3-支持事务的嵌套"><a href="#3-支持事务的嵌套" class="headerlink" title="3. 支持事务的嵌套"></a>3. 支持事务的嵌套</h4><ul>
+<li>传播行为支持嵌套事务，允许在一个事务中执行另一个事务，并实现部分回滚。</li>
+<li>例如：<ul>
+<li><strong>NESTED</strong>：在嵌套事务中执行，如果外部事务回滚，嵌套事务也会回滚；但嵌套事务可以独立提交或回滚，而不影响外部事务。</li>
+</ul>
+</li>
+</ul>
+<h4 id="4-强制事务约束"><a href="#4-强制事务约束" class="headerlink" title="4. 强制事务约束"></a>4. 强制事务约束</h4><ul>
+<li>传播行为可以强制某些操作必须在事务中执行，或者绝对不能在一个事务中执行。</li>
+<li>例如：<ul>
+<li><strong>MANDATORY</strong>：必须在一个已有事务中执行，否则抛出异常。</li>
+<li><strong>NEVER</strong>：必须不在事务中执行，否则抛出异常。</li>
+</ul>
+</li>
+</ul>
+<h4 id="5-优化性能"><a href="#5-优化性能" class="headerlink" title="5. 优化性能"></a>5. 优化性能</h4><ul>
+<li>传播行为可以通过减少不必要的事务创建和提交，优化系统性能。</li>
+<li>例如：<ul>
+<li><strong>SUPPORTS</strong>：如果当前没有事务，则以非事务方式执行，避免创建不必要的事务。</li>
+</ul>
+</li>
+</ul>
+<h4 id="6-实现复杂的业务逻辑"><a href="#6-实现复杂的业务逻辑" class="headerlink" title="6. 实现复杂的业务逻辑"></a>6. 实现复杂的业务逻辑</h4><ul>
+<li>传播行为可以帮助实现复杂的业务逻辑，例如：<ul>
+<li>在一个事务中执行多个操作，但某些操作需要独立事务。</li>
+<li>部分操作需要回滚，而其他操作需要提交。</li>
+</ul>
+</li>
+</ul>
+<h4 id="7-总结"><a href="#7-总结" class="headerlink" title="7. 总结"></a>7. <strong>总结</strong></h4><ul>
+<li><strong>控制事务的创建和加入</strong>：决定是否需要创建新事务或加入已有事务。</li>
+<li><strong>管理事务的独立性</strong>：确保某些操作不受外部事务影响。</li>
+<li><strong>支持事务的嵌套</strong>：实现部分回滚的能力。</li>
+<li><strong>强制事务的约束</strong>：确保某些操作必须在事务中执行，或者绝对不能在一个事务中执行。</li>
+<li><strong>优化性能</strong>：减少不必要的事务创建和提交。</li>
+<li><strong>实现复杂的业务逻辑</strong>：支持复杂的业务场景。</li>
+</ul>
+<p>reqired</p>
+<p>reqires_new</p>
+<p>supports</p>
+<p>not_supports</p>
+<h3 id="事务在什么情况下会失效？"><a href="#事务在什么情况下会失效？" class="headerlink" title="事务在什么情况下会失效？"></a>事务在什么情况下会失效？</h3><p>注意：只会回滚RuntimeException</p>
+<p>一般情况而言，失效的情况都是使用了声明式事务<code>@Transactional</code> 注解，如果使用了这个注解那么在以下几个情况下会导致事务的失效。</p>
+<ol>
+<li><p><strong>异常被捕获</strong>，比如代码抛出，但是被catch了，事务无法捕获到错误，因此就不会回滚。</p>
+</li>
+<li><p><strong>设置rollbackFor错误</strong>，前面提到，事务只会处理RuntimeException和Error，对于其他的异常需要自己设置rollbackFor。</p>
+<img src="https://pic1.imgdb.cn/item/67bc1a1fd0e0a243d40343af.png" alt="image.png">
+</li>
+<li><p><strong>同一个类中方法调用</strong>，因为事务是基于动态代理机制实现的，同类的方法调用不会走代理，因此事务自然就失效了。</p>
+</li>
+<li><p>@Transactional 应用在 **非public修饰的方法 **上，Spring事务判断非公共方法则不应用事务。</p>
+</li>
+<li><p>@Transactional 应用在 <strong>final 和static 方法</strong>上，因为aop默认 cglib代理，无法对final方法子类化。static是静态方法，属于类不属于实例对象，无法被代理</p>
+</li>
+<li><p>propagation传播机制配置错误</p>
+</li>
+<li><p>多线程环境，因为 @Transactional 是基于 ThreadLocal 存储上下问的，多线程情况下每个线程都有自己的上下文，那么之间如何保持事务同步？保持不了，因此事务失效。</p>
+</li>
+<li><p>用的是MySQL MyISAM，这个引擎本身不支持事务。</p>
+</li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2025/02/14/jvm/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/111.png">
+      <meta itemprop="name" content="ZhangYuHao">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Zhang'Blog">
+      <meta itemprop="description" content="一个小人物的个人博客">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Zhang'Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2025/02/14/jvm/" class="post-title-link" itemprop="url">jvm</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2025-02-14 16:55:52" itemprop="dateCreated datePublished" datetime="2025-02-14T16:55:52+08:00">2025-02-14</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-02-15 10:08:22" itemprop="dateModified" datetime="2025-02-15T10:08:22+08:00">2025-02-15</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="JVM"><a href="#JVM" class="headerlink" title="JVM"></a>JVM</h1><p>JVM跨平台原理：</p>
+<p>不同操作系统上运行的JVM是不一样的，这才是JVM跨平台的本质。	</p>
+<h2 id="字节码的作用"><a href="#字节码的作用" class="headerlink" title="字节码的作用"></a>字节码的作用</h2><p><img src="https://pic1.imgdb.cn/item/67aff707d0e0a243d4ff7cd8.png"></p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1229,465 +3485,6 @@
     
     <div class="post-body" itemprop="articleBody">
           <h1 id="场景题"><a href="#场景题" class="headerlink" title="场景题"></a>场景题</h1><h2 id="Day1"><a href="#Day1" class="headerlink" title="Day1"></a>Day1</h2><h3 id="一笔订单在取消的那一刻付款了，怎么办？"><a href="#一笔订单在取消的那一刻付款了，怎么办？" class="headerlink" title="一笔订单在取消的那一刻付款了，怎么办？"></a>一笔订单在取消的那一刻付款了，怎么办？</h3>
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2025/01/05/java%E9%9D%A2%E8%AF%95/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/111.png">
-      <meta itemprop="name" content="ZhangYuHao">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Zhang'Blog">
-      <meta itemprop="description" content="一个小人物的个人博客">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | Zhang'Blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2025/01/05/java%E9%9D%A2%E8%AF%95/" class="post-title-link" itemprop="url">java面试</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2025-01-05 23:28:38" itemprop="dateCreated datePublished" datetime="2025-01-05T23:28:38+08:00">2025-01-05</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2025-02-09 08:21:11" itemprop="dateModified" datetime="2025-02-09T08:21:11+08:00">2025-02-09</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E9%9D%A2%E8%AF%95/" itemprop="url" rel="index"><span itemprop="name">面试</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="Java面试"><a href="#Java面试" class="headerlink" title="Java面试"></a>Java面试</h1><h2 id="Day1"><a href="#Day1" class="headerlink" title="Day1"></a>Day1</h2><h3 id="java中的序列化和反序列化是什么？"><a href="#java中的序列化和反序列化是什么？" class="headerlink" title="java中的序列化和反序列化是什么？"></a>java中的序列化和反序列化是什么？</h3><p><strong>序列化：</strong></p>
-<p>序列化是指将数据结构或对象状态转换成可以存储或传输的格式的过程。这个格式通常是和平台无关的，比如JSON,XML,二进制格式等，以便可以在不同的系统或环境中进行交换。序列化后的数据可以存储在文件中，或者通过网络发送给其他系统。</p>
-<p><strong>为什么要序列化</strong></p>
-<ul>
-<li><strong>数据持久化</strong>：将对象状态保存到文件中，以便在程序关闭或系统重启后能够重新加载这些数据。</li>
-<li><strong>网络传输</strong>：在网络通信中，数据需要在客户端和服务端之间传输，序列化可以将对象转换成字节流，便于在网络中传输。</li>
-<li><strong>对象深拷贝</strong>：通过序列化一个对象，然后立即进行反序列化，可以实现对象的深拷贝。</li>
-</ul>
-<p><strong>反序列化：</strong></p>
-<p>反序列化是序列化的逆过程，即将序列化后的数据（如JSON,XML,二进制格式等）转换回原始的数据结构或对象状态。这个过程允许对象在需要时重新构建对象，并使用其原始数据。</p>
-<p><strong>为什么要反序列化</strong></p>
-<ul>
-<li><strong>数据恢复</strong>：在程序启动时，从文件中读取序列化后的数据，反序列化成对象，以恢复程序运行前的状态。</li>
-<li><strong>数据接收</strong>：在网络通信中，接收到的序列化数据需要被反序列化成对象，以便在本地系统中使用。</li>
-</ul>
-<h3 id="什么是不可变类？"><a href="#什么是不可变类？" class="headerlink" title="什么是不可变类？"></a>什么是不可变类？</h3><p><strong>不可变类</strong>：所谓的不可变类是指这个类的实例一旦创建完成后，就不能改变其成员变量值。如JDK内部自带的很多不可变类：Interger、Long和String等。</p>
-<p>优点：线程安全</p>
-<p><strong>设计方法</strong></p>
-<p><strong>1. 类添加final修饰符，保证类不被继承</strong>。</p>
-<p><strong>2. 保证所有成员变量必须私有，并且加上final修饰</strong></p>
-<p><strong>3. 不提供改变成员变量的方法，包括setter</strong></p>
-<p><strong>4.通过构造器初始化所有成员，进行深拷贝(deep copy)</strong></p>
-<p><strong>5. 在getter方法中，不要直接返回对象本身，而是克隆对象，并返回对象的拷贝</strong></p>
-<h3 id="Exception-和-Error有什么区别？"><a href="#Exception-和-Error有什么区别？" class="headerlink" title="Exception 和 Error有什么区别？"></a>Exception 和 Error有什么区别？</h3><p><strong>‌Exception‌</strong>：Exception是程序运行中可以预见的异常情况，通常是由于程序设计或外部输入错误引起的。它们可以被捕获和处理，程序可以继续运行或给出错误提示。<br><strong>‌Error‌</strong>：Error是程序运行中不可预见的严重错误，通常是由于系统资源不足、硬件故障等引起的。这些错误通常会导致JVM崩溃，无法恢复，因此无法捕获和处理‌。</p>
-<h3 id="什么是Java的多态特性？"><a href="#什么是Java的多态特性？" class="headerlink" title="什么是Java的多态特性？"></a>什么是Java的多态特性？</h3><p>Java多态是面向对象编程的一个重要特性，它允许不同的对象对同一消息做出不同的响应。具体点就是不同的对象去完成相同的一个任务完成后展现的结果不相同</p>
-<p>多态 多态就是同一个接口，使用不同的实例而执行不同操作，如图所示：多态性是对象多种表现形式的体现</p>
-<h2 id="Day2"><a href="#Day2" class="headerlink" title="Day2"></a>Day2</h2><h3 id="Java中的参数传递是按值传递还是按引用？"><a href="#Java中的参数传递是按值传递还是按引用？" class="headerlink" title="Java中的参数传递是按值传递还是按引用？"></a>Java中的参数传递是按值传递还是按引用？</h3><p>按值传递</p>
-<h3 id="为什么Java不支持多重继承？"><a href="#为什么Java不支持多重继承？" class="headerlink" title="为什么Java不支持多重继承？"></a>为什么Java不支持多重继承？</h3><p>可能会出现菱形问题，简化了继承链，避免了多重继承带来的冲突。接口作为了多重继承的替代方案。</p>
-<h3 id="JDK8-的新特性？"><a href="#JDK8-的新特性？" class="headerlink" title="JDK8 的新特性？"></a>JDK8 的新特性？</h3><ol>
-<li><p>Lambda表达式</p>
-</li>
-<li><p>函数式接口（仅包含一个抽象方法的接口，配合Lambda隐式调用）</p>
-</li>
-<li><p>StreamAPI（处理集合流）</p>
-<h2 id="3-Stream-API"><a href="#3-Stream-API" class="headerlink" title="3. Stream API"></a>3. <strong>Stream API</strong></h2><p>Stream API 是 JDK 8 中的另一个重要特性，它为 Java 提供了一种声明式的方式来处理集合数据。通过 Stream API，开发者可以轻松地进行过滤、映射、排序、聚合等操作，且支持串行和并行流处理。</p>
-<h3 id="3-1-创建-Stream"><a href="#3-1-创建-Stream" class="headerlink" title="3.1 创建 Stream"></a>3.1 创建 Stream</h3><p>Stream 可以从集合、数组、I&#x2F;O 通道等<a target="_blank" rel="noopener" href="https://zhida.zhihu.com/search?content_id=251898554&content_type=Article&match_order=1&q=%E6%95%B0%E6%8D%AE%E6%BA%90&zhida_source=entity">数据源</a>中创建。以下是一些常见的创建 Stream 的方式：</p>
-<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">// 从集合中创建 Stream</span><br><span class="line">List&lt;String&gt; list = Arrays.asList(&quot;apple&quot;, &quot;banana&quot;, &quot;cherry&quot;);</span><br><span class="line">Stream&lt;String&gt; stream = list.stream();</span><br><span class="line"></span><br><span class="line">// 从数组中创建 Stream</span><br><span class="line">String[] array = &#123;&quot;apple&quot;, &quot;banana&quot;, &quot;cherry&quot;&#125;;</span><br><span class="line">Stream&lt;String&gt; stream2 = Arrays.stream(array);</span><br><span class="line"></span><br><span class="line">// 使用 Stream.of() 创建</span><br><span class="line">Stream&lt;String&gt; stream3 = Stream.of(&quot;apple&quot;, &quot;banana&quot;, &quot;cherry&quot;);</span><br></pre></td></tr></table></figure>
-
-<h3 id="3-2-常见的-Stream-操作"><a href="#3-2-常见的-Stream-操作" class="headerlink" title="3.2 常见的 Stream 操作"></a>3.2 常见的 Stream 操作</h3><p>Stream API 提供了多种操作方法，这些方法可以分为 <strong>中间操作</strong> 和 <strong>终止操作</strong>。</p>
-<h3 id="3-2-1-中间操作"><a href="#3-2-1-中间操作" class="headerlink" title="3.2.1 中间操作"></a>3.2.1 中间操作</h3><p>中间操作会返回一个新的 Stream，可以链式调用。常见的中间操作有：</p>
-<ul>
-<li><code>filter</code>：过滤元素</li>
-<li><code>map</code>：将每个元素转换为另一个对象</li>
-<li><code>flatMap</code>：将元素转换为多个元素（扁平化）</li>
-<li><code>sorted</code>：排序</li>
-</ul>
-<h3 id="3-2-2-终止操作"><a href="#3-2-2-终止操作" class="headerlink" title="3.2.2 终止操作"></a>3.2.2 终止操作</h3><p>终止操作会触发 Stream 的计算，并返回一个结果。常见的终止操作有：</p>
-<ul>
-<li><code>collect</code>：将 Stream 转换为集合或其他类型</li>
-<li><code>forEach</code>：遍历每个元素</li>
-<li><code>reduce</code>：通过给定的二元<a target="_blank" rel="noopener" href="https://zhida.zhihu.com/search?content_id=251898554&content_type=Article&match_order=1&q=%E6%93%8D%E4%BD%9C%E7%AC%A6&zhida_source=entity">操作符</a>将 Stream 中的元素合并为一个结果</li>
-<li><code>count</code>：计算元素的数量</li>
-<li><code>findFirst</code>：获取 Stream 中的第一个元素</li>
-</ul>
-<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">List&lt;String&gt; list = Arrays.asList(&quot;apple&quot;, &quot;banana&quot;, &quot;cherry&quot;);</span><br><span class="line">list.stream()</span><br><span class="line">    .filter(s -&gt; s.startsWith(&quot;a&quot;))</span><br><span class="line">    .map(String::toUpperCase)</span><br><span class="line">    .forEach(System.out::println); // 输出 &quot;APPLE&quot;</span><br></pre></td></tr></table></figure>
-
-<h3 id="3-3-并行流处理"><a href="#3-3-并行流处理" class="headerlink" title="3.3 并行流处理"></a>3.3 并行流处理</h3><p>Stream API 支持<a target="_blank" rel="noopener" href="https://zhida.zhihu.com/search?content_id=251898554&content_type=Article&match_order=3&q=%E5%B9%B6%E8%A1%8C%E6%B5%81&zhida_source=entity">并行流</a>，可以更高效地处理大量数据。通过调用 <code>parallelStream()</code> 或 <code>stream.parallel()</code>，可以轻松地将串行操作转换为并行操作：</p>
-<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">list.parallelStream()</span><br><span class="line">    .filter(s -&gt; s.startsWith(&quot;a&quot;))</span><br><span class="line">    .forEach(System.out::println);</span><br></pre></td></tr></table></figure>
-
-<p>并行流利用多核处理器来提高性能，特别适合进行大规模数据处理。</p>
-</li>
-<li><p>新日期时间</p>
-</li>
-<li><p>默认方法</p>
-</li>
-<li><p>Optional</p>
-</li>
-<li><p>新的并发API</p>
-</li>
-</ol>
-<h2 id="Day3"><a href="#Day3" class="headerlink" title="Day3"></a>Day3</h2><h3 id="String-StringBuffer-StringBuilder区别？"><a href="#String-StringBuffer-StringBuilder区别？" class="headerlink" title="String, StringBuffer, StringBuilder区别？"></a>String, StringBuffer, StringBuilder区别？</h3><h3 id="StringBuilder-的实现原理？"><a href="#StringBuilder-的实现原理？" class="headerlink" title="StringBuilder 的实现原理？"></a>StringBuilder 的实现原理？</h3><h3 id="包装类和基本类型的区别是什么？"><a href="#包装类和基本类型的区别是什么？" class="headerlink" title="包装类和基本类型的区别是什么？"></a>包装类和基本类型的区别是什么？</h3><h3 id="接口和抽象类有什么区别？"><a href="#接口和抽象类有什么区别？" class="headerlink" title="接口和抽象类有什么区别？"></a>接口和抽象类有什么区别？</h3><h3 id="JDK和JRE有什么区别？"><a href="#JDK和JRE有什么区别？" class="headerlink" title="JDK和JRE有什么区别？"></a>JDK和JRE有什么区别？</h3><h2 id="Day4"><a href="#Day4" class="headerlink" title="Day4"></a>Day4</h2><h3 id="Java中hashCode和equea方法是什么？它们与-符号有什么区别？"><a href="#Java中hashCode和equea方法是什么？它们与-符号有什么区别？" class="headerlink" title="Java中hashCode和equea方法是什么？它们与&#x3D;&#x3D;符号有什么区别？"></a>Java中hashCode和equea方法是什么？它们与&#x3D;&#x3D;符号有什么区别？</h3><h3 id="Java中的hashCode和equals方法之间有什么关系？"><a href="#Java中的hashCode和equals方法之间有什么关系？" class="headerlink" title="Java中的hashCode和equals方法之间有什么关系？"></a>Java中的hashCode和equals方法之间有什么关系？</h3><h3 id="java中的动态代理？"><a href="#java中的动态代理？" class="headerlink" title="java中的动态代理？"></a>java中的动态代理？</h3><h3 id="JDk动态代理和CGLIB动态代理有什么区别"><a href="#JDk动态代理和CGLIB动态代理有什么区别" class="headerlink" title="JDk动态代理和CGLIB动态代理有什么区别?"></a>JDk动态代理和CGLIB动态代理有什么区别?</h3><h3 id="Java中注解的原理是什么？"><a href="#Java中注解的原理是什么？" class="headerlink" title="Java中注解的原理是什么？"></a>Java中注解的原理是什么？</h3><h2 id="Day5"><a href="#Day5" class="headerlink" title="Day5"></a>Day5</h2><h3 id="Java的反射机制吗？如何应用反射？"><a href="#Java的反射机制吗？如何应用反射？" class="headerlink" title="Java的反射机制吗？如何应用反射？"></a>Java的反射机制吗？如何应用反射？</h3><h3 id="Java中泛型的作用？"><a href="#Java中泛型的作用？" class="headerlink" title="Java中泛型的作用？"></a>Java中泛型的作用？</h3><h3 id="泛型擦除是什么？"><a href="#泛型擦除是什么？" class="headerlink" title="泛型擦除是什么？"></a>泛型擦除是什么？</h3><h3 id="什么是java泛型的上下限定符？"><a href="#什么是java泛型的上下限定符？" class="headerlink" title="什么是java泛型的上下限定符？"></a>什么是java泛型的上下限定符？</h3><h3 id="Java中的深拷贝和浅拷贝？"><a href="#Java中的深拷贝和浅拷贝？" class="headerlink" title="Java中的深拷贝和浅拷贝？"></a>Java中的深拷贝和浅拷贝？</h3><h1 id="面试题"><a href="#面试题" class="headerlink" title="面试题"></a>面试题</h1><h2 id="类"><a href="#类" class="headerlink" title="类"></a>类</h2><h3 id="接口类和抽象类有什么区别？"><a href="#接口类和抽象类有什么区别？" class="headerlink" title="接口类和抽象类有什么区别？"></a>接口类和抽象类有什么区别？</h3><p><strong>1. 抽象类</strong></p>
-<p>抽象类是一种特殊的类，通常是作为其他类的基类，提供了公共的属性和方法，允许子类根据需求进行扩展。</p>
-<p><strong>1.1 特性</strong></p>
-<ul>
-<li>包含抽象方法： 必须在子类中实现</li>
-<li>包含具体方法： 可以直接被子类继承。</li>
-<li>包含成员变量</li>
-<li>有构造函数</li>
-<li>单继承</li>
-</ul>
-<p><strong>2. 接口</strong></p>
-<p>接口是一种特殊的引用类型，它是方法声明的集合，接口中的方法都是抽象的，即没有具体的实现。接口主要用于定义一组方法，这些方法必须由实现接口的类进行实现。</p>
-<p><strong>2.1 特性</strong></p>
-<ul>
-<li>抽象方法：接口中默认是抽象方法，需要接口类实现</li>
-<li>常量： 通常 <code>public static final</code> 进行修饰</li>
-<li>默认方法和静态方法： 从Java8开始，接口可以包含默认方法（使用default进行修饰）和静态方法（static）。默认方法提供了接口实现，而静态方法只与接口关联，不与接口类的实现关联。</li>
-<li>多实现： 一个类可以实现多个接口</li>
-<li>不包含成员变量</li>
-<li>不能包含构造方法</li>
-</ul>
-<p><strong>3. 场景</strong></p>
-<p>抽象类： 是自下而上的，提取类的公共特性抽象出一个公有的父类。</p>
-<p>接口类： 是自上而下的，先定义接口，让后让类实现这些接口。</p>
-<h2 id="特性"><a href="#特性" class="headerlink" title="特性"></a>特性</h2><h3 id="JDk动态代理和CGLIB动态代理的区别"><a href="#JDk动态代理和CGLIB动态代理的区别" class="headerlink" title="JDk动态代理和CGLIB动态代理的区别"></a>JDk动态代理和CGLIB动态代理的区别</h3><p>JDK和CGLIB是Java中两种实现动态代理的方式，他们的目的都是为了实现类的代理。</p>
-<p><strong>1. JDK</strong></p>
-<p>通过 <strong>接口和反射</strong>来实现类的动态代理（切面）</p>
-<p>创建代理类开销小，实现方法开销大</p>
-<p><strong>接口驱动的编程</strong></p>
-<p><strong>2. CGLIB</strong></p>
-<p>通过 <strong>字节码和子类继承</strong>的方式来实现动态代理( ASM 字节码生成框架)</p>
-<p>创建代理类开销大，实现方法开销小（字节码操作，减少了反射的开销）</p>
-<p>无法代理 final修饰的方法和变量</p>
-<p><strong>没有实现接口的类</strong></p>
-<p><strong>3. 在Spring AOP中的使用</strong></p>
-<p>（1）JDK动态代理</p>
-<p>在Spring AOP中，如果目标对象实现了接口，Spring默认使用JDK动态代理。这是因为Spring AOP的核心思想是基于接口的面向切面编程（Aspect-Oriented Programming）。</p>
-<p>（2）CGLIB动态代理</p>
-<p>如果目标对象没有实现任何接口，Spring AOP会自动使用CGLIB动态代理。在Spring配置中，你也可以强制使用CGLIB代理（通过设置<code>proxyTargetClass=true</code>）。</p>
-<p><strong>4. 对比</strong></p>
-<p><img src="https://pic1.imgdb.cn/item/67a16638d0e0a243d4fb835a.png"></p>
-<h3 id="用过反射吗？如何应用反射"><a href="#用过反射吗？如何应用反射" class="headerlink" title="用过反射吗？如何应用反射"></a>用过反射吗？如何应用反射</h3><p>Java的反射是指，在运行时获取类的结构信息，（如方法，字段，构造函数），并操作对象的一种机制，反射机制提供了在运行时动态创建对象，调用方法，访问字段等功能，而无需在编译时知道这些类的具体信息。</p>
-<p><strong>反射机制的优缺点</strong></p>
-<ul>
-<li>可以在运行时，动态的获取类的信息，不需要再编译时知道类的信息。</li>
-<li>可以在运行时，动态的创建对象，不需要在编译时就知道对象的类型。</li>
-<li>可以在运行时，动态的调用对象的属性和方法，动态的改变对象的行为。</li>
-</ul>
-<p><strong>性能</strong></p>
-<p>反射操作相比直接代码调用具有更高的性能开销，因为它涉及到动态解析和方法调用</p>
-<h2 id="集合"><a href="#集合" class="headerlink" title="集合"></a>集合</h2><h3 id="说说HashMap的原理"><a href="#说说HashMap的原理" class="headerlink" title="说说HashMap的原理"></a>说说HashMap的原理</h3><p>采用了数组+链表+红黑树+哈希算法的结合。</p>
-<p>HashMap存储的是键值对</p>
-<p>当存储数据时，通过将KV合成一个node，在Key通过hashCode获取哈希值，在通过算法将哈希值转化为桶的下标</p>
-<p>下标无值，直接放入</p>
-<p>下标有值，和链表的每一个key进行比较，相同覆盖，则向后比较，最后加到链表的尾部</p>
-<p>JDK8以后，当链表超过8个，则转化成红黑树。</p>
-<p>默认容量为16，第一次扩容通常是64，之后2倍</p>
-<p>装载因子（默认0.75）</p>
-<p>扩容后是采用头插法的</p>
-<p>注意： 线程不安全，可以采用ConcurrentHashMap</p>
-<p><strong>两种遍历方法</strong></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">　<span class="type">Map</span> <span class="variable">map</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">HashMap</span>();</span><br><span class="line">　　<span class="type">Iterator</span> <span class="variable">iter</span> <span class="operator">=</span> map.entrySet().iterator();</span><br><span class="line">　　<span class="keyword">while</span> (iter.hasNext()) &#123;</span><br><span class="line">　　Map.<span class="type">Entry</span> <span class="variable">entry</span> <span class="operator">=</span> (Map.Entry) iter.next();</span><br><span class="line">　　<span class="type">Object</span> <span class="variable">key</span> <span class="operator">=</span> entry.getKey();</span><br><span class="line">　　<span class="type">Object</span> <span class="variable">val</span> <span class="operator">=</span> entry.getValue();</span><br><span class="line">　　&#125;</span><br><span class="line"><span class="comment">// 效率高</span></span><br></pre></td></tr></table></figure>
-
-
-
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">　<span class="type">Map</span> <span class="variable">map</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">HashMap</span>();</span><br><span class="line">　　<span class="type">Iterator</span> <span class="variable">iter</span> <span class="operator">=</span> map.keySet().iterator();</span><br><span class="line">　　<span class="keyword">while</span> (iter.hasNext()) &#123;</span><br><span class="line">　　<span class="type">Object</span> <span class="variable">key</span> <span class="operator">=</span> iter.next();</span><br><span class="line">　　<span class="type">Object</span> <span class="variable">val</span> <span class="operator">=</span> map.get(key);</span><br><span class="line">　　&#125;</span><br><span class="line"><span class="comment">// 效率低</span></span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="HashMap是如何扩容的"><a href="#HashMap是如何扩容的" class="headerlink" title="HashMap是如何扩容的"></a>HashMap是如何扩容的</h3><p><strong>扩容的步骤</strong></p>
-<p><strong>计算新容量</strong>：当 HashMap 需要扩容时，新的容量通常是当前容量的两倍。</p>
-<p><strong>创建新数组</strong>：根据新的容量创建一个新的数组（新的桶数组），其大小是旧数组的两倍。</p>
-<p><strong>重新哈希并分布元素</strong>：遍历旧数组中的所有元素，将它们重新计算哈希值并插入到新数组的相应位置。这个过程被称为 rehashing。</p>
-<h3 id="介绍一下Java中有那些集合类"><a href="#介绍一下Java中有那些集合类" class="headerlink" title="介绍一下Java中有那些集合类"></a>介绍一下Java中有那些集合类</h3><p>集合图解</p>
-<p><img src="https://pic1.imgdb.cn/item/67a1701ad0e0a243d4fb8aa5.png"></p>
-<p><strong>collection 接口</strong></p>
-<p><img src="https://pic1.imgdb.cn/item/67a17073d0e0a243d4fb8b6e.png"></p>
-<p><strong>map接口</strong></p>
-<p><img src="https://pic1.imgdb.cn/item/67a17097d0e0a243d4fb8b96.png"></p>
-<h2 id="并发编程"><a href="#并发编程" class="headerlink" title="并发编程"></a>并发编程</h2><h3 id="你了解Java线程池的原理吗？"><a href="#你了解Java线程池的原理吗？" class="headerlink" title="你了解Java线程池的原理吗？"></a>你了解Java线程池的原理吗？</h3><p><strong>当前一个满的情况下，会执行后一个</strong></p>
-<p>核心线程池 -》 工作队列 -》 新开线程 -》 拒绝策略</p>
-<p>线程池的参数：</p>
-<ul>
-<li>corePoolSize ： 核心线程数</li>
-<li>maximumPoolSize: 最大线程数</li>
-<li>workQueue： 工作队列</li>
-<li>keepAliveTime： 回收线程时间</li>
-<li>threadFactory： 线程工厂，表示怎么创建线程</li>
-<li>Rejected： 这个接口是实现拒绝策略的，表示都满了的拒绝。</li>
-</ul>
-<p><img src="https://pic1.imgdb.cn/item/67a2b8edd0e0a243d4fbdbaa.png"></p>
-<p>poll： 假如queue为空，并且允许关闭核心线程数 或者 我当前的线程树大于核心线程数， 回收。（或超时）</p>
-<p>take： 否则， 阻塞在take中，等待queue里面的task。（自旋）</p>
-<p><strong>整体结构图</strong></p>
-<p><img src="https://pic1.imgdb.cn/item/67a2bbe7d0e0a243d4fbdcf7.png"></p>
-<h4 id="有哪些拒绝策略？"><a href="#有哪些拒绝策略？" class="headerlink" title="有哪些拒绝策略？"></a>有哪些拒绝策略？</h4><p>拒绝策略： 线程占用满时，需要拒绝策略</p>
-<p><strong>JDK内置的拒绝策略：</strong></p>
-<ul>
-<li>AbortPolicy（异常策略）： 直接抛出异常，阻止系统正常运行。</li>
-<li>CallerRunsPolicy： 该策略直接将任务交给调用者线程运行性能极有可能会急剧下降。</li>
-<li>DiscardOldsetPlicy（丢弃最老策略）： 丢弃最老的一个请求，也就是即将被执行的一个任务，并尝试再次提交当前任务。</li>
-<li>DiscardPolicy（丢弃策略）： 该策略默默然地丢弃无法处理的任务，不予任何处理。如果允许任务丢失，这是最好的一种方式。</li>
-</ul>
-<p>以上拒绝策略都实现了 <code>RejectedExecutionHandle</code> 接口，若以上拒绝策略都无法满足，完全可以自己扩展。</p>
-<p>注意： 默认的拒绝策略是 <code>AbortPolicy</code></p>
-<h4 id="线程工厂有什么用？"><a href="#线程工厂有什么用？" class="headerlink" title="线程工厂有什么用？"></a>线程工厂有什么用？</h4><p>定制化的创建新线程的对象。</p>
-<h4 id="有设置核心线程数的经验吗？"><a href="#有设置核心线程数的经验吗？" class="headerlink" title="有设置核心线程数的经验吗？"></a>有设置核心线程数的经验吗？</h4><p><strong>内核指的就是CPU核数</strong>，<strong>逻辑处理器是线程数-最大可以并行的线程数</strong></p>
-<h3 id="用过哪些Java并发工具"><a href="#用过哪些Java并发工具" class="headerlink" title="用过哪些Java并发工具"></a>用过哪些Java并发工具</h3><ul>
-<li>ConcurrentHashMap</li>
-<li>AtomicInteger</li>
-<li>Semaphore</li>
-<li>CyclicBarier</li>
-<li>CountDownLatch</li>
-<li>BlockingQueue</li>
-</ul>
-<h3 id="锁"><a href="#锁" class="headerlink" title="锁"></a>锁</h3><p>锁：</p>
-<p><img src="https://pic1.imgdb.cn/item/67a2c6d6d0e0a243d4fbdd90.png"></p>
-<p>锁的本质：</p>
-<p><img src="https://pic1.imgdb.cn/item/67a2c705d0e0a243d4fbdd95.png"></p>
-<h3 id="什么是CAS"><a href="#什么是CAS" class="headerlink" title="什么是CAS"></a>什么是CAS</h3><p>compare and swap()</p>
-<h3 id="什么是AQS"><a href="#什么是AQS" class="headerlink" title="什么是AQS"></a>什么是AQS</h3><h3 id="Synchronized-和-Reetranlock有什么区别"><a href="#Synchronized-和-Reetranlock有什么区别" class="headerlink" title="Synchronized 和 Reetranlock有什么区别"></a>Synchronized 和 Reetranlock有什么区别</h3><h3 id="volatile-关键字作用是什么？"><a href="#volatile-关键字作用是什么？" class="headerlink" title="volatile 关键字作用是什么？"></a>volatile 关键字作用是什么？</h3>
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2025/01/05/%E7%BD%91%E5%85%B3/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/111.png">
-      <meta itemprop="name" content="ZhangYuHao">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Zhang'Blog">
-      <meta itemprop="description" content="一个小人物的个人博客">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | Zhang'Blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2025/01/05/%E7%BD%91%E5%85%B3/" class="post-title-link" itemprop="url">网关</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-      
-
-      <time title="创建时间：2025-01-05 15:49:13 / 修改时间：20:07:45" itemprop="dateCreated datePublished" datetime="2025-01-05T15:49:13+08:00">2025-01-05</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E5%BE%AE%E6%9C%8D%E5%8A%A1/" itemprop="url" rel="index"><span itemprop="name">微服务</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="API网关"><a href="#API网关" class="headerlink" title="API网关"></a>API网关</h1><p><img src="https://pic1.imgdb.cn/item/677a714dd0e0a243d4ef2c43.png"></p>
-<h2 id="什么是网关？"><a href="#什么是网关？" class="headerlink" title="什么是网关？"></a>什么是网关？</h2><p><strong>API网关是一个服务器，是系统的唯一入口。</strong></p>
-<p>API网关封装了系统的内部架构，为每个客户端提供了一个定制的API。</p>
-<p>它的职责：路由，鉴权，跨域，缓存，流量染色，访问控制，统一业务处理，发布控制，脱敏，负载均衡，接口保护（限制请求，信息脱敏，降级熔断，限流，超时时间），统一日志，统一文档。</p>
-<p><strong>API网关方式的核心要点是，所有客户端和消费端都通过统一的网关接入微服务</strong>，在网关层处理所有的非业务功能，通常，网关也提供了REST、HTTP的访问API。</p>
-<h2 id="网关的主要功能"><a href="#网关的主要功能" class="headerlink" title="网关的主要功能"></a>网关的主要功能</h2><p>微服务网关作为微服务后端服务的统一入口，它可以统筹管理后端服务，主要分为数据平面和控制平面：</p>
-<p><strong>1. 数据平面</strong></p>
-<p>数据平面主要功能是接入用户的HTTP请求和微服务被拆分后的聚合。使用微服务网关统一对外暴露后端服务的API和契约，路由和过滤功能正是网关的核心能力模块。另外，微服务网关可以实现拦截机制和专注跨横切面的功能，包括协议转换、安全认证、熔断限流、灰度发布、日志管理、流量监控等</p>
-<p><strong>2. 控制平面</strong></p>
-<p>控制平面主要功能是对后端服务做统一的管控和配置管理。</p>
-<p><strong>3. 整体结构及其功能</strong></p>
-<p><img src="https://pic1.imgdb.cn/item/677a73d5d0e0a243d4ef2caa.png"></p>
-<ul>
-<li><strong>路由功能</strong>：路由是微服务网关的核心能力。通过路由功能微服务网关可以将请求转发到目标微服务。在微服务架构中，网关可以结合注册中心的动态服务发现，实现对后端服务的发现，调用方只需要知道网关对外暴露的服务API就可以透明地访问后端微服务。</li>
-<li><strong>负载均衡</strong>：API网关结合负载均衡技术，利用Eureka或者Consul等服务发现工具，通过轮询、指定权重、IP地址哈希等机制实现下游服务的负载均衡。</li>
-<li><strong>统一鉴权</strong>：一般而言，无论对内网还是外网的接口都需要做用户身份认证，而用户认证在一些规模较大的系统中都会采用统一的单点登录（Single Sign On）系统，如果每个微服务都要对接单点登录系统，那么显然比较浪费资源且开发效率低。API网关是统一管理安全性的绝佳场所，可以将认证的部分抽取到网关层，微服务系统无须关注认证的逻辑，只关注自身业务即可。</li>
-<li><strong>协议转换</strong>：API网关的一大作用在于构建异构系统，API网关作为单一入口，通过协议转换整合后台基于REST、AMQP、Dubbo等不同风格和实现技术的微服务，面向Web Mobile、开放平台等特定客户端提供统一服务。</li>
-<li><strong>指标监控</strong>：网关可以统计后端服务的请求次数，并且可以实时地更新当前的流量健康状态，可以对URL粒度的服务进行延迟统计，也可以使用Hystrix Dashboard查看后端服务的流量状态及是否有熔断发生。</li>
-<li><strong>限流熔断</strong>：在某些场景下需要控制客户端的访问次数和访问频率，一些高并发系统有时还会有限流的需求。在网关上可以配置一个阈值，当请求数超过阈值时就直接返回错误而不继续访问后台服务。当出现流量洪峰或者后端服务出现延迟或故障时，网关能够主动进行熔断，保护后端服务，并保持前端用户体验良好。</li>
-<li><strong>黑白名单</strong>：微服务网关可以使用系统黑名单，过滤HTTP请求特征，拦截异常客户端的请求，例如DDoS攻击等侵蚀带宽或资源迫使服务中断等行为，可以在网关层面进行拦截过滤。比较常见的拦截策略是根据IP地址增加黑名单。在存在鉴权管理的路由服务中可以通过设置白名单跳过鉴权管理而直接访问后端服务资源。</li>
-<li><strong>灰度发布</strong>：微服务网关可以根据HTTP请求中的特殊标记和后端服务列表元数据标识进行流量控制，实现在用户无感知的情况下完成灰度发布。</li>
-<li><strong>流量染色</strong>：和灰度发布的原理相似，网关可以根据HTTP请求的Host、Head、Agent等标识对请求进行染色，有了网关的流量染色功能，我们可以对服务后续的调用链路进行跟踪，对服务延迟及服务运行状况进行进一步的链路分析。</li>
-<li><strong>文档中心</strong>：网关结合Swagger，可以将后端的微服务暴露给网关，网关作为统一的入口给接口的使用方提供查看后端服务的API规范，不需要知道每一个后端微服务的Swagger地址，这样网关起到了对后端API聚合的效果。</li>
-<li><strong>日志审计</strong>：微服务网关可以作为统一的日志记录和收集器，对服务URL粒度的日志请求信息和响应信息进行拦截。</li>
-</ul>
-<h2 id="常用网关"><a href="#常用网关" class="headerlink" title="常用网关"></a>常用网关</h2><h3 id="Nginx"><a href="#Nginx" class="headerlink" title="Nginx"></a>Nginx</h3><p>Nginx是一个高性能的HTTP反向代理服务器，<strong>Nginx一方面可以做反向代理，另外一方面可以做静态资源服务器，接口使用Lua动态语言可以完成灵活的定制功能。</strong></p>
-<h3 id="Zuul"><a href="#Zuul" class="headerlink" title="Zuul"></a>Zuul</h3><p>Zuul 是 Netflix 开源的一个API网关组件，它可以和 Eureka、Ribbon、Hystrix 等组件配合使用。社区活跃，融合于 SpringCloud 完整生态，是构建微服务体系前置网关服务的最佳选型之一。</p>
-<p>Zuul 的核心是一系列的过滤器，这些过滤器可以完成以下功能：</p>
-<ul>
-<li><strong>统一鉴权 + 动态路由 + 负载均衡 + 压力测试</strong></li>
-<li><strong>审查与监控</strong>：与边缘位置追踪有意义的数据和统计结果，从而带来精确的生产视图。</li>
-<li><strong>多区域弹性</strong>：跨越 AWS Region 进行请求路由，旨在实现 ELB（Elastic Load Balancing，弹性负载均衡）使用的多样化，以及让系统的边缘更贴近系统的使用者。</li>
-</ul>
-<h3 id="SpringCloudGetWay"><a href="#SpringCloudGetWay" class="headerlink" title="SpringCloudGetWay"></a>SpringCloudGetWay</h3><p>Spring Cloud Gateway 是Spring Cloud的一个全新的API网关项目，目的是为了替换掉Zuul1，它基于Spring5.0 + SpringBoot2.0 + WebFlux（基于⾼性能的Reactor模式响应式通信框架Netty，异步⾮阻塞模型）等技术开发，性能⾼于Zuul，官⽅测试，<strong>Spring Cloud GateWay是Zuul的1.6倍</strong>，旨在为微服务架构,提供⼀种简单有效的统⼀的API路由管理⽅式。</p>
-<p>Spring Cloud Gateway可以与Spring Cloud Discovery Client（如Eureka）、Ribbon、Hystrix等组件配合使用，<strong>实现路由转发、负载均衡、熔断、鉴权、路径重写、⽇志监控等，并且Gateway还内置了限流过滤器，实现了限流的功能。</strong></p>
-<p>整体结构如下：</p>
-<p><img src="https://pic1.imgdb.cn/item/677a75b0d0e0a243d4ef2d34.png"></p>
-<h3 id="Kong"><a href="#Kong" class="headerlink" title="Kong"></a>Kong</h3><p>Kong是一款基于OpenResty（Nginx + Lua模块）编写的高可用、易扩展的，由Mashape公司开源的API Gateway项目</p>
-<h3 id="Traefik"><a href="#Traefik" class="headerlink" title="Traefik"></a>Traefik</h3><p>Træfɪk 是一个为了让部署微服务更加便捷而诞生的现代HTTP反向代理、负载均衡工具。它支持多种后台 (Docker, Swarm, Kubernetes, Marathon, Mesos, Consul, Etcd, Zookeeper, BoltDB, Rest API, file…) 来自动化、动态的应用它的设置。</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2025/01/04/API%E9%89%B4%E6%9D%83/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/111.png">
-      <meta itemprop="name" content="ZhangYuHao">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Zhang'Blog">
-      <meta itemprop="description" content="一个小人物的个人博客">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | Zhang'Blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2025/01/04/API%E9%89%B4%E6%9D%83/" class="post-title-link" itemprop="url">API鉴权</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2025-01-04 21:58:00" itemprop="dateCreated datePublished" datetime="2025-01-04T21:58:00+08:00">2025-01-04</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          
       
     </div>
 
