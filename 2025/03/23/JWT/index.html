@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha256-5eIC48iZUHmSlSUz9XtjRyK2mzQkHScZY1WdMaoz74E=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.21.1","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"always","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="JWT 是什么？JWT（JSON Web Token）是一种开放标准（RFC 7519），用于在网络应用间安全地传输信息。它由三部分组成：Header、Payload 和 Signature，通常以紧凑的 URL 安全字符串形式表示。 JWT 的结构 Header：  包含令牌类型（如 JWT）和签名算法（如 HMAC SHA256 或 RSA）。  示例： json 复制 1234&#123;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JWT">
+<meta property="og:url" content="http://example.com/2025/03/23/JWT/index.html">
+<meta property="og:site_name" content="Zhang&#39;Blog">
+<meta property="og:description" content="JWT 是什么？JWT（JSON Web Token）是一种开放标准（RFC 7519），用于在网络应用间安全地传输信息。它由三部分组成：Header、Payload 和 Signature，通常以紧凑的 URL 安全字符串形式表示。 JWT 的结构 Header：  包含令牌类型（如 JWT）和签名算法（如 HMAC SHA256 或 RSA）。  示例： json 复制 1234&#123;">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2025-03-23T11:47:30.000Z">
+<meta property="article:modified_time" content="2025-03-23T12:53:43.805Z">
+<meta property="article:author" content="ZhangYuHao">
+<meta property="article:tag" content="JWT">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://example.com/2025/03/23/JWT/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/2025/03/23/JWT/","path":"2025/03/23/JWT/","title":"JWT"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>JWT | Zhang'Blog</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Zhang'Blog</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-schedule"><a href="/schedule/" rel="section"><i class="fa fa-calendar fa-fw"></i>日程表</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#JWT-%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="nav-number">1.</span> <span class="nav-text">JWT 是什么？</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#JWT-%E7%9A%84%E7%BB%93%E6%9E%84"><span class="nav-number">1.1.</span> <span class="nav-text">JWT 的结构</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#JWT-%E7%9A%84%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B"><span class="nav-number">1.2.</span> <span class="nav-text">JWT 的工作流程</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5"><span class="nav-number">2.</span> <span class="nav-text">核心概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%B7%E6%96%B0%E6%9C%BA%E5%88%B6%E6%B5%81%E7%A8%8B"><span class="nav-number">3.</span> <span class="nav-text">刷新机制流程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BC%98%E7%82%B9"><span class="nav-number">4.</span> <span class="nav-text">优点</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%B3%E4%BA%8E%E4%BB%A4%E7%89%8C%E5%88%B7%E6%96%B0%E6%9C%BA%E5%88%B6"><span class="nav-number"></span> <span class="nav-text">关于令牌刷新机制</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E4%B8%BA%E4%BB%80%E4%B9%88%E9%9C%80%E8%A6%81%E5%88%B7%E6%96%B0%E6%9C%BA%E5%88%B6%EF%BC%9F"><span class="nav-number">1.</span> <span class="nav-text">1. 为什么需要刷新机制？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E5%88%B7%E6%96%B0%E6%9C%BA%E5%88%B6%E7%9A%84%E6%A0%B8%E5%BF%83%E6%B5%81%E7%A8%8B"><span class="nav-number">2.</span> <span class="nav-text">2. 刷新机制的核心流程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E5%88%B7%E6%96%B0%E6%9C%BA%E5%88%B6-vs-%E9%95%BF%E6%9C%89%E6%95%88%E6%9C%9F%E8%AE%BF%E9%97%AE%E4%BB%A4%E7%89%8C"><span class="nav-number">3.</span> <span class="nav-text">3. 刷新机制 vs 长有效期访问令牌</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="ZhangYuHao"
+      src="/images/111.png">
+  <p class="site-author-name" itemprop="name">ZhangYuHao</p>
+  <div class="site-description" itemprop="description">一个小人物的个人博客</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">38</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">23</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/2567821933" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;2567821933" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:103903Zyh@gmail.com" title="E-Mail → mailto:103903Zyh@gmail.com" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2025/03/23/JWT/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/111.png">
+      <meta itemprop="name" content="ZhangYuHao">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Zhang'Blog">
+      <meta itemprop="description" content="一个小人物的个人博客">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="JWT | Zhang'Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          JWT
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2025-03-23 19:47:30 / 修改时间：20:53:43" itemprop="dateCreated datePublished" datetime="2025-03-23T19:47:30+08:00">2025-03-23</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h3 id="JWT-是什么？"><a href="#JWT-是什么？" class="headerlink" title="JWT 是什么？"></a>JWT 是什么？</h3><p>JWT（JSON Web Token）是一种开放标准（RFC 7519），用于在网络应用间安全地传输信息。它由三部分组成：<strong>Header</strong>、<strong>Payload</strong> 和 <strong>Signature</strong>，通常以紧凑的 URL 安全字符串形式表示。</p>
+<h4 id="JWT-的结构"><a href="#JWT-的结构" class="headerlink" title="JWT 的结构"></a>JWT 的结构</h4><ol>
+<li><p><strong>Header</strong>：</p>
+<ul>
+<li><p>包含令牌类型（如 JWT）和签名算法（如 HMAC SHA256 或 RSA）。</p>
+</li>
+<li><p>示例：</p>
+<p>json</p>
+<p>复制</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;alg&quot;: &quot;HS256&quot;,</span><br><span class="line">  &quot;typ&quot;: &quot;JWT&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p><strong>Payload</strong>：</p>
+<ul>
+<li><p>包含声明（claims），声明是关于实体（通常是用户）和其他数据的声明。</p>
+</li>
+<li><p>示例：</p>
+<p>json</p>
+<p>复制</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;sub&quot;: &quot;1234567890&quot;,</span><br><span class="line">  &quot;name&quot;: &quot;John Doe&quot;,</span><br><span class="line">  &quot;admin&quot;: true</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p><strong>Signature</strong>：</p>
+<ul>
+<li><p>用于验证消息在传输过程中没有被篡改。</p>
+</li>
+<li><p>签名是通过将编码后的 Header 和 Payload 与一个密钥一起使用指定的算法生成的。</p>
+</li>
+<li><p>示例：</p>
+<p>复制</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">HMACSHA256(</span><br><span class="line">  base64UrlEncode(header) + &quot;.&quot; +</span><br><span class="line">  base64UrlEncode(payload),</span><br><span class="line">  secret)</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ol>
+<h4 id="JWT-的工作流程"><a href="#JWT-的工作流程" class="headerlink" title="JWT 的工作流程"></a>JWT 的工作流程</h4><ol>
+<li><strong>用户登录</strong>：用户提供凭证（如用户名和密码），服务器验证凭证并生成 JWT。</li>
+<li><strong>返回 JWT</strong>：服务器将 JWT 返回给客户端。</li>
+<li><strong>客户端存储 JWT</strong>：客户端通常将 JWT 存储在本地存储或 cookie 中。</li>
+<li><strong>发送 JWT</strong>：客户端在每次请求时发送 JWT，通常在 <code>Authorization</code> 头中。</li>
+<li><strong>服务器验证 JWT</strong>：服务器验证 JWT 的签名和声明，如果有效则处理请求。</li>
+</ol>
+<p>WT（JSON Web Token）的刷新机制用于在访问令牌过期后获取新的令牌，以延长用户的认证状态，而无需重新登录。</p>
+<h3 id="核心概念"><a href="#核心概念" class="headerlink" title="核心概念"></a>核心概念</h3><ol>
+<li><strong>访问令牌（Access Token）</strong>：<ul>
+<li>用于访问受保护资源，有效期较短，通常几分钟到几小时。</li>
+</ul>
+</li>
+<li><strong>刷新令牌（Refresh Token）</strong>：<ul>
+<li>用于获取新的访问令牌，有效期较长，通常几天到几周。</li>
+</ul>
+</li>
+</ol>
+<h3 id="刷新机制流程"><a href="#刷新机制流程" class="headerlink" title="刷新机制流程"></a>刷新机制流程</h3><ol>
+<li><strong>用户登录</strong>：<ul>
+<li>认证成功后，服务器返回访问令牌和刷新令牌。</li>
+</ul>
+</li>
+<li><strong>访问资源</strong>：<ul>
+<li>客户端使用访问令牌访问资源。</li>
+</ul>
+</li>
+<li><strong>访问令牌过期</strong>：<ul>
+<li>当访问令牌失效时，客户端使用刷新令牌请求新的访问令牌。</li>
+</ul>
+</li>
+<li><strong>刷新令牌</strong>：<ul>
+<li>服务器验证刷新令牌，若有效则返回新的访问令牌，有时还会返回新的刷新令牌。</li>
+</ul>
+</li>
+<li><strong>继续访问</strong>：<ul>
+<li>客户端使用新的访问令牌继续访问资源。</li>
+</ul>
+</li>
+</ol>
+<h3 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h3><ul>
+<li><strong>安全性</strong>：访问令牌有效期短，减少被盗风险。</li>
+<li><strong>用户体验</strong>：无需频繁登录，刷新令牌可延长会话。</li>
+</ul>
+<h2 id="关于令牌刷新机制"><a href="#关于令牌刷新机制" class="headerlink" title="关于令牌刷新机制"></a>关于令牌刷新机制</h2><p>令牌刷新机制需要<strong>手动实现</strong>，JWT 本身并不提供自动刷新功能。刷新机制的设计是为了在访问令牌（Access Token）过期后，用户无需重新登录，而是通过刷新令牌（Refresh Token）获取新的访问令牌。</p>
+<hr>
+<h3 id="1-为什么需要刷新机制？"><a href="#1-为什么需要刷新机制？" class="headerlink" title="1. 为什么需要刷新机制？"></a><strong>1. 为什么需要刷新机制？</strong></h3><ul>
+<li><strong>访问令牌有效期短</strong>：为了安全，访问令牌通常设置较短的有效期（如 15 分钟）。</li>
+<li><strong>用户体验</strong>：如果每次访问令牌过期都要求用户重新登录，体验会很差。</li>
+<li><strong>安全性</strong>：刷新令牌的有效期较长，但只能用于获取新的访问令牌，不能直接访问资源。</li>
+</ul>
+<hr>
+<h3 id="2-刷新机制的核心流程"><a href="#2-刷新机制的核心流程" class="headerlink" title="2. 刷新机制的核心流程"></a><strong>2. 刷新机制的核心流程</strong></h3><ol>
+<li><strong>用户登录</strong>：<ul>
+<li>服务器返回访问令牌和刷新令牌。</li>
+</ul>
+</li>
+<li><strong>访问令牌过期</strong>：<ul>
+<li>客户端使用刷新令牌请求新的访问令牌。</li>
+</ul>
+</li>
+<li><strong>服务器验证刷新令牌</strong>：<ul>
+<li>如果刷新令牌有效，返回新的访问令牌（和可选的新的刷新令牌）。</li>
+</ul>
+</li>
+<li><strong>客户端使用新令牌</strong>：<ul>
+<li>客户端使用新的访问令牌继续访问资源。</li>
+</ul>
+</li>
+</ol>
+<h3 id="3-刷新机制-vs-长有效期访问令牌"><a href="#3-刷新机制-vs-长有效期访问令牌" class="headerlink" title="3. 刷新机制 vs 长有效期访问令牌"></a><strong>3. 刷新机制 vs 长有效期访问令牌</strong></h3><table>
+<thead>
+<tr>
+<th align="left"><strong>特性</strong></th>
+<th align="left"><strong>刷新机制</strong></th>
+<th align="left"><strong>长有效期访问令牌</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><strong>安全性</strong></td>
+<td align="left">高（访问令牌有效期短，泄露风险低）</td>
+<td align="left">低（访问令牌有效期长，泄露风险高）</td>
+</tr>
+<tr>
+<td align="left"><strong>用户体验</strong></td>
+<td align="left">好（无需频繁登录）</td>
+<td align="left">差（需要频繁登录）</td>
+</tr>
+<tr>
+<td align="left"><strong>实现复杂度</strong></td>
+<td align="left">较高（需要实现刷新逻辑）</td>
+<td align="left">低（无需额外逻辑）</td>
+</tr>
+<tr>
+<td align="left"><strong>令牌撤销</strong></td>
+<td align="left">支持（可撤销刷新令牌）</td>
+<td align="left">不支持（无法主动撤销）</td>
+</tr>
+<tr>
+<td align="left"><strong>适用场景</strong></td>
+<td align="left">高安全性要求的系统（如金融、医疗）</td>
+<td align="left">低安全性要求的系统（如内部测试）</td>
+</tr>
+</tbody></table>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/JWT/" rel="tag"># JWT</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2025/03/23/%E5%85%B3%E4%BA%8E%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1/" rel="prev" title="关于定时任务">
+                  <i class="fa fa-angle-left"></i> 关于定时任务
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">ZhangYuHao</span>
+  </div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/mist/" rel="noopener" target="_blank">NexT.Mist</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script size="300" alpha="0.6" zIndex="-1" src="https://cdnjs.cloudflare.com/ajax/libs/ribbon.js/1.0.2/ribbon.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/sidebar.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>
