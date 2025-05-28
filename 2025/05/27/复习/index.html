@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha256-5eIC48iZUHmSlSUz9XtjRyK2mzQkHScZY1WdMaoz74E=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.21.1","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"always","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="集合  全局介绍集合整体分为两大接口，包括Map 接口和Collection接口，其中Map接口下实现的类包括 HashMap（重点)、LinkedHashMap、TreeMap、Hashtable和ConcurrentHashMap这些接口，而Collection接口下，还有List、Set、Queue和Deque，这些接口主要的类实现包括ArrayList(重点)、LinkedList、Vec">
+<meta property="og:type" content="article">
+<meta property="og:title" content="复习">
+<meta property="og:url" content="http://example.com/2025/05/27/%E5%A4%8D%E4%B9%A0/index.html">
+<meta property="og:site_name" content="Zhang&#39;Blog">
+<meta property="og:description" content="集合  全局介绍集合整体分为两大接口，包括Map 接口和Collection接口，其中Map接口下实现的类包括 HashMap（重点)、LinkedHashMap、TreeMap、Hashtable和ConcurrentHashMap这些接口，而Collection接口下，还有List、Set、Queue和Deque，这些接口主要的类实现包括ArrayList(重点)、LinkedList、Vec">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/67cee345066befcec6e2791c.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/67ceff5a066befcec6e27f31.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/6835dab158cb8da5c812cfaf.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/6835e02f58cb8da5c812d09b.png">
+<meta property="article:published_time" content="2025-05-27T14:11:47.000Z">
+<meta property="article:modified_time" content="2025-05-27T16:52:49.638Z">
+<meta property="article:author" content="ZhangYuHao">
+<meta property="article:tag" content="复习练习本">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://pic1.imgdb.cn/item/67cee345066befcec6e2791c.png">
+
+
+<link rel="canonical" href="http://example.com/2025/05/27/%E5%A4%8D%E4%B9%A0/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/2025/05/27/%E5%A4%8D%E4%B9%A0/","path":"2025/05/27/复习/","title":"复习"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>复习 | Zhang'Blog</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Zhang'Blog</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-schedule"><a href="/schedule/" rel="section"><i class="fa fa-calendar fa-fw"></i>日程表</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%9B%86%E5%90%88"><span class="nav-number">1.</span> <span class="nav-text">集合</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%A8%E5%B1%80%E4%BB%8B%E7%BB%8D"><span class="nav-number">1.1.</span> <span class="nav-text">全局介绍</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HashMap%EF%BC%88%E9%87%8D%E7%82%B9%EF%BC%89"><span class="nav-number">1.2.</span> <span class="nav-text">HashMap（重点）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ArrayList%EF%BC%88%E9%87%8D%E7%82%B9%EF%BC%89"><span class="nav-number">1.3.</span> <span class="nav-text">ArrayList（重点）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#LinkedList"><span class="nav-number">1.4.</span> <span class="nav-text">LinkedList</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#TreeMap"><span class="nav-number">1.5.</span> <span class="nav-text">TreeMap</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HashSet"><span class="nav-number">1.6.</span> <span class="nav-text">HashSet</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HashTable-%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8"><span class="nav-number">1.7.</span> <span class="nav-text">HashTable(线程安全)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ConcurrentHashMap-%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8"><span class="nav-number">1.8.</span> <span class="nav-text">ConcurrentHashMap(线程安全)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Vector%EF%BC%88%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8%EF%BC%89"><span class="nav-number">1.9.</span> <span class="nav-text">Vector（线程安全）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CopyOnWriteArrayList%EF%BC%88%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8%EF%BC%89"><span class="nav-number">1.10.</span> <span class="nav-text">CopyOnWriteArrayList（线程安全）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Collection-SynchronizedList-%E5%B7%A5%E5%85%B7%E7%B1%BB"><span class="nav-number">1.11.</span> <span class="nav-text">Collection.SynchronizedList(工具类)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Spring"><span class="nav-number">2.</span> <span class="nav-text">Spring</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Spring%E7%9A%84%E5%90%AF%E5%8A%A8%E6%B5%81%E7%A8%8B"><span class="nav-number">2.1.</span> <span class="nav-text">Spring的启动流程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SpringIOC"><span class="nav-number">2.2.</span> <span class="nav-text">SpringIOC</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SpringAOP"><span class="nav-number">2.3.</span> <span class="nav-text">SpringAOP</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Spring%E4%BA%8B%E5%8A%A1"><span class="nav-number">2.4.</span> <span class="nav-text">Spring事务</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Spring%E6%8B%A6%E6%88%AA%E9%93%BE"><span class="nav-number">2.5.</span> <span class="nav-text">Spring拦截链</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SpringMVC%E5%90%AF%E5%8A%A8%E6%B5%81%E7%A8%8B"><span class="nav-number">2.6.</span> <span class="nav-text">SpringMVC启动流程</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="ZhangYuHao"
+      src="/images/111.png">
+  <p class="site-author-name" itemprop="name">ZhangYuHao</p>
+  <div class="site-description" itemprop="description">一个小人物的个人博客</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">45</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">30</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/2567821933" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;2567821933" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:103903Zyh@gmail.com" title="E-Mail → mailto:103903Zyh@gmail.com" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2025/05/27/%E5%A4%8D%E4%B9%A0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/111.png">
+      <meta itemprop="name" content="ZhangYuHao">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Zhang'Blog">
+      <meta itemprop="description" content="一个小人物的个人博客">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="复习 | Zhang'Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          复习
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2025-05-27 22:11:47" itemprop="dateCreated datePublished" datetime="2025-05-27T22:11:47+08:00">2025-05-27</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-05-28 00:52:49" itemprop="dateModified" datetime="2025-05-28T00:52:49+08:00">2025-05-28</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h2 id="集合"><a href="#集合" class="headerlink" title="集合"></a>集合</h2><img src="https://pic1.imgdb.cn/item/67cee345066befcec6e2791c.png" alt="集合.png">
+
+<h3 id="全局介绍"><a href="#全局介绍" class="headerlink" title="全局介绍"></a>全局介绍</h3><p>集合整体分为两大接口，包括<code>Map</code> 接口和<code>Collection</code>接口，其中<code>Map</code>接口下实现的类包括 <code>HashMap</code>（重点)、<code>LinkedHashMap</code>、<code>TreeMap</code>、<code>Hashtable</code>和<code>ConcurrentHashMap</code>这些接口，而<code>Collection</code>接口下，还有<code>List</code>、<code>Set</code>、<code>Queue</code>和<code>Deque</code>，这些接口主要的类实现包括<code>ArrayList</code>(重点)、<code>LinkedList</code>、<code>Vector</code>、<code>CopyOnWriteArrayList</code>和<code>HashSet</code>以及<code>LinkedHashSet</code>等。</p>
+<p>这里面有一些要注意的类，是线程安全的，包括<code>Hashtable</code>、<code>ConcurrentHashMap</code>、<code>Vector</code>、<code>CopyOnWriteArrayList</code>等。</p>
+<h3 id="HashMap（重点）"><a href="#HashMap（重点）" class="headerlink" title="HashMap（重点）"></a>HashMap（重点）</h3><p><code>HashMap</code>实现了Map接口，其组成为 <strong>数组+链表+红黑树</strong> 的形式。</p>
+<p><strong>转化条件</strong>：</p>
+<ol>
+<li><strong>当数组长度大于64，链表长度大于8</strong>，会将链表转化成红黑树（注意：当数组长度小于64时，<code>HashMap</code>会优先通过扩容来减小链表长度）</li>
+<li><strong>当树的大小小于6时</strong>，红黑树会退化成链表。</li>
+</ol>
+<p><code>HashMap</code> 初始容量默认为16，2倍扩容，负载因子为0.75。</p>
+<p><strong>优化方式</strong>： 可通过设置初始值容量来减少频繁扩容带来的性能消耗，设置合适的负载因子。</p>
+<p><strong>存储原理：</strong>在将数据存储进入<code>HashMap</code>时，程序会根据<code>hashCode（）</code>方法来计算哈希值，通过哈希值来将数据分配到哈希桶中合适的位置，在该位置判断是否存在数据，若存在，则发生哈希冲突，采用拉链法来保存数据，使用时，会通过<code>equal()</code>方法来判断键值是否存在，若相同，则根据哈希值对应的键来修改数据，不进行插入。若不同，则采取拉链法保存数据。</p>
+<p><strong>线程问题：</strong> 线程不安全</p>
+<h3 id="ArrayList（重点）"><a href="#ArrayList（重点）" class="headerlink" title="ArrayList（重点）"></a>ArrayList（重点）</h3><p><code>ArrayList</code>实现与List接口，底层组成采用 <strong>动态数组</strong>，初始容量为10，无负载因子概念，1.5倍扩容。</p>
+<p><strong>扩容机制：</strong> <code>ArrayList</code>采用1.5倍扩容，当扩容发生时，<code>ArrayList</code>会创建一个新的数组，新的数组为旧有数组的1.5倍，之后将旧数组的数据复制到新数组中。</p>
+<p><strong>优化方式：</strong>设置初始值为需要的部分，防止扩容带来的性能消耗。</p>
+<p><strong>存储原理：</strong>数组保存。</p>
+<p><strong>线程问题：</strong>线程不安全。</p>
+<h3 id="LinkedList"><a href="#LinkedList" class="headerlink" title="LinkedList"></a>LinkedList</h3><p>和<code>ArrayList</code> 相比，采用了 <strong>链表</strong> 的方式来保存数据，便于插入和删除数据。而<code>ArrayList</code>的保存方式，则适合频繁查找的场景。</p>
+<h3 id="TreeMap"><a href="#TreeMap" class="headerlink" title="TreeMap"></a>TreeMap</h3><p>内部采用红黑树实现，可通过传入的<code>Comparable</code>的定义来进行排序，键是有序的，不允许键为null，但是值可以为null。使用较少，通常使用在需要排序的加密场景。</p>
+<h3 id="HashSet"><a href="#HashSet" class="headerlink" title="HashSet"></a>HashSet</h3><p>通过<code>HashMap</code>键的唯一性，来完成实现 <code>set</code> 接口不可重复的概念。</p>
+<h3 id="HashTable-线程安全"><a href="#HashTable-线程安全" class="headerlink" title="HashTable(线程安全)"></a>HashTable(线程安全)</h3><p>采用全局锁的方式，通过<code>synchronized</code> 这个锁，来将整个哈希表锁了起来，对所有的操作（增删改查）进行了上锁，通过这种方式保证了线程的安全性。</p>
+<h3 id="ConcurrentHashMap-线程安全"><a href="#ConcurrentHashMap-线程安全" class="headerlink" title="ConcurrentHashMap(线程安全)"></a>ConcurrentHashMap(线程安全)</h3><p>在Java8中出现，采用了 <strong><code>CAS + synchronized</code></strong> 的形式来保证线程的安全性。</p>
+<p>优点：</p>
+<ol>
+<li>在操作节点时，若节点为空，则采用<code>CAS</code>的方式来进行无锁写入操作（无锁，效率高）。</li>
+<li>若不为空，则采用 <code>synchronized</code> 来上锁，保证线程的安全性。</li>
+<li><code>ConcurrentHashMap</code>的线程安全方式和<code>HashTable</code>不同，它锁的是一个结点，在进行锁占用操作时，不影响其他节点的操作。（性能更好，并发性能更高）</li>
+</ol>
+<h3 id="Vector（线程安全）"><a href="#Vector（线程安全）" class="headerlink" title="Vector（线程安全）"></a>Vector（线程安全）</h3><p>基于<strong>动态数组</strong>实现，与 <code>ArrayList</code>类似，但是它是线程安全的，所有方法都是同步的（与<code>HashTable</code> 实现线程安全的方式，有异曲同工的地方），将所有的方法都加了<code>synchronized</code> 这个锁。</p>
+<h3 id="CopyOnWriteArrayList（线程安全）"><a href="#CopyOnWriteArrayList（线程安全）" class="headerlink" title="CopyOnWriteArrayList（线程安全）"></a>CopyOnWriteArrayList（线程安全）</h3><p>基于 <strong>动态数组</strong> 实现，线程安全。它没有加锁，采用的是一个 <strong>写时复制</strong> 的方式来保证线程的安全性。</p>
+<p>写时复制操作，每次在写操作时，复制一个新的数组，在新的数组上进行修改，原数组不变（不影响读操作），当修改完数组后，将修改后的数组做为原有数组。</p>
+<p>由于每次写操作都要生成一个新的数组，因此<code>CopyOnWriteArrayList</code> 的写性能是占用资源多的，并且性能低，适合 <strong>读多写少</strong> 的场景。</p>
+<h3 id="Collection-SynchronizedList-工具类"><a href="#Collection-SynchronizedList-工具类" class="headerlink" title="Collection.SynchronizedList(工具类)"></a>Collection.SynchronizedList(工具类)</h3><p>它是一个工具类，通过加锁的方式，来保证一个线程的安全性。采用的是加全局锁，并发效率低。</p>
+<h2 id="Spring"><a href="#Spring" class="headerlink" title="Spring"></a>Spring</h2><img src="https://pic1.imgdb.cn/item/67ceff5a066befcec6e27f31.png" alt="Spring.png">
+
+<h3 id="Spring的启动流程"><a href="#Spring的启动流程" class="headerlink" title="Spring的启动流程"></a>Spring的启动流程</h3><p><code>Spring</code> 启动时，是通过 <code>new ApplicationContext()</code> 这个方式来实现的。</p>
+<p>首先说一下<code>Spring</code>启动的核心组件。</p>
+<ol>
+<li><code>ApplicationContext</code>: 体现了 <code>Spring</code> 容器，管理 <code>Bean</code>对象，通过依赖注入的方式来管理 <code>Bean</code> 对象之间的关系，可以通过<code>getBean</code>的方法来获取<code>bean</code>对象。</li>
+<li><code>BeanDefinition</code>：封装了所有的bean信息，系统启动时，会优先读取配置信息里的信息，将其保存成<code>BeanDefinition</code>的形式，想要注册<code>Bean</code>需要先注册<code>BeanDefinition</code>。</li>
+<li><code>BeanFactory</code> ：通过读取 <code>BeanDefinition</code> 的信息，通过反射的机制创建<code>Bean</code>实例。</li>
+</ol>
+<p><strong>流程：</strong></p>
+<p>在启动<code>Spring</code>时，通过读取配置信息，将<code>Bean</code> 信息保存成<code>BeanDefinition</code>的形式，将多个<code>BeanDefinition</code>保存在<code>map</code>中。</p>
+<p>之后通过<code>BeanFactory</code>来创建<code>Bean</code>对象。</p>
+<img src="https://pic1.imgdb.cn/item/6835dab158cb8da5c812cfaf.png" alt="image.png">
+
+<h3 id="SpringIOC"><a href="#SpringIOC" class="headerlink" title="SpringIOC"></a>SpringIOC</h3><p><code>SpringIOC</code> 是一个<code>IOC</code> 容器，主要包括 <strong>依赖注入</strong> 和 <strong>控制反转</strong></p>
+<p><strong>依赖注入</strong></p>
+<ol>
+<li>构造器注入</li>
+<li>setter注入</li>
+<li>方法注入</li>
+<li>字段注入</li>
+<li>接口回调注入</li>
+</ol>
+<p><strong>控制反转：</strong> 主要是将对象的创建创建和控制交给Spring来管理。</p>
+<p><strong>SpringBean</strong></p>
+<p><code>SpringIOC</code> 会将对象保存，这样的对象被叫做<code>Bean</code>。</p>
+<p>Bean的生命周期：</p>
+<ol>
+<li>实例化</li>
+<li>依赖注入</li>
+<li>Aware方法</li>
+<li>初始化（前置，后置）</li>
+<li>保存使用</li>
+<li>销毁</li>
+</ol>
+<p>Bean的作用域：</p>
+<ol>
+<li>单例</li>
+<li>原型</li>
+<li>request</li>
+<li>session</li>
+<li>application</li>
+<li>websocket</li>
+</ol>
+<h3 id="SpringAOP"><a href="#SpringAOP" class="headerlink" title="SpringAOP"></a>SpringAOP</h3><p>切面编程，是一种编程范式，多用于跨领域的关注点（日志记录、安全检查、事务管理）与业务逻辑分开，通过切面。</p>
+<p><strong>动态代理：</strong></p>
+<p>主要包括两种，JDK动态代理和CGLIG动态代理。</p>
+<p><strong>JDK动态代理</strong>：Spring默认的动态代理，通过接口和反射机制实现，要求，类必须有实现的接口。</p>
+<p><strong>CGLIB动态代理</strong>： SpringBoot2默认的动态代理，通过子类继承的方式来实现动态代理，要求，类必须可以有子类。</p>
+<p><strong>AOP相关术语：</strong></p>
+<ol>
+<li>切面（Aspect）</li>
+<li>通知 <ol>
+<li>前置通知</li>
+<li>后置通知</li>
+<li>后置异常通知</li>
+<li>后置最终通知</li>
+<li>环绕通知</li>
+</ol>
+</li>
+<li>切点</li>
+<li>目标对象</li>
+<li>代理</li>
+<li>织入</li>
+</ol>
+<p><strong>切面的实现</strong>，需要通过<code>@Aspect</code> 来注释类，并在类内对方法上添加注解来选择通知的方式和连接点的对象。</p>
+<img src="https://pic1.imgdb.cn/item/6835e02f58cb8da5c812d09b.png" alt="image.png">
+
+<h3 id="Spring事务"><a href="#Spring事务" class="headerlink" title="Spring事务"></a>Spring事务</h3><p><strong>事务的隔离级别：</strong></p>
+<ul>
+<li>默认：默认隔离级别是 <strong>读已提交</strong></li>
+<li>读未提交</li>
+<li>读已提交</li>
+<li>可重复读</li>
+<li>可串行化</li>
+</ul>
+<p><strong>事务的传播行为，定义管理事务的边界</strong></p>
+<ul>
+<li>required（默认）： 需要，有则直接使用事务，没有则创建新的事物。</li>
+<li>required_new: 需要新的， 始终会创建新的事物来执行。</li>
+<li>supports：支持，如果有事务，使用事务运行，如果没有则不使用事务运行。</li>
+<li>not_supports: 不支持，始终以非事务的方式来执行任务。</li>
+<li>mandatory： 必须， 必须要有事务，不然会报错。</li>
+<li>never： 从不， 必须以非事务的方式运行，不然会报错。</li>
+<li>nested： 嵌套，如果当前事务存在，则在嵌套事务中执行。</li>
+</ul>
+<p><strong>事务的失效：</strong></p>
+<p>首先，事务的使用需要用到一个注解 <code>@Transactional</code>.</p>
+<ol>
+<li><code>rollbackFor</code>没有设置对，在使用 <code>@Transactional</code>时，默认配置为只能捕获<code>RuntimeException 和 Error</code>异常，其他异常无法处理。</li>
+<li>异常被捕获，在方法内部，使用 try-catch对异常的类进行了捕获，日志无法获取异常，这样就不会回滚。</li>
+<li>在类内部进行调用，没有使用到动态代理，不开启事务。</li>
+<li>Spring事务管理器判断该方法不是public方法时，不支持事务。</li>
+<li>该方法通过final和static修饰，使用CGLIB动态代理，需要子类，final无法子类化，static方法属于类</li>
+</ol>
+<h3 id="Spring拦截链"><a href="#Spring拦截链" class="headerlink" title="Spring拦截链"></a>Spring拦截链</h3><ol>
+<li>过滤器</li>
+<li>拦截器</li>
+<li>AOP</li>
+</ol>
+<h3 id="SpringMVC启动流程"><a href="#SpringMVC启动流程" class="headerlink" title="SpringMVC启动流程"></a>SpringMVC启动流程</h3>
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E5%A4%8D%E4%B9%A0%E7%BB%83%E4%B9%A0%E6%9C%AC/" rel="tag"># 复习练习本</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2025/05/24/shell%E8%84%9A%E6%9C%AC/" rel="prev" title="shell脚本">
+                  <i class="fa fa-angle-left"></i> shell脚本
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">ZhangYuHao</span>
+  </div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/mist/" rel="noopener" target="_blank">NexT.Mist</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script size="300" alpha="0.6" zIndex="-1" src="https://cdnjs.cloudflare.com/ajax/libs/ribbon.js/1.0.2/ribbon.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/sidebar.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>
