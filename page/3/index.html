@@ -122,7 +122,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">45</span>
+          <span class="site-state-item-count">46</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -133,7 +133,7 @@
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">30</span>
+        <span class="site-state-item-count">31</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -158,6 +158,293 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2025/02/18/spring%E9%9D%A2%E8%AF%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/111.png">
+      <meta itemprop="name" content="ZhangYuHao">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Zhang'Blog">
+      <meta itemprop="description" content="一个小人物的个人博客">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Zhang'Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2025/02/18/spring%E9%9D%A2%E8%AF%95/" class="post-title-link" itemprop="url">spring面试</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2025-02-18 08:44:14" itemprop="dateCreated datePublished" datetime="2025-02-18T08:44:14+08:00">2025-02-18</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-02-24 15:14:25" itemprop="dateModified" datetime="2025-02-24T15:14:25+08:00">2025-02-24</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="什么是循环依赖？"><a href="#什么是循环依赖？" class="headerlink" title="什么是循环依赖？"></a>什么是循环依赖？</h2><p>存在两个Bean，且这两个Bean互相依赖，（或自己依赖自己），就会出现循环依赖（类似死锁）</p>
+<h2 id="循环依赖怎么解决？"><a href="#循环依赖怎么解决？" class="headerlink" title="循环依赖怎么解决？"></a>循环依赖怎么解决？</h2><h3 id="三级缓存"><a href="#三级缓存" class="headerlink" title="三级缓存"></a>三级缓存</h3><p>一级缓存（单例池）： 放置创建好的Bean（完整的）</p>
+<p>二级缓存： 用来保存Bean的代理或普通对象，不完整</p>
+<p>三级缓存： Bean的创建工厂，用来初始化bean</p>
+<p><img src="https://pic1.imgdb.cn/item/67b5dbfad0e0a243d400cfd6.png"></p>
+<p><img src="https://pic1.imgdb.cn/item/67b5dd96d0e0a243d400d012.png"></p>
+<p>注意： </p>
+<ul>
+<li>Mysql只支持单例的循环依赖。</li>
+<li>不全是构造器注入</li>
+</ul>
+<h3 id="Lazy"><a href="#Lazy" class="headerlink" title="@Lazy"></a>@Lazy</h3><h4 id="Lazy-的作用"><a href="#Lazy-的作用" class="headerlink" title="@Lazy 的作用"></a><strong><code>@Lazy</code> 的作用</strong></h4><p><code>@Lazy</code> 注解的作用是延迟 Bean 的初始化，直到第一次被使用时才会创建 Bean 实例。通过延迟初始化，可以打破循环依赖的初始化顺序，从而间接解决循环依赖问题。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">A</span> &#123;</span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="meta">@Lazy</span></span><br><span class="line">    <span class="keyword">private</span> B b;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">B</span> &#123;</span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> A a;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>这里，<code>A</code> 中的 <code>B</code> 被标记为 <code>@Lazy</code>，因此 <code>B</code> 不会在 <code>A</code> 初始化时立即创建，而是在第一次使用时才会初始化</li>
+</ul>
+<h4 id="Lazy-解决循环依赖的原理"><a href="#Lazy-解决循环依赖的原理" class="headerlink" title="@Lazy 解决循环依赖的原理"></a><strong><code>@Lazy</code> 解决循环依赖的原理</strong></h4><ol>
+<li><strong>打破初始化顺序</strong>：<ul>
+<li>通过延迟初始化，Spring 不需要在初始化 <code>A</code> 时立即初始化 <code>B</code>，从而打破了循环依赖的初始化顺序。</li>
+</ul>
+</li>
+<li><strong>代理对象的创建</strong>：<ul>
+<li>当使用 <code>@Lazy</code> 时，Spring 会为目标 Bean 创建一个代理对象（通常是基于 CGLIB 或 JDK 动态代理）。</li>
+<li>在第一次访问该 Bean 时，代理对象会触发实际的 Bean 初始化。</li>
+</ul>
+</li>
+<li><strong>避免死锁</strong>：<ul>
+<li>由于延迟初始化，Spring 不会在初始化过程中陷入死锁状态，从而避免了循环依赖问题。</li>
+</ul>
+</li>
+</ol>
+<h2 id="什么是AOP？"><a href="#什么是AOP？" class="headerlink" title="什么是AOP？"></a>什么是AOP？</h2><p>AOP全程（Aspact-Oriented Programming) 面相切面编程是一种编程范式，常用于日志记录，安全检查，事务管理等与业务逻辑分离开来。</p>
+<ul>
+<li><strong>核心思想：</strong> AOP的核心思想是将与业务逻辑无关的关注点抽取出来，通过声明的方式动态的应用到业务方法上，而不是将这些代码直接嵌入到业务逻辑中。</li>
+<li><strong>主要组成部分：</strong> 切面，连接点，通知，切入点，织入</li>
+</ul>
+<p>通常是通过代理的对象来实现动态切入的</p>
+<p>代理可以分成两个类</p>
+<ul>
+<li>动态代理： 在<strong>运行时</strong>将切面的逻辑写入，程序会自动的在运行时生成类似上面的代理类。</li>
+<li>静态代理： 在<strong>编译时或者类加载时</strong> 进行切面的织入，典型的<strong>AspactJ</strong>就是静态代理。</li>
+</ul>
+<h3 id="核心概念"><a href="#核心概念" class="headerlink" title="核心概念"></a>核心概念</h3><ul>
+<li>切面（Aspact）</li>
+<li>连接点（Join Point）</li>
+<li>通知（Advice）<ul>
+<li>前置通知（Before）</li>
+<li>后置通知（After)</li>
+<li>环绕通知（Around）</li>
+<li>异常通知（AfterThrowing）</li>
+<li>返回通知（AfterReturing)</li>
+</ul>
+</li>
+<li>切入点（Poincut)</li>
+<li>织入（Weaving）织入是将切面应用到目标对象的过程。可以在编译时，类加载是或运行时进行织入。</li>
+</ul>
+<h3 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h3><p>日志记录</p>
+<p>事务管理</p>
+<p>安全检查</p>
+<p>性能监控</p>
+<h2 id="SpringAop和AspectJ区别？"><a href="#SpringAop和AspectJ区别？" class="headerlink" title="SpringAop和AspectJ区别？"></a>SpringAop和AspectJ区别？</h2><p>springAop 基于动态代理</p>
+<p>没有自己定义动态代理，通过Aspect，注解的定义。技术是自己实现的，底层的技术是不一样的。</p>
+<p>AspectJ 基于编译期</p>
+<p>在编译成字节码时，将额外的逻辑织入到字节码中。</p>
+<p>更强</p>
+<p><strong>SpringAOP：</strong> 是Spring框架提供的一种AOP实现，主要用于运行时的代理机制</p>
+<ul>
+<li><strong>特点：</strong> Spring AOP是基于<strong>动态代理</strong>实现的，适用于spring容器管理的Bean，较轻量级，使用方便。</li>
+<li><strong>使用场景</strong>： 适合大部分业务场景，尤其是简单AOP功能的Spring应用。</li>
+</ul>
+<p><strong>AspectJ：</strong>AspectJ是功能更强大的AOP框架，支持编译时，类加载时和运行时的AOP功能。</p>
+<ul>
+<li><strong>特点：</strong>AspectJ是支持更加灵活的切点和增强操作，提供<strong>编译时和加载期和运行时</strong>的织入方式，性能较高。</li>
+<li>使用场景： 适合对性能要求较高或需要复杂切入点匹配的场景，如日志，监控等。</li>
+</ul>
+<h2 id="事务"><a href="#事务" class="headerlink" title="事务"></a>事务</h2><h3 id="Spring事务的隔离级别？"><a href="#Spring事务的隔离级别？" class="headerlink" title="Spring事务的隔离级别？"></a>Spring事务的隔离级别？</h3><p>Spring提供了5种隔离级别</p>
+<ul>
+<li><strong>DEFAULT（默认）</strong>： 使用底层数据库的默认隔离级别，如果数据库没有特定的设置，通常默认为READ_COMMITTED（读已提交）</li>
+<li><strong>READ_UNCOMMITTED（读未提交）</strong>：最低的隔离级别，允许事务读取尚未提交的数据，可能会导致出现脏读，不可重复读，幻读。</li>
+<li><strong>READ_COMMITTED（读已提交）</strong>： 仅允许读取已经提交的数据，避免了脏读，可能会导致出现不可重复读和幻读问题。</li>
+<li><strong>REPEATABLE_READ（可重复读）</strong>： 确保在同一个事务内的多次读取结果一致，避免了脏读和不可重复读，会出现幻读的问题。</li>
+<li>**SERIALIZABLE(可串行化)**： 最高的隔离级别，通过强制事务按顺序执行，完全避免脏读，不可重复读和幻读，代价是性能显著下降。</li>
+</ul>
+<h3 id="Spring事务的传播行为有几种？分别是什么？"><a href="#Spring事务的传播行为有几种？分别是什么？" class="headerlink" title="Spring事务的传播行为有几种？分别是什么？"></a>Spring事务的传播行为有几种？分别是什么？</h3><p>答：有七种。</p>
+<p><strong>1. REQUIRED（默认）</strong></p>
+<ul>
+<li>定义： 如果当前存在事务，则加入事务；如果当前没有事务，则创建一个新事务。</li>
+<li>使用场景： 大多数场景下使用，适用于需要事务支持的操作。</li>
+</ul>
+<p><strong>2. REQUIRES_NEW</strong></p>
+<ul>
+<li>定义： 无论当前是否存在事务，都创建一个新事物。如果当前存在事务，则将当前事务挂起。</li>
+<li>使用场景: 适用于需要独立事务的操作，不受外部事务影响。</li>
+</ul>
+<p><strong>3. SUPPORTS</strong></p>
+<ul>
+<li>如果当前存在事务，则加入该事务；如果当前没有事务，则以非事务方式执行。</li>
+<li>使用场景： 适用于不需要强制事务支持的操作。</li>
+</ul>
+<p><strong>4. NOT_SUPPORTD</strong></p>
+<ul>
+<li>以非事务方式执行操作，如果当前存在事务，则将当前事务挂起。</li>
+<li>使用场景：适用于不需要事务支持的操作，且不希望受外部事务影响。</li>
+</ul>
+<p> <strong>5. MANDATORY</strong></p>
+<p>强制性的</p>
+<ul>
+<li>如果当前存在事务，则加入该事务，如果当前没有存在事务，则抛出异常。</li>
+<li>使用场景： 必须在一个已有事务中执行操作。</li>
+</ul>
+<p><strong>6. NEVER</strong></p>
+<p>never</p>
+<ul>
+<li>以非事务方式执行操作，如果当前存在事务，则抛出异常。</li>
+<li>使用场景：适用于绝对不能在一个事务中执行的操作。</li>
+</ul>
+<p><strong>7. NESTED</strong></p>
+<p>nested</p>
+<ul>
+<li>如果当前存在事务，则在嵌套事务中执行；如果当前没有事务，则创建一个事务。</li>
+<li>嵌套事务： 嵌套事务是外部事务的子事务，如果外部事务回滚，嵌套事务也会回滚；但嵌套事务可以独立提交或回滚，而不影响外部事务。</li>
+</ul>
+<p><strong>总结：</strong></p>
+<ul>
+<li><strong>REQUIRED</strong>：默认方式，支持当前事务，不存在则创建新事务。</li>
+<li><strong>REQUIRES_NEW</strong>：总是创建新事务，挂起当前事务（如果有）。</li>
+<li><strong>SUPPORTS</strong>：支持当前事务，不存在则以非事务方式执行。</li>
+<li><strong>NOT_SUPPORTED</strong>：以非事务方式执行，挂起当前事务（如果有）。</li>
+<li><strong>MANDATORY</strong>：必须在一个已有事务中执行，否则抛出异常。</li>
+<li><strong>NEVER</strong>：必须不在事务中执行，否则抛出异常。</li>
+<li><strong>NESTED</strong>：在嵌套事务中执行，支持部分回滚。</li>
+</ul>
+<h3 id="事务的传播行为有什么作用？"><a href="#事务的传播行为有什么作用？" class="headerlink" title="事务的传播行为有什么作用？"></a>事务的传播行为有什么作用？</h3><p>作用：定义事务方法在调用其他事务方法时，事务应该如何传播。</p>
+<h4 id="1-控制事务的创建和加入"><a href="#1-控制事务的创建和加入" class="headerlink" title="1. 控制事务的创建和加入"></a>1. 控制事务的创建和加入</h4><ul>
+<li>传播行为决定了当前方法是否需要创建一个新事务，或者是否加入一个已有事务。</li>
+<li>例如：<ul>
+<li><strong>REQUIRED</strong>：如果当前没有事务，则创建一个新事务；如果当前有事务，则加入该事务。</li>
+<li><strong>REQUIRES_NEW</strong>：无论当前是否有事务，都创建一个新事务，并挂起当前事务（如果有）。</li>
+</ul>
+</li>
+</ul>
+<h4 id="2-管理事务的独立性"><a href="#2-管理事务的独立性" class="headerlink" title="2. 管理事务的独立性"></a>2. 管理事务的独立性</h4><ul>
+<li>传播行为可以控制事务的独立性，确保某些操作不受外部事务的影响。</li>
+<li>例如：<ul>
+<li><strong>REQUIRES_NEW</strong>：创建一个独立的新事务，即使外部事务回滚，也不会影响当前事务。</li>
+<li><strong>NOT_SUPPORTED</strong>：以非事务方式执行操作，挂起当前事务（如果有），确保操作不受事务影响。</li>
+</ul>
+</li>
+</ul>
+<h4 id="3-支持事务的嵌套"><a href="#3-支持事务的嵌套" class="headerlink" title="3. 支持事务的嵌套"></a>3. 支持事务的嵌套</h4><ul>
+<li>传播行为支持嵌套事务，允许在一个事务中执行另一个事务，并实现部分回滚。</li>
+<li>例如：<ul>
+<li><strong>NESTED</strong>：在嵌套事务中执行，如果外部事务回滚，嵌套事务也会回滚；但嵌套事务可以独立提交或回滚，而不影响外部事务。</li>
+</ul>
+</li>
+</ul>
+<h4 id="4-强制事务约束"><a href="#4-强制事务约束" class="headerlink" title="4. 强制事务约束"></a>4. 强制事务约束</h4><ul>
+<li>传播行为可以强制某些操作必须在事务中执行，或者绝对不能在一个事务中执行。</li>
+<li>例如：<ul>
+<li><strong>MANDATORY</strong>：必须在一个已有事务中执行，否则抛出异常。</li>
+<li><strong>NEVER</strong>：必须不在事务中执行，否则抛出异常。</li>
+</ul>
+</li>
+</ul>
+<h4 id="5-优化性能"><a href="#5-优化性能" class="headerlink" title="5. 优化性能"></a>5. 优化性能</h4><ul>
+<li>传播行为可以通过减少不必要的事务创建和提交，优化系统性能。</li>
+<li>例如：<ul>
+<li><strong>SUPPORTS</strong>：如果当前没有事务，则以非事务方式执行，避免创建不必要的事务。</li>
+</ul>
+</li>
+</ul>
+<h4 id="6-实现复杂的业务逻辑"><a href="#6-实现复杂的业务逻辑" class="headerlink" title="6. 实现复杂的业务逻辑"></a>6. 实现复杂的业务逻辑</h4><ul>
+<li>传播行为可以帮助实现复杂的业务逻辑，例如：<ul>
+<li>在一个事务中执行多个操作，但某些操作需要独立事务。</li>
+<li>部分操作需要回滚，而其他操作需要提交。</li>
+</ul>
+</li>
+</ul>
+<h4 id="7-总结"><a href="#7-总结" class="headerlink" title="7. 总结"></a>7. <strong>总结</strong></h4><ul>
+<li><strong>控制事务的创建和加入</strong>：决定是否需要创建新事务或加入已有事务。</li>
+<li><strong>管理事务的独立性</strong>：确保某些操作不受外部事务影响。</li>
+<li><strong>支持事务的嵌套</strong>：实现部分回滚的能力。</li>
+<li><strong>强制事务的约束</strong>：确保某些操作必须在事务中执行，或者绝对不能在一个事务中执行。</li>
+<li><strong>优化性能</strong>：减少不必要的事务创建和提交。</li>
+<li><strong>实现复杂的业务逻辑</strong>：支持复杂的业务场景。</li>
+</ul>
+<p>reqired</p>
+<p>reqires_new</p>
+<p>supports</p>
+<p>not_supports</p>
+<h3 id="事务在什么情况下会失效？"><a href="#事务在什么情况下会失效？" class="headerlink" title="事务在什么情况下会失效？"></a>事务在什么情况下会失效？</h3><p>注意：只会回滚RuntimeException</p>
+<p>一般情况而言，失效的情况都是使用了声明式事务<code>@Transactional</code> 注解，如果使用了这个注解那么在以下几个情况下会导致事务的失效。</p>
+<ol>
+<li><p><strong>异常被捕获</strong>，比如代码抛出，但是被catch了，事务无法捕获到错误，因此就不会回滚。</p>
+</li>
+<li><p><strong>设置rollbackFor错误</strong>，前面提到，事务只会处理RuntimeException和Error，对于其他的异常需要自己设置rollbackFor。</p>
+<img src="https://pic1.imgdb.cn/item/67bc1a1fd0e0a243d40343af.png" alt="image.png">
+</li>
+<li><p><strong>同一个类中方法调用</strong>，因为事务是基于动态代理机制实现的，同类的方法调用不会走代理，因此事务自然就失效了。</p>
+</li>
+<li><p>@Transactional 应用在 **非public修饰的方法 **上，Spring事务判断非公共方法则不应用事务。</p>
+</li>
+<li><p>@Transactional 应用在 <strong>final 和static 方法</strong>上，因为aop默认 cglib代理，无法对final方法子类化。static是静态方法，属于类不属于实例对象，无法被代理</p>
+</li>
+<li><p>propagation传播机制配置错误</p>
+</li>
+<li><p>多线程环境，因为 @Transactional 是基于 ThreadLocal 存储上下问的，多线程情况下每个线程都有自己的上下文，那么之间如何保持事务同步？保持不了，因此事务失效。</p>
+</li>
+<li><p>用的是MySQL MyISAM，这个引擎本身不支持事务。</p>
+</li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1581,123 +1868,6 @@
 <p><img src="https://pic1.imgdb.cn/item/67a2c705d0e0a243d4fbdd95.png"></p>
 <h3 id="什么是CAS"><a href="#什么是CAS" class="headerlink" title="什么是CAS"></a>什么是CAS</h3><p>compare and swap()</p>
 <h3 id="什么是AQS"><a href="#什么是AQS" class="headerlink" title="什么是AQS"></a>什么是AQS</h3><h3 id="Synchronized-和-Reetranlock有什么区别"><a href="#Synchronized-和-Reetranlock有什么区别" class="headerlink" title="Synchronized 和 Reetranlock有什么区别"></a>Synchronized 和 Reetranlock有什么区别</h3><h3 id="volatile-关键字作用是什么？"><a href="#volatile-关键字作用是什么？" class="headerlink" title="volatile 关键字作用是什么？"></a>volatile 关键字作用是什么？</h3>
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2025/01/05/%E7%BD%91%E5%85%B3/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/111.png">
-      <meta itemprop="name" content="ZhangYuHao">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Zhang'Blog">
-      <meta itemprop="description" content="一个小人物的个人博客">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | Zhang'Blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2025/01/05/%E7%BD%91%E5%85%B3/" class="post-title-link" itemprop="url">网关</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-      
-
-      <time title="创建时间：2025-01-05 15:49:13 / 修改时间：20:07:45" itemprop="dateCreated datePublished" datetime="2025-01-05T15:49:13+08:00">2025-01-05</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E5%BE%AE%E6%9C%8D%E5%8A%A1/" itemprop="url" rel="index"><span itemprop="name">微服务</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="API网关"><a href="#API网关" class="headerlink" title="API网关"></a>API网关</h1><p><img src="https://pic1.imgdb.cn/item/677a714dd0e0a243d4ef2c43.png"></p>
-<h2 id="什么是网关？"><a href="#什么是网关？" class="headerlink" title="什么是网关？"></a>什么是网关？</h2><p><strong>API网关是一个服务器，是系统的唯一入口。</strong></p>
-<p>API网关封装了系统的内部架构，为每个客户端提供了一个定制的API。</p>
-<p>它的职责：路由，鉴权，跨域，缓存，流量染色，访问控制，统一业务处理，发布控制，脱敏，负载均衡，接口保护（限制请求，信息脱敏，降级熔断，限流，超时时间），统一日志，统一文档。</p>
-<p><strong>API网关方式的核心要点是，所有客户端和消费端都通过统一的网关接入微服务</strong>，在网关层处理所有的非业务功能，通常，网关也提供了REST、HTTP的访问API。</p>
-<h2 id="网关的主要功能"><a href="#网关的主要功能" class="headerlink" title="网关的主要功能"></a>网关的主要功能</h2><p>微服务网关作为微服务后端服务的统一入口，它可以统筹管理后端服务，主要分为数据平面和控制平面：</p>
-<p><strong>1. 数据平面</strong></p>
-<p>数据平面主要功能是接入用户的HTTP请求和微服务被拆分后的聚合。使用微服务网关统一对外暴露后端服务的API和契约，路由和过滤功能正是网关的核心能力模块。另外，微服务网关可以实现拦截机制和专注跨横切面的功能，包括协议转换、安全认证、熔断限流、灰度发布、日志管理、流量监控等</p>
-<p><strong>2. 控制平面</strong></p>
-<p>控制平面主要功能是对后端服务做统一的管控和配置管理。</p>
-<p><strong>3. 整体结构及其功能</strong></p>
-<p><img src="https://pic1.imgdb.cn/item/677a73d5d0e0a243d4ef2caa.png"></p>
-<ul>
-<li><strong>路由功能</strong>：路由是微服务网关的核心能力。通过路由功能微服务网关可以将请求转发到目标微服务。在微服务架构中，网关可以结合注册中心的动态服务发现，实现对后端服务的发现，调用方只需要知道网关对外暴露的服务API就可以透明地访问后端微服务。</li>
-<li><strong>负载均衡</strong>：API网关结合负载均衡技术，利用Eureka或者Consul等服务发现工具，通过轮询、指定权重、IP地址哈希等机制实现下游服务的负载均衡。</li>
-<li><strong>统一鉴权</strong>：一般而言，无论对内网还是外网的接口都需要做用户身份认证，而用户认证在一些规模较大的系统中都会采用统一的单点登录（Single Sign On）系统，如果每个微服务都要对接单点登录系统，那么显然比较浪费资源且开发效率低。API网关是统一管理安全性的绝佳场所，可以将认证的部分抽取到网关层，微服务系统无须关注认证的逻辑，只关注自身业务即可。</li>
-<li><strong>协议转换</strong>：API网关的一大作用在于构建异构系统，API网关作为单一入口，通过协议转换整合后台基于REST、AMQP、Dubbo等不同风格和实现技术的微服务，面向Web Mobile、开放平台等特定客户端提供统一服务。</li>
-<li><strong>指标监控</strong>：网关可以统计后端服务的请求次数，并且可以实时地更新当前的流量健康状态，可以对URL粒度的服务进行延迟统计，也可以使用Hystrix Dashboard查看后端服务的流量状态及是否有熔断发生。</li>
-<li><strong>限流熔断</strong>：在某些场景下需要控制客户端的访问次数和访问频率，一些高并发系统有时还会有限流的需求。在网关上可以配置一个阈值，当请求数超过阈值时就直接返回错误而不继续访问后台服务。当出现流量洪峰或者后端服务出现延迟或故障时，网关能够主动进行熔断，保护后端服务，并保持前端用户体验良好。</li>
-<li><strong>黑白名单</strong>：微服务网关可以使用系统黑名单，过滤HTTP请求特征，拦截异常客户端的请求，例如DDoS攻击等侵蚀带宽或资源迫使服务中断等行为，可以在网关层面进行拦截过滤。比较常见的拦截策略是根据IP地址增加黑名单。在存在鉴权管理的路由服务中可以通过设置白名单跳过鉴权管理而直接访问后端服务资源。</li>
-<li><strong>灰度发布</strong>：微服务网关可以根据HTTP请求中的特殊标记和后端服务列表元数据标识进行流量控制，实现在用户无感知的情况下完成灰度发布。</li>
-<li><strong>流量染色</strong>：和灰度发布的原理相似，网关可以根据HTTP请求的Host、Head、Agent等标识对请求进行染色，有了网关的流量染色功能，我们可以对服务后续的调用链路进行跟踪，对服务延迟及服务运行状况进行进一步的链路分析。</li>
-<li><strong>文档中心</strong>：网关结合Swagger，可以将后端的微服务暴露给网关，网关作为统一的入口给接口的使用方提供查看后端服务的API规范，不需要知道每一个后端微服务的Swagger地址，这样网关起到了对后端API聚合的效果。</li>
-<li><strong>日志审计</strong>：微服务网关可以作为统一的日志记录和收集器，对服务URL粒度的日志请求信息和响应信息进行拦截。</li>
-</ul>
-<h2 id="常用网关"><a href="#常用网关" class="headerlink" title="常用网关"></a>常用网关</h2><h3 id="Nginx"><a href="#Nginx" class="headerlink" title="Nginx"></a>Nginx</h3><p>Nginx是一个高性能的HTTP反向代理服务器，<strong>Nginx一方面可以做反向代理，另外一方面可以做静态资源服务器，接口使用Lua动态语言可以完成灵活的定制功能。</strong></p>
-<h3 id="Zuul"><a href="#Zuul" class="headerlink" title="Zuul"></a>Zuul</h3><p>Zuul 是 Netflix 开源的一个API网关组件，它可以和 Eureka、Ribbon、Hystrix 等组件配合使用。社区活跃，融合于 SpringCloud 完整生态，是构建微服务体系前置网关服务的最佳选型之一。</p>
-<p>Zuul 的核心是一系列的过滤器，这些过滤器可以完成以下功能：</p>
-<ul>
-<li><strong>统一鉴权 + 动态路由 + 负载均衡 + 压力测试</strong></li>
-<li><strong>审查与监控</strong>：与边缘位置追踪有意义的数据和统计结果，从而带来精确的生产视图。</li>
-<li><strong>多区域弹性</strong>：跨越 AWS Region 进行请求路由，旨在实现 ELB（Elastic Load Balancing，弹性负载均衡）使用的多样化，以及让系统的边缘更贴近系统的使用者。</li>
-</ul>
-<h3 id="SpringCloudGetWay"><a href="#SpringCloudGetWay" class="headerlink" title="SpringCloudGetWay"></a>SpringCloudGetWay</h3><p>Spring Cloud Gateway 是Spring Cloud的一个全新的API网关项目，目的是为了替换掉Zuul1，它基于Spring5.0 + SpringBoot2.0 + WebFlux（基于⾼性能的Reactor模式响应式通信框架Netty，异步⾮阻塞模型）等技术开发，性能⾼于Zuul，官⽅测试，<strong>Spring Cloud GateWay是Zuul的1.6倍</strong>，旨在为微服务架构,提供⼀种简单有效的统⼀的API路由管理⽅式。</p>
-<p>Spring Cloud Gateway可以与Spring Cloud Discovery Client（如Eureka）、Ribbon、Hystrix等组件配合使用，<strong>实现路由转发、负载均衡、熔断、鉴权、路径重写、⽇志监控等，并且Gateway还内置了限流过滤器，实现了限流的功能。</strong></p>
-<p>整体结构如下：</p>
-<p><img src="https://pic1.imgdb.cn/item/677a75b0d0e0a243d4ef2d34.png"></p>
-<h3 id="Kong"><a href="#Kong" class="headerlink" title="Kong"></a>Kong</h3><p>Kong是一款基于OpenResty（Nginx + Lua模块）编写的高可用、易扩展的，由Mashape公司开源的API Gateway项目</p>
-<h3 id="Traefik"><a href="#Traefik" class="headerlink" title="Traefik"></a>Traefik</h3><p>Træfɪk 是一个为了让部署微服务更加便捷而诞生的现代HTTP反向代理、负载均衡工具。它支持多种后台 (Docker, Swarm, Kubernetes, Marathon, Mesos, Consul, Etcd, Zookeeper, BoltDB, Rest API, file…) 来自动化、动态的应用它的设置。</p>
-
       
     </div>
 

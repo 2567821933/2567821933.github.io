@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha256-5eIC48iZUHmSlSUz9XtjRyK2mzQkHScZY1WdMaoz74E=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.21.1","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"always","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="答辩基础题1-10什么是E-R模型？ER模型是实体关系模型，是数据库设计中用于描述现实世界概念结构的一种数据模型，主要核心组成为实体（长方形）、属性（椭圆形）和关系（菱形）。 什么是数据库恢复功能？数据库恢复功能，是指数据库管理系统在发生故障时，能够将数据库恢复到一致状态的能力。恢复功能是数据库可靠性和数据完整性的重要保障。 数据库崩溃必须要保证的事情：  保证事务的原子性：即使系统崩溃，也要保证">
+<meta property="og:type" content="article">
+<meta property="og:title" content="答辩">
+<meta property="og:url" content="http://example.com/2025/06/04/%E7%AD%94%E8%BE%A9/index.html">
+<meta property="og:site_name" content="Zhang&#39;Blog">
+<meta property="og:description" content="答辩基础题1-10什么是E-R模型？ER模型是实体关系模型，是数据库设计中用于描述现实世界概念结构的一种数据模型，主要核心组成为实体（长方形）、属性（椭圆形）和关系（菱形）。 什么是数据库恢复功能？数据库恢复功能，是指数据库管理系统在发生故障时，能够将数据库恢复到一致状态的能力。恢复功能是数据库可靠性和数据完整性的重要保障。 数据库崩溃必须要保证的事情：  保证事务的原子性：即使系统崩溃，也要保证">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2025-06-04T01:38:31.000Z">
+<meta property="article:modified_time" content="2025-06-05T15:30:15.195Z">
+<meta property="article:author" content="ZhangYuHao">
+<meta property="article:tag" content="毕业">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://example.com/2025/06/04/%E7%AD%94%E8%BE%A9/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/2025/06/04/%E7%AD%94%E8%BE%A9/","path":"2025/06/04/答辩/","title":"答辩"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>答辩 | Zhang'Blog</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Zhang'Blog</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-schedule"><a href="/schedule/" rel="section"><i class="fa fa-calendar fa-fw"></i>日程表</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AD%94%E8%BE%A9%E5%9F%BA%E7%A1%80%E9%A2%98"><span class="nav-number">1.</span> <span class="nav-text">答辩基础题</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-10"><span class="nav-number">1.1.</span> <span class="nav-text">1-10</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AFE-R%E6%A8%A1%E5%9E%8B%EF%BC%9F"><span class="nav-number">1.1.1.</span> <span class="nav-text">什么是E-R模型？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E6%95%B0%E6%8D%AE%E5%BA%93%E6%81%A2%E5%A4%8D%E5%8A%9F%E8%83%BD%EF%BC%9F"><span class="nav-number">1.1.2.</span> <span class="nav-text">什么是数据库恢复功能？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AE%89%E5%85%A8%E6%80%A7%EF%BC%9F"><span class="nav-number">1.1.3.</span> <span class="nav-text">什么是数据库安全性？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E6%95%B0%E6%8D%AE%E5%BA%93%E5%B9%B6%E5%8F%91%E6%8E%A7%E5%88%B6%EF%BC%9F"><span class="nav-number">1.1.4.</span> <span class="nav-text">什么是数据库并发控制？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%9C%80%E6%B1%82%E5%88%86%E6%9E%90%E8%A6%81%E5%AE%8C%E6%88%90%E5%93%AA%E4%BA%9B%E5%B7%A5%E4%BD%9C%EF%BC%9F"><span class="nav-number">1.1.5.</span> <span class="nav-text">需求分析要完成哪些工作？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E5%87%BD%E6%95%B0%E4%BE%9D%E8%B5%96%EF%BC%8C%E5%B1%9E%E6%80%A7%E4%B9%8B%E9%97%B4%E7%9A%84%E5%87%BD%E6%95%B0%E4%BE%9D%E8%B5%96%E5%8F%8D%E6%98%A0%E4%BA%86%E4%BB%80%E4%B9%88%E9%97%AE%E9%A2%98%EF%BC%9F"><span class="nav-number">1.1.6.</span> <span class="nav-text">什么是函数依赖，属性之间的函数依赖反映了什么问题？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9A%84%E4%B8%89%E8%8C%83%E5%BC%8F"><span class="nav-number">1.1.7.</span> <span class="nav-text">数据库的三范式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8B%E5%8A%A1%E5%B9%B6%E5%8F%91%E6%89%A7%E8%A1%8C%E8%BF%87%E7%A8%8B%E5%87%BA%E7%8E%B0%E6%AD%BB%E9%94%81%EF%BC%8C%E7%B3%BB%E7%BB%9F%E6%9C%89%E4%BB%80%E4%B9%88%E5%AF%B9%E7%AD%96%EF%BC%9F"><span class="nav-number">1.1.8.</span> <span class="nav-text">事务并发执行过程出现死锁，系统有什么对策？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E8%BF%9B%E8%A1%8C%E6%9F%A5%E8%AF%A2%E4%BC%98%E5%8C%96%EF%BC%9F"><span class="nav-number">1.1.9.</span> <span class="nav-text">如何进行查询优化？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ISO%E7%9A%84%E4%B8%83%E5%B1%82%E6%A8%A1%E5%9E%8B%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F-TCP-UDP%E5%B1%9E%E4%BA%8E%E9%82%A3%E4%B8%80%E5%B1%82%EF%BC%9F-TCP-UDP%E6%9C%89%E4%BD%95%E4%BC%98%E7%BC%BA%E7%82%B9%EF%BC%9F"><span class="nav-number">1.1.10.</span> <span class="nav-text">ISO的七层模型是什么？ TCP&#x2F;UDP属于那一层？ TCP&#x2F;UDP有何优缺点？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AF%95%E6%AF%94%E8%BE%83%E7%BA%BF%E8%B7%AF%E4%BA%A4%E6%8D%A2%E4%B8%8E%E5%AD%98%E5%82%A8%E8%BD%AC%E5%8F%91%E4%BA%A4%E6%8D%A2%E7%9A%84%E7%89%B9%E7%82%B9%EF%BC%9F"><span class="nav-number">1.1.11.</span> <span class="nav-text">试比较线路交换与存储转发交换的特点？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%8E%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%8F%90%E4%BE%9B%E7%9A%84%E6%9C%8D%E5%8A%A1%E5%87%BA%E5%8F%91%EF%BC%8C%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%8F%AF%E5%88%86%E4%B8%BA%E5%93%AA%E5%87%A0%E7%B1%BB%EF%BC%9F"><span class="nav-number">1.1.12.</span> <span class="nav-text">从操作系统提供的服务出发，操作系统可分为哪几类？</span></a></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="ZhangYuHao"
+      src="/images/111.png">
+  <p class="site-author-name" itemprop="name">ZhangYuHao</p>
+  <div class="site-description" itemprop="description">一个小人物的个人博客</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">46</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">31</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/2567821933" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;2567821933" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:103903Zyh@gmail.com" title="E-Mail → mailto:103903Zyh@gmail.com" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2025/06/04/%E7%AD%94%E8%BE%A9/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/111.png">
+      <meta itemprop="name" content="ZhangYuHao">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Zhang'Blog">
+      <meta itemprop="description" content="一个小人物的个人博客">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="答辩 | Zhang'Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          答辩
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2025-06-04 09:38:31" itemprop="dateCreated datePublished" datetime="2025-06-04T09:38:31+08:00">2025-06-04</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-06-05 23:30:15" itemprop="dateModified" datetime="2025-06-05T23:30:15+08:00">2025-06-05</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1 id="答辩基础题"><a href="#答辩基础题" class="headerlink" title="答辩基础题"></a>答辩基础题</h1><h2 id="1-10"><a href="#1-10" class="headerlink" title="1-10"></a>1-10</h2><h3 id="什么是E-R模型？"><a href="#什么是E-R模型？" class="headerlink" title="什么是E-R模型？"></a>什么是E-R模型？</h3><p>ER模型是实体关系模型，是数据库设计中用于描述现实世界概念结构的一种数据模型，主要核心组成为实体（长方形）、属性（椭圆形）和关系（菱形）。</p>
+<h3 id="什么是数据库恢复功能？"><a href="#什么是数据库恢复功能？" class="headerlink" title="什么是数据库恢复功能？"></a>什么是数据库恢复功能？</h3><p>数据库恢复功能，是指数据库管理系统在发生故障时，能够将数据库恢复到一致状态的能力。恢复功能是数据库可靠性和数据完整性的重要保障。</p>
+<p>数据库崩溃必须要保证的事情：</p>
+<ul>
+<li><strong>保证事务的原子性：</strong>即使系统崩溃，也要保证事务要么完全执行，要么完全不执行。</li>
+<li><strong>恢复数据库到一致状态：</strong> 确保数据符合所有预定义的约束条件（如主键、外键、唯一性等）。</li>
+<li><strong>最小化数据丢失：</strong> 尽可能减少因故障导致的数据损失。</li>
+<li><strong>提高系统的可用性：</strong>快速恢复，减少停机时间。</li>
+</ul>
+<p>常出现的数据库异常：</p>
+<ul>
+<li>事务故障<ul>
+<li>事务因运行逻辑错误或人为终止导致的失败。</li>
+<li>解决： 撤销未完成的事务。</li>
+</ul>
+</li>
+<li>系统崩溃<ul>
+<li>如操作系统崩溃、电源故障等导致的DBMS异常终止。</li>
+<li>解决： 使用 <strong>日志</strong> 和 <strong>检查点</strong> 恢复已提交和未提交的事务。</li>
+</ul>
+</li>
+<li>介质故障：<ul>
+<li>磁盘损坏</li>
+<li>解决： 从备份或归档日志中恢复数据。</li>
+</ul>
+</li>
+<li>人为错误：<ul>
+<li>如误删数据，错误更新</li>
+<li>解决： 日志回滚。</li>
+</ul>
+</li>
+</ul>
+<h3 id="什么是数据库安全性？"><a href="#什么是数据库安全性？" class="headerlink" title="什么是数据库安全性？"></a>什么是数据库安全性？</h3><p>数据库的安全性，是指保护数据库免受 <strong>未授权访问</strong>、<strong>数据泄露、</strong> <strong>篡改或破坏</strong>的一系列技术和措施。它确保了数据库的 <strong>机密性、完整性和可用性</strong>，即 <strong>CIA三要素</strong>。</p>
+<h3 id="什么是数据库并发控制？"><a href="#什么是数据库并发控制？" class="headerlink" title="什么是数据库并发控制？"></a>什么是数据库并发控制？</h3><p>数据库的并发控制，同常与数据库的隔离级别相结合。如果多个事务不加控制的并发执行，可能导致 <strong>脏读、不可重复读和幻读</strong> 的问题。</p>
+<p>一下是事务的隔离级别：</p>
+<ul>
+<li>读未提交：读取到未提交的事务，可能导致 脏读、不可重复读和幻读问题。</li>
+<li>读已提交：读取已提交的事务，在事务执行中发生数据改变，可能导致不可重复读和幻读问题。</li>
+<li>可重复读： 在事务执行过程中，其他事务插入，可能导致出现幻读问题。</li>
+<li>可串行化：事务的执行为串行化，不存在并发问题。</li>
+</ul>
+<h3 id="需求分析要完成哪些工作？"><a href="#需求分析要完成哪些工作？" class="headerlink" title="需求分析要完成哪些工作？"></a>需求分析要完成哪些工作？</h3><p>需求分析为软件开发的关键阶段，主要目的在于 <strong>理解、定义和记录用户需求</strong>，为后续系统的设计、开发和测试提供依据。</p>
+<p>主要工作：</p>
+<ul>
+<li>需求收集： 与用户对接，获取用户的真实需求。</li>
+<li>需求分类和整理： 分为功能性需求，非功能性需求、业务规则和用户的其他需求。</li>
+<li>通过需求分析与建模： 用例图，实体关系图、流程图等</li>
+<li>需求确认：通过团队讨论确认需求的完整性。</li>
+<li>需求文档化： 将需求整理成正式的需求规格说明书。</li>
+<li>需求分析变更整理：整理可能发生变更的流程。</li>
+</ul>
+<h3 id="什么是函数依赖，属性之间的函数依赖反映了什么问题？"><a href="#什么是函数依赖，属性之间的函数依赖反映了什么问题？" class="headerlink" title="什么是函数依赖，属性之间的函数依赖反映了什么问题？"></a>什么是函数依赖，属性之间的函数依赖反映了什么问题？</h3><p>在关系形数据库中，函数依赖通常描述了一个关系中属性之间的逻辑约束关系（在MySQL中通过数据库三范式来约束）</p>
+<p>反映的问题：</p>
+<p>函数依赖揭示了关系数据库中 <strong>数据的语义约束</strong> 和 <strong>潜在的设计缺陷</strong>。</p>
+<ul>
+<li>数据冗余</li>
+<li>更新异常</li>
+<li>数据不一致</li>
+</ul>
+<h3 id="数据库的三范式"><a href="#数据库的三范式" class="headerlink" title="数据库的三范式"></a>数据库的三范式</h3><p>第一范式：</p>
+<ul>
+<li>确保每一列都是原子的（不可再分），即每个字段只存储单一值，不允许出现重复组或多值现象。</li>
+<li>所有行必须具有唯一标识（如主键），不允许完全相同的重复行。</li>
+</ul>
+<p>第二范式：</p>
+<ul>
+<li>在第一范式的基础上，消除非主属性对主键的 “部分函数依赖”。<ul>
+<li>完全主键依赖：非主键必须依赖于整个主键，而非主键的某一部分。</li>
+<li>部分函数依赖： 非主键仅依赖于主键的一部分（需拆分表以消除）。</li>
+</ul>
+</li>
+<li>适用于复合主键的表</li>
+</ul>
+<p>第三范式：</p>
+<ul>
+<li>在第二范式的基础上，消除非主键对主键的”传递性依赖“。</li>
+<li>即： 非主属性不能依赖于其他非主属性。</li>
+</ul>
+<h3 id="事务并发执行过程出现死锁，系统有什么对策？"><a href="#事务并发执行过程出现死锁，系统有什么对策？" class="headerlink" title="事务并发执行过程出现死锁，系统有什么对策？"></a>事务并发执行过程出现死锁，系统有什么对策？</h3><p>手动关闭进程，通过获取进程号，使用kill来关闭线程。</p>
+<p>回滚事务，（部分回滚、全部回滚）</p>
+<p>MySQL有死锁的检测机制（通过自动回滚来解决）</p>
+<h3 id="如何进行查询优化？"><a href="#如何进行查询优化？" class="headerlink" title="如何进行查询优化？"></a>如何进行查询优化？</h3><ul>
+<li>设置合适的索引。</li>
+<li>只查询需要的数据，避免*的使用。</li>
+<li>组合索引遵循最左前缀匹配原则。</li>
+<li>减少对与函数的使用。</li>
+<li>非必要不要使用like和or。</li>
+</ul>
+<h3 id="ISO的七层模型是什么？-TCP-UDP属于那一层？-TCP-UDP有何优缺点？"><a href="#ISO的七层模型是什么？-TCP-UDP属于那一层？-TCP-UDP有何优缺点？" class="headerlink" title="ISO的七层模型是什么？ TCP&#x2F;UDP属于那一层？ TCP&#x2F;UDP有何优缺点？"></a>ISO的七层模型是什么？ TCP&#x2F;UDP属于那一层？ TCP&#x2F;UDP有何优缺点？</h3><p>应用层 ———— 用户接口和网络服务———— HTTP，FTP————报文</p>
+<p>表示层———— 数据格式转化———— SSL ———— 数据</p>
+<p>会话层 ———— 建立维护终止会话————SSH，TLS————会话</p>
+<p>传输层———— 端到端的链接————TCP、UDP————段</p>
+<p>网络层————IP寻址、路由选择———— IP ———— 包</p>
+<p>数据链路层————MAC寻址 ———— MAC————帧</p>
+<p>物理层————比特流 ———— USB、光纤 ————比特</p>
+<p>TCP、UDP属于那一层？传输层</p>
+<p>TCP： 安全稳定的链接，速度比UDP慢，但是传输稳定，数据完整传输，通过三次握手和四次挥手来完成链接的建立和断开。</p>
+<p>UDP： 速度快，链接的数据传输没有安全保障，可能造成数据的丢失，适合在传输视频这些不需要保证数据完整性的场合使用。</p>
+<p>应用层（http） -》 传输层（TCP，UDP） -》 网络层（IP) &#x3D;》 网络接口层（MAC）</p>
+<p>报文-》段 &#x3D;》 包 &#x3D;》 帧</p>
+<h3 id="试比较线路交换与存储转发交换的特点？"><a href="#试比较线路交换与存储转发交换的特点？" class="headerlink" title="试比较线路交换与存储转发交换的特点？"></a>试比较线路交换与存储转发交换的特点？</h3><h3 id="从操作系统提供的服务出发，操作系统可分为哪几类？"><a href="#从操作系统提供的服务出发，操作系统可分为哪几类？" class="headerlink" title="从操作系统提供的服务出发，操作系统可分为哪几类？"></a>从操作系统提供的服务出发，操作系统可分为哪几类？</h3><p>操作系统提供的服务和功能分为 用户功能和</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E6%AF%95%E4%B8%9A/" rel="tag"># 毕业</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2025/05/27/%E5%A4%8D%E4%B9%A0/" rel="prev" title="复习">
+                  <i class="fa fa-angle-left"></i> 复习
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">ZhangYuHao</span>
+  </div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/mist/" rel="noopener" target="_blank">NexT.Mist</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script size="300" alpha="0.6" zIndex="-1" src="https://cdnjs.cloudflare.com/ajax/libs/ribbon.js/1.0.2/ribbon.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/sidebar.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

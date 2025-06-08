@@ -122,7 +122,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">45</span>
+          <span class="site-state-item-count">46</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -133,7 +133,7 @@
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">30</span>
+        <span class="site-state-item-count">31</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -158,6 +158,1194 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2025/01/01/MySQL%E9%9D%A2%E8%AF%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/111.png">
+      <meta itemprop="name" content="ZhangYuHao">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Zhang'Blog">
+      <meta itemprop="description" content="一个小人物的个人博客">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Zhang'Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2025/01/01/MySQL%E9%9D%A2%E8%AF%95/" class="post-title-link" itemprop="url">MySQL面试</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2025-01-01 21:48:38" itemprop="dateCreated datePublished" datetime="2025-01-01T21:48:38+08:00">2025-01-01</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-02-27 10:02:24" itemprop="dateModified" datetime="2025-02-27T10:02:24+08:00">2025-02-27</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E9%9D%A2%E8%AF%95/" itemprop="url" rel="index"><span itemprop="name">面试</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="MySQL面试"><a href="#MySQL面试" class="headerlink" title="MySQL面试"></a>MySQL面试</h1><h2 id="Day1"><a href="#Day1" class="headerlink" title="Day1"></a>Day1</h2><h3 id="MySQL-InnoDB-引擎中的聚簇索引和非聚簇索引有什么区别？"><a href="#MySQL-InnoDB-引擎中的聚簇索引和非聚簇索引有什么区别？" class="headerlink" title="MySQL InnoDB 引擎中的聚簇索引和非聚簇索引有什么区别？"></a>MySQL InnoDB 引擎中的聚簇索引和非聚簇索引有什么区别？</h3><h4 id="聚簇索引"><a href="#聚簇索引" class="headerlink" title="聚簇索引"></a>聚簇索引</h4><p>是指数据表中的数据存储按照索引的顺序排列，因此索引的叶子结点存储的不仅是索引的值，还存储整行数据。	</p>
+<p>注意： 每张表只能有一个聚簇索引，因为数据物理上只能有一种排序。</p>
+<p><strong>InnoDB中的特点</strong></p>
+<blockquote>
+<ul>
+<li>在InnoDB中，主键索引就是聚簇索引，即InnoDB表会自动将主键列作为聚簇索引。</li>
+<li>若未定义主键，InnoDB会尝试使用一个唯一的非空索引作为聚簇索引；如果表中没有主键或唯一非空索引，innoDB会自动生成一个隐式的row_id作为聚簇索引。</li>
+</ul>
+</blockquote>
+<p><strong>工作原理</strong></p>
+<blockquote>
+<ul>
+<li>聚簇索引的叶子节点存储的不是指向数据的指针，而是整行数据。因此，通过聚簇索引进行查询时，可以直接从索引中找到所需的数据，而不需要额外的查找步骤。</li>
+<li>由于数据和索引一起存储，按主键查询非常高效，因为查询的过程就是遍历聚簇索引找到数据的过程。</li>
+</ul>
+</blockquote>
+<p><strong>优点</strong></p>
+<blockquote>
+<ul>
+<li>查询速度快：由于数据存储在索引的叶子节点中，按主键或按聚簇索引进行查询非常快，特别是范围查询（如 BETWEEN 或 ORDER BY）效率高，因为数据物理上按索引顺序存储。</li>
+<li>索引覆盖查询：因为聚簇索引中包含了整行数据，某些查询只需使用聚簇索引即可完成，避免了二次查找</li>
+</ul>
+</blockquote>
+<p><strong>缺点</strong></p>
+<blockquote>
+<ul>
+<li>插入和更新代价较高：由于数据按照索引顺序存储，插入新数据时可能需要调整数据存储的位置（维护顺序），因此插入效率比非聚簇索引低。</li>
+<li>表的行存储顺序受限于聚簇索引：如果主键频繁变化，聚簇索引的维护成本较高</li>
+<li>大字段影响性能：如果表中包含大字段（如 BLOB、TEXT），它们也会存储在聚簇索引中，导致索引体积变大、性能下降。InnoDB 可以将这些大字段存储在页外，聚簇索引只存储其指针。</li>
+</ul>
+</blockquote>
+<blockquote>
+<p> 非叶节点都是存储的是节点中最大的那一个，一个关键字对应一个分支。</p>
+</blockquote>
+<h4 id="非聚簇索引"><a href="#非聚簇索引" class="headerlink" title="非聚簇索引"></a>非聚簇索引</h4><p><strong>非聚簇索引</strong> 是指索引和数据是<strong>分开存储的</strong>。非聚簇索引的叶子节点存储的是<strong>索引列的值和指向实际数据的指针（即行号或主键）</strong>。</p>
+<p>注意： 一张表可以有多个非聚簇索引，每个索引都有自己的存储顺序。</p>
+<p><strong>InnoDB中的特点</strong></p>
+<blockquote>
+<ul>
+<li>非主键索引 在 InnoDB 中就是非聚簇索引，这些索引的叶子节点存储的是索引列的值，以及对应行的主键值，而不是直接存储数据。</li>
+<li>因此，通过非聚簇索引查询数据时，数据库首先需要使用非聚簇索引找到主键，然后再通过主键去聚簇索引中找到实际的数据。这种过程被称为<strong>回表（Secondary Lookup）</strong></li>
+</ul>
+</blockquote>
+<p>原理</p>
+<blockquote>
+<ul>
+<li>非聚簇索引的叶子节点存储的是索引列的值和指向数据的指针。在 InnoDB 中，这个指针实际上是该行对应的主键值，因此在使用非聚簇索引时，MySQL 需要先通过非聚簇索引找到主键值，然后通过主键值回到聚簇索引中查找整行数据。</li>
+</ul>
+</blockquote>
+<p><strong>优点</strong></p>
+<blockquote>
+<ul>
+<li>查找速度快（对于特定列的查询）：非聚簇索引可以加速对索引列的查找，尤其是对那些经常作为查询条件的列建立非聚簇索引，可以大大提高查询性能。</li>
+<li>灵活性高：一张表可以有多个非聚簇索引，每个索引可以加速不同类型的查询。</li>
+</ul>
+</blockquote>
+<p><strong>缺点</strong></p>
+<blockquote>
+<ul>
+<li>查询效率较低（需要回表）：非聚簇索引在查询时需要通过索引列找到主键，然后再去聚簇索引查找实际数据。这个过程比直接使用聚簇索引略慢。</li>
+<li>额外存储：非聚簇索引需要额外存储主键信息，并且占用更多的磁盘空间。</li>
+</ul>
+</blockquote>
+<h4 id="对比"><a href="#对比" class="headerlink" title="对比"></a>对比</h4><p><img src="https://pic1.imgdb.cn/item/67755c2dd0e0a243d4ed6f20.png"></p>
+<h4 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h4><p>聚簇：</p>
+<blockquote>
+<ul>
+<li>按主键查询频繁：如果你经常按主键查询数据，例如电商订单系统，按订单号（主键）查询订单信息，使用聚簇索引可以大大提高查询性能。</li>
+<li>范围查询：当你需要在一个范围内查询数据时（例如日期范围查询），聚簇索引可以加速查询，因为数据物理上按顺序存储，范围查询时只需扫描连续的物理页。</li>
+</ul>
+</blockquote>
+<p>非聚簇</p>
+<blockquote>
+<ul>
+<li>按非主键列查询：当你的查询条件经常使用非主键列时（例如按用户邮箱查询用户信息），你可以为这些列创建非聚簇索引。</li>
+<li>多列查询优化：如果你的应用场景中涉及到多个列的查询，可以为这些列创建多个非聚簇索引，来优化查询性能。</li>
+</ul>
+</blockquote>
+<h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><blockquote>
+<ul>
+<li><strong>聚集索引：数据存储按照索引顺序进行存储，每张表只能有一个聚簇索引，适合主键查询和范围查询的场景。</strong></li>
+<li><strong>非聚集索引：索引和数据分开存储，索引指向的是数据的主键，适合对非主键列进行快速查找的场景，表中可以创建多个非聚簇索引。</strong></li>
+</ul>
+</blockquote>
+<h3 id="MySQL的存储引擎有哪些？他们之间有什么区别？"><a href="#MySQL的存储引擎有哪些？他们之间有什么区别？" class="headerlink" title="MySQL的存储引擎有哪些？他们之间有什么区别？"></a>MySQL的存储引擎有哪些？他们之间有什么区别？</h3><h4 id="常见存储引擎"><a href="#常见存储引擎" class="headerlink" title="常见存储引擎"></a>常见存储引擎</h4><p><strong>1. InnoDB</strong></p>
+<p>特点：</p>
+<ul>
+<li>默认存储引擎，支持事务（ACID）</li>
+<li>使用 聚簇索引， 主键数据和索引存储在一起</li>
+<li>支持外键约束</li>
+<li>采用MVCC（多版本并发控制）提高并发性能</li>
+<li>在mysql5.6.4版本之后也加入了全文索引</li>
+</ul>
+<p>适用场景</p>
+<ul>
+<li>需要事务支持的场景</li>
+<li>大量数据的读写操作</li>
+</ul>
+<p><strong>2. MyISAM</strong></p>
+<p>特点：</p>
+<ul>
+<li>不支持事务和外键</li>
+<li>采用非聚簇索引，数据和索引分开存储</li>
+<li>支持全文索引</li>
+<li>表级锁，写操作会阻塞其他读写操作</li>
+</ul>
+<p>适用场景：</p>
+<ul>
+<li>以读操作为主的场景，如日志分析，数据仓库。</li>
+<li>数据不需要频繁更新</li>
+</ul>
+<p><strong>3. Memory</strong></p>
+<p>特点：</p>
+<ul>
+<li>数据存储在内存中，读写速度快</li>
+<li>数据非持久化，MySQL重启或崩溃后数据丢失</li>
+<li>支持表级锁</li>
+</ul>
+<p>适用场景：</p>
+<ul>
+<li>临时数据存储或需要极高读写速度的场景，如缓存系统</li>
+</ul>
+<p><strong>4. csv</strong><br>特点：</p>
+<ul>
+<li>数据以都好分隔值文件（csv）格式存储。</li>
+<li>不支持索引</li>
+<li>性能低</li>
+</ul>
+<p>适用场景：</p>
+<ul>
+<li>数据导入导出操作</li>
+</ul>
+<p><strong>5. Archive</strong></p>
+<p>特点：</p>
+<ul>
+<li>专门存储归档数据设计，支持高压缩比</li>
+<li>仅支持INSERT 和SELECT 操作，不支持索引和事务。</li>
+</ul>
+<p>适用场景：</p>
+<ul>
+<li>只需存储大量历史归档数据，几乎不需要更新。</li>
+</ul>
+<p><strong>6. Federated</strong></p>
+<p>特点：</p>
+<ul>
+<li>用于访问远程MySQL服务器的数据。</li>
+<li>数据存储在远程服务器上。</li>
+</ul>
+<p>适用场景：</p>
+<ul>
+<li>需要整合多个MySQL数据库的数据。</li>
+</ul>
+<p><strong>7.NDB（Clustered Storage Engine)</strong><br>集群存储引擎</p>
+<p>特点：</p>
+<ul>
+<li>用于MysQL集群，支持高可用性和高并发。</li>
+<li>数据分布式存储在多个节点。</li>
+</ul>
+<p>适用场景：</p>
+<ul>
+<li>高可用，高性能需求的分布式场景</li>
+</ul>
+<h4 id="区别表"><a href="#区别表" class="headerlink" title="区别表"></a>区别表</h4><p><img src="https://pic1.imgdb.cn/item/677561f9d0e0a243d4ed7057.png"></p>
+<h4 id="引擎选择建议"><a href="#引擎选择建议" class="headerlink" title="引擎选择建议"></a>引擎选择建议</h4><ol>
+<li><strong>事务需求：</strong><ul>
+<li>需要事务：InnoDB</li>
+<li>不需要事务：可选择 MyISAM、Memory 等。</li>
+</ul>
+</li>
+<li><strong>数据访问模式</strong>：<ul>
+<li>读写并发：选择 InnoDB。</li>
+<li>只读或读多写少：可选择 MyISAM。</li>
+</ul>
+</li>
+<li><strong>持久化需求</strong>：<ul>
+<li>持久化：InnoDB、MyISAM。</li>
+<li>非持久化：Memory。</li>
+</ul>
+</li>
+<li><strong>数据规模和性能</strong>：<ul>
+<li>数据量大，索引优化重要：选择 InnoDB。</li>
+<li>极高性能，数据可以丢失：选择 Memory。</li>
+</ul>
+</li>
+</ol>
+<p>总结：</p>
+<ul>
+<li>MySQL 提供了多种存储引擎以满足不同的需求。</li>
+<li><strong>InnoDB</strong> 是大多数场景下的首选，因其支持事务、高并发和外键。</li>
+<li>其他存储引擎（如 MyISAM、Memory）则适用于特定的场景</li>
+</ul>
+<h3 id="MySQL的索引有哪些？"><a href="#MySQL的索引有哪些？" class="headerlink" title="MySQL的索引有哪些？"></a>MySQL的索引有哪些？</h3><p>主要包括：</p>
+<ul>
+<li>普通索引</li>
+<li>唯一索引</li>
+<li>主键索引</li>
+<li>组合索引</li>
+<li>全文索引</li>
+</ul>
+<h4 id="普通索引"><a href="#普通索引" class="headerlink" title="普通索引"></a>普通索引</h4><p>是最基本的索引，它没有任何限制。</p>
+<p>创建一个索引</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"># ①创建普通的索引</span><br><span class="line"><span class="keyword">CREATE TABLE</span> book(</span><br><span class="line">    book_id <span class="type">INT</span> ,</span><br><span class="line">    book_name <span class="type">VARCHAR</span>(<span class="number">100</span>),</span><br><span class="line">    AUTHORS <span class="type">VARCHAR</span>(<span class="number">100</span>),</span><br><span class="line">    info <span class="type">VARCHAR</span>(<span class="number">100</span>) ,</span><br><span class="line">    COMMENT <span class="type">VARCHAR</span>(<span class="number">100</span>),</span><br><span class="line">    year_publication <span class="keyword">YEAR</span>,</span><br><span class="line">    # 声明索引</span><br><span class="line">    INDEX idx_bname(book_name) # 这里是索引名（对应的列）</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+<p>查看索引</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"># 方式<span class="number">1</span>：</span><br><span class="line"><span class="keyword">SHOW</span> <span class="keyword">CREATE TABLE</span> book; # Linux下添加G参数</span><br><span class="line"></span><br><span class="line"># 方式<span class="number">2</span>：</span><br><span class="line"><span class="keyword">SHOW</span> INDEX <span class="keyword">FROM</span> book;</span><br><span class="line"></span><br><span class="line">#性能分析工具：EXPLAIN，查看索引是否正在使用</span><br><span class="line">EXPLAIN <span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">from</span> book <span class="keyword">where</span> book_name <span class="operator">=</span> <span class="string">&#x27;mysql高级&#x27;</span>;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="唯一索引"><a href="#唯一索引" class="headerlink" title="唯一索引"></a>唯一索引</h4><p>与前面的普通索引类似，不同的就是：索引列的值必须唯一，但允许有空值。如果是组合索引，则列值的组合必须唯一。</p>
+<p>创建：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"># ②创建唯一索引</span><br><span class="line"><span class="keyword">CREATE TABLE</span> book1 (</span><br><span class="line">  book_id <span class="type">INT</span>,</span><br><span class="line">  book_name <span class="type">VARCHAR</span> (<span class="number">100</span>),</span><br><span class="line">  AUTHORS <span class="type">VARCHAR</span> (<span class="number">100</span>),</span><br><span class="line">  info <span class="type">VARCHAR</span> (<span class="number">100</span>),</span><br><span class="line">  COMMENT <span class="type">VARCHAR</span> (<span class="number">100</span>),</span><br><span class="line">  year_publication <span class="keyword">YEAR</span>,</span><br><span class="line">  #声明索引</span><br><span class="line">  <span class="keyword">UNIQUE</span> INDEX uk_idx_cmt (COMMENT)</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">show</span> INDEX <span class="keyword">from</span> book1;# 查看索引</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h4 id="主键索引"><a href="#主键索引" class="headerlink" title="主键索引"></a>主键索引</h4><p>是一种特殊的唯一索引，一个表只能有一个主键，不允许有空值。一般是在建表的时候同时创建主键索引</p>
+<p>创建：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"># ③主键索引</span><br><span class="line"># 通过定义主键约束的方式定义主键索引</span><br><span class="line"><span class="keyword">create table</span> book2(</span><br><span class="line">    book_id <span class="type">int</span> <span class="keyword">primary key</span>,</span><br><span class="line">    book_name <span class="type">varchar</span>(<span class="number">100</span>),</span><br><span class="line">    AUTHORS <span class="type">VARCHAR</span> (<span class="number">100</span>),</span><br><span class="line">    info <span class="type">VARCHAR</span> (<span class="number">100</span>),</span><br><span class="line">    COMMENT <span class="type">VARCHAR</span> (<span class="number">100</span>),</span><br><span class="line">    year_publication <span class="keyword">YEAR</span></span><br><span class="line">) ;</span><br><span class="line"></span><br><span class="line"># 通过删除主键约束的方式删除主键索引</span><br><span class="line"><span class="keyword">alter table</span> book2</span><br><span class="line"><span class="keyword">drop</span> <span class="keyword">primary key</span>;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h4 id="组合索引"><a href="#组合索引" class="headerlink" title="组合索引"></a>组合索引</h4><p>指多个字段上创建的索引，只有在查询条件中使用了创建索引时的第一个字段，索引才会被使用。使用组合索引时遵循最左前缀集合</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"># ⑤ 创建联合索引</span><br><span class="line"><span class="keyword">create table</span> book4(</span><br><span class="line">    book_id <span class="type">INT</span>,</span><br><span class="line">    book_name <span class="type">VARCHAR</span>(<span class="number">100</span>),</span><br><span class="line">    AUTHORS <span class="type">VARCHAR</span> (<span class="number">100</span>),</span><br><span class="line">    info <span class="type">VARCHAR</span> (<span class="number">100</span>),</span><br><span class="line">    COMMENT <span class="type">VARCHAR</span> (<span class="number">100</span>),</span><br><span class="line">    year_publication <span class="keyword">YEAR</span>,</span><br><span class="line">    index mul_bid_bname_info(book_id,book_name,info)	</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="keyword">SHOW</span> INDEX <span class="keyword">FROM</span> book4;</span><br></pre></td></tr></table></figure>
+
+<p>注意：注意上面三行依次是book_id,book_name,info，与我们创建索引时指定的顺序是严格对应的。在查询时会遵守最左索引原则，先进行book_id条件的比较，然后再进行book_name比较，最后才是info。因此注意把最常用的查询字段放在索引的最左边。</p>
+<h4 id="全文索引"><a href="#全文索引" class="headerlink" title="全文索引"></a>全文索引</h4><p>主要用来查找文本中的关键字，而不是直接与索引中的值相比较。fulltext索引跟其它索引大不相同，它更像是一个搜索引擎，而不是简单的where语句的参数匹配。fulltext索引配合match against操作使用，而不是一般的where语句加like。它可以在create table，alter table ，create index使用，不过目前只有char、varchar，text 列上可以创建全文索引。值得一提的是，在数据量较大时候，现将数据放入一个没有全局索引的表中，然后再用CREATE index创建fulltext索引，要比先为一张表建立fulltext然后再将数据写入的速度快很多。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE TABLE</span> test4(</span><br><span class="line">    id <span class="type">INT</span> <span class="keyword">NOT NULL</span>,</span><br><span class="line">    name <span class="type">CHAR</span>(<span class="number">30</span>) <span class="keyword">NOT NULL</span>,</span><br><span class="line">    age <span class="type">INT</span> <span class="keyword">NOT NULL</span>,</span><br><span class="line">    info <span class="type">VARCHAR</span>(<span class="number">255</span>),</span><br><span class="line">    FULLTEXT INDEX futxt_idx_info(info)</span><br><span class="line">) ENGINE<span class="operator">=</span>MyISAM;</span><br><span class="line"></span><br><span class="line"><span class="keyword">SHOW</span> INDEX <span class="keyword">FROM</span> test4G;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="Day2"><a href="#Day2" class="headerlink" title="Day2"></a>Day2</h2><h3 id="MySQL-三层B-树能存储多少数据？"><a href="#MySQL-三层B-树能存储多少数据？" class="headerlink" title="MySQL 三层B+树能存储多少数据？"></a>MySQL 三层B+树能存储多少数据？</h3><h4 id="计算思路"><a href="#计算思路" class="headerlink" title="计算思路"></a>计算思路</h4><blockquote>
+<ol>
+<li>计算叶子结点的大小</li>
+<li>计算子结点的个数，由此算出第三层叶子结点的个数（n*n)<ul>
+<li>一个结点的子节点个数 &#x3D; 页大小 &#x2F; (索引键大小 + 只想该子结点的指针大小)</li>
+</ul>
+</li>
+<li>计算每个叶子几点存储的数据行个数（多少条数据)</li>
+<li>算出第三层能存储的总的数据行。</li>
+</ol>
+</blockquote>
+<h4 id="b-树的存储结构"><a href="#b-树的存储结构" class="headerlink" title="b+树的存储结构"></a>b+树的存储结构</h4><blockquote>
+<p>根节点，非叶子结点，叶子结点</p>
+</blockquote>
+<blockquote>
+<p>非叶子结点： 存储索引和子结点的指针</p>
+<p>叶子结点： 存储完整的数据行</p>
+</blockquote>
+<h4 id="页"><a href="#页" class="headerlink" title="页"></a>页</h4><blockquote>
+<p>每个节点就是一个页，页是mysql InnoDB引擎中最小的存储单元，一个<strong>页里面有一个页目录，存储的是所有索引键和子结点指针的组合。</strong></p>
+</blockquote>
+<h4 id="具体介绍"><a href="#具体介绍" class="headerlink" title="具体介绍"></a>具体介绍</h4><ol>
+<li><p>页大小： 默认16kb</p>
+<blockquote>
+<p>16 * 1024 &#x3D; 16384字节</p>
+</blockquote>
+</li>
+<li><p>索引键和指针大小</p>
+<blockquote>
+<p>指针大小通常是6字节，索引键使用BigInt 8字节</p>
+</blockquote>
+</li>
+<li><p>计算扇出</p>
+<blockquote>
+<p>扇出： 非叶子结点所拥有的子节点的数量。</p>
+<p>扇出 &#x3D; 页大小（16kb) &#x2F; (索引键大小 + 只想该子结点的指针大小)(14b) 大约1170</p>
+</blockquote>
+</li>
+<li><p>由此计算b+树层级存储</p>
+<blockquote>
+<ul>
+<li><strong>根节点</strong>：根节点是<strong>一个</strong>非叶子节点，可以存储大约1170个索引键和指针</li>
+<li><strong>第二层节点</strong>：每个根节点的指针可以指向一个第二层的节点，所以第二层最多有1170个节点。每个第二层节点也可以存储1170个指针。</li>
+<li><strong>第三层节点（叶子节点）</strong>：每个第二层节点的指针可以指向多个第三层节点（叶子节点）。因此，第三层的节点数是第二层节点数乘以每个第二层节点的指针数，即1170 * 1170。</li>
+</ul>
+</blockquote>
+</li>
+<li><p>结果</p>
+<blockquote>
+<p>数据大小 &#x3D; 1170  * 1170 * (16kb &#x2F; 单条数据行的大小)</p>
+</blockquote>
+</li>
+</ol>
+<h3 id="MySQL-最左前缀匹配原则是什么？"><a href="#MySQL-最左前缀匹配原则是什么？" class="headerlink" title="MySQL 最左前缀匹配原则是什么？"></a>MySQL 最左前缀匹配原则是什么？</h3><p>最左前缀匹配原则是 MySQL 在使用索引时遵循的一种规则，尤其在涉及组合索引时。</p>
+<p>mysql在查询时，会<strong>从最左边的索引列开始匹配，直到遇到第一个无法继续匹配的列为止</strong>。这意味着，若通过组合索引查询数据时，查询条件必须遵循 “最左前缀” 的要求，<strong>必须从组合索引最左边的字段开始匹配，逐步向右，不能跳过任何列。</strong></p>
+<p>联合索引<code>(first_name,last_name,age)</code></p>
+<p>类型：</p>
+<ol>
+<li><p>完全匹配最左前缀：当你查询条件完全包含最左边的字段，MySQL可以使用这个索引。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> users <span class="keyword">WHERE</span> first_name <span class="operator">=</span> <span class="string">&#x27;John&#x27;</span>;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>匹配多个最左前缀： 有多个字段符合最左前缀</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> users <span class="keyword">WHERE</span> first_name <span class="operator">=</span> <span class="string">&#x27;John&#x27;</span> <span class="keyword">AND</span> last_name <span class="operator">=</span> <span class="string">&#x27;Doe&#x27;</span>;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>部分前缀匹配： 如果查询条件值匹配索引的前几个字段一部分</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> users <span class="keyword">WHERE</span> first_name <span class="operator">=</span> <span class="string">&#x27;John&#x27;</span> <span class="keyword">AND</span> age <span class="operator">=</span> <span class="number">25</span>;</span><br><span class="line"># 注意：这里实现最左前缀的之后first_name,关于age的条件需要回表搜索。</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h3 id="为什么MySQL选择使用B-树作为索引"><a href="#为什么MySQL选择使用B-树作为索引" class="headerlink" title="为什么MySQL选择使用B+树作为索引"></a>为什么MySQL选择使用B+树作为索引</h3><p>B+树是B树的变种，它具有与B树类似的结构和特点，但在某些方面有所改进，特别是在存储和查找效率上。B+树通常用于数据库和文件系统中，作为一种高效的索引结构</p>
+<p><strong>1. 所有数据都存储在叶子结点</strong></p>
+<ul>
+<li>在B树中，数据可以存储在内部节点和叶子节点中，而在B+树中，所有的数据（即关键字）都仅存储在叶子节点中。内部节点只存储关键字，用于引导查找过程</li>
+<li>这种设计可以减少内部节点的存储空间，提高查询效率。</li>
+</ul>
+<p><strong>2. 叶子节点通过链表连接</strong></p>
+<ul>
+<li>B+树的叶子节点通常是通过一个链表连接起来的，这使得范围查询（例如查找某个区间内的所有数据）变得更加高效</li>
+<li>通过遍历链表，可以一次性返回区间内的所有数据，而不需要回溯到其他节点。</li>
+</ul>
+<p><strong>3. 树的高度较小</strong>：</p>
+<ul>
+<li>由于所有数据都存储在叶子节点中，B+树的内部节点只需要存储关键字和指向子节点的指针。</li>
+<li>因此，相比于B树，B+树可以将更多的数据存储在每个节点中，从而使树的高度变得更小，查找操作的效率更高。</li>
+</ul>
+<p><strong>4. 查找操作的效率更高</strong>：</p>
+<ul>
+<li>B+树的查找操作通常仅限于叶子节点，而B树在查找时可能需要在内部节点和叶子节点之间反复跳转。</li>
+<li>由于叶子节点之间有链表连接，B+树在范围查询时特别高效。</li>
+</ul>
+<h4 id="B-树结构"><a href="#B-树结构" class="headerlink" title="B+树结构"></a>B+树结构</h4><p><img src="https://pic1.imgdb.cn/item/6776ad76d0e0a243d4ede61f.png"></p>
+<p>B+树相较于B树，在查找和范围查询上有显著的优势，尤其在数据库和文件系统中，因为它能够有效地减少磁盘I&#x2F;O操作，并提高查询效率。因此，MySQL选择了B+树作为索引的数据结构。</p>
+<h2 id="Day3"><a href="#Day3" class="headerlink" title="Day3"></a>Day3</h2><h3 id="MySQL-中使用索引就一定有效吗？如何排查索引？"><a href="#MySQL-中使用索引就一定有效吗？如何排查索引？" class="headerlink" title="MySQL 中使用索引就一定有效吗？如何排查索引？"></a>MySQL 中使用索引就一定有效吗？如何排查索引？</h3><p>索引的使用取决于：查询条件，数据分布，索引设计等多个因素</p>
+<p><strong>1. 索引未必一定有效</strong></p>
+<p><strong>（1）索引选择性差</strong></p>
+<ul>
+<li>如果索引列的数据选择性较低（例如某个值大部分相同），索引就可能不被使用。这时，mysql就会使用全表扫描， 选择成本更低的选项。</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">SELECT * FROM users WHERE gender = &#x27;Male&#x27;;</span><br><span class="line"># 这里gender索引值只有Male和Female两个值</span><br><span class="line"># 索引选择性差</span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>（2）范围查询</strong></p>
+<ul>
+<li>使用了范围查询（如 <code>BETWEEN</code>、<code>&gt;</code>、<code>&lt;</code>、<code>LIKE</code> 等）时，索引会被部分使用，通常只能利用范围查询前的字段索引。</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> users <span class="keyword">WHERE</span> age <span class="operator">&gt;</span> <span class="number">30</span> <span class="keyword">AND</span> name <span class="operator">=</span> <span class="string">&#x27;Alice&#x27;</span>;</span><br><span class="line"># 这里索引只用到了age，之后回表查询，没有用到name。</span><br></pre></td></tr></table></figure>
+
+<p><strong>（3）对索引使用了函数或表达式</strong></p>
+<ul>
+<li>在查询中对索引列使用了函数（如 <code>YEAR(date_column)</code>）或进行表达式计算时，索引可能会失效，因为计算后值与存储的索引值不匹配。</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> orders <span class="keyword">WHERE</span> <span class="keyword">YEAR</span>(order_date) <span class="operator">=</span> <span class="number">2023</span>;</span><br><span class="line"># <span class="keyword">YEAR</span>(order_date) 会导致索引失效，除非使用适当的索引，如索引覆盖完整的 order_date 列</span><br></pre></td></tr></table></figure>
+
+<p><strong>（4） 隐式类型转换</strong></p>
+<ul>
+<li>在查询中，如果传入的查询条件数据类型与索引列的数据类型不同，MySQL 可能会进行隐式类型转换，导致索引失效。</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> users <span class="keyword">WHERE</span> age <span class="operator">=</span> <span class="string">&#x27;25&#x27;</span>;</span><br><span class="line">#如果 age 列是 <span class="type">INT</span> 类型，而查询条件是字符串 <span class="string">&#x27;25&#x27;</span>，会导致类型不匹配，进而导致索引失效。</span><br></pre></td></tr></table></figure>
+
+<p><strong>(5) 使用OR连接</strong></p>
+<ul>
+<li>在查询中使用 <code>OR</code> 时，如果 <code>OR</code> 连接的条件不能充分利用索引，MySQL 可能会选择全表扫描。</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> users <span class="keyword">WHERE</span> name <span class="operator">=</span> <span class="string">&#x27;Alice&#x27;</span> <span class="keyword">OR</span> age <span class="operator">=</span> <span class="number">30</span>;</span><br></pre></td></tr></table></figure>
+
+<p>如果 <code>name</code> 和 <code>age</code> 列分别有索引，MySQL 可能不能有效使用这两个索引，而是选择全表扫描。</p>
+<p><strong>2. 如何排查索引</strong></p>
+<p><strong>(1) 使用 <code>EXPLAIN</code> 命令分析查询计划</strong></p>
+<ul>
+<li><code>EXPLAIN</code> 命令可以显示 MySQL 执行查询时选择的执行计划，帮助我们判断是否使用了索引。</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">EXPLAIN <span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> users <span class="keyword">WHERE</span> name <span class="operator">=</span> <span class="string">&#x27;Alice&#x27;</span> <span class="keyword">AND</span> age <span class="operator">=</span> <span class="number">30</span>;</span><br></pre></td></tr></table></figure>
+
+<p>常见的<code>EXPLAIN</code> 输出解释：</p>
+<ul>
+<li><code>key</code>：显示使用的索引。</li>
+<li><code>type</code>：连接类型，<code>ALL</code> 表示全表扫描，<code>range</code> 表示范围扫描，<code>ref</code> 表示索引查找。</li>
+<li><code>rows</code>：MySQL 预计扫描的行数。</li>
+</ul>
+<p><strong>（2）使用 <code>SHOW WARNINGS</code> 排查索引失效原因</strong></p>
+<ul>
+<li>如果查询没有使用索引，MySQL 会通过 <code>SHOW WARNINGS</code> 显示相关警告信息，指示索引未能使用的原因。</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SHOW</span> WARNINGS; #显示相关警告信息</span><br></pre></td></tr></table></figure>
+
+<p><strong>（3）查看慢日志</strong></p>
+<ul>
+<li>通过启用慢查询日志，可以查看哪些查询可能因为没有使用索引而执行缓慢。</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"># 配置 my.cnf 或 my.ini来启动</span><br><span class="line">[mysqld]</span><br><span class="line">slow_query_log <span class="operator">=</span> <span class="number">1</span></span><br><span class="line">slow_query_log_file <span class="operator">=</span> <span class="operator">/</span>var<span class="operator">/</span>log<span class="operator">/</span>mysql<span class="operator">/</span>mysql<span class="operator">-</span>slow.log</span><br><span class="line">long_query_time <span class="operator">=</span> <span class="number">2</span></span><br><span class="line"></span><br><span class="line"># slow_query_log: 启用慢查询日志（<span class="number">1</span> 表示启用，<span class="number">0</span> 表示禁用）。</span><br><span class="line">#slow_query_log_file: 指定慢查询日志的文件路径。</span><br><span class="line">#long_query_time: 定义慢查询的时间阈值（单位：秒），默认是 <span class="number">10</span> 秒。</span><br></pre></td></tr></table></figure>
+
+<p>配置好后重启mysql生效</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">udo systemctl restart mysql</span><br><span class="line"># 或者</span><br><span class="line">sudo service mysql restart</span><br><span class="line">#来重启mysql服务</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cat <span class="operator">/</span>var<span class="operator">/</span>log<span class="operator">/</span>mysql<span class="operator">/</span>mysql<span class="operator">-</span>slow.log</span><br><span class="line"># 用来查看整个日志文件</span><br></pre></td></tr></table></figure>
+
+<p><strong>3. 索引优化</strong></p>
+<p><strong>（1）优化查询条件</strong></p>
+<ul>
+<li>确保查询字段顺序与联合索引顺序匹配，这里遵循了最左前缀原则</li>
+</ul>
+<p><strong>（2）避免函数和类型转化</strong></p>
+<ul>
+<li>尽量避免在查询条件中使用对索引列的函数或表达式。保持查询条件与索引列的数据类型一致。</li>
+</ul>
+<p><strong>（3）减少不必要的or操作</strong></p>
+<ul>
+<li>使用 <code>IN</code> 替代 <code>OR</code>，或者根据需要重写查询以避免导致索引失效的 <code>OR</code> 条件。</li>
+</ul>
+<p><strong>（4）增加覆盖索引</strong></p>
+<ul>
+<li>对查询中常用的字段，设计覆盖索引，这样 MySQL 可以直接从索引中返回结果，避免回表操作。</li>
+</ul>
+<h3 id="MySQL中的回表是什么？"><a href="#MySQL中的回表是什么？" class="headerlink" title="MySQL中的回表是什么？"></a>MySQL中的回表是什么？</h3><p><strong>回表</strong>是 MySQL 查询优化中的一个概念，指的是在使用<strong>非聚簇索引</strong>查询时，无法直接从索引中获取所需的所有数据，需要通过非聚簇索引查找到主键值，然后再去<strong>聚簇索引</strong>中根据主键值获取完整数据行的过程。</p>
+<h4 id="1-回表的触发条件"><a href="#1-回表的触发条件" class="headerlink" title="1.回表的触发条件"></a>1.回表的触发条件</h4><ul>
+<li>使用了非聚簇索引（二级索引或辅助索引）</li>
+<li>查询的字段不全在索引中（未成功触发索引覆盖）</li>
+<li>索引覆盖失效</li>
+</ul>
+<h4 id="2-回表的实现过程"><a href="#2-回表的实现过程" class="headerlink" title="2. 回表的实现过程"></a>2. 回表的实现过程</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE TABLE</span> users (</span><br><span class="line">    id <span class="type">INT</span> <span class="keyword">PRIMARY KEY</span>,</span><br><span class="line">    name <span class="type">VARCHAR</span>(<span class="number">50</span>),</span><br><span class="line">    age <span class="type">INT</span>,</span><br><span class="line">    email <span class="type">VARCHAR</span>(<span class="number">100</span>),</span><br><span class="line">    KEY idx_name (name)</span><br><span class="line">);</span><br><span class="line"># 创建表users， 主键 id; 索引 name</span><br><span class="line"></span><br><span class="line"># 查询</span><br><span class="line"><span class="keyword">SELECT</span> age, email <span class="keyword">FROM</span> users <span class="keyword">WHERE</span> name <span class="operator">=</span> <span class="string">&#x27;Alice&#x27;</span>;</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li>通过二级索引name查找Alice</li>
+<li>或取二级索引的叶子结点里面对应的主键id</li>
+<li>通过主键id在回表查询需要的数据</li>
+<li>获取完整数据行里的age和name</li>
+</ol>
+<h4 id="3-回表的性能开销"><a href="#3-回表的性能开销" class="headerlink" title="3. 回表的性能开销"></a>3. 回表的性能开销</h4><ul>
+<li>磁盘 I&#x2F;O：回表可能导致多次随机磁盘读取（如果数据不在内存中）。（随机IO，非聚簇索引查出来的主键值是不连续的)</li>
+<li>查询延迟：需要在聚簇索引和非聚簇索引之间来回跳转，增加查询时间。</li>
+</ul>
+<h4 id="4-如何减少回表"><a href="#4-如何减少回表" class="headerlink" title="4. 如何减少回表"></a><strong>4. 如何减少回表</strong></h4><ol>
+<li>索引覆盖<ul>
+<li>定义：当查询的所有字段都包含在非聚簇索引中时，MySQL 可以直接从索引中获取数据，无需回表。</li>
+<li>优化方式：<ul>
+<li>在索引中添加查询需要的字段（称为索引覆盖）</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>减少查询的列<ul>
+<li>目的：为满足条件1</li>
+</ul>
+</li>
+<li>合理设计表结构<ul>
+<li>通过优化索引设计，将查询的高频字段优先纳入索引</li>
+</ul>
+</li>
+</ol>
+<h3 id="MySQL-创建索引时需要注意哪些事项？"><a href="#MySQL-创建索引时需要注意哪些事项？" class="headerlink" title="MySQL 创建索引时需要注意哪些事项？"></a>MySQL 创建索引时需要注意哪些事项？</h3><ol>
+<li><strong>选择合适的列作为索引</strong>：：‌选择最频繁用于查询的列作为索引列</li>
+<li><strong>避免索引过多</strong>： 过多的索引占用内存</li>
+<li><strong>考虑联合索引（符合索引</strong>）： 当多个条件用来查询时</li>
+<li><strong>注意联合索引的顺序</strong>： 联合索引的顺序需要和查询的条件顺序一致（最左前缀原则）最好将最常用的列放在前面</li>
+<li><strong>选择合适的数据结构</strong></li>
+<li><strong>注意空值处理</strong></li>
+<li><strong>定期维护</strong></li>
+<li><strong>注意索引和写操作的权衡</strong>：索引的存在可能提高读取性能，‌但会导致写入操作变慢。‌在进行写密集型操作的表上，‌需要谨慎选择创建索引的列</li>
+<li><strong>监控索引性能</strong>：定期监控数据库性能，‌特别是与索引相关的性能指标，‌以及查询执行计划。‌根据监控结果进行必要的调整和优化。‌</li>
+</ol>
+<h2 id="Day4"><a href="#Day4" class="headerlink" title="Day4"></a>Day4</h2><h3 id="MySQL的索引是不是越多越好？"><a href="#MySQL的索引是不是越多越好？" class="headerlink" title="MySQL的索引是不是越多越好？"></a>MySQL的索引是不是越多越好？</h3><p>首先，这是否定的，索引并不是越多越好。索引会提高查询效率，但在写操作的频繁下，索引数量的增多会造成负面影响。</p>
+<h4 id="索引数量的潜在问题"><a href="#索引数量的潜在问题" class="headerlink" title="索引数量的潜在问题"></a>索引数量的潜在问题</h4><p><strong>1. 增加存储开销</strong></p>
+<ul>
+<li>每个索引都会占用一定的磁盘空间，尤其是对于大表，多个索引可能会显著增加数据库的存储需求</li>
+<li>如果表的数据量很大，多个索引会导致磁盘空间消耗较大，影响存储成本。</li>
+</ul>
+<p><strong>2. 降低写性能</strong></p>
+<ul>
+<li>在进行插入、更新、删除等写操作时，MySQL 不仅需要修改数据，还需要更新相关的索引。因此，索引数量越多，写操作的性能就越低，尤其是在高并发场景下，写操作的延迟可能会显著增加。</li>
+<li>例如，在操作<code>INSERT</code> 操作更新数据，需要更新响应的索引。</li>
+</ul>
+<p><strong>3. 维护成本增加</strong></p>
+<ul>
+<li>索引的维护需要消耗 CPU 和内存资源，尤其是当表发生大量更新时，索引维护的成本也会随之增加。频繁更新的字段上的索引可能会导致额外的计算负担。</li>
+</ul>
+<p><strong>4. 影响查询优化器的选择</strong></p>
+<ul>
+<li>虽然索引的目的是加速查询，但过多的索引可能会导致 MySQL 在查询优化时难以做出最佳决策。数据库查询优化器可能会选择错误的索引，从而导致查询效率不如预期。</li>
+</ul>
+<h4 id="索引的合理设计原则"><a href="#索引的合理设计原则" class="headerlink" title="索引的合理设计原则"></a>索引的合理设计原则</h4><p><strong>1. 只为常用的查询字段创建索引</strong></p>
+<ul>
+<li>对频繁出现在 <code>WHERE</code>、<code>JOIN</code>、<code>GROUP BY</code>、<code>ORDER BY</code> 等子句中的列创建索引，可以提高查询效率。对于不常查询的列，避免创建索引。</li>
+</ul>
+<p><strong>2. 避免重复索引</strong></p>
+<ul>
+<li>不要为每个查询条件单独创建索引。可以创建联合索引（多列索引），覆盖多个查询条件，避免冗余索引</li>
+</ul>
+<p><strong>3. 根据查询模式选择合适的索引</strong></p>
+<ul>
+<li>创建单列索引和联合索引时，考虑查询的字段顺序和访问模式。使用覆盖索引来避免回表查询，提高查询效率。</li>
+</ul>
+<p><strong>4. 定期优化索引</strong></p>
+<ul>
+<li>在数据库使用过程中，随着查询需求的变化，可能需要调整索引策略。定期检查索引使用情况，删除不再使用或冗余的索引，以减少性能开销。</li>
+</ul>
+<h3 id="MySQL如何进行SQL调优？"><a href="#MySQL如何进行SQL调优？" class="headerlink" title="MySQL如何进行SQL调优？"></a>MySQL如何进行SQL调优？</h3><p>调优的整体思想</p>
+<p><img src="https://pic1.imgdb.cn/item/677946c7d0e0a243d4ef0338.png"></p>
+<p>这里主要是sql调优，看下图</p>
+<p><img src="https://pic1.imgdb.cn/item/6779495fd0e0a243d4ef038d.png"></p>
+<p>平时进行sql调优时，主要通过观察慢sql，然后利用explain分析查询语句的执行计划识别性能瓶颈，优化查询语句。</p>
+<ol>
+<li>合理设计索引，使用覆盖索引，避免回表操作，减少一次查询和随机IO。</li>
+<li>避免<code>SELECT *</code> 的使用，只查询必要字段。</li>
+<li>避免在SQL中，使用 <code>%like</code> ，会导致全表扫描</li>
+<li>避免对非索引字段进行排序</li>
+<li>避免sql中的函数操作，使得索引无法命中</li>
+<li>遵循联合索引的最左前缀原则</li>
+<li>连表查询需要注意不同字段的字符集是否一致，否则也会导致全表扫描</li>
+</ol>
+<p>除此之外，还可以尝试利用缓存优化，提升查询效率。</p>
+<h4 id="慢sql"><a href="#慢sql" class="headerlink" title="慢sql"></a>慢sql</h4><p>mysql自带的日志，通过 <code>set global slow_query_log=&#39;ON&#39;</code>来开启</p>
+<p>通过 <code>show variables like %slow_query_log%</code> 即可查询当前慢日志是否开启，及其存储路径。</p>
+<p>通过 <code>set global long_query_time=3</code> 即可设置慢SQL的阈值3就是3秒，当一个SQL执行的时间操作3秒，就会别记录到慢日志中。</p>
+<h3 id="如何使用MySQL的EXPLAN-语句进行查询分析？"><a href="#如何使用MySQL的EXPLAN-语句进行查询分析？" class="headerlink" title="如何使用MySQL的EXPLAN 语句进行查询分析？"></a>如何使用MySQL的EXPLAN 语句进行查询分析？</h3><h4 id="EXPLAIN的使用方法"><a href="#EXPLAIN的使用方法" class="headerlink" title="EXPLAIN的使用方法"></a>EXPLAIN的使用方法</h4><p>基本语法：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">EXPLAIN <span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> table_name <span class="keyword">WHERE</span> conditions;</span><br></pre></td></tr></table></figure>
+
+<p>或者：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">EXPLAIN FORMAT<span class="operator">=</span>JSON <span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> table_name <span class="keyword">WHERE</span> conditions;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>EXPLAIN</code> 会返回查询的执行计划信息，包括涉及的表、索引的使用情况、扫描方式等。</li>
+<li><code>FORMAT=JSON</code> 提供结构化的 JSON 格式信息，包含更详细的执行计划内容。</li>
+</ul>
+<h4 id="EXPLAIN输出的字段"><a href="#EXPLAIN输出的字段" class="headerlink" title="EXPLAIN输出的字段"></a>EXPLAIN输出的字段</h4><p><img src="https://pic1.imgdb.cn/item/67794cf9d0e0a243d4ef03ed.png"></p>
+<h4 id="EXPLAIN-的常见优化点"><a href="#EXPLAIN-的常见优化点" class="headerlink" title="EXPLAIN 的常见优化点"></a><strong>EXPLAIN 的常见优化点</strong></h4><ol>
+<li><strong>优先使用合适的索引</strong><ul>
+<li>查看 <code>possible_keys</code> 和 <code>key</code>，确保查询语句能命中预期的索引。</li>
+</ul>
+</li>
+<li><strong>优化扫描范围</strong><ul>
+<li>避免 <code>type</code> 为 <code>ALL</code> 或 <code>index</code>，优先通过 <code>ref</code>、<code>range</code> 等高效方式访问数据。</li>
+</ul>
+</li>
+<li><strong>减少扫描行数</strong><ul>
+<li>查看 <code>rows</code> 字段，减少扫描的行数，降低查询的 I&#x2F;O 成本。</li>
+</ul>
+</li>
+<li><strong>消除临时表和文件排序</strong><ul>
+<li>如果 <code>Extra</code> 中出现 <code>Using temporary</code> 或 <code>Using filesort</code>，尝试优化语句，避免使用临时表或文件排序。</li>
+</ul>
+</li>
+<li><strong>使用覆盖索引</strong><ul>
+<li>确保查询可以通过索引直接返回所需数据，避免回表操作。</li>
+</ul>
+</li>
+</ol>
+<h2 id="Day5"><a href="#Day5" class="headerlink" title="Day5"></a>Day5</h2><h3 id="请详细描述MySQL的B-树查询的全过程？"><a href="#请详细描述MySQL的B-树查询的全过程？" class="headerlink" title="请详细描述MySQL的B+树查询的全过程？"></a>请详细描述MySQL的B+树查询的全过程？</h3><p>在 MySQL 中，B+ 树被广泛用于实现索引，特别是 InnoDB 存储引擎中的聚簇索引。B+ 树是一种平衡树，具有良好的查询性能。</p>
+<p><strong>1. B+树的基本结构</strong></p>
+<ul>
+<li><strong>根节点</strong>：B+ 树的顶部节点，包含指向子节点的指针。</li>
+<li><strong>内部节点</strong>：包含索引键（key），指向子节点的指针，形成索引的层次结构。</li>
+<li><strong>叶子节点</strong>：包含实际的数据或者数据的指针，叶子节点通过链表连接形成一个有序链表。</li>
+<li><strong>指针</strong>：用于连接节点的指针。内部节点指向其他节点（包括叶子节点），而叶子节点指向实际数据或下一叶子节点。</li>
+</ul>
+<p><strong>2. 查询数据流程</strong></p>
+<p><strong>（1）从根节点开始查询</strong></p>
+<ul>
+<li>查询开始时，MySQL 从 B+ 树的根节点开始。根节点通常包含指向子节点的指针以及一些键（key）。</li>
+<li>通过比较查询条件与根节点中存储的键值，MySQL 可以确定应该向哪个子节点继续查询。</li>
+</ul>
+<p><strong>（2）遍历内部节点</strong></p>
+<ul>
+<li>通过根节点的指针，MySQL 会进入到下一级的内部节点。在每个内部节点中，键值用于决定向哪个子节点继续查询。</li>
+<li>内部节点的每个键值都将查询条件与它进行比较，选择最匹配的子节点。如果查询条件大于某个键，则继续向指向该键右边的子节点查询；如果小于某个键，则查询左边的子节点。</li>
+</ul>
+<p><strong>（3）直达叶子结点</strong></p>
+<ul>
+<li>继续沿着内部节点的指针查询，直到到达 B+ 树的叶子节点。在叶子节点中，存储的是实际的数据或者指向数据的指针。</li>
+<li>对于 <code>SELECT</code> 查询，叶子节点中存储的是具体的行数据；对于某些索引查询，叶子节点中可能只存储数据行的地址</li>
+</ul>
+<p><strong>（4）数据检索</strong></p>
+<ul>
+<li>一旦到达叶子节点，MySQL 会在叶子节点中进行数据检索。对于聚簇索引，数据会直接存储在叶子节点中，而对于非聚簇索引，叶子节点存储的是指向数据行的指针，MySQL 需要根据这些指针回表查询对应的数据。</li>
+<li>如果是聚簇索引，查询的结果可能直接从叶子节点返回；如果是非聚簇索引，MySQL 会根据索引中存储的指针回到表中查找完整数据。</li>
+</ul>
+<p><strong>（5）返回结果</strong></p>
+<ul>
+<li>数据检索完成后，MySQL 将查询结果返回给用户。如果是聚簇索引，数据会直接返回；如果是非聚簇索引，则需要回表获取完整数据。</li>
+</ul>
+<p><strong>5.总结</strong></p>
+<p>B+ 树在 MySQL 中用于实现高效的索引查询。查询过程从根节点开始，通过内部节点逐层查找，直到到达叶子节点并返回数据。聚簇索引与非聚簇索引在查询过程中有不同的表现，聚簇索引可以直接从叶子节点返回数据，而非聚簇索引需要回表查找。合理设计索引并优化查询条件，可以显著提升查询性能。</p>
+<h3 id="MySQL中的varchar和char有什么区别？"><a href="#MySQL中的varchar和char有什么区别？" class="headerlink" title="MySQL中的varchar和char有什么区别？"></a>MySQL中的varchar和char有什么区别？</h3><p><strong>在</strong> <strong>MySQL</strong> <strong>中，</strong><code>VARCHAR</code>和 <strong><code>CHAR</code></strong> <strong>是两种用于存储字符串的字段类型，它们的主要区别在于存储方式和性能的不同。</strong></p>
+<p><strong>1. 存储方式</strong></p>
+<p><strong>VARCHAR（可变长度字符）</strong></p>
+<ul>
+<li>VARCHAR 是<em>可变长度</em>的字符串类型，它只存储实际的字符长度*<em>，并且在数据后面不补足空格。在 VARCHAR 字段中，MySQL会额外使用 1 个或 2 个字节来存储该字符串的</em>长度信息*（长度小于 255 字符使用 1 个字节，大于等于 255 字符使用 2 个字节）。这些额外的字节用于记录字符串的实际长度。</li>
+<li>适用于长度变化较大的字符串，例如用户名、电子邮件地址等。</li>
+</ul>
+<p><strong>CHAR（固定长度字符</strong>）：</p>
+<ul>
+<li><p>CHAR 是固定长度的字符串类型，不论存储的字符串有多长，MySQL 总是使用固定的长度分配存储空间。<br>如果存储的字符串长度小于定义的长度，MySQL 会在字符串的末尾补足空格，以使其达到定义的长度。</p>
+</li>
+<li><p>适用于那些长度相对固定、变化不大的字符串字段，例如国家代码、邮政编码等。</p>
+</li>
+</ul>
+<p><strong>2. 长度限制</strong></p>
+<p><strong>VACHAR</strong></p>
+<ul>
+<li>可以存储可变长度的字符，最大储存长度为<strong>65535 字节</strong>（包括存储字符串长度的 1-2 字节）。</li>
+</ul>
+<p><strong>CHAR</strong></p>
+<ul>
+<li>CHAR存储的是固定长度的字符串，最长可定义255个字符。</li>
+</ul>
+<p><strong>3. 性能差异</strong></p>
+<p><strong>VACHAR</strong></p>
+<ul>
+<li>由于 <code>VARCHAR</code> 是可变长度的，MySQL 在操作 <code>VARCHAR</code> 列时需要根据每个字符串的实际长度来计算存储位置。这意味着 **<code>VARCHAR</code>**在读取和存储时性能稍慢，因为需要处理长度信息</li>
+<li><strong>适合那些长度波动较大的数据，比如用户的姓名、描述性字段等。</strong></li>
+</ul>
+<p><strong>CHAR</strong></p>
+<ul>
+<li><code>CHAR</code> 的存储和读取相对较快，因为它是固定长度的，数据库可以直接根据每个记录的存储长度进行快速定位，性能相对更高。</li>
+<li>适合存储长度固定的字符串，比如状态码、性别标识等</li>
+</ul>
+<p><strong>4. 存储空间效率</strong></p>
+<p><strong>VACHAR</strong></p>
+<ul>
+<li><code>VARCHAR</code> 使用的存储空间较为节省，因为它只存储实际使用的字符，并且不会为不足长度的部分填充空格。但由于需要额外的字节记录字符串长度信息，所以对于非常短的字符串来说，<code>VARCHAR</code> 可能反而会稍微浪费一些空间。</li>
+</ul>
+<p><strong>CHAR</strong></p>
+<ul>
+<li><code>CHAR</code> 使用的是固定长度，尽管操作较快，但它会为所有的字段预留相同的空间，因此对于长度不固定的字符串，<code>CHAR</code> 可能会浪费存储空间。</li>
+</ul>
+<p><strong>5. 处理空格方式</strong></p>
+<p><strong>VACHAR</strong></p>
+<ul>
+<li>在 <code>VARCHAR</code> 中，存储的字符串后面的<strong>空格不会被自动去掉</strong>。例如，插入 <code>VARCHAR(5)</code> 列的值 <code>&#39;abc &#39;</code>，查询时仍会显示 <code>&#39;abc &#39;</code>（带空格）。</li>
+</ul>
+<p><strong>CAHR</strong></p>
+<ul>
+<li><code>CHAR</code> 会在存储时自动将字符串末尾的<strong>空格去除</strong>。例如，插入 <code>CHAR(5)</code> 列的值 <code>&#39;abc &#39;</code>，查询时只会得到 <code>&#39;abc&#39;</code>，末尾的空格会被忽略。</li>
+</ul>
+<p><strong>6. 总结对比</strong></p>
+<p><img src="https://pic1.imgdb.cn/item/677a9d6dd0e0a243d4ef34e8.png"></p>
+<h3 id="MySQL中-count（-count-1-count-字段名-有什么区别？"><a href="#MySQL中-count（-count-1-count-字段名-有什么区别？" class="headerlink" title="MySQL中 count（*) ,count(1), count(字段名) 有什么区别？"></a>MySQL中 count（*) ,count(1), count(字段名) 有什么区别？</h3><h4 id="整体区分图解"><a href="#整体区分图解" class="headerlink" title="整体区分图解"></a>整体区分图解</h4><p><img src="https://pic1.imgdb.cn/item/677a9e7cd0e0a243d4ef354a.png"></p>
+<p> <strong>1.  count(*)</strong></p>
+<p><strong>特点</strong></p>
+<ul>
+<li><strong>统计表中所有行的数量</strong>，包括 <code>NULL</code> 值。</li>
+<li>执行时不会忽略任何行。</li>
+<li>通常是统计总行数的首选方式，因为其优化程度最高。</li>
+</ul>
+<p> <strong>执行原理</strong></p>
+<ul>
+<li>MySQL 会将 <code>COUNT(*)</code> 优化为统计行数操作，不需要额外读取数据内容。</li>
+<li>引擎级别的优化使其性能优于 <code>COUNT(字段名)</code>。</li>
+</ul>
+<p> <strong>适用场景</strong></p>
+<ul>
+<li>统计整个表的总行数时使用</li>
+</ul>
+<p> <strong>2. count(1)</strong></p>
+<p> <strong>特点</strong></p>
+<ul>
+<li><strong>统计所有行的数量</strong>，同样包括 <code>NULL</code> 值。</li>
+<li><code>1</code> 只是一个常量，与表中的具体字段无关。</li>
+</ul>
+<p> <strong>执行原理</strong></p>
+<ul>
+<li>MySQL 会将 <code>COUNT(1)</code> 优化为 <code>COUNT(*)</code>，执行时效果基本相同。</li>
+<li>逻辑上是检查每行是否存在，判断为有效行后计数。</li>
+</ul>
+<p> <strong>适用场景</strong></p>
+<ul>
+<li>与 <code>COUNT(*)</code> 类似，但在语义上可以明确表示对行数的统计。</li>
+</ul>
+<p> <strong>3. count(字段名)</strong></p>
+<p> <strong>特点</strong></p>
+<ul>
+<li><strong>统计指定字段非空值的行数</strong>。</li>
+<li>只会统计字段值不为 <code>NULL</code> 的行。</li>
+</ul>
+<p> <strong>执行原理</strong></p>
+<ul>
+<li>查询过程中会判断该字段是否为 <code>NULL</code>，只有非 <code>NULL</code> 的行才会被计数。</li>
+<li>若字段上存在索引，则 <code>COUNT(字段名)</code> 可直接通过索引计算，性能较好。</li>
+</ul>
+<p> <strong>适用场景</strong></p>
+<ul>
+<li>当需要统计某字段非空值的数量时使用。</li>
+</ul>
+<p><strong>4. 总结</strong></p>
+<p><img src="https://pic1.imgdb.cn/item/677a9ef0d0e0a243d4ef3567.png"></p>
+<p><strong>推荐</strong></p>
+<ul>
+<li>全表记录行数时，使用count（*)</li>
+<li>查询单个字段的个数时，用count（字段）</li>
+</ul>
+<h2 id="Day6"><a href="#Day6" class="headerlink" title="Day6"></a>Day6</h2><h3 id="MySQL-中的日志类型有哪些？并说名其作用"><a href="#MySQL-中的日志类型有哪些？并说名其作用" class="headerlink" title="MySQL 中的日志类型有哪些？并说名其作用"></a>MySQL 中的日志类型有哪些？并说名其作用</h3><p>三个重点日志原理：<a target="_blank" rel="noopener" href="https://blog.csdn.net/Bisikl/article/details/144382672">https://blog.csdn.net/Bisikl/article/details/144382672</a></p>
+<h4 id="日志类型"><a href="#日志类型" class="headerlink" title="日志类型"></a>日志类型</h4><p>MySQL 中用于数据持久化和恢复的日志机制非常关键，常见的日志类型包括 <strong>Redo Log</strong>、<strong>Undo Log</strong>、<strong>Binary Log</strong> 和 <strong>Error Log</strong> 等。每种日志都有特定的作用，确保数据库在不同情况下的可恢复性、事务的隔离性和一致性。</p>
+<ol>
+<li><strong>Redo Log</strong> （重做日志）:是<strong>Innodb存储引擎</strong>生成的日志。用于<strong>崩溃后修复</strong>数据，保证了事务的<strong>持久性</strong>。(重要)</li>
+<li><strong>Undo Log</strong> （回滚日志）:是<strong>Innodb存储引擎</strong>生成的日志。用于事务的<strong>回滚和MVCC</strong>，保证了事务的<strong>原子性</strong>。（重要）</li>
+<li><strong>Binary Log</strong>(二进制日志):记录对数据的变更操作，用于主从复制、增量备份和数据恢复。（重要）</li>
+<li><strong>Error Log</strong> 帮助管理员调试和监控数据库错误。</li>
+<li><strong>Slow Query Log</strong> 记录慢查询，用于性能调优。</li>
+<li><strong>General Query Log</strong> 记录所有查询，用于调试和审计。</li>
+<li><strong>Relay Log</strong> 支持主从复制，确保数据同步。</li>
+<li><strong>Transaction Log</strong> 记录事务的整个过程，确保事务的原子性、一致性和持久性。</li>
+</ol>
+<p><strong>1. Redo Log</strong></p>
+<p>重做日志；</p>
+<ul>
+<li><strong>作用</strong>：Redo Log 是 InnoDB 存储引擎用来保证数据库事务持久性（Durability）和在数据库崩溃后的恢复能力的关键机制。它记录了所有已经提交的事务对数据页的修改。即使在数据库崩溃的情况下，Redo Log 也能帮助将数据恢复到最后的提交状态。</li>
+</ul>
+<p><strong>2. Undo Log</strong></p>
+<p>回滚日志；</p>
+<ul>
+<li><p><strong>作用</strong>：undo log用于<strong>回滚数据</strong>，在开始执行事务时，MySQL会把<strong>更新前</strong>的数据都记录到undolog里面，</p>
+<p><strong>事务提交前</strong>如果MySQL崩溃，这时候我们可以进行回滚操作回到数据更新前的状态</p>
+</li>
+</ul>
+<p>图解：</p>
+<p><img src="https://pic1.imgdb.cn/item/677bee06d0e0a243d4f02702.png"></p>
+<p><strong>undo Log格式</strong></p>
+<p>undo log 格式都有一个 roll_pointer 指针和一个 trx_id 事务id：</p>
+<ul>
+<li>通过 trx_id 可以知道该记录是被哪个事务修改的；</li>
+<li>通过 roll_pointer 指针可以将这些 undo log 串成一个链表，这个链表就被称为版本链；</li>
+</ul>
+<p>图解：</p>
+<p><img src="https://pic1.imgdb.cn/item/677beebad0e0a243d4f02811.png"></p>
+<p>此外，<strong>undo log 还有一个作用，通过 ReadView + undo log 实现 MVCC（多版本并发控制）</strong>。</p>
+<p>对于「读提交」和「可重复读」隔离级别的事务来说，它们的快照读（普通 select 语句）是通过 Read View + undo log 来实现的，它们的区别在于创建 Read View 的时机不同：</p>
+<ul>
+<li>「读提交」隔离级别是在<strong>每个 select</strong> 都会生成一个新的 Read View，也意味着，事务期间的多次读取同一条数据，前后两次读的数据可能会出现不一致，因为可能这期间另外一个事务修改了该记录，并提交了事务。</li>
+<li>「可重复读」隔离级别是<strong>启动事务时</strong>生成一个 Read View，然后整个事务期间都在用这个 Read View，这样就保证了在事务期间读到的数据都是事务启动前的记录。</li>
+</ul>
+<p>这两个隔离级别实现是通过「事务的 Read View 里的字段」和「记录中的两个隐藏列（trx_id 和 roll_pointer）」的比对，如果不满足可见行，就会顺着 undo log 版本链里找到满足其可见性的记录，从而控制并发事务访问同一个记录时的行为，这就叫 MVCC（多版本并发控制）<br>因此，undo log 两大作用：</p>
+<ul>
+<li>实现事务回滚，保障事务的原子性。事务处理过程中，如果出现了错误或者用户执 行了 ROLLBACK 语句，MySQL 可以利用 undo log 中的历史数据将数据恢复到事务开始之前的状态。</li>
+<li>实现 MVCC（多版本并发控制）关键因素之一。MVCC 是通过 ReadView + undo log 实现的。undo log 为每条记录保存多份历史数据，MySQL 在执行快照读（普通 select 语句）的时候，会根据事务的 Read View 里的信息，顺着 undo log 的版本链找到满足其可见性的记录。</li>
+</ul>
+<p> <strong>redo log 和 undo log 区别在哪？</strong></p>
+<p>这两种日志是属于 InnoDB 存储引擎的日志，它们的区别在于：</p>
+<ul>
+<li>redo log 记录了此次事务「<strong>完成后</strong>」的数据状态，记录的是更新<strong>之后</strong>的值；</li>
+<li>undo log 记录了此次事务「<strong>开始前</strong>」的数据状态，记录的是更新<strong>之前</strong>的值；</li>
+</ul>
+<p><strong>事务提交之前</strong>发生了崩溃，重启后会通过 <strong>undo log 回滚事务</strong>，<strong>事务提交之后</strong>发生了崩溃，重启后会通过 <strong>redo log 恢复事务</strong>，如下图：</p>
+<p><img src="https://pic1.imgdb.cn/item/677bf0fad0e0a243d4f02871.png"></p>
+<p><strong>3. Binary Log</strong></p>
+<p>二进制日志；</p>
+<ul>
+<li><strong>作用</strong>：Binary Log 主要用于记录数据库的所有更改操作（如插入、更新、删除），是 MySQL 用于复制（Replication）和数据恢复的重要日志。它并不记录事务的详细数据，而是记录对数据的修改操作。记录的是逻辑日志；</li>
+</ul>
+<p><strong>4.Error Log</strong></p>
+<p>错误日志；</p>
+<ul>
+<li><strong>作用</strong>：Error Log 记录了 MySQL 启动、关闭过程中出现的错误信息以及运行时的警告信息。它对数据库管理员调试 MySQL 问题非常有帮助。</li>
+</ul>
+<p><strong>5. Slow Query Log</strong></p>
+<p>慢查询日志；</p>
+<ul>
+<li><strong>作用</strong>：Slow Query Log 用于记录执行<strong>时间超过一定阈值</strong>的 SQL 查询。它主要用于<strong>性能调优</strong>和<strong>发现执行时间较长的查询</strong>。</li>
+</ul>
+<p><strong>6. General Query Log</strong></p>
+<p>通用查询日志；</p>
+<ul>
+<li><strong>作用</strong>：General Query Log 记录 MySQL 接收到的每个 SQL 查询，包括查询的时间、执行的 SQL 语句、客户端连接信息等。</li>
+</ul>
+<p><strong>7. Relay Log</strong></p>
+<p>中继日志；</p>
+<ul>
+<li><strong>作用</strong>：Relay Log 只在 MySQL 主从复制中使用，它用于记录从主库接收到的二进制日志事件。在 MySQL 从服务器上，Relay Log 用于存储来自主服务器的所有二进制日志操作，并在从库上重放这些操作以保持数据同步。</li>
+</ul>
+<p><strong>8. Transaction Log</strong></p>
+<p>事务日志；</p>
+<ul>
+<li><strong>作用</strong>：事务日志通常用于存储数据库事务的完整记录。它用于保证事务的原子性和一致性，确保即使发生崩溃也能通过日志回滚或重做操作恢复事务。</li>
+</ul>
+<h3 id="MySQL是如何实现事务的？"><a href="#MySQL是如何实现事务的？" class="headerlink" title="MySQL是如何实现事务的？"></a>MySQL是如何实现事务的？</h3><p><strong>MySQL 通过以下几种机制实现事务管理，确保数据的一致性和完整性：</strong></p>
+<p><strong>1. ACID属性</strong></p>
+<ul>
+<li>原子性（Atomicity）：事务要么全部成功，要么全部失败。</li>
+<li>一致性（Consistency）：事务开始和结束时，数据库的状态必须保持一致。</li>
+<li>隔离性（Isolation）：多个事务并发执行的时候，一个事务的操作对其他事务是不可见的。</li>
+<li>持久性（Durability：事务提交后，结果将入库保存，并写入RedoLog。</li>
+</ul>
+<p><strong>2. 事务日志</strong></p>
+<ul>
+<li>RedoLog（重做日志）：记录事务提交的更改。</li>
+<li>UndoLog（回滚日志）：记录回滚事务未提交的更改。</li>
+</ul>
+<p><strong>3. 锁机制</strong></p>
+<p>行级锁、表级锁控制并发访问修改，保证其他事务无法修改锁定的数据，实现隔离性。</p>
+<p><strong>4. 隔离级别</strong></p>
+<p>隔离级别是为了解决并发事务中可能遇到的三个数据问题。</p>
+<ol>
+<li>脏读：事务读取到其他事务未提交的数据。</li>
+<li>不可重复读：一个事务中第一次读取一个数据，第二次再次读取可能不一致，因为其他事务可能提交了新数据。（指数据发生了更改）</li>
+<li>幻读：一个事务两次查询之间，<strong>其他事务新增了符合条件的行</strong>，导致了查询结果的变化，这就是幻读。（指出现了新的数据行）</li>
+</ol>
+<ul>
+<li>读未提交：事务可以读取其他事务未提交的数据，存在<strong>脏读</strong>。</li>
+<li>读已提交：事务只能读取到已提交的数据，解决脏读，出现<strong>不可重复读</strong>。</li>
+<li>可重复度读：事务执行期间数据可重复读取，解决不可重复度，可能出现<strong>幻读</strong>。</li>
+<li>串行化：事务排队执行，解决幻读</li>
+</ul>
+<p><strong>性能由高到低，安全性由低到高。</strong></p>
+<p>注：在传统数据库系统中，可重复读隔离级别虽然防止了脏读和不可重复读，但仍然可能出现幻读。然而，MySQL 采用了 InnoDB 存储引擎的机制，使得可重复读可以避免幻读</p>
+<p>MySQL 的 InnoDB 存储引擎通过以下两种机制来防止幻读：</p>
+<ul>
+<li>Next-Key Lock（当前读 for update）：这种锁是行锁和间隙锁的组合。它不仅锁住了表中的现有记录，还锁住了记录之间的“间隙”（gap），以防止其他事务在间隙中插入新记录。例如，当事务 T1 查询某个范围的数据时，InnoDB 会锁住这些数据所在的范围和范围之间的间隙，防止其他事务在查询的结果集范围内插入新记录。这就避免了幻读的发生。</li>
+<li>一致性视图（快照读 MVCC，多版本并发控制）：MySQL 使用多版本并发控制 (MVCC)，在事务开始时生成一个一致性快照，事务在执行过程中会使用这个快照读取数据，确保多次读取时返回的结果一致。即使其他事务插入了新记录，当前事务仍会基于它启动时的快照来读取数据，而看不到其他事务的修改或插入。</li>
+</ul>
+<p>MVCC 并不是记录了多个版本 而是借助了undoLog，可以回溯之前的数据形成‘版本’</p>
+<h3 id="MySQL-的MVCC是什么？"><a href="#MySQL-的MVCC是什么？" class="headerlink" title="MySQL 的MVCC是什么？"></a>MySQL 的MVCC是什么？</h3><p>MVCC(Multi-Version Concurrency Control) 多版本并发控制，是一种并发控制机制,用于处理数据库中的并发读写操作，它通过在每个事务中创建数据的快照，实现了读写操作的隔离性，从而避免了读写冲突和数据不一致的问题。</p>
+<blockquote>
+<p><strong>undo log 还有一个作用，通过 ReadView + undo log 实现 MVCC（多版本并发控制）</strong>。</p>
+</blockquote>
+<p>基本并发控制机制</p>
+<p><strong>锁机制（当前读）</strong></p>
+<ul>
+<li><p>MySQL使用锁机制来控制并发访问数据库的操作，锁可以分为两种类型：共享锁（S锁）和排他锁（X锁）；共享锁允许多个事务同时读取同一数据，而排他锁则只允许一个事务进行写操作。</p>
+</li>
+<li><p>这种方式它读取的是记录的最新版本，读取时还要保证其他并发事务不能修改当前记录，会对读取的记录进行加锁。</p>
+</li>
+<li><p>对于我们日常的操作，如：select … lock in share mode(共享锁)，select …<br>for update、update、insert、delete(排他锁)都是一种当前读。</p>
+</li>
+</ul>
+<p><strong>MVCC（快照读）</strong></p>
+<ul>
+<li><p>MVCC是一种高级并发控制机制，它通过创建数据的快照和版本控制来实现读写操作的隔离性。MVCC允许事务在读取数据时看到之前的版本，从而避免了读写冲突和数据不一致的问题。</p>
+</li>
+<li><p>简单的select（不加锁）就是快照读，快照读，读取的是记录数据的可见版本，有可能是历史数据，不加锁，是非阻塞读。</p>
+</li>
+<li><p>Read Committed(RR)：每次select，都生成一个快照读。<br>Repeatable Read(RC)：开启事务后第一个select语句才是快照读的地方。<br>Serializable：快照读会退化为当前读（加锁）</p>
+</li>
+</ul>
+<p><strong>ReadView</strong></p>
+<p><img src="https://pic1.imgdb.cn/item/677bf77fd0e0a243d4f0299f.png"></p>
+<h4 id="MVCC的优点"><a href="#MVCC的优点" class="headerlink" title="MVCC的优点"></a>MVCC的优点</h4><p>- 并发性能优化：MVCC允许多个事务同时读取数据库，提高了并发性能。</p>
+<p>- 隔离性：MVCC提供了读写操作的隔离性，避免了读写冲突和数据不一致的问题。</p>
+<p>- 降低锁冲突：MVCC使用乐观锁机制，减少了锁冲突的可能性，提高了系统的吞吐量。</p>
+<h2 id="Day7"><a href="#Day7" class="headerlink" title="Day7"></a>Day7</h2><h3 id="MySQL-的事务隔离级别有哪些？"><a href="#MySQL-的事务隔离级别有哪些？" class="headerlink" title="MySQL 的事务隔离级别有哪些？"></a>MySQL 的事务隔离级别有哪些？</h3><p><strong>1. 读未提交</strong>（RU）：事务过程中，读取到未提交的数据。<strong>（脏读）</strong></p>
+<p>(1)所有事务都可以看到其他未提交事务的执行结果</p>
+<p>(2)本隔离级别很少用于实际应用，因为它的性能也不比其他级别好多少</p>
+<p>(3)该级别引发的问题是——脏读(Dirty Read)：读取到了未提交的数据</p>
+<p><strong>2. 读已提交</strong>（RC)：事务过程中，读取数据时，由于其他事务的提交，造成两次读取结果不一致<strong>（不可重复读）</strong></p>
+<p>(1)这是大多数数据库系统的默认隔离级别（但不是MySQL默认的）</p>
+<p>(2)它满足了隔离的简单定义：一个事务只能看见已经提交事务所做的改变</p>
+<p>(3)这种隔离级别出现的问题是——不可重复读(Nonrepeatable Read)：不可重复读意味着我们在同一个事务中执行完全相同的select语句时可能看到不一样的结果。</p>
+<p>导致这种情况的<strong>原因</strong>可能有：</p>
+<p>(1)有一个交叉的事务有新的commit，导致了数据的改变;</p>
+<p>(2)一个数据库被多个实例操作时,同一事务的其他实例在该实例处理其间可能会有新的commit</p>
+<p><strong>3. 可重复读</strong>(RR)：事务过程中，出现新的行添加，造成<strong>幻读。</strong></p>
+<p>(1)这是MySQL的默认事务隔离级别</p>
+<p>(2)它确保同一事务的多个实例在并发读取数据时，会看到同样的数据行</p>
+<p>(3)此级别可能出现的问题——幻读(Phantom Read)：当用户读取某一范围的数据行时，另一个事务又在该范围内插入了新行，当用户再读取该范围的数据行时，会发现有新的幻影行</p>
+<p>(4)InnoDB和Falcon存储引擎通过多版本并发控制(MVCC，Multiversion Concurrency Control)机制解决了该问题</p>
+<p><strong>4. 串行化</strong>(Serializable)</p>
+<p>(1)这是最高的隔离级别</p>
+<p>(2)它通过强制事务排序，使之不可能相互冲突，从而解决幻读问题。简言之,它是在每个读的数据行上加上共享锁。</p>
+<p>(3)在这个级别，可能导致大量的超时现象和锁竞争</p>
+<h3 id="MySQL-默认的事务隔离级别是什么？为什么选择这个级别？"><a href="#MySQL-默认的事务隔离级别是什么？为什么选择这个级别？" class="headerlink" title="MySQL 默认的事务隔离级别是什么？为什么选择这个级别？"></a><strong>MySQL 默认的事务隔离级别是什么？为什么选择这个级别？</strong></h3><p>默认隔离级别是：可重复读。这是InnoDB默认的隔离级别。</p>
+<p><strong>为什么选择这个级别</strong></p>
+<p>可重复读解决了脏读取，不可重复读取；甚至通过间隙锁和MVCC可以解决幻读问题。对比读未提交，读已提交更加安全。对比串行化又有更高的并发性。</p>
+<h4 id="可重复的下出现幻影行的原因"><a href="#可重复的下出现幻影行的原因" class="headerlink" title="可重复的下出现幻影行的原因"></a>可重复的下出现幻影行的原因</h4><p>可重复读是 InnoDB 通过 MVCC（多版本并发控制，Multi-Version Concurrency Control）机制来实现的。InnoDB 会为每个数据行记录行的创建时间、过期时间。以及每次查询的行的版本号、查询所在事务的版本号。这样一来，只要本事务没有变更数据，那么连续同条件的查询结果应该是一样的。</p>
+<p><strong>为什么可以解决幻读问题</strong></p>
+<ul>
+<li>对于<strong>快照读</strong>（即普通的select语句），通过MVCC和ReadView的作用，事务启动时生成的ReadView会在整个事务执行期间复用，所以自然不会出现幻读</li>
+<li>对于<strong>当前读</strong>（select… for update），通过记录锁+间歇锁的方式，使得B事务不能在A事务两次查询期间进行插入操作，从而避免了幻读的问题</li>
+</ul>
+<p>在这个事务执行期间，其他已提交的事务对这部分数据的更改对当前事务是不可见的。</p>
+<p>但是，新插入或删除的数据对当前事务来说是可见的，这样就可能出现当前事务两次查询同一个范围，得到的结果集不同的情况，这种情况下就发生了幻读。</p>
+<h3 id="数据库的脏读，不可重复读和幻读分别是什么？"><a href="#数据库的脏读，不可重复读和幻读分别是什么？" class="headerlink" title="数据库的脏读，不可重复读和幻读分别是什么？"></a>数据库的脏读，不可重复读和幻读分别是什么？</h3><p>脏读: 读取到了未提交的数据</p>
+<p>不可重复读： 在两次查询的过程中，出现了其他事务的提交，导致两次结果不一致。</p>
+<p>幻读： 在两次查询过程中，其他事务对表进行了数据行添加，导致读取到了<strong>幻影行</strong>。</p>
+<h2 id="Day8"><a href="#Day8" class="headerlink" title="Day8"></a>Day8</h2><h3 id="MySQL-中的锁有哪些？"><a href="#MySQL-中的锁有哪些？" class="headerlink" title="MySQL 中的锁有哪些？"></a>MySQL 中的锁有哪些？</h3><p>锁的类型：</p>
+<p><img src="https://pic1.imgdb.cn/item/677e8323d0e0a243d4f23e27.png"></p>
+<p>mysql有三种锁，全局锁，表级锁，行级锁</p>
+<p><strong>1. 全局锁</strong></p>
+<p>MySQL全局锁（Global Lock）是一种特殊的锁类型，用于保证数据库的全局一致性。</p>
+<p>在 MySQL 中，全局锁可以用于以下情况：</p>
+<blockquote>
+<ol>
+<li><strong>在进行数据恢复时</strong>，为了防止其他事务对正在恢复的数据进行修改，可以使用全局锁锁定整个数据库，使得其他事务无法访问数据库。</li>
+<li><strong>在进行数据导出时</strong>，为了防止其他事务对正在导出的数据进行修改，可以使用全局锁锁定整个数据库，使得其他事务无法访问数据库。</li>
+<li><strong>在进行数据备份时</strong>，为了防止其他事务对正在备份的数据进行修改，可以使用全局锁锁定整个数据库，使得其他事务无法访问数据库。</li>
+</ol>
+</blockquote>
+<p>加锁方式：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Flush tables with read lock</span><br></pre></td></tr></table></figure>
+
+<p>解锁方式：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">unlock tables </span><br></pre></td></tr></table></figure>
+
+<p>全局锁是一种非常强大的锁类型，它可以保证数据库的全局一致性。但是，全局锁也会带来一些性能问题，因为它会阻塞其他所有的事务，使得数据库的并发性能下降。因此，在使用全局锁时，需要谨慎考虑其使用场景，并尽量减少其使用时间，以避免对数据库性能的影响。</p>
+<p><strong>2. 表级锁</strong></p>
+<p>​	<strong>1. 表锁</strong></p>
+<p>​	表锁，顾名思义就是对某个表加锁。如果引擎不支持行锁，那么就会使用表锁，比如MyISAM，或者SQL语句没有命中索引，同时也需要加锁的情况下，就会使用表锁</p>
+<p>​	<strong>2. MLD</strong></p>
+<p>​	MySQL 的 MDL（MetaData Lock）是一种用于管理元数据（MetaData）的锁，它属于 MySQL 数据库的 Server 层。具体来说，MDL 锁用于管理以下元数据：<br>✓ 表结构：包括表名、列名、列类型等。<br>✓ 索引：包括索引名、索引列等。<br>✓ 权限：包括用户权限、角色权限等。<br>✓ 触发器：包括触发器名、触发条件等。</p>
+<p>注意，无论是DML，DDL都会加MDL锁。DML操作加MDL读锁；DDL操作加MDL写锁。</p>
+<p>​	<strong>3. 意向锁</strong></p>
+<p>​	意向锁，本质上就是空间换时间的产物，是为了提高行锁效率的一个东西。</p>
+<p>在 InnoDB 中，我们对某条记录进行锁定时，为了提高并发度，通常都只是锁定这一行记录，而不是锁定整个表。而当我们需要为整个表加 X 锁的时候，我们就需要遍历整个表的记录，如果每条记录都没有被加锁，才可以给整个表加 X 锁。而这个遍历过程就很费时间，这时候就有了意向锁的诞生。</p>
+<p>意向锁其实就是标记这个表有没有被锁，如果有某条记录被锁住了，那么就必须获取该表的意向锁。所以当我们需要判断这个表的记录有没有被加锁时，直接判断意向锁就可以了，减少了遍历的时间，提高了效率，是典型的用空间换时间的做法。</p>
+<p>MySQL 中有两种意向锁：<br>✓ Intention Share Lock（IS）：表示事务有对表或行进行共享访问。<br>✓ Intention Exclusive Lock（IX）：表示事务有对表或行进行排他访问。</p>
+<p><strong>3. 行级锁</strong></p>
+<p><img src="https://pic1.imgdb.cn/item/677e89edd0e0a243d4f2401b.png"></p>
+<h3 id="事务的二阶段提交是什么？"><a href="#事务的二阶段提交是什么？" class="headerlink" title="事务的二阶段提交是什么？"></a>事务的二阶段提交是什么？</h3><p>二阶段提交（Two-Phase Commit, 2PC）是分布式事务中的一种协调协议，用于确保多个资源（如数据库或数据节点）在事务提交时保持一致性。MySQL 在存储引擎（如 InnoDB）和 Binlog（归档日志）之间使用二阶段提交来保证事务的一致性。</p>
+<p>在 MySQL 中，二阶段提交的典型场景是协调 <strong>InnoDB 的事务日志（redo log）</strong> 和 <strong>Binlog</strong> 的写入，以确保事务既能满足崩溃恢复需求，又能保证主从复制的一致性。</p>
+<h4 id="二阶段提交的流程"><a href="#二阶段提交的流程" class="headerlink" title="二阶段提交的流程"></a>二阶段提交的流程</h4><p>二阶段提交分为两个阶段：</p>
+<h5 id="1-准备阶段（Prepare-Phase）"><a href="#1-准备阶段（Prepare-Phase）" class="headerlink" title="1. 准备阶段（Prepare Phase）"></a><strong>1. 准备阶段（Prepare Phase）</strong></h5><ul>
+<li>MySQL 将事务的修改写入 <strong>InnoDB 的 redo log</strong>，并将 redo log 标记为 “PREPARED” 状态。</li>
+<li>此时，数据的实际修改还没有被提交，事务处于“可恢复”状态（可以通过 redo log 恢复未完成的事务）。</li>
+<li>如果发生异常，可以回滚事务。</li>
+</ul>
+<h5 id="2-提交阶段（Commit-Phase）"><a href="#2-提交阶段（Commit-Phase）" class="headerlink" title="2. 提交阶段（Commit Phase）"></a><strong>2. 提交阶段（Commit Phase）</strong></h5><ul>
+<li>MySQL 将事务写入 Binlog（记录事务的持久性变更，用于主从复制）。</li>
+<li>在确保 Binlog 写入成功后，更新 redo log 的状态为 “COMMITTED”。</li>
+<li>此时，事务正式提交，数据对其他事务可见。</li>
+</ul>
+<h4 id="二阶段提交的作用"><a href="#二阶段提交的作用" class="headerlink" title="二阶段提交的作用"></a>二阶段提交的作用</h4><ol>
+<li><strong>一致性保证</strong>：<br>二阶段提交确保了 InnoDB 的事务日志和 Binlog 之间的一致性。如果 Binlog 写入失败，可以通过回滚撤销未完成的事务。</li>
+<li><strong>主从复制的一致性</strong>：<br>Binlog 用于主从复制。如果没有二阶段提交，可能会导致主库和从库数据不一致的问题。</li>
+<li><strong>崩溃恢复</strong>：<br>如果 MySQL 在事务提交中途崩溃，redo log 的 “PREPARED” 状态可以帮助事务在恢复时判断是提交还是回滚。</li>
+</ol>
+<p><strong>二阶段提交的基本流程</strong></p>
+<p> 此时，进入二阶段提交的流程：</p>
+<ol>
+<li><p>InnoDB 记录修改到 redo log 并标记为 PREPARED</p>
+</li>
+<li><p>MySQL 写入 Binlog</p>
+</li>
+<li><p>更新 redo log 状态为 COMMITTED</p>
+</li>
+</ol>
+<h4 id="总结-1"><a href="#总结-1" class="headerlink" title="总结"></a>总结</h4><p>二阶段提交在 MySQL 中的核心目标是保证 InnoDB 的事务日志和 Binlog 之间的数据一致性。在分布式场景中，二阶段提交也是解决分布式事务一致性的重要协议。虽然二阶段提交提供了数据一致性的保障，但它会引入一定的性能开销，因此在实际使用中需要权衡性能与一致性需求。</p>
+<h3 id="MySQL-中如果发生死锁应该如何解决？"><a href="#MySQL-中如果发生死锁应该如何解决？" class="headerlink" title="MySQL 中如果发生死锁应该如何解决？"></a>MySQL 中如果发生死锁应该如何解决？</h3><p>死锁是指多个事务在执行过程中因资源争用形成的循环等待，导致无法继续执行。MySQL 会自动检测死锁并选择一个事务进行回滚，但我们可以通过优化设计和操作来避免和解决死锁问题。</p>
+<h4 id="1-MySQL-如何检测死锁？"><a href="#1-MySQL-如何检测死锁？" class="headerlink" title="1. MySQL 如何检测死锁？"></a><strong>1. MySQL 如何检测死锁？</strong></h4><ul>
+<li><strong>死锁检测</strong>：MySQL 的 InnoDB 存储引擎会维护一个等待图（Wait-for Graph），当发现等待图中出现环路时，确定发生了死锁。</li>
+<li><strong>解决方式</strong>：MySQL 会自动选择一个事务进行回滚，释放其占用的资源，使其他事务得以继续执行。</li>
+</ul>
+<h4 id="2-发生死锁的解决方法"><a href="#2-发生死锁的解决方法" class="headerlink" title="2. 发生死锁的解决方法"></a>2. 发生死锁的解决方法</h4><p><strong>1. 让mysql自行解决</strong></p>
+<ul>
+<li>在 MySQL 中，当发生死锁时，InnoDB 会自动选择代价最小的事务进行回滚。</li>
+<li>确保应用程序能够捕获死锁错误并正确处理，例如重新尝试事务操作。</li>
+</ul>
+<p><strong>2. 手动排查</strong></p>
+<ul>
+<li>尝试查看死锁日志，死锁日志会记录在 <code>error.log</code> 文件中，包括导致死锁的 SQL 语句和锁的状态。</li>
+<li>分析死锁日志，分析日志中显示的死锁原因，确定是否因为资源访问顺序或索引设计问题导致。</li>
+<li>排查SQL语句，使用 <code>SHOW ENGINE INNODB STATUS;</code> 查看当前死锁状态，检查涉及的事务和被锁定的表、索引情况。</li>
+</ul>
+<hr>
+<h4 id="3-防止死锁的优化方法"><a href="#3-防止死锁的优化方法" class="headerlink" title="3. 防止死锁的优化方法"></a><strong>3. 防止死锁的优化方法</strong></h4><p><strong>1 统一资源访问顺序</strong></p>
+<ul>
+<li>保证所有事务按照相同的顺序访问资源，避免循环等待。</li>
+<li>示例：如果两个事务需要同时操作 <code>A</code> 表和 <code>B</code> 表，应统一为先操作 <code>A</code>，再操作 <code>B</code>。</li>
+</ul>
+<p> <strong>2 减少锁的持有时间</strong></p>
+<ul>
+<li>确保事务尽可能快地完成，减少锁的持有时间。</li>
+<li>避免在事务中执行复杂的操作，如长时间查询或用户交互。</li>
+</ul>
+<p> <strong>3 合理使用索引</strong></p>
+<ul>
+<li>优化查询语句，确保使用索引，避免因全表扫描导致不必要的锁定。</li>
+<li>索引优化可以减少锁定的记录数量，从而降低死锁风险。</li>
+</ul>
+<p> <strong>4 降低隔离级别</strong></p>
+<ul>
+<li>在业务允许的情况下，将事务隔离级别从 <strong>可重复读（Repeatable Read）</strong> 降低为 <strong>读已提交（Read Committed）</strong>。</li>
+<li>隔离级别降低后，可以减少锁的范围和强度，从而减少死锁发生概率。</li>
+</ul>
+<p> <strong>5 使用显式锁</strong></p>
+<ul>
+<li>在应用程序中手动使用 <strong>表锁</strong> 或 <strong>行锁</strong>，避免隐式锁的竞争。</li>
+</ul>
+<h2 id="Day9"><a href="#Day9" class="headerlink" title="Day9"></a>Day9</h2><h3 id="Mysql中如何理解深度分页问题"><a href="#Mysql中如何理解深度分页问题" class="headerlink" title="Mysql中如何理解深度分页问题?"></a>Mysql中如何理解深度分页问题?</h3><h4 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h4><p>深度分页（Deep Pagination)在MySQL中指的是对大型数据集进行分页查询时，尤其是当需要获取较后页数的数据时，性能可能会受到影响。传统的分页方法在数据量较大时，随着页数的增多，性能会迅速下降。</p>
+<h4 id="1-深度分页的影响"><a href="#1-深度分页的影响" class="headerlink" title="1. 深度分页的影响"></a>1. 深度分页的影响</h4><ul>
+<li><strong>响应时间增加：</strong>随着分页深度的增加，查询所需要的时间也会增加，导致用户体验下降。</li>
+<li><strong>服务器资源消耗：</strong>深分页查询会消耗更多的CPU和内存资源，可能导致服务器性能瓶颈。</li>
+<li><strong>锁竞争和数据不一致：</strong>在并发环境下，长时间的查询可能导致锁竞争和数据不一致问题。</li>
+</ul>
+<p>常用到场景：</p>
+<ul>
+<li>大型电子商城</li>
+<li>社交媒体平台</li>
+<li>数据分析报告</li>
+</ul>
+<h4 id="2-深分页性能下降的原因"><a href="#2-深分页性能下降的原因" class="headerlink" title="2. 深分页性能下降的原因"></a>2. 深分页性能下降的原因</h4><p>注意：<code>limit</code>是在构建结果集后，对数据丢弃处理的，所以需要先构建结果集。</p>
+<p><strong>1. 索引扫描的局限性</strong></p>
+<ul>
+<li>全索引扫描：（查询结果集时）当<code>LIMIT</code>语句的<code>offset</code>值很大时，MySQL 可能需要执行全索引扫描来找到满足条件的记录。这意味着从索引的根节点开始，一直扫描到叶子节点，无论这些节点是否包含目标数据。</li>
+<li>索引跳跃性：（使用limit时） 即使是索引扫描，MySQL 也无法直接跳转到特定的<code>offset</code>位置。它必须从索引的开始位置顺序扫描，直到达到所需的位置。这种顺序扫描的过程是耗时的。</li>
+<li>回表开销：对于非聚簇索引，找到满足条件的索引记录后，MySQL 需要执行回表操作来获取完整的行数据。在深分页查询中，由于<code>offset</code>值大，这会导致大量的回表操作，从而增加 I&#x2F;O 开销。</li>
+</ul>
+<p><strong>2. 数据访问模式</strong></p>
+<ul>
+<li>随机IO</li>
+<li>缓存效率低下： 深分页查询往往不会受益于 MySQL 的查询缓存，因为查询缓存是基于查询字符串的精确匹配。此外，由于数据量较大，缓存的数据可能很快被淘汰。</li>
+</ul>
+<p><strong>3. 锁和事务的影响</strong></p>
+<p>在并发环境下，深分页查询可能会引起一下问题：（都是由于执行时间长，导致锁的竞争）</p>
+<ul>
+<li>长事务和锁竞争</li>
+<li>死锁风险</li>
+</ul>
+<h4 id="优化"><a href="#优化" class="headerlink" title="优化"></a>优化</h4><p><strong>1. 子查询优化策略</strong></p>
+<p>子查询优化策略的核心思想是减少回表操作。通过在子查询中找到满足条件的起始ID，然后在主查询中直接从该ID开始检索数据。</p>
+<p><strong>底层原理：</strong></p>
+<ul>
+<li>子查询在二级索引上执行，快速定位到满足条件的起始点。</li>
+<li>主查询使用该起始点在主键索引上直接检索数据，避免了从二级索引到主键索引的多次回表。</li>
+</ul>
+<h5 id="2-INNER-JOIN-延迟关联策略"><a href="#2-INNER-JOIN-延迟关联策略" class="headerlink" title="2. INNER JOIN 延迟关联策略"></a>2. INNER JOIN 延迟关联策略</h5><p>延迟关联策略通过先获取满足条件的ID集合，然后与原表进行JOIN操作来获取完整数据。</p>
+<p><strong>底层原理：</strong></p>
+<ul>
+<li>通过在二级索引上快速找到满足条件的ID集合。</li>
+<li>使用INNER JOIN在主键索引上检索这些ID对应的数据，减少了回表次数。</li>
+</ul>
+<h5 id="3-标签记录法策略"><a href="#3-标签记录法策略" class="headerlink" title="3. 标签记录法策略"></a>3. 标签记录法策略</h5><p>标签记录法通过记录上一次查询的最后一个 <code>ID</code>，下次查询从该 <code>ID</code> 开始。</p>
+<p><strong>底层原理：</strong></p>
+<ul>
+<li>利用有序索引的特性，从上一次查询的最后一个<code>ID</code>开始，避免从头扫描。</li>
+<li>适用于有连续或可排序的字段，如自增主键或时间戳。</li>
+</ul>
+<h5 id="4-使用BETWEEN…AND…策略"><a href="#4-使用BETWEEN…AND…策略" class="headerlink" title="4. 使用BETWEEN…AND…策略"></a>4. 使用BETWEEN…AND…策略</h5><p><strong>策略描述：</strong> 使用<code>BETWEEN…AND…</code>来代替<code>LIMIT</code>，直接指定查询的范围。</p>
+<p><strong>底层原理：</strong></p>
+<ul>
+<li><code>BETWEEN…AND…</code>允许 MySQL 直接定位到查询的起始和结束点。</li>
+<li>减少了扫描的行数，提高了查询效率。</li>
+</ul>
+<h3 id="什么是MySQL-的主从同步机制？它是如何实现的？"><a href="#什么是MySQL-的主从同步机制？它是如何实现的？" class="headerlink" title="什么是MySQL 的主从同步机制？它是如何实现的？"></a>什么是MySQL 的主从同步机制？它是如何实现的？</h3><p><a target="_blank" rel="noopener" href="https://www.qiqicto.com/infor/tag/mysql">MySQL</a> 的主从同步机制，又称为 Master-Slave 复制机制，是一种用于数据冗余和高可用性的关键技术。通过该机制，MySQL 可以在一个或多个从数据库（Slave）上复制主数据库（Master）的数据，确保数据的实时一致性和系统的高度可用性。下面详细介绍 MySQL 主从同步机制的工作原理和实现过程。</p>
+<h4 id="工作原理"><a href="#工作原理" class="headerlink" title="工作原理"></a>工作原理</h4><ol>
+<li><strong>二进制日志（Binary Log）</strong>: 主数据库首先记录所有的改变数据的事务（如INSERT、UPDATE、DELETE操作），这些事务会被记录到二进制日志文件中，每个事件都详细描述了对数据库所做的修改。</li>
+<li><strong>从数据库配置</strong>：从数据库配置为 Slave 并指向 Master，告知 MySQL 从哪个 Master 获取二进制日志以及从哪个位置开始读取。</li>
+<li><strong>I&#x2F;O 线程</strong>：在 Slave 上，有一个专门的线程（I&#x2F;O thread）负责连接到 Master，并请求从某个指定的位置（通常是二进制日志的起始点）之后的所有事件。Master 接收到请求后，会将其二进制日志文件中的事件传送给 Slave。</li>
+<li><strong>SQL 线程</strong>：在 Slave 上还有一个 SQL 线程，它接收到由 I&#x2F;O 线程传来的二进制日志事件后，会重放这些事件，就像它们在 Master 上发生时一样，从而使 Slave 的数据与 Master 同步。</li>
+</ol>
+<h4 id="实现过程详解"><a href="#实现过程详解" class="headerlink" title="实现过程详解"></a>实现过程详解</h4><ol>
+<li><p>Master 端</p>
+<p>:</p>
+<ul>
+<li><strong>二进制日志初始化</strong>：在 Master 数据库中开启二进制日志记录功能，确保所有的数据变更都被记录下来。</li>
+<li><strong>配置文件修改</strong>：在 Master 的 my.cnf 或 my.ini 文件中，设置 server-id 唯一标识符，这是为了区分不同数据库服务器的身份。</li>
+</ul>
+</li>
+<li><p>Slave 端</p>
+<p>:</p>
+<ul>
+<li><strong>配置文件修改</strong>：在 Slave 的配置文件中设置唯一的 server-id，同时配置 Master 的相关信息，包括 host、port、username、password 等。</li>
+<li><strong>初始同步</strong>：首次同步时，通常需要从 Master 导出整个数据库，然后导入到 Slave 中。这一步骤完成后，Slave 才能基于 Master 的最新状态开始增量复制。</li>
+</ul>
+</li>
+<li><p>启动复制流程</p>
+<p>:</p>
+<ul>
+<li><strong>在 Slave 上启动复制</strong>：使用 CHANGE MASTER TO 语句配置 Master 的信息，并启动 slave。</li>
+<li><strong>监控复制状态</strong>：可以使用 SHOW SLAVE STATUS \G 命令查看复制的状态，确认复制是否成功启动，是否有延迟等情况。</li>
+</ul>
+</li>
+</ol>
+<h4 id="主从同步的关键概念"><a href="#主从同步的关键概念" class="headerlink" title="主从同步的关键概念"></a>主从同步的关键概念</h4><ul>
+<li><strong>二进制日志文件</strong>（Binlog Files）：记录所有修改数据库内容的语句，是 Master-Slave 复制的基础。</li>
+<li><strong>中继日志文件</strong>（Relay Logs）：在 Slave 上，接收到的二进制日志事件先保存在 Relay Logs 中，然后再由 SQL 线程重放。</li>
+<li><strong>复制延迟</strong>：由于网络延迟或其他原因，有时 Slave 上的数据可能落后于 Master，这种现象被称为复制延迟。</li>
+</ul>
+<h4 id="优势与局限"><a href="#优势与局限" class="headerlink" title="优势与局限"></a>优势与局限</h4><ul>
+<li><p>优势</p>
+<p>:</p>
+<ul>
+<li><strong>数据冗余</strong>：提高数据安全性和系统容灾能力。</li>
+<li><strong>读写分离</strong>：可以将读操作分担到 Slave 上，提高系统的整体性能。</li>
+<li><strong>高可用性</strong>：Master 出现故障时，可以迅速切换到 Slave，保证服务不间断。</li>
+</ul>
+</li>
+<li><p>局限性</p>
+<p>:</p>
+<ul>
+<li><strong>数据一致性</strong>：由于复制非即时完成，可能存在短暂的数据不一致性。</li>
+<li><strong>性能开销</strong>：二进制日志和复制机制都会产生额外的性能负担。</li>
+<li><strong>故障恢复</strong>：Master 故障后的数据恢复和 Slave 的切换操作需要精心设计。</li>
+</ul>
+</li>
+</ul>
+<p>通过以上介绍可以看出，MySQL 的主从同步机制是一项复杂但强大的功能，它不仅提升了数据库的可靠性和性能，也是构建高可用数据库集群不可或缺的部分。在实际应用中，需要根据业务场景和系统需求合理配置和优化，以充分发挥其优势。</p>
+<h3 id="如何理解MySQL的主从同步延迟？"><a href="#如何理解MySQL的主从同步延迟？" class="headerlink" title="如何理解MySQL的主从同步延迟？"></a>如何理解MySQL的主从同步延迟？</h3><p>MySQL 主从同步延迟（Replication Lag）是指主服务器和从服务器之间的数据复制存在时间差，导致从服务器的数据落后于主服务器。这种延迟可能会影响应用的性能和数据一致性。本文将详细分析主从同步延迟的常见原因，并提供相应的优化解决方案。</p>
+<p>一、延迟原因分析<br><strong>1. 主服务器负载过高</strong></p>
+<ul>
+<li>主服务器的高负载会影响二进制日志的生成和发送速度，从而导致从服务器的同步延迟。</li>
+</ul>
+<p><strong>2. 从服务器性能瓶颈</strong></p>
+<ul>
+<li>从服务器的硬件资源不足（如 CPU、内存、磁盘 I&#x2F;O），导致处理中继日志的速度慢，无法及时处理主服务器传输的二进制日志。</li>
+</ul>
+<p><strong>3. 网络延迟</strong></p>
+<p>主从服务器之间的网络带宽不足或网络延迟，会导致二进制日志的传输速度减慢，增加同步延迟。</p>
+<p><strong>4. 大事务</strong></p>
+<p>大规模的批量插入或更新操作会生成大量的二进制日志，从而增加从服务器的处理时间，导致延迟。</p>
+<p><strong>5. 从服务器的锁竞争问题</strong></p>
+<p>从服务器在应用中继日志时，可能遇到锁争用问题，从而影响同步进度，进一步加剧延迟。</p>
+<p><strong>6. 配置不当</strong></p>
+<p>不合理的 MySQL 配置（如缓冲区大小、线程数等）可能导致复制性能下降，产生延迟。<br>二、解决方案<br><strong>1. 优化主服务器的性能</strong></p>
+<p>通过优化查询和减少不必要的负载，减轻主服务器的压力。使用缓存（如 Query Cache）来减少数据库查询次数，也可以显著提高性能。</p>
+<p><strong>2. 提升从服务器的性能</strong></p>
+<p>升级从服务器的硬件配置，比如增加 CPU 核心数、内存容量以及提升磁盘 I&#x2F;O 性能。确保 MySQL 配置（如 innodb_buffer_pool_size、innodb_log_file_size 等）适合从服务器的硬件资源。</p>
+<p><strong>3. 优化网络性能</strong></p>
+<p>确保主从服务器之间的网络带宽充足且连接稳定。使用低延迟、高带宽的网络连接，减少数据传输时的延迟。</p>
+<p><strong>4. 差分大事务</strong></p>
+<p>将大事务拆分为多个小事务，减少单个事务的处理时间，避免大事务导致的二进制日志积压。<br><strong>5. 调整配置机制</strong></p>
+<p>针对 MySQL 8.0 及以上版本，可以增加从服务器的 I&#x2F;O 线程和 SQL 线程数量，启用并行复制以提高处理能力。</p>
+<p><strong>6. 监控和调整锁竞争</strong></p>
+<p>通过 SHOW PROCESSLIST 或 SHOW ENGINE INNODB STATUS 监控锁争用情况，优化应用程序中的锁使用策略，减少锁冲突引发的延迟。</p>
+<p><strong>7. 使用半步同步复制</strong></p>
+<p>启用半同步复制，确保主服务器在提交事务后，至少等待一个从服务器确认已收到二进制日志，从而减少延迟风险。</p>
+<p><strong>8. 定期优化和维护</strong></p>
+<p>定期检查数据库表结构，进行必要的优化操作，比如索引重建和表碎片整理，以提高数据库的查询和写入性能<br>三、总结<br>MySQL 主从同步延迟的产生有多方面的原因，包括主服务器负载、从服务器性能、网络延迟、大事务处理、锁争用以及配置问题。通过优化服务器性能、调整复制配置、使用并行复制和半同步复制等方法，可以有效减少同步延迟，提升数据复制的效率和一致性。</p>
+<p>通过针对性地分析与调整，企业可以确保 MySQL 数据库在高并发、海量数据的情况下依然保持高效的主从同步，减少因延迟带来的业务影响。</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 

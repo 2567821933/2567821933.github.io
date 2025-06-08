@@ -122,7 +122,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">45</span>
+          <span class="site-state-item-count">46</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -133,7 +133,7 @@
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">30</span>
+        <span class="site-state-item-count">31</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -158,6 +158,182 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2025/06/04/%E7%AD%94%E8%BE%A9/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/111.png">
+      <meta itemprop="name" content="ZhangYuHao">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Zhang'Blog">
+      <meta itemprop="description" content="一个小人物的个人博客">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Zhang'Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2025/06/04/%E7%AD%94%E8%BE%A9/" class="post-title-link" itemprop="url">答辩</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2025-06-04 09:38:31" itemprop="dateCreated datePublished" datetime="2025-06-04T09:38:31+08:00">2025-06-04</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-06-05 23:30:15" itemprop="dateModified" datetime="2025-06-05T23:30:15+08:00">2025-06-05</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="答辩基础题"><a href="#答辩基础题" class="headerlink" title="答辩基础题"></a>答辩基础题</h1><h2 id="1-10"><a href="#1-10" class="headerlink" title="1-10"></a>1-10</h2><h3 id="什么是E-R模型？"><a href="#什么是E-R模型？" class="headerlink" title="什么是E-R模型？"></a>什么是E-R模型？</h3><p>ER模型是实体关系模型，是数据库设计中用于描述现实世界概念结构的一种数据模型，主要核心组成为实体（长方形）、属性（椭圆形）和关系（菱形）。</p>
+<h3 id="什么是数据库恢复功能？"><a href="#什么是数据库恢复功能？" class="headerlink" title="什么是数据库恢复功能？"></a>什么是数据库恢复功能？</h3><p>数据库恢复功能，是指数据库管理系统在发生故障时，能够将数据库恢复到一致状态的能力。恢复功能是数据库可靠性和数据完整性的重要保障。</p>
+<p>数据库崩溃必须要保证的事情：</p>
+<ul>
+<li><strong>保证事务的原子性：</strong>即使系统崩溃，也要保证事务要么完全执行，要么完全不执行。</li>
+<li><strong>恢复数据库到一致状态：</strong> 确保数据符合所有预定义的约束条件（如主键、外键、唯一性等）。</li>
+<li><strong>最小化数据丢失：</strong> 尽可能减少因故障导致的数据损失。</li>
+<li><strong>提高系统的可用性：</strong>快速恢复，减少停机时间。</li>
+</ul>
+<p>常出现的数据库异常：</p>
+<ul>
+<li>事务故障<ul>
+<li>事务因运行逻辑错误或人为终止导致的失败。</li>
+<li>解决： 撤销未完成的事务。</li>
+</ul>
+</li>
+<li>系统崩溃<ul>
+<li>如操作系统崩溃、电源故障等导致的DBMS异常终止。</li>
+<li>解决： 使用 <strong>日志</strong> 和 <strong>检查点</strong> 恢复已提交和未提交的事务。</li>
+</ul>
+</li>
+<li>介质故障：<ul>
+<li>磁盘损坏</li>
+<li>解决： 从备份或归档日志中恢复数据。</li>
+</ul>
+</li>
+<li>人为错误：<ul>
+<li>如误删数据，错误更新</li>
+<li>解决： 日志回滚。</li>
+</ul>
+</li>
+</ul>
+<h3 id="什么是数据库安全性？"><a href="#什么是数据库安全性？" class="headerlink" title="什么是数据库安全性？"></a>什么是数据库安全性？</h3><p>数据库的安全性，是指保护数据库免受 <strong>未授权访问</strong>、<strong>数据泄露、</strong> <strong>篡改或破坏</strong>的一系列技术和措施。它确保了数据库的 <strong>机密性、完整性和可用性</strong>，即 <strong>CIA三要素</strong>。</p>
+<h3 id="什么是数据库并发控制？"><a href="#什么是数据库并发控制？" class="headerlink" title="什么是数据库并发控制？"></a>什么是数据库并发控制？</h3><p>数据库的并发控制，同常与数据库的隔离级别相结合。如果多个事务不加控制的并发执行，可能导致 <strong>脏读、不可重复读和幻读</strong> 的问题。</p>
+<p>一下是事务的隔离级别：</p>
+<ul>
+<li>读未提交：读取到未提交的事务，可能导致 脏读、不可重复读和幻读问题。</li>
+<li>读已提交：读取已提交的事务，在事务执行中发生数据改变，可能导致不可重复读和幻读问题。</li>
+<li>可重复读： 在事务执行过程中，其他事务插入，可能导致出现幻读问题。</li>
+<li>可串行化：事务的执行为串行化，不存在并发问题。</li>
+</ul>
+<h3 id="需求分析要完成哪些工作？"><a href="#需求分析要完成哪些工作？" class="headerlink" title="需求分析要完成哪些工作？"></a>需求分析要完成哪些工作？</h3><p>需求分析为软件开发的关键阶段，主要目的在于 <strong>理解、定义和记录用户需求</strong>，为后续系统的设计、开发和测试提供依据。</p>
+<p>主要工作：</p>
+<ul>
+<li>需求收集： 与用户对接，获取用户的真实需求。</li>
+<li>需求分类和整理： 分为功能性需求，非功能性需求、业务规则和用户的其他需求。</li>
+<li>通过需求分析与建模： 用例图，实体关系图、流程图等</li>
+<li>需求确认：通过团队讨论确认需求的完整性。</li>
+<li>需求文档化： 将需求整理成正式的需求规格说明书。</li>
+<li>需求分析变更整理：整理可能发生变更的流程。</li>
+</ul>
+<h3 id="什么是函数依赖，属性之间的函数依赖反映了什么问题？"><a href="#什么是函数依赖，属性之间的函数依赖反映了什么问题？" class="headerlink" title="什么是函数依赖，属性之间的函数依赖反映了什么问题？"></a>什么是函数依赖，属性之间的函数依赖反映了什么问题？</h3><p>在关系形数据库中，函数依赖通常描述了一个关系中属性之间的逻辑约束关系（在MySQL中通过数据库三范式来约束）</p>
+<p>反映的问题：</p>
+<p>函数依赖揭示了关系数据库中 <strong>数据的语义约束</strong> 和 <strong>潜在的设计缺陷</strong>。</p>
+<ul>
+<li>数据冗余</li>
+<li>更新异常</li>
+<li>数据不一致</li>
+</ul>
+<h3 id="数据库的三范式"><a href="#数据库的三范式" class="headerlink" title="数据库的三范式"></a>数据库的三范式</h3><p>第一范式：</p>
+<ul>
+<li>确保每一列都是原子的（不可再分），即每个字段只存储单一值，不允许出现重复组或多值现象。</li>
+<li>所有行必须具有唯一标识（如主键），不允许完全相同的重复行。</li>
+</ul>
+<p>第二范式：</p>
+<ul>
+<li>在第一范式的基础上，消除非主属性对主键的 “部分函数依赖”。<ul>
+<li>完全主键依赖：非主键必须依赖于整个主键，而非主键的某一部分。</li>
+<li>部分函数依赖： 非主键仅依赖于主键的一部分（需拆分表以消除）。</li>
+</ul>
+</li>
+<li>适用于复合主键的表</li>
+</ul>
+<p>第三范式：</p>
+<ul>
+<li>在第二范式的基础上，消除非主键对主键的”传递性依赖“。</li>
+<li>即： 非主属性不能依赖于其他非主属性。</li>
+</ul>
+<h3 id="事务并发执行过程出现死锁，系统有什么对策？"><a href="#事务并发执行过程出现死锁，系统有什么对策？" class="headerlink" title="事务并发执行过程出现死锁，系统有什么对策？"></a>事务并发执行过程出现死锁，系统有什么对策？</h3><p>手动关闭进程，通过获取进程号，使用kill来关闭线程。</p>
+<p>回滚事务，（部分回滚、全部回滚）</p>
+<p>MySQL有死锁的检测机制（通过自动回滚来解决）</p>
+<h3 id="如何进行查询优化？"><a href="#如何进行查询优化？" class="headerlink" title="如何进行查询优化？"></a>如何进行查询优化？</h3><ul>
+<li>设置合适的索引。</li>
+<li>只查询需要的数据，避免*的使用。</li>
+<li>组合索引遵循最左前缀匹配原则。</li>
+<li>减少对与函数的使用。</li>
+<li>非必要不要使用like和or。</li>
+</ul>
+<h3 id="ISO的七层模型是什么？-TCP-UDP属于那一层？-TCP-UDP有何优缺点？"><a href="#ISO的七层模型是什么？-TCP-UDP属于那一层？-TCP-UDP有何优缺点？" class="headerlink" title="ISO的七层模型是什么？ TCP&#x2F;UDP属于那一层？ TCP&#x2F;UDP有何优缺点？"></a>ISO的七层模型是什么？ TCP&#x2F;UDP属于那一层？ TCP&#x2F;UDP有何优缺点？</h3><p>应用层 ———— 用户接口和网络服务———— HTTP，FTP————报文</p>
+<p>表示层———— 数据格式转化———— SSL ———— 数据</p>
+<p>会话层 ———— 建立维护终止会话————SSH，TLS————会话</p>
+<p>传输层———— 端到端的链接————TCP、UDP————段</p>
+<p>网络层————IP寻址、路由选择———— IP ———— 包</p>
+<p>数据链路层————MAC寻址 ———— MAC————帧</p>
+<p>物理层————比特流 ———— USB、光纤 ————比特</p>
+<p>TCP、UDP属于那一层？传输层</p>
+<p>TCP： 安全稳定的链接，速度比UDP慢，但是传输稳定，数据完整传输，通过三次握手和四次挥手来完成链接的建立和断开。</p>
+<p>UDP： 速度快，链接的数据传输没有安全保障，可能造成数据的丢失，适合在传输视频这些不需要保证数据完整性的场合使用。</p>
+<p>应用层（http） -》 传输层（TCP，UDP） -》 网络层（IP) &#x3D;》 网络接口层（MAC）</p>
+<p>报文-》段 &#x3D;》 包 &#x3D;》 帧</p>
+<h3 id="试比较线路交换与存储转发交换的特点？"><a href="#试比较线路交换与存储转发交换的特点？" class="headerlink" title="试比较线路交换与存储转发交换的特点？"></a>试比较线路交换与存储转发交换的特点？</h3><h3 id="从操作系统提供的服务出发，操作系统可分为哪几类？"><a href="#从操作系统提供的服务出发，操作系统可分为哪几类？" class="headerlink" title="从操作系统提供的服务出发，操作系统可分为哪几类？"></a>从操作系统提供的服务出发，操作系统可分为哪几类？</h3><p>操作系统提供的服务和功能分为 用户功能和</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -203,7 +379,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2025-05-28 00:52:49" itemprop="dateModified" datetime="2025-05-28T00:52:49+08:00">2025-05-28</time>
+      <time title="修改时间：2025-05-28 11:02:04" itemprop="dateModified" datetime="2025-05-28T11:02:04+08:00">2025-05-28</time>
     </span>
 
   
@@ -351,7 +527,27 @@
 <li>拦截器</li>
 <li>AOP</li>
 </ol>
-<h3 id="SpringMVC启动流程"><a href="#SpringMVC启动流程" class="headerlink" title="SpringMVC启动流程"></a>SpringMVC启动流程</h3>
+<h3 id="SpringMVC启动流程"><a href="#SpringMVC启动流程" class="headerlink" title="SpringMVC启动流程"></a>SpringMVC启动流程</h3><p><strong>核心组件</strong></p>
+<ul>
+<li><code>Dispatcherservlet</code>: 它是<code>SpringMVC</code> 的核心组件，他是一个Servlet，负责接收HTTP请求并调度请求到合适的处理器。</li>
+<li>@Controller 和 @RequestMapping： 前者用于标记控制类，后者则用于定义控制类中的方法和URL请求的映射关系。</li>
+<li>ModeAndView：控制返回的数据和视图封装在ModelAndView对象中。</li>
+<li>ViewResolver（视图解析器）：它负责将逻辑视图名称解析为物理视图，Spring提供了多种视图解析器。</li>
+<li>@RequestParam和@PathVariable： 用于获取请求参数，后者用于获取URL中的路径变量</li>
+</ul>
+<p><strong>请求流程</strong></p>
+<ol>
+<li>当http请求发送到后端时，会先进入<code>Dispatcherservlet</code> 中。</li>
+<li>它会根据请求路径从<code>HandlerMapping</code> 中获取对应的控制器。</li>
+<li>调用控制器<code>Controller</code></li>
+<li>控制器会直接走到后端，从后端逻辑中获取信息。</li>
+<li>将获取的信息返回（<code>ModelAndView</code>）到<code>Dispatcherservlet</code>。</li>
+<li>它会通过<code>ViewResolver</code>来处理视图映射。</li>
+<li>把信息传给视图层，处理view。</li>
+<li>返回结果给客户端。</li>
+</ol>
+<h3 id="初始化方法"><a href="#初始化方法" class="headerlink" title="初始化方法"></a>初始化方法</h3><p>可以通过<code>@PostConsturt</code>来注解，加了这个注解后，项目可以在完成Bean的初始化后，执行。</p>
+<h2 id="Mybatis"><a href="#Mybatis" class="headerlink" title="Mybatis"></a>Mybatis</h2>
       
     </div>
 
@@ -1232,178 +1428,6 @@
 <li>如果你的项目需要更强大的分布式调度功能（如任务分片、动态调度、故障转移、监控等），建议直接使用XXL-JOB或类似的分布式调度框架。</li>
 </ul>
 
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2025/03/22/RibbitMQ/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/111.png">
-      <meta itemprop="name" content="ZhangYuHao">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Zhang'Blog">
-      <meta itemprop="description" content="一个小人物的个人博客">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | Zhang'Blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2025/03/22/RibbitMQ/" class="post-title-link" itemprop="url">RabbitMQ</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2025-03-22 12:29:37" itemprop="dateCreated datePublished" datetime="2025-03-22T12:29:37+08:00">2025-03-22</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2025-03-23 10:41:45" itemprop="dateModified" datetime="2025-03-23T10:41:45+08:00">2025-03-23</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="RabbitMQ"><a href="#RabbitMQ" class="headerlink" title="RabbitMQ"></a>RabbitMQ</h1><h2 id="day01"><a href="#day01" class="headerlink" title="day01"></a>day01</h2><h3 id="RabbitMQ是什么？使用在什么场景？"><a href="#RabbitMQ是什么？使用在什么场景？" class="headerlink" title="RabbitMQ是什么？使用在什么场景？"></a>RabbitMQ是什么？使用在什么场景？</h3><h4 id="概念"><a href="#概念" class="headerlink" title="概念"></a><strong>概念</strong></h4><p>Rabbit是一个消息中间件（Message Broker），用于在分布式系统中传递消息。它的核心功能是接受、存储和转发消息，确保消息能从生产者（Producer） 传递到消费者（Consumer）。</p>
-<p><strong>核心概念</strong></p>
-<ul>
-<li><strong>Producer(生产者):</strong> 发送消息的程序。</li>
-<li><strong>Consumer（消费者）：</strong> 接受消息的应用程序。</li>
-<li><strong>Queue（队列）：</strong> 存储消息的缓冲区。</li>
-<li><strong>Exchange（交换机）：</strong> 接受生产者发送的消息，并根据规则将消息路由到队列。</li>
-<li><strong>Binding(绑定）：</strong> 定义交换机和队列之间的关系。</li>
-</ul>
-<p><strong>特点：</strong></p>
-<ul>
-<li><strong>可靠性：</strong> 支持消息持久化、确认机制和事务，确保消息不丢失。</li>
-<li><strong>灵活性：</strong> 支持多种消息路由模式（如直连、主题、广播等）</li>
-<li><strong>扩展性：</strong> 可通过集群实现高可用性和负载均衡。</li>
-<li><strong>跨平台：</strong> 支持多种编程语言和操作系统。</li>
-<li><strong>易用性：</strong> 提供友好的管理界面和丰富的客户端库。</li>
-</ul>
-<p><strong>主要应用场景</strong></p>
-<h4 id="1-异步处理"><a href="#1-异步处理" class="headerlink" title="1. 异步处理"></a><strong>1. 异步处理</strong></h4><ul>
-<li>场景描述：将耗时的任务（如发送邮件、生成报表）放入消息队列，有后台服务异步处理。</li>
-<li>优点：提供系统的响应速度，避免用户等待。</li>
-</ul>
-<p>异步处理的本质：<br>异步处理的核心思想是将任务提交后立即返回，而不是等待任务完成。任务的执行有后台的消费者（Consumer）处理，生产者（Producer）不需要阻塞等待结果。</p>
-<p>实现流程：</p>
-<ul>
-<li><strong>生产者发送消息：</strong><ul>
-<li>生产者将任务数据（如Java对象）序列化成二进制数据（如字节流）。</li>
-<li>生产者将消息发送到RabbitMQ的队列中，然后立即返回，继续执行其他操作。</li>
-</ul>
-</li>
-<li><strong>RabbitMQ存储消息</strong>：<ul>
-<li>RabbitMQ将消息存储在队列中，等待消息处理。</li>
-</ul>
-</li>
-<li><strong>消费者处理消息：</strong><ul>
-<li>消费者从队列中获取消息，并将其反序列化为原始数据</li>
-<li>消费者在后台处理消息，执行具体的业务逻辑。</li>
-</ul>
-</li>
-</ul>
-<h5 id="秒杀异步处理"><a href="#秒杀异步处理" class="headerlink" title="秒杀异步处理"></a>秒杀异步处理</h5><p>问题：使用ssm+springboot+RabbitMQ+Redis完成一个秒杀逻辑的处理</p>
-<p>思路：</p>
-<ul>
-<li>用户发起秒杀请求后，通过后端Redis的原子操作（如DECR）减少库存</li>
-<li>成功则生成订单到RabbitMQ中。</li>
-<li>RabbitMQ异步处理订单消息。</li>
-</ul>
-<p>实现：</p>
-<p>配置：</p>
-<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">spring:</span></span><br><span class="line">  <span class="attr">rabbitmq:</span></span><br><span class="line">    <span class="attr">host:</span> <span class="string">localhost</span></span><br><span class="line">    <span class="attr">port:</span> <span class="number">5672</span></span><br><span class="line">    <span class="attr">username:</span> <span class="string">guest</span></span><br><span class="line">    <span class="attr">password:</span> <span class="string">guest</span></span><br></pre></td></tr></table></figure>
-
-<p>订单类：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">OrderMessage</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> String orderId; <span class="comment">// 订单ID</span></span><br><span class="line">    <span class="keyword">private</span> String userId;  <span class="comment">// 用户ID</span></span><br><span class="line">    <span class="keyword">private</span> String productId; <span class="comment">// 商品ID</span></span><br><span class="line">    <span class="keyword">private</span> <span class="type">int</span> quantity;   <span class="comment">// 购买数量</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 构造函数、Getter 和 Setter</span></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">OrderMessage</span><span class="params">(String orderId, String userId, String productId, <span class="type">int</span> quantity)</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>.orderId = orderId;</span><br><span class="line">        <span class="built_in">this</span>.userId = userId;</span><br><span class="line">        <span class="built_in">this</span>.productId = productId;</span><br><span class="line">        <span class="built_in">this</span>.quantity = quantity;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Getter 和 Setter 方法</span></span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>配置队列：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> org.springframework.amqp.core.Queue;</span><br><span class="line"><span class="keyword">import</span> org.springframework.context.annotation.Bean;</span><br><span class="line"><span class="keyword">import</span> org.springframework.context.annotation.Configuration;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">RabbitMQConfig</span> &#123;</span><br><span class="line">    <span class="comment">// 定义订单队列</span></span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="keyword">public</span> Queue <span class="title function_">orderQueue</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Queue</span>(<span class="string">&quot;order.queue&quot;</span>, <span class="literal">true</span>); <span class="comment">// true 表示持久化</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>编写消费者代码，并监听RabbitMQ队列并处理订单。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> org.springframework.amqp.rabbit.annotation.RabbitListener;</span><br><span class="line"><span class="keyword">import</span> org.springframework.stereotype.Component;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">OrderConsumer</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 监听订单队列</span></span><br><span class="line">    <span class="meta">@RabbitListener(queues = &quot;order.queue&quot;)</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">handleOrder</span><span class="params">(OrderMessage orderMessage)</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;Received order: &quot;</span> + orderMessage);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 处理订单逻辑</span></span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="comment">// 1. 发送订单通知（如邮件、短信）</span></span><br><span class="line">            sendNotification(orderMessage);</span><br><span class="line"></span><br><span class="line">            <span class="comment">// 2. 更新订单状态到数据库</span></span><br><span class="line">            updateOrderStatus(orderMessage);</span><br><span class="line"></span><br><span class="line">            System.out.println(<span class="string">&quot;Order processed: &quot;</span> + orderMessage.getOrderId());</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">            System.err.println(<span class="string">&quot;Failed to process order: &quot;</span> + orderMessage.getOrderId());</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 模拟发送通知</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">void</span> <span class="title function_">sendNotification</span><span class="params">(OrderMessage orderMessage)</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;Sending notification for order: &quot;</span> + orderMessage.getOrderId());</span><br><span class="line">        <span class="comment">// 实际中可以调用邮件服务或短信服务</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 模拟更新订单状态</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">void</span> <span class="title function_">updateOrderStatus</span><span class="params">(OrderMessage orderMessage)</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;Updating order status for: &quot;</span> + orderMessage.getOrderId());</span><br><span class="line">        <span class="comment">// 实际中可以更新数据库</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>生产者代码，将订单发送到RabbitMQ中：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> org.springframework.amqp.rabbit.core.RabbitTemplate;</span><br><span class="line"><span class="keyword">import</span> org.springframework.beans.factory.annotation.Autowired;</span><br><span class="line"><span class="keyword">import</span> org.springframework.stereotype.Service;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Service</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">OrderProducer</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> RabbitTemplate rabbitTemplate;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 发送订单消息到 RabbitMQ</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">sendOrderMessage</span><span class="params">(OrderMessage orderMessage)</span> &#123;</span><br><span class="line">        rabbitTemplate.convertAndSend(<span class="string">&quot;order.queue&quot;</span>, orderMessage);</span><br><span class="line">        System.out.println(<span class="string">&quot;Sent order: &quot;</span> + orderMessage.getOrderId());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>秒杀逻辑：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> org.springframework.beans.factory.annotation.Autowired;</span><br><span class="line"><span class="keyword">import</span> org.springframework.data.redis.core.StringRedisTemplate;</span><br><span class="line"><span class="keyword">import</span> org.springframework.stereotype.Service;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Service</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">SeckillService</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> StringRedisTemplate redisTemplate;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> OrderProducer orderProducer;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 秒杀逻辑</span></span><br><span class="line">    <span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">seckill</span><span class="params">(String userId, String productId)</span> &#123;</span><br><span class="line">        <span class="comment">// Redis 中存储商品库存的 key</span></span><br><span class="line">        <span class="type">String</span> <span class="variable">stockKey</span> <span class="operator">=</span> <span class="string">&quot;seckill:stock:&quot;</span> + productId;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 使用 Redis 的 DECR 原子操作减少库存</span></span><br><span class="line">        <span class="type">Long</span> <span class="variable">stock</span> <span class="operator">=</span> redisTemplate.opsForValue().decrement(stockKey);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (stock != <span class="literal">null</span> &amp;&amp; stock &gt;= <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="comment">// 库存充足，生成订单</span></span><br><span class="line">            <span class="type">String</span> <span class="variable">orderId</span> <span class="operator">=</span> generateOrderId();</span><br><span class="line">            <span class="type">OrderMessage</span> <span class="variable">orderMessage</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">OrderMessage</span>(orderId, userId, productId, <span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">            <span class="comment">// 发送订单消息到 RabbitMQ</span></span><br><span class="line">            orderProducer.sendOrderMessage(orderMessage);</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="comment">// 库存不足，恢复库存</span></span><br><span class="line">            redisTemplate.opsForValue().increment(stockKey);</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 生成订单ID</span></span><br><span class="line">    <span class="keyword">private</span> String <span class="title function_">generateOrderId</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;ORDER_&quot;</span> + System.currentTimeMillis();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h5 id="2-应用解耦"><a href="#2-应用解耦" class="headerlink" title="2. 应用解耦"></a><strong>2. 应用解耦</strong></h5><ul>
-<li>场景描述： 在微服务架构中，不同服务器之间通过消息队列通信，而不是直接调用。</li>
-<li>优点： 降低服务之间的耦合度，提高系统的可维护性和扩展性</li>
-</ul>
-<h5 id="3-流量消峰"><a href="#3-流量消峰" class="headerlink" title="3. 流量消峰"></a><strong>3. 流量消峰</strong></h5><ul>
-<li>场景描述：在高并发场景下，将请求放入消息队列，由系统按照处理能力逐步消费。</li>
-<li>优点： 避免系统因瞬时高流量而崩溃</li>
-</ul>
-<p><strong>注意：秒杀场景中使用RabbitMQ是一种典型的流量消峰手段。</strong></p>
-<p>优势：</p>
-<p>保护了核心服务；提高系统稳定性；提升了用户体验。</p>
-<h5 id="4-日志收集"><a href="#4-日志收集" class="headerlink" title="4. 日志收集"></a><strong>4. 日志收集</strong></h5><ul>
-<li>场景描述： 将分布式系统中的日志发送到消息队列，由专门的日志处理服务消费和存储。</li>
-<li>优点：集中管理日志，便于分析和监控。</li>
-</ul>
-<p><strong>5. 任务分发</strong></p>
-<ul>
-<li>场景描述： 将任务分发给多个消费者并行处理。</li>
-<li>优点： 提高任务处理效率。</li>
-</ul>
-<p><strong>6. 事件驱动</strong></p>
-<ul>
-<li>场景描述： 在事件驱动架构中，使用消息队列传递事件，触发相关服务执行操作。</li>
-<li>优点： 实现松耦合的事件处理机制。</li>
-</ul>
-<h4 id="RabbitMQ的其他替代方案"><a href="#RabbitMQ的其他替代方案" class="headerlink" title="RabbitMQ的其他替代方案"></a>RabbitMQ的其他替代方案</h4><p>虽然RabbitMQ功能强大，但在某些场景下，可以选择其他消息队列：</p>
-<ul>
-<li>Kafka：适用于高吞吐量、实时数据流处理的场景。</li>
-<li>ActiveMQ： 基于JM5（Java Message Service）的消息队列</li>
-<li>RocketMQ： 阿里巴巴开源的分布式消息队列，适用于大规模的分布式系统。</li>
-</ul>
-<h3 id="Rabbit的基本架构和核心组件"><a href="#Rabbit的基本架构和核心组件" class="headerlink" title="Rabbit的基本架构和核心组件"></a>Rabbit的基本架构和核心组件</h3>
       
     </div>
 
